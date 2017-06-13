@@ -120,6 +120,7 @@ class ViewController: NSViewController {
     
     func showWindow(menuItem: NSMenuItem) {
         self.view.window?.makeKeyAndOrderFront(self)
+        NSApp.activate(ignoringOtherApps: true)
 //        menuItem.state = NSOnState
     }
 }

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5FA74AD81EED0C8C007642C8"
-               BuildableName = "GIF Viewer.app"
+               BuildableName = "DotGIF.app"
                BlueprintName = "GifPlayer"
                ReferencedContainer = "container:GifPlayer.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5FA74AD81EED0C8C007642C8"
-            BuildableName = "GIF Viewer.app"
+            BuildableName = "DotGIF.app"
             BlueprintName = "GifPlayer"
             ReferencedContainer = "container:GifPlayer.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5FA74AD81EED0C8C007642C8"
-            BuildableName = "GIF Viewer.app"
+            BuildableName = "DotGIF.app"
             BlueprintName = "GifPlayer"
             ReferencedContainer = "container:GifPlayer.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5FA74AD81EED0C8C007642C8"
-            BuildableName = "GIF Viewer.app"
+            BuildableName = "DotGIF.app"
             BlueprintName = "GifPlayer"
             ReferencedContainer = "container:GifPlayer.xcodeproj">
          </BuildableReference>

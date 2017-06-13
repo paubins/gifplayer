@@ -23,7 +23,7 @@
 		5FA253C61EEE20EE00410048 /* FOTWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOTWindow.h; sourceTree = "<group>"; };
 		5FA253C71EEE20EE00410048 /* FOTWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOTWindow.m; sourceTree = "<group>"; };
 		5FA253CE1EEE67AA00410048 /* CustomWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomWindow.swift; sourceTree = "<group>"; };
-		5FA74AD91EED0C8D007642C8 /* GIF Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GIF Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FA74AD91EED0C8D007642C8 /* DotGIF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotGIF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FA74ADC1EED0C8D007642C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5FA74ADE1EED0C8D007642C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5FA74AE31EED0C8D007642C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		5FA74ADA1EED0C8D007642C8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5FA74AD91EED0C8D007642C8 /* GIF Viewer.app */,
+				5FA74AD91EED0C8D007642C8 /* DotGIF.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,7 +102,7 @@
 			);
 			name = GifPlayer;
 			productName = GifPlayer;
-			productReference = 5FA74AD91EED0C8D007642C8 /* GIF Viewer.app */;
+			productReference = 5FA74AD91EED0C8D007642C8 /* DotGIF.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -289,7 +289,7 @@
 				INFOPLIST_FILE = GifPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.paubins.DotGif;
-				PRODUCT_NAME = GIF;
+				PRODUCT_NAME = DotGIF;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GifPlayer/GifPlayer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -309,7 +309,7 @@
 				INFOPLIST_FILE = GifPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.paubins.DotGif;
-				PRODUCT_NAME = GIF;
+				PRODUCT_NAME = DotGIF;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GifPlayer/GifPlayer-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

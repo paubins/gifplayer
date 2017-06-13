@@ -11,80 +11,6 @@
 
 @implementation FOTWindowTitle
 
-// Draws the title bar background and window title
-- (void)drawRect:(NSRect)dirtyRect
-{
-    FOTWindow* window = (FOTWindow*)self.window;
-    
-    CGFloat roundedRectangleCornerRadius = 4;
-    NSRect roundedRectangleRect = NSMakeRect(0, 0, NSWidth(self.frame), kTitleBarHeight);
-    NSRect roundedRectangleInnerRect = NSInsetRect(roundedRectangleRect, roundedRectangleCornerRadius, roundedRectangleCornerRadius);
-    NSBezierPath* clippingPath = [NSBezierPath bezierPath];
-    [clippingPath moveToPoint: NSMakePoint(NSMinX(roundedRectangleRect), NSMinY(roundedRectangleRect))];
-    [clippingPath lineToPoint: NSMakePoint(NSMaxX(roundedRectangleRect), NSMinY(roundedRectangleRect))];
-    [clippingPath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(roundedRectangleInnerRect), NSMaxY(roundedRectangleInnerRect)) radius: roundedRectangleCornerRadius startAngle: 0 endAngle: 90];
-    [clippingPath appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(roundedRectangleInnerRect), NSMaxY(roundedRectangleInnerRect)) radius: roundedRectangleCornerRadius startAngle: 90 endAngle: 180];
-    [clippingPath closePath];
-    
-    BOOL drawsAsMainWindow = (window.isMainWindow && [NSApplication sharedApplication].isActive);
-    NSRect drawingRect = NSMakeRect(0, 0, NSWidth(self.frame), kTitleBarHeight);
-    
-    if (window.titleBarDrawingBlock) {
-        // Draw custom titlebar background
-        window.titleBarDrawingBlock(drawsAsMainWindow, drawingRect, clippingPath);
-    } else {
-        // Draw default titlebar background
-        NSGradient* gradient;
-        if (drawsAsMainWindow) {
-            gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithDeviceWhite:0.66 alpha:1.0] endingColor:[NSColor colorWithDeviceWhite:0.9 alpha:1.0]];
-        } else {
-            gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithDeviceWhite:0.878 alpha:1.0] endingColor:[NSColor colorWithDeviceWhite:0.976 alpha:1.0]];
-        }
-        
-        [gradient drawInBezierPath:clippingPath angle:90];
-        
-        // 1px line
-        NSRect shadowRect = NSMakeRect(0, 0, NSWidth(self.frame), 1);
-        [[NSColor colorWithDeviceWhite:(drawsAsMainWindow)? 0.408 : 0.655 alpha:1.0] set];
-        NSRectFill(shadowRect);
-    }
-    
-    if (window.titleDrawingBlock) {
-        // Draw custom title
-        window.titleDrawingBlock(drawsAsMainWindow, drawingRect);
-    } else {
-        // Draw default title
-        
-        // Rect
-        NSRect textRect;
-        if (window.representedURL) {
-            textRect = NSMakeRect(20, -2, NSWidth(self.frame)-20, NSHeight(self.frame));
-        } else {
-            textRect = NSMakeRect(0, -2, NSWidth(self.frame), NSHeight(self.frame));
-        }
-        
-        // Paragraph style
-        NSMutableParagraphStyle* textStyle = [NSMutableParagraphStyle defaultParagraphStyle].mutableCopy;
-        [textStyle setAlignment: NSTextAlignmentCenter];
-        
-        // Shadow
-        NSShadow* titleTextShadow = [[NSShadow alloc] init];
-        titleTextShadow.shadowBlurRadius = 0.0;
-        titleTextShadow.shadowOffset = NSMakeSize(0, -1);
-        titleTextShadow.shadowColor = [NSColor colorWithDeviceWhite:1.0 alpha:0.5];
-        
-        NSColor *textColor = [NSColor colorWithDeviceWhite:56.0/255.0 alpha:drawsAsMainWindow? 1.0 : 0.5];
-        
-        // Draw the title
-        NSDictionary* textFontAttributes = @{NSFontAttributeName: [NSFont titleBarFontOfSize:[NSFont systemFontSizeForControlSize:NSControlSizeRegular]],
-                                             NSForegroundColorAttributeName: textColor,
-                                             NSParagraphStyleAttributeName: textStyle,
-                                             NSShadowAttributeName: titleTextShadow};
-        
-        [window.title drawInRect: textRect withAttributes: textFontAttributes];
-    }
-}
-
 @end
 
 #pragma mark -
@@ -92,6 +18,7 @@
 @interface FOTWindowFrame ()
 
 @property (strong) FOTWindowTitle *titleBar;
+@property (strong) NSTrackingArea *trackingArea;
 
 @end
 
@@ -106,20 +33,38 @@
         [_titleBar setAutoresizingMask:NSViewWidthSizable|NSViewMinYMargin|NSViewMinXMargin];
         [_titleBar setAlphaValue:0];
         [self addSubview:_titleBar];
+        
+        self.trackingArea = [[NSTrackingArea alloc] initWithRect:self.bounds options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveAlways ) owner:self userInfo:nil];
+        
+        [self addTrackingArea:self.trackingArea];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enteredFullscreen:)
+                                                     name: NSWindowWillEnterFullScreenNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitedFullscreen:)
+                                                     name: NSWindowDidExitFullScreenNotification
+                                                   object:nil];
     }
     
     return self;
 }
 
-- (void)updateTrackingAreas
-{
+- (void)updateTrackingAreas {
     [super updateTrackingAreas];
     
-    [self addTrackingArea:[[NSTrackingArea alloc] initWithRect:self.frame options:NSTrackingActiveAlways|NSTrackingInVisibleRect|NSTrackingMouseEnteredAndExited owner:self userInfo:nil]];
+    if(self.trackingArea) {
+        [self removeTrackingArea:self.trackingArea];
+        
+        self.trackingArea = [[NSTrackingArea alloc] initWithRect:self.bounds options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveAlways ) owner:self userInfo:nil];
+        
+        [self addTrackingArea:self.trackingArea];
+    }
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent
 {
+    NSLog(@"entered");
     FOTWindow* window = (FOTWindow*)self.window;
     [[window standardWindowButton:NSWindowCloseButton].animator setAlphaValue:1];
     [[window standardWindowButton:NSWindowZoomButton].animator setAlphaValue:1];
@@ -132,6 +77,7 @@
 
 - (void)mouseExited:(NSEvent *)theEvent
 {
+    NSLog(@"exited");
     FOTWindow* window = (FOTWindow*)self.window;
     [[window standardWindowButton:NSWindowCloseButton].animator setAlphaValue:window.titleBarFadeOutAlphaValue];
     [[window standardWindowButton:NSWindowZoomButton].animator setAlphaValue:window.titleBarFadeOutAlphaValue];
@@ -142,11 +88,20 @@
     [_titleBar.animator setAlphaValue:window.titleBarFadeOutAlphaValue];
 }
 
-- (void)drawRect:(NSRect)dirtyRect
-{
-    [self.window.backgroundColor set];
-    NSRectFillUsingOperation(dirtyRect, NSCompositingOperationCopy);
+
+- (void)enteredFullscreen:(NSNotification *)sender {
+    [self removeTrackingArea:self.trackingArea];
+    self.trackingArea = nil;
 }
+
+- (void)exitedFullscreen:(NSNotification *)sender {
+    [self removeTrackingArea:self.trackingArea];
+    
+    self.trackingArea = [[NSTrackingArea alloc] initWithRect:self.bounds options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveAlways ) owner:self userInfo:nil];
+    
+    [self addTrackingArea:self.trackingArea];
+}
+
 
 @end
 
@@ -186,7 +141,22 @@
 
 - (void)awakeFromNib
 {
-    [[self standardWindowButton:NSWindowFullScreenButton] setAlphaValue:_titleBarFadeOutAlphaValue];
+//    [[self standardWindowButton:NSWindowFullScreenButton] setAlphaValue:_titleBarFadeOutAlphaValue];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowClosed:)
+                                                 name: NSWindowWillCloseNotification
+                                               object:nil];
+}
+
+
+
+- (void)windowClosed:(NSNotification *)sender {
+    //            let window:FOTWindow = sender.object as! FOTWindow
+    //
+    //            if(self.dockMenu.index(of: window.menuItem) >= 0) {
+    //                self.dockMenu.removeItem(window.menuItem)
+    //            }
+    
+    //    [_titleBar.animator setAlphaValue:1];
 }
 
 - (void)becomeKeyWindow

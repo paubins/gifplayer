@@ -19,8 +19,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if(self.fileToOpen != "") {
             self.displayWindow(filename: self.fileToOpen)
         }
-        
-       
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -41,18 +39,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return self.dockMenu
     }
     
-    func removeWindow() {
-        
-    }
-    
-    func windowClosed(sender: Notification) {
-        let window:FOTWindow = sender.object as! FOTWindow
-        
-        if(self.dockMenu.index(of: window.menuItem) >= 0) {
-            self.dockMenu.removeItem(window.menuItem)
-        }
-    }
-    
     func displayWindow(filename: String) {
         let windowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "MainWindowController") as! NSWindowController
         
@@ -65,9 +51,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menuItem.target = viewController
         
         self.windowControllers.append(windowController)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(windowClosed),
-                                               name: NSNotification.Name.NSWindowWillClose, object: nil)
         
         let notification = Notification(name: Notification.Name(rawValue: "GIFOpened"),
                                         object: filename as AnyObject, userInfo: nil)
@@ -82,6 +65,51 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.styleMask.insert(NSWindowStyleMask.fullSizeContentView)
         
         window.makeKeyAndOrderFront(self)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(windowClosed),
+                                               name: NSNotification.Name.NSWindowWillClose, object: window)
+    }
+    
+
+    private func openFiles() -> [URL] {
+        let fileTypes:[String] = ["gif"]
+        
+        let panel = NSOpenPanel()
+        panel.allowsMultipleSelection = true
+        panel.canChooseDirectories = false
+        panel.canChooseFiles = true
+        panel.allowedFileTypes = fileTypes
+
+        let result: Int = panel.runModal()
+        if result == NSModalResponseOK {
+            return panel.urls
+        }
+        
+        return []
+    }
+
+    
+    @IBAction func openGIFs(_ sender: Any) {
+        let paths: [URL] = openFiles()
+        if !paths.isEmpty {
+            for (_, path) in paths.enumerated() {
+                print(path.path)
+                self.displayWindow(filename: path.path)
+            }
+        }
+    }
+    
+    @IBAction func quit(_ sender: Any) {
+        NSLog("Exit")
+        NSApplication.shared().terminate(nil)
+    }
+    
+    func windowClosed(sender: Notification) {
+        let window:FOTWindow = sender.object as! FOTWindow
+        
+        if(self.dockMenu.index(of: window.menuItem) >= 0) {
+            self.dockMenu.removeItem(window.menuItem)
+        }
     }
 }
 

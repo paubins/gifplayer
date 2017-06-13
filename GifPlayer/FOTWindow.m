@@ -38,6 +38,10 @@
         
         [self addTrackingArea:self.trackingArea];
         
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:)
+                                                     name: NSWindowDidResizeNotification
+                                                   object:nil];
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enteredFullscreen:)
                                                      name: NSWindowWillEnterFullScreenNotification
                                                    object:nil];
@@ -100,6 +104,10 @@
     self.trackingArea = [[NSTrackingArea alloc] initWithRect:self.bounds options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveAlways ) owner:self userInfo:nil];
     
     [self addTrackingArea:self.trackingArea];
+}
+
+- (void)windowDidResize:(NSNotification *)sender {
+    [self updateTrackingAreas];
 }
 
 

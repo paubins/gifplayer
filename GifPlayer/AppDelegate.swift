@@ -24,6 +24,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
+    
+    func applicationDidBecomeActive(_ notification: Notification) {
+        if(self.windowControllers.count > 0) {
+            self.windowControllers.last?.window?.makeKey()
+            NSApp.activate(ignoringOtherApps: true)
+        }
+    }
 
     func application(_ sender: NSApplication, openFile filename: String) -> Bool {
         self.fileToOpen = filename
@@ -68,9 +75,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(windowClosed),
                                                name: NSNotification.Name.NSWindowWillClose, object: window)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(windowBecameKey),
+                                               name: NSNotification.Name.NSWindowDidBecomeKey, object: window)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(windowDidResignKey),
+                                               name: NSNotification.Name.NSWindowDidResignKey, object: window)
+        
+        window.menuItem.state = NSOnState
+        
     }
     
-
+    func windowBecameKey(sender: Notification) {
+        let window:FOTWindow = sender.object as! FOTWindow
+        if(self.dockMenu.index(of: window.menuItem) >= 0) {
+            window.menuItem.state = NSOnState
+        }
+    }
+    
+    func windowDidResignKey(sender: Notification) {
+        let window:FOTWindow = sender.object as! FOTWindow
+        if(self.dockMenu.index(of: window.menuItem) >= 0) {
+            window.menuItem.state = NSOffState
+        }
+    }
+    
     private func openFiles() -> [URL] {
         let fileTypes:[String] = ["gif"]
         
@@ -109,6 +138,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if(self.dockMenu.index(of: window.menuItem) >= 0) {
             self.dockMenu.removeItem(window.menuItem)
+        }
+        
+        if(self.windowControllers.count > 0) {
+            self.windowControllers.last?.window?.makeKey()
+            NSApp.activate(ignoringOtherApps: true)
         }
     }
 }

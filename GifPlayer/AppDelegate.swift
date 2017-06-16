@@ -52,7 +52,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let viewController:ViewController = windowController.contentViewController as! ViewController
         
         viewController.image = NSImage(byReferencingFile: filename)!
-        viewController.imageView.loadGIF(gifFileName: filename)
+//        viewController.imageView.loadGIF(gifFileName: filename)
+        viewController.imageView.image = viewController.image
         
         let menuItem:NSMenuItem = self.dockMenu.addItem(withTitle: filename, action: #selector(viewController.showWindow), keyEquivalent: "P")
         menuItem.target = viewController

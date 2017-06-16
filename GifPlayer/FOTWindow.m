@@ -147,26 +147,6 @@
     return self;
 }
 
-- (void)awakeFromNib
-{
-//    [[self standardWindowButton:NSWindowFullScreenButton] setAlphaValue:_titleBarFadeOutAlphaValue];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowClosed:)
-                                                 name: NSWindowWillCloseNotification
-                                               object:nil];
-}
-
-
-
-- (void)windowClosed:(NSNotification *)sender {
-    //            let window:FOTWindow = sender.object as! FOTWindow
-    //
-    //            if(self.dockMenu.index(of: window.menuItem) >= 0) {
-    //                self.dockMenu.removeItem(window.menuItem)
-    //            }
-    
-    //    [_titleBar.animator setAlphaValue:1];
-}
-
 - (void)becomeKeyWindow
 {
     [super becomeKeyWindow];

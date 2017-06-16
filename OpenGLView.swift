@@ -29,7 +29,7 @@ class OpenGLView: NSOpenGLView
     
     var screenRect:NSRect! = nil
     
-    var animationImages:[NSData] = []
+    var animationImages:[Data] = []
     
     var img:NSImage! = nil
     
@@ -141,7 +141,7 @@ class OpenGLView: NSOpenGLView
         glTexParameterf(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_WRAP_T), GLfloat(GLenum(GL_CLAMP_TO_EDGE)))
         
         // we load bitmap data from memory and save CPU time (created during startAnimation)
-        let pixels:NSData = animationImages[currFrameCount]
+        let pixels:NSData = animationImages[currFrameCount].uncompressed(using: .lz4)! as NSData
         
         glTexImage2D(GLenum(GL_TEXTURE_2D),
                      0,
@@ -214,8 +214,8 @@ class OpenGLView: NSOpenGLView
             let size = gifRep.bytesPerPlane
             
             // copy the bitmap data into an NSData object, that can be save transferred to animateOneFrame
-            let imgData:NSData = NSData(bytes: data, length: size)
-            animationImages.append(imgData)
+            let imgData:Data = NSData(bytes: data, length: size) as Data
+            animationImages.append(imgData.compressed(using: Compression.lz4)!)
         }
         
         let source:CGImageSource = CGImageSourceCreateWithURL(NSURL(fileURLWithPath: gifFileName), nil)!

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F3B13BF1EF3730C00D4A9B4 /* OpenGLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B13BE1EF3730C00D4A9B4 /* OpenGLView.swift */; };
+		5F3B13C11EF4361300D4A9B4 /* Data+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B13C01EF4361300D4A9B4 /* Data+Compression.swift */; };
 		5FA253BC1EEDF57A00410048 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FA253BB1EEDF57A00410048 /* Assets.xcassets */; };
 		5FA253C41EEDFE2700410048 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA253C31EEDFE2700410048 /* ImageView.swift */; };
 		5FA253C81EEE20EE00410048 /* FOTWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA253C71EEE20EE00410048 /* FOTWindow.m */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		5F3B13BE1EF3730C00D4A9B4 /* OpenGLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenGLView.swift; sourceTree = "<group>"; };
+		5F3B13C01EF4361300D4A9B4 /* Data+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Compression.swift"; sourceTree = "<group>"; };
 		5FA253BB1EEDF57A00410048 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5FA253C31EEDFE2700410048 /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageView.swift; path = ../ImageView.swift; sourceTree = "<group>"; };
 		5FA253C51EEE098C00410048 /* .GIF.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = .GIF.entitlements; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				5F3B13BE1EF3730C00D4A9B4 /* OpenGLView.swift */,
+				5F3B13C01EF4361300D4A9B4 /* Data+Compression.swift */,
 				5FA253C91EEE20F200410048 /* Window */,
 				5FA74ADB1EED0C8D007642C8 /* GifPlayer */,
 				5FA74ADA1EED0C8D007642C8 /* Products */,
@@ -166,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F3B13C11EF4361300D4A9B4 /* Data+Compression.swift in Sources */,
 				5F3B13BF1EF3730C00D4A9B4 /* OpenGLView.swift in Sources */,
 				5FA253C41EEDFE2700410048 /* ImageView.swift in Sources */,
 				5FA74ADF1EED0C8D007642C8 /* ViewController.swift in Sources */,

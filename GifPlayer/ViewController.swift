@@ -12,12 +12,12 @@ class ViewController: NSViewController {
 
     var image:NSImage!
     
-    let imageView:OpenGLView = {
-        let imageView:OpenGLView = OpenGLView()
+    let imageView:ImageView = {
+        let imageView:ImageView = ImageView()
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.imageScaling = .scaleAxesIndependently
-//        imageView.animates = true
+        imageView.imageScaling = .scaleAxesIndependently
+        imageView.animates = true
         imageView.canDrawSubviewsIntoLayer = false
         
         return imageView

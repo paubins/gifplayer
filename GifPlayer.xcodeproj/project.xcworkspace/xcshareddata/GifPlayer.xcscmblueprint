@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C1034E1FDA642F1015F2011BD640F518E1814568",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C1034E1FDA642F1015F2011BD640F518E1814568" : 9223372036854775807,
+    "4F201322DFCBE25D8D43B7E20BE17D99A7146515" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E3490F96-5A4F-4F94-A8D7-9D589297A2B8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C1034E1FDA642F1015F2011BD640F518E1814568" : "GifPlayer\/",
+    "4F201322DFCBE25D8D43B7E20BE17D99A7146515" : "Gifu\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "GifPlayer",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "GifPlayer.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:kaishin\/Gifu.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4F201322DFCBE25D8D43B7E20BE17D99A7146515"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:paubins\/gifplayer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C1034E1FDA642F1015F2011BD640F518E1814568"
+    }
+  ]
+}

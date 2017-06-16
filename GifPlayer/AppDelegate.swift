@@ -138,6 +138,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if(self.dockMenu.index(of: window.menuItem) >= 0) {
             self.dockMenu.removeItem(window.menuItem)
+            
+            let windowIndex = self.windowControllers.index(of: window.windowController!)
+            self.windowControllers.remove(at: windowIndex!)
         }
         
         if(self.windowControllers.count > 0) {

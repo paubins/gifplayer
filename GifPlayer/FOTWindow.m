@@ -40,15 +40,15 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:)
                                                      name: NSWindowDidResizeNotification
-                                                   object:nil];
+                                                   object:self.window];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enteredFullscreen:)
                                                      name: NSWindowWillEnterFullScreenNotification
-                                                   object:nil];
+                                                   object:self.window];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitedFullscreen:)
                                                      name: NSWindowDidExitFullScreenNotification
-                                                   object:nil];
+                                                   object:self.window];
     }
     
     return self;

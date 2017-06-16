@@ -52,7 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let viewController:ViewController = windowController.contentViewController as! ViewController
         
         viewController.image = NSImage(byReferencingFile: filename)!
-        viewController.imageView.image = viewController.image
+        viewController.imageView.loadGIF(gifFileName: filename)
         
         let menuItem:NSMenuItem = self.dockMenu.addItem(withTitle: filename, action: #selector(viewController.showWindow), keyEquivalent: "P")
         menuItem.target = viewController
@@ -70,6 +70,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.titlebarAppearsTransparent = true
         window.titleVisibility = .hidden
         window.styleMask.insert(NSWindowStyleMask.fullSizeContentView)
+        
+        var windowRect:NSRect = window.frame
+        windowRect.size = viewController.image.size
+        
+        window.setFrame(windowRect, display: true, animate: true)
         
         window.makeKeyAndOrderFront(self)
         

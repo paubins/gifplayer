@@ -1,0 +1,21 @@
+PODS:
+  - NSGIF (1.2.4)
+
+DEPENDENCIES:
+  - NSGIF (from `https://github.com/NSRare/NSGIF`)
+
+EXTERNAL SOURCES:
+  NSGIF:
+    :git: https://github.com/NSRare/NSGIF
+
+CHECKOUT OPTIONS:
+  NSGIF:
+    :commit: d62330a2635e61d33175caefd1346259fb6092e0
+    :git: https://github.com/NSRare/NSGIF
+
+SPEC CHECKSUMS:
+  NSGIF: 442808fd1667ebac3d09046c3f6d4bdd6720cded
+
+PODFILE CHECKSUM: 550519fa87bcf2c76615dbff4f867449be858899
+
+COCOAPODS: 1.2.0

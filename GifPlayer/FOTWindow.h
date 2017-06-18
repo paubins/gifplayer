@@ -64,7 +64,7 @@ typedef void (^FOTWindowTitleBarDrawingBlock)(BOOL drawsAsMainWindow, NSRect dra
 /**
  Block used to specify custom drawing code for a window's title.
  @param drawsAsMainWindow Whether the window is in its main state.
- @param drawingRect The entire drawing area of the title bar.
+ @param titleBarRect The entire drawing area of the title bar.
  */
 typedef void (^FOTWindowTitleDrawingBlock)(BOOL drawsAsMainWindow, NSRect titleBarRect);
 

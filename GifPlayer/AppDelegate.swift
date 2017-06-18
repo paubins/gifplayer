@@ -15,10 +15,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var windowControllers:[NSWindowController] = []
     let dockMenu = NSMenu()
     
+    @IBOutlet weak var createGifMenuItem: NSMenuItem!
+    @IBOutlet weak var recordMenuItem: NSMenuItem!
+    @IBOutlet weak var stopMenuItem: NSMenuItem!
+    
+    let createGIFWindowController:NSWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "CreateGIFWindowController") as! NSWindowController
+    
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         if(self.fileToOpen != "") {
             self.displayWindow(filename: self.fileToOpen)
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(newGIFRecorded),
+                                               name: Notification.Name(rawValue: "newGIFRecorded"), object: nil)
+        
+        self.createGifMenuItem.isEnabled = true
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -50,6 +62,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let windowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "MainWindowController") as! NSWindowController
         
         let viewController:ViewController = windowController.contentViewController as! ViewController
+        
+        viewController.filename = filename as NSString
         
         viewController.image = NSImage(byReferencingFile: filename)!
 //        viewController.imageView.loadGIF(gifFileName: filename)
@@ -92,6 +106,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
     
+    func newGIFRecorded(sender: Notification) {
+        let path:String = sender.object as! String
+        self.displayWindow(filename: path)
+    }
+    
     func windowBecameKey(sender: Notification) {
         let window:FOTWindow = sender.object as! FOTWindow
         if(self.dockMenu.index(of: window.menuItem) >= 0) {
@@ -124,14 +143,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     
+    @IBAction func openCreateGIFWindow(_ sender: Any) {
+
+        createGIFWindowController.window?.makeKeyAndOrderFront(self)
+        NSApp.activate(ignoringOtherApps: true)
+    }
+    
+    @IBAction func showAllGIFs(_ sender: Any) {
+        for windowController in self.windowControllers {
+            windowController.window?.makeKey()
+            NSApp.activate(ignoringOtherApps: true)
+        }
+    }
+    
     @IBAction func openGIFs(_ sender: Any) {
         let paths: [URL] = openFiles()
         if !paths.isEmpty {
             for (_, path) in paths.enumerated() {
-                print(path.path)
                 self.displayWindow(filename: path.path)
             }
         }
+    }
+    
+    @IBAction func cloneCurrentGIFWindow(_ sender: Any) {
+        let viewController:ViewController = (self.windowControllers.last?.contentViewController as? ViewController)!
+        self.displayWindow(filename: viewController.filename as String)
     }
     
     @IBAction func quit(_ sender: Any) {

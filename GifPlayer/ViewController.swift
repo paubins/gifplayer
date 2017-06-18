@@ -11,6 +11,7 @@ import Cocoa
 class ViewController: NSViewController {
 
     var image:NSImage!
+    var filename:NSString!
     
     let imageView:ImageView = {
         let imageView:ImageView = ImageView()
@@ -31,7 +32,7 @@ class ViewController: NSViewController {
         
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
-        let window:FOTWindow = NSApplication.shared().windows.last! as! FOTWindow
+        let window:NSWindow = NSApplication.shared().windows.last!
         window.isMovableByWindowBackground = true
         
         self.view.window?.isMovableByWindowBackground = true

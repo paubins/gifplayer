@@ -32,6 +32,7 @@
         _titleBar = [[FOTWindowTitle alloc] initWithFrame:NSMakeRect(0, NSHeight(self.frame)-kTitleBarHeight, NSWidth(self.frame), kTitleBarHeight)];
         [_titleBar setAutoresizingMask:NSViewWidthSizable|NSViewMinYMargin|NSViewMinXMargin];
         [_titleBar setAlphaValue:0];
+
         [self addSubview:_titleBar];
         
         self.trackingArea = [[NSTrackingArea alloc] initWithRect:self.bounds options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveAlways ) owner:self userInfo:nil];
@@ -74,7 +75,7 @@
     [[window standardWindowButton:NSWindowZoomButton].animator setAlphaValue:1];
     [[window standardWindowButton:NSWindowMiniaturizeButton].animator setAlphaValue:1];
     [[window standardWindowButton:NSWindowDocumentIconButton].animator setAlphaValue:1];
-    [[window standardWindowButton:NSWindowFullScreenButton].animator setAlphaValue:1];
+    [[window standardWindowButton:NSWindowZoomButton].animator setAlphaValue:1];
     [[window standardWindowButton:NSWindowDocumentIconButton] setAlphaValue:1];
     [_titleBar.animator setAlphaValue:1];
 }
@@ -87,7 +88,7 @@
     [[window standardWindowButton:NSWindowZoomButton].animator setAlphaValue:window.titleBarFadeOutAlphaValue];
     [[window standardWindowButton:NSWindowMiniaturizeButton].animator setAlphaValue:window.titleBarFadeOutAlphaValue];
     [[window standardWindowButton:NSWindowDocumentIconButton].animator setAlphaValue:window.titleBarFadeOutAlphaValue];
-    [[window standardWindowButton:NSWindowFullScreenButton].animator setAlphaValue:window.titleBarFadeOutAlphaValue];
+    [[window standardWindowButton:NSWindowZoomButton].animator setAlphaValue:window.titleBarFadeOutAlphaValue];
     [[window standardWindowButton:NSWindowDocumentIconButton] setAlphaValue:window.titleBarFadeOutAlphaValue];
     [_titleBar.animator setAlphaValue:window.titleBarFadeOutAlphaValue];
 }
@@ -120,7 +121,7 @@
     NSView *_originalThemeFrame;
 }
 
-- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag
+- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSWindowStyleMask)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag
 {
     self = [super initWithContentRect:contentRect styleMask:aStyle backing:bufferingType defer:NO];
     

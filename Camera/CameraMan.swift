@@ -61,6 +61,7 @@ class CameraMan: NSObject {
     // Input
     input = AVCaptureScreenInput(displayID: CGMainDisplayID())
     input.cropRect = rect
+    
     if session.canAddInput(input) {
       session.addInput(input)
     }

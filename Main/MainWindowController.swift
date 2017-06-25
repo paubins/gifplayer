@@ -16,5 +16,16 @@ class MainWindowController: NSWindowController {
     window?.contentView?.layer?.borderWidth = 2
     
     window?.toggleMoving(enabled: true)
+    
+    let viewController:MainViewController = self.contentViewController as! MainViewController
+    viewController.setup()
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(windowDidMove),
+                                           name: NSNotification.Name.NSWindowDidMove, object: nil)
   }
+    
+    func windowDidMove(sender: Notification) {
+        let viewController:MainViewController = self.contentViewController as! MainViewController
+        viewController.setup()
+    }
 }

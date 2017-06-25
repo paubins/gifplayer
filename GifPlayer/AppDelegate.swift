@@ -7,34 +7,72 @@
 //
 
 import Cocoa
+import Fabric
+import Crashlytics
+import JFImageSavePanel
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    @IBOutlet weak var saveButton: NSMenuItem!
+    @IBOutlet weak var stopButtonMenuItem: NSMenuItem!
+    @IBOutlet weak var playButtonMenuItem: NSMenuItem!
+    
+    @IBOutlet weak var windowMenu: NSMenuItem!
+    
+    var gifPaths:[String] = []
+    
     var fileToOpen:String = ""
-    var windowControllers:[NSWindowController] = []
+    var windowControllers:[WindowController] = []
     let dockMenu = NSMenu()
     
     @IBOutlet weak var createGifMenuItem: NSMenuItem!
     @IBOutlet weak var recordMenuItem: NSMenuItem!
     @IBOutlet weak var stopMenuItem: NSMenuItem!
+    @IBOutlet weak var cloneGIFMenuItem: NSMenuItem!
     
-    let createGIFWindowController:NSWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "CreateGIFWindowController") as! NSWindowController
+    var createGIFWindowController:NSWindowController!
     
+    let pasteboardWatcher:PasteboardWatcher = PasteboardWatcher(fileKinds: ["gif"])
+    
+    var mainTouchBarWindowContoller:WindowController!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        Fabric.with([Crashlytics.self])
+        
+        self.pasteboardWatcher.delegate = self
+        self.pasteboardWatcher.startPolling()
+        
+        windowMenu.isHidden = true
+        UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions" : true])
+        
         if(self.fileToOpen != "") {
-            self.displayWindow(filename: self.fileToOpen)
+            let _ = self.displayWindow(filename: self.fileToOpen)
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(newGIFRecorded),
                                                name: Notification.Name(rawValue: "newGIFRecorded"), object: nil)
         
-        self.createGifMenuItem.isEnabled = true
+        NotificationCenter.default.addObserver(self, selector: #selector(changeWindow),
+                                               name: Notification.Name(rawValue: "OpenPreviousWindow"), object: nil)
+    
+        NotificationCenter.default.addObserver(self, selector: #selector(changeWindow),
+                                               name: Notification.Name(rawValue: "CloneCurrentWindow"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(changeWindow),
+                                               name: Notification.Name(rawValue: "OpenNextWindow"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(changeWindow),
+                                               name: Notification.Name(rawValue: "CloseWindowFromTouchBar"), object: nil)
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+        
+        for gifPath in self.gifPaths {
+            try? FileManager.default.removeItem(atPath: gifPath)
+        }
     }
     
     func applicationDidBecomeActive(_ notification: Notification) {
@@ -48,7 +86,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.fileToOpen = filename
 
         if (sender.isActive) {
-            self.displayWindow(filename: filename)
+            let _ = self.displayWindow(filename: filename)
         }
         
         return true
@@ -58,28 +96,122 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return self.dockMenu
     }
     
-    func displayWindow(filename: String) {
+    func changeWindow(sender: Notification) {
+        assert(Thread.isMainThread)
+        
+        let windowController:WindowController = sender.object as! WindowController
+        let viewController:ViewController = windowController.contentViewController as! ViewController
+        let windowIndex = self.windowControllers.index(of: windowController)
+        
+        switch sender.name {
+        case Notification.Name("OpenPreviousWindow"):
+            let previousIndex = self.windowControllers.index(before: windowIndex!)
+            if (previousIndex >= 0) {
+                self.windowControllers[previousIndex].window?.makeKey()
+                self.windowControllers[previousIndex].window?.orderFront(self)
+                NSApp.activate(ignoringOtherApps: true)
+                print(previousIndex)
+                print("previous")
+            }
+            break
+        case Notification.Name("CloneCurrentWindow"):
+            print("cloning")
+            let newWindowController = self.displayWindow(filename: viewController.filename as String)
+            newWindowController.window?.makeKey()
+            NSApp.activate(ignoringOtherApps: true)
+            break
+        case Notification.Name("OpenNextWindow"):
+            let nextWindowIndex = self.windowControllers.index(after: windowIndex!)
+            if(0 < nextWindowIndex && nextWindowIndex < self.windowControllers.count) {
+                self.windowControllers[nextWindowIndex].window?.makeKey()
+                self.windowControllers[nextWindowIndex].window?.orderFront(self)
+                NSApp.activate(ignoringOtherApps: true)
+                print(nextWindowIndex)
+                print("next")
+            }
+            
+            print(nextWindowIndex)
+            
+            break
+        case Notification.Name("CloseWindowFromTouchBar"):
+            let nextWindowIndex = self.windowControllers.index(after: windowIndex!)
+            if(0 < nextWindowIndex && nextWindowIndex < self.windowControllers.count) {
+                self.windowControllers[nextWindowIndex].window?.makeKey()
+                self.windowControllers[nextWindowIndex].window?.orderFront(self)
+                NSApp.activate(ignoringOtherApps: true)
+                print(nextWindowIndex)
+                print("next")
+            }
+            windowController.close()
+
+            break
+        default:
+            print("invalid")
+        }
+        
+    }
+    
+    @IBAction func playGIF(_ sender: Any) {
+        for windowController in self.windowControllers {
+            if(windowController.window?.isKeyWindow)! {
+                let viewController:ViewController = windowController.contentViewController as! ViewController
+                if(viewController.imageView.animates) {
+                    viewController.imageView.animates = false
+                }
+                
+                viewController.imageView.animates = true
+                
+                windowController.window?.makeKey()
+                NSApp.activate(ignoringOtherApps: true)
+            }
+        }
+    }
+    
+    @IBAction func stopGIF(_ sender: Any) {
+        for windowController in self.windowControllers {
+            if(windowController.window?.isKeyWindow)! {
+                let viewController:ViewController = windowController.contentViewController as! ViewController
+                viewController.imageView.animates = false
+                
+                windowController.window?.makeKey()
+                NSApp.activate(ignoringOtherApps: true)
+            }
+        }
+    }
+    
+//    imageView.downloadImageFromURL("https://www.google.com/images/logo.gif")
+    
+    func displayWindow(filename: String) -> NSWindowController {
         let windowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "MainWindowController") as! NSWindowController
+        
+        windowController.shouldCascadeWindows = true
+        windowMenu.isHidden = false
         
         let viewController:ViewController = windowController.contentViewController as! ViewController
         
         viewController.filename = filename as NSString
         
-        viewController.image = NSImage(byReferencingFile: filename)!
-        viewController.imageView.loadGIF(gifFileName: filename)
-//        viewController.imageView.image = viewController.image
-        
+        if (filename.contains("http")) {
+            viewController.imageView.downloadImageFromURL(filename, usesSpinningWheel: true)
+        } else {
+            viewController.image = NSImage(byReferencingFile: filename)!
+            //viewController.imageView.loadGIF(gifFileName: URL(fileURLWithPath: filename))
+            viewController.imageView.animates = true
+            viewController.imageView.image = viewController.image
+        }
+
         let menuItem:NSMenuItem = self.dockMenu.addItem(withTitle: filename, action: #selector(viewController.showWindow), keyEquivalent: "P")
         menuItem.target = viewController
-        
-        self.windowControllers.append(windowController)
         
         let notification = Notification(name: Notification.Name(rawValue: "GIFOpened"),
                                         object: filename as AnyObject, userInfo: nil)
         
         NotificationCenter.default.post(notification)
         
+        self.windowControllers.append(windowController as! WindowController)
+        
         let window:FOTWindow = windowController.window as! FOTWindow
+        window.delegate = self
         
         window.menuItem = menuItem
         window.titlebarAppearsTransparent = true
@@ -87,10 +219,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.styleMask.insert(NSWindowStyleMask.fullSizeContentView)
         
         var windowRect:NSRect = window.frame
-        windowRect.size = viewController.image.size
+        windowRect.size = (viewController.imageView.image?.size)!
         
         window.setFrame(windowRect, display: true, animate: true)
         
+        let topLeftPoint:NSPoint = (self.windowControllers.last?.window?.frame.origin)!
+        
+        window.cascadeTopLeft(from: NSPoint(x: topLeftPoint.x + 30, y: topLeftPoint.y + 30))
         window.makeKeyAndOrderFront(self)
         
         NotificationCenter.default.addObserver(self, selector: #selector(windowClosed),
@@ -103,18 +238,80 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                                name: NSNotification.Name.NSWindowDidResignKey, object: window)
         
         window.menuItem.state = NSOnState
-        
+    
+        return windowController
+    }
+    
+    @IBAction func cloneGIFWindow(_ sender: Any) {
+        for windowController in self.windowControllers {
+            if(windowController.window?.isKeyWindow)! {
+                let viewController:ViewController = windowController.contentViewController as! ViewController
+                let newWindowController = self.displayWindow(filename: viewController.filename as String)
+                newWindowController.window?.makeKey()
+                NSApp.activate(ignoringOtherApps: true)
+            }
+        }
     }
     
     func newGIFRecorded(sender: Notification) {
         let path:String = sender.object as! String
-        self.displayWindow(filename: path)
+        let windowController:WindowController = self.displayWindow(filename: path) as! WindowController
+        windowController.unsavedGIF = true
+        gifPaths.append(path)
+        
+        self.createGIFWindowController.close()
+        self.createGIFWindowController = nil
+        self.createGIFWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "CreateGIFWindowController") as! NSWindowController
+    }
+    
+    
+    @IBAction func saveGIF(_ sender: Any) {
+        var viewController:ViewController? = nil
+        var mainWindowController:WindowController? = nil
+        var filepath = ""
+        
+        for windowController in self.windowControllers {
+            if(windowController.window?.isKeyWindow)! {
+                mainWindowController = windowController
+                viewController = windowController.contentViewController as? ViewController
+                filepath = viewController?.filename! as! String
+            }
+        }
+
+        let panel:NSSavePanel = NSSavePanel()
+        
+        panel.setFrameUsingName("Save GIF")
+        panel.message = "Save the recorded GIF"
+        panel.allowsOtherFileTypes = false
+        panel.canCreateDirectories = false
+        panel.allowedFileTypes = ["gif"]
+        panel.beginSheetModal(for: (mainWindowController?.window!)!) { (result) in
+            let path = panel.url?.path
+            if (result == NSFileHandlingPanelOKButton) {
+                try? FileManager.default.copyItem(atPath: filepath, toPath: path!)
+            }
+        }
+        
+    }
+    
+    @IBAction func closeWindow(_ sender: Any) {
+        for windowController in self.windowControllers {
+            if(windowController.window?.isKeyWindow)! {
+                windowController.window?.close()
+            }
+        }
     }
     
     func windowBecameKey(sender: Notification) {
         let window:FOTWindow = sender.object as! FOTWindow
         if(self.dockMenu.index(of: window.menuItem) >= 0) {
             window.menuItem.state = NSOnState
+            
+            for windowController in self.windowControllers {
+                if(windowController.window == window && windowController.unsavedGIF) {
+                    break
+                }
+            }
         }
     }
     
@@ -141,11 +338,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         return []
     }
-
     
     @IBAction func openCreateGIFWindow(_ sender: Any) {
-
-        createGIFWindowController.window?.makeKeyAndOrderFront(self)
+        self.createGIFWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "CreateGIFWindowController") as! NSWindowController
+        
+        self.createGIFWindowController.window?.makeKeyAndOrderFront(self)
         NSApp.activate(ignoringOtherApps: true)
     }
     
@@ -160,14 +357,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let paths: [URL] = openFiles()
         if !paths.isEmpty {
             for (_, path) in paths.enumerated() {
-                self.displayWindow(filename: path.path)
+                let _ = self.displayWindow(filename: path.path)
             }
         }
     }
     
     @IBAction func cloneCurrentGIFWindow(_ sender: Any) {
         let viewController:ViewController = (self.windowControllers.last?.contentViewController as? ViewController)!
-        self.displayWindow(filename: viewController.filename as String)
+        let _ = self.displayWindow(filename: viewController.filename as String)
     }
     
     @IBAction func quit(_ sender: Any) {
@@ -177,18 +374,64 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func windowClosed(sender: Notification) {
         let window:FOTWindow = sender.object as! FOTWindow
-        
+    
         if(self.dockMenu.index(of: window.menuItem) >= 0) {
             self.dockMenu.removeItem(window.menuItem)
             
-            let windowIndex = self.windowControllers.index(of: window.windowController!)
+            let windowIndex = self.windowControllers.index(of: window.windowController! as! WindowController)
             self.windowControllers.remove(at: windowIndex!)
         }
         
         if(self.windowControllers.count > 0) {
             self.windowControllers.last?.window?.makeKey()
             NSApp.activate(ignoringOtherApps: true)
+        } else {
+            windowMenu.isHidden = true
         }
     }
 }
 
+extension AppDelegate : PasteboardWatcherDelegate {
+    func newlyCopiedUrlObtained(copiedUrl: NSURL) {
+        self.displayWindow(filename: copiedUrl.absoluteString!)
+    }
+}
+
+extension AppDelegate : NSWindowDelegate {
+    func windowShouldClose(_ sender: Any) -> Bool {
+//        let currentWindow = sender as! FOTWindow
+//        var viewController:ViewController? = nil
+//        var mainWindowController:WindowController? = nil
+//
+//        var filepath = ""
+//
+//        if (!(currentWindow.windowController as! WindowController).unsavedGIF) {
+//            return true
+//        }
+//
+//        for windowController in self.windowControllers {
+//            if(windowController.window?.isKeyWindow)! {
+//                mainWindowController = windowController
+//                viewController = windowController.contentViewController as? ViewController
+//                filepath = viewController?.filename! as! String
+//            }
+//        }
+//
+//        let panel:NSSavePanel = NSSavePanel()
+//
+//        panel.setFrameUsingName("Save GIF")
+//        panel.message = "Save the recorded GIF"
+//        panel.allowsOtherFileTypes = false
+//        panel.canCreateDirectories = false
+//        panel.allowedFileTypes = ["gif"]
+//        panel.beginSheetModal(for: (mainWindowController?.window!)!) { (result) in
+//            let path = panel.url?.path
+//            if (result == NSFileHandlingPanelOKButton) {
+//                try? FileManager.default.copyItem(atPath: filepath, toPath: path!)
+//                mainWindowController?.close()
+//            }
+//        }
+        
+        return true
+    }
+}

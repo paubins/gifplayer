@@ -30,6 +30,7 @@ class OpenGLView: NSOpenGLView
     var screenRect:NSRect! = nil
     
     var animationImages:[Data] = []
+    var frameStore:FrameStore!
     
     var img:NSImage! = nil
     
@@ -60,7 +61,7 @@ class OpenGLView: NSOpenGLView
         }
         
         var swapInterval:GLint = 1
-        self.openGLContext?.setValues(&swapInterval, for: NSOpenGLCPSwapInterval)
+//        self.openGLContext?.setValues(&swapInterval, for: NSOpenGLCPSwapInterval)
         
         CVDisplayLinkCreateWithActiveCGDisplays( &displayLink )
         CVDisplayLinkSetOutputCallback( displayLink!, displayLinkOutputCallback, Unmanaged.passUnretained(self).toOpaque() )
@@ -87,6 +88,7 @@ class OpenGLView: NSOpenGLView
     
     override func draw(_ dirtyRect: NSRect)
     {
+        
         var target:NSRect = self.screenRect
         
         let screenRatio:Float = self.pictureRatioFromWidth(iWidth:Float(screenRect.size.width), iHeight:Float(screenRect.size.height))
@@ -143,6 +145,8 @@ class OpenGLView: NSOpenGLView
         // we load bitmap data from memory and save CPU time (created during startAnimation)
         let pixels:NSData = animationImages[currFrameCount] as NSData //.uncompressed(using: .lz4)! as NSData
         
+        // let pixels:NSData = self.frameStore.frame(at: currFrameCount)!
+        
         glTexImage2D(GLenum(GL_TEXTURE_2D),
                      0,
                      GL_RGBA,
@@ -186,7 +190,9 @@ class OpenGLView: NSOpenGLView
         CGLUnlockContext( self.openGLContext!.cglContextObj! )
         
         if (currFrameCount < maxFrameCount-1) {
-            currFrameCount += 1
+            if (!self.inLiveResize) {
+                currFrameCount += 1
+            }
         }
         else {
             currFrameCount = FIRST_FRAME;
@@ -199,26 +205,36 @@ class OpenGLView: NSOpenGLView
         CVDisplayLinkStop( displayLink! );
     }
     
-    func loadGIF(gifFileName:String) {
-        img = NSImage(byReferencingFile: gifFileName)!;
+    func loadGIF(gifFileName:URL) {
+        img = NSImage(byReferencingFile: gifFileName.path)!;
         
         self.gifRep = img.representations[FIRST_FRAME] as! NSBitmapImageRep
         self.maxFrameCount = gifRep.value(forProperty: NSImageFrameCount) as! Int
         
         self.currFrameCount = FIRST_FRAME
         
+        var data:Data? = nil
+        do {
+            data = try Data(contentsOf: gifFileName)
+        } catch {
+            
+        }
+
+        self.frameStore = FrameStore(data: data!, size: img.size, contentMode: .scaleAxesIndependently, framePreloadCount: 10, loopCount: 10)
+        
+        self.frameStore.prepareFrames()
+        
         for frame in 0 ..< self.maxFrameCount {
             gifRep.setProperty(NSImageCurrentFrame, withValue: frame)
             
             let data = gifRep.bitmapData
             let size = gifRep.bytesPerPlane
-            
             // copy the bitmap data into an NSData object, that can be save transferred to animateOneFrame
             let imgData:Data = NSData(bytes: data, length: size) as Data
             animationImages.append(imgData)//.compressed(using: Compression.lz4)!)
         }
         
-        let source:CGImageSource = CGImageSourceCreateWithURL(NSURL(fileURLWithPath: gifFileName), nil)!
+        let source:CGImageSource = CGImageSourceCreateWithURL(NSURL(fileURLWithPath: gifFileName.path), nil)!
         let cfdProperties:NSDictionary = CGImageSourceCopyPropertiesAtIndex(source, 0, nil)!
         
         let property:NSDictionary = cfdProperties.object(forKey: kCGImagePropertyGIFDictionary) as! NSDictionary

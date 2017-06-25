@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class ImageView : NSImageView {
+class ImageView : DKAsyncImageView {
     
     override var mouseDownCanMoveWindow:Bool {
         return true

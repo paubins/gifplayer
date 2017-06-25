@@ -1,7 +1,16 @@
 PODS:
+  - Crashlytics (3.8.4):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.11)
+  - iPicUploader (1.2.2)
+  - JFImageSavePanel (1.0.4)
   - NSGIF (1.2.4)
 
 DEPENDENCIES:
+  - Crashlytics
+  - Fabric
+  - iPicUploader
+  - JFImageSavePanel
   - NSGIF (from `https://github.com/NSRare/NSGIF`)
 
 EXTERNAL SOURCES:
@@ -14,8 +23,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/NSRare/NSGIF
 
 SPEC CHECKSUMS:
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  iPicUploader: 6d27c067bdb7b02968d6c3be6afb5288a0b0bd95
+  JFImageSavePanel: f8c88b1e302da9e35377472e44df20b905c6519f
   NSGIF: 442808fd1667ebac3d09046c3f6d4bdd6720cded
 
-PODFILE CHECKSUM: 550519fa87bcf2c76615dbff4f867449be858899
+PODFILE CHECKSUM: b51475e14c403df7ab6e6e74b4f5dd8b26190401
 
 COCOAPODS: 1.2.0

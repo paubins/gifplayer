@@ -13,12 +13,14 @@ class ViewController: NSViewController {
     var image:NSImage!
     var filename:NSString!
     
-    let imageView:OpenGLView = {
-        let imageView:OpenGLView = OpenGLView()
+    var textView: NSTextView = NSTextView() // REMOVE
+    
+    let imageView:ImageView = {
+        let imageView:ImageView = ImageView()
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.imageScaling = .scaleAxesIndependently
-//        imageView.animates = true
+        imageView.imageScaling = .scaleAxesIndependently
+        imageView.animates = false
         imageView.canDrawSubviewsIntoLayer = false
         
         return imageView
@@ -29,6 +31,15 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if #available(OSX 10.12.2, *) {
+            // Opt-out of text completion in this simplified version.
+            if ((NSClassFromString("NSTouchBar")) != nil) {
+                self.textView.isAutomaticTextCompletionEnabled = false
+            }
+        } else {
+            // Fallback on earlier versions
+        }
         
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -43,8 +54,8 @@ class ViewController: NSViewController {
         self.view.addSubview(self.imageView)
         
         window.contentView?.translatesAutoresizingMaskIntoConstraints = false
-        window.contentView?.heightAnchor.constraint(equalToConstant: self.image.size.height).isActive = true
-        window.contentView?.widthAnchor.constraint(equalToConstant: self.image.size.width).isActive = true
+        window.contentView?.heightAnchor.constraint(equalToConstant: (self.imageView.image?.size.height)!).isActive = true
+        window.contentView?.widthAnchor.constraint(equalToConstant: (self.imageView.image?.size.width)!).isActive = true
 
         var topConstraint = self.imageView.topAnchor.constraint(equalTo: self.view.topAnchor)
         topConstraint.isActive = true

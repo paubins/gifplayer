@@ -50,6 +50,14 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitedFullscreen:)
                                                      name: NSWindowDidExitFullScreenNotification
                                                    object:self.window];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowWillBeginSheet:)
+                                                     name: NSWindowWillBeginSheetNotification
+                                                   object:self.window];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowWillEndSheet:)
+                                                     name: NSWindowDidEndSheetNotification
+                                                   object:self.window];
     }
     
     return self;
@@ -111,6 +119,15 @@
     [self updateTrackingAreas];
 }
 
+- (void)windowWillBeginSheet:(NSNotification *)notification {
+    [self removeTrackingArea:self.trackingArea];
+}
+
+
+- (void)windowWillEndSheet:(NSNotification *)notification {
+    [self updateTrackingAreas];
+}
+
 
 @end
 
@@ -146,6 +163,11 @@
     }
     
     return self;
+}
+
+- (void)exitedSheet
+{
+    [_fullContentView.titleBar setNeedsDisplay:YES];
 }
 
 - (void)becomeKeyWindow

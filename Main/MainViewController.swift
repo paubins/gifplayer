@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import iPicUploader
 
 class MainViewController: NSViewController {
 
@@ -29,9 +30,9 @@ class MainViewController: NSViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    setup()
+//    setup()
   }
-
+    
   func setup() {
     cameraMan = CameraMan(rect: recordFrame())
     cameraMan?.delegate = self
@@ -123,13 +124,21 @@ class MainViewController: NSViewController {
       state = .idle
       if let url = url {
         showNotification(url: url)
+//        iPic.uploadImage(url.path, handler: { (imageLink, error) in
+//            if let imageLink = imageLink {
+//                showNotification(url: imageLink)
+//                
+//            } else if let error = error {
+//                // Some error happened
+//            }
+//        })
       } else {
 
       }
     case .idle:
-      cameraMan = CameraMan(rect: recordFrame())
-      cameraMan?.delegate = self
-      
+//      cameraMan = CameraMan(rect: recordFrame())
+//      cameraMan?.delegate = self
+        
       recordButton.title = "Record"
       toggleStopButton(enabled: false)
       toggleRecordButton(enabled: true)
@@ -141,13 +150,16 @@ class MainViewController: NSViewController {
   // MARK: - Notification
 
   func showNotification(url: URL) {
-    let userNotification = NSUserNotification()
-    userNotification.title = "GifCapture 🏇"
-    userNotification.informativeText = url.absoluteString
-    userNotification.hasActionButton = true
-    userNotification.actionButtonTitle = "Open"
     
-    NSUserNotificationCenter.default.deliver(userNotification)
+//    let userNotification = NSUserNotification()
+//    
+//    userNotification.identifier = "com.gifplayer.newgif-notification"
+//    userNotification.title = "New Gif Recorded!"
+//    userNotification.informativeText = url.absoluteString
+//    userNotification.hasActionButton = true
+//    userNotification.actionButtonTitle = "Open"
+//
+//    NSUserNotificationCenter.default.deliver(userNotification)
     
     var notification = Notification.init(name: Notification.Name(rawValue: "newGIFRecorded"))
     notification.object = url.path

@@ -27,6 +27,7 @@
 		5F9619331EF873FE008A3195 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F96192F1EF873FE008A3195 /* Array.swift */; };
 		5F9619341EF873FE008A3195 /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9619301EF873FE008A3195 /* CGSize.swift */; };
 		5F9619381EF87410008A3195 /* ImageSourceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9619371EF87410008A3195 /* ImageSourceHelpers.swift */; };
+		5FA20F531F06CC12006E9076 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 5FA20F521F06CC12006E9076 /* index.html */; };
 		5FA253BC1EEDF57A00410048 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FA253BB1EEDF57A00410048 /* Assets.xcassets */; };
 		5FA253C41EEDFE2700410048 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA253C31EEDFE2700410048 /* ImageView.swift */; };
 		5FA253C81EEE20EE00410048 /* FOTWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA253C71EEE20EE00410048 /* FOTWindow.m */; };
@@ -60,6 +61,7 @@
 		5F96192F1EF873FE008A3195 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		5F9619301EF873FE008A3195 /* CGSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGSize.swift; sourceTree = "<group>"; };
 		5F9619371EF87410008A3195 /* ImageSourceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSourceHelpers.swift; sourceTree = "<group>"; };
+		5FA20F521F06CC12006E9076 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		5FA253BB1EEDF57A00410048 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5FA253C31EEDFE2700410048 /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		5FA253C51EEE098C00410048 /* .GIF.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = .GIF.entitlements; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				5FA253C91EEE20F200410048 /* Window */,
 				5FA74ADB1EED0C8D007642C8 /* GifPlayer */,
 				5FA74ADA1EED0C8D007642C8 /* Products */,
+				5FA20F521F06CC12006E9076 /* index.html */,
 				6B50CE3C945E1E745DC93617 /* Pods */,
 				0AB61495053B0FE6603AF183 /* Frameworks */,
 			);
@@ -299,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FF416F41EFB60A600FBCBCB /* gif (2)-128.png in Resources */,
+				5FA20F531F06CC12006E9076 /* index.html in Resources */,
 				5FA74AE41EED0C8D007642C8 /* Main.storyboard in Resources */,
 				5FA253BC1EEDF57A00410048 /* Assets.xcassets in Resources */,
 			);

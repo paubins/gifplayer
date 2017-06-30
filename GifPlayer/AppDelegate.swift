@@ -10,6 +10,7 @@ import Cocoa
 import Fabric
 import Crashlytics
 import JFImageSavePanel
+import WebKit
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -20,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var windowMenu: NSMenuItem!
     
+    @IBOutlet weak var submitFeedback: NSMenuItem!
     var gifPaths:[String] = []
     
     var fileToOpen:String = ""
@@ -30,6 +32,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var recordMenuItem: NSMenuItem!
     @IBOutlet weak var stopMenuItem: NSMenuItem!
     @IBOutlet weak var cloneGIFMenuItem: NSMenuItem!
+    
+    var newWindow:NSWindow!
     
     var createGIFWindowController:NSWindowController!
     
@@ -388,6 +392,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             windowMenu.isHidden = true
         }
+    }
+    
+    let feedbackWindowController:NSWindowController = NSWindowController()
+    
+    func createNewWindow() {
+        if newWindow == nil {
+            newWindow = NSWindow(contentRect: NSMakeRect(0, 0, NSScreen.main()!.frame.midX, NSScreen.main()!.frame.midY + 150), styleMask: [.closable, .titled], backing: .buffered, defer: false)
+            
+            newWindow.title = "Feedback"
+            newWindow.isOpaque = false
+            newWindow.center()
+            newWindow.isMovableByWindowBackground = true
+            newWindow.backgroundColor = NSColor(calibratedHue: 0, saturation: 1.0, brightness: 0, alpha: 0.7)
+            
+            
+            let webView = WebView(frame: NSMakeRect(0, 0, NSScreen.main()!.frame.midX, NSScreen.main()!.frame.midY))
+            webView.mainFrameURL = Bundle.main.url(forResource: "index", withExtension: "html")?.absoluteString
+            
+            newWindow.contentView = webView
+            
+            feedbackWindowController.window = newWindow
+        }
+    }
+    
+    @IBAction func submitFeedback(_ sender: Any) {
+        self.createNewWindow()
+        newWindow.makeKeyAndOrderFront(newWindow)
     }
 }
 

@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13122.17"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="12121"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="fMW-1t-7XC">
+            <objects>
+                <viewController id="gHv-7X-noq" sceneMemberID="viewController">
+                    <view key="view" id="8dq-D7-3vR">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <wkWebView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iw6-Uc-0x0">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="duh-su-Ng5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="570" y="-169"/>
+        </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
@@ -78,8 +102,18 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Action" id="nqB-YV-UA4" userLabel="Start">
+                            <menuItem title="Feedback" id="Pxa-ao-5Ga">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Feedback" id="XiK-Sk-z4g">
+                                    <items>
+                                        <menuItem title="Submit Feedback" id="YRO-vh-u6V">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="submitFeedback:" target="Voe-Tx-rLC" id="UIn-IA-6Df"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                         </items>
                     </menu>
@@ -94,6 +128,7 @@
                         <outlet property="playButtonMenuItem" destination="U8d-jE-tgS" id="GSV-5q-oHy"/>
                         <outlet property="saveButton" destination="maX-wv-io5" id="EBM-ZV-uAa"/>
                         <outlet property="stopButtonMenuItem" destination="4cI-dw-CQq" id="QYr-z3-Vf1"/>
+                        <outlet property="submitFeedback" destination="YRO-vh-u6V" id="YSx-nb-D37"/>
                         <outlet property="windowMenu" destination="yKo-SV-iBN" id="wr3-Fw-Ohf"/>
                     </connections>
                 </customObject>
@@ -156,7 +191,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="135" height="32"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <subviews>
-                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f98-HX-vIK">
+                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f98-HX-vIK">
                             <rect key="frame" x="4" y="6" width="64" height="20"/>
                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Font Size:" id="zcF-u3-QfB">
                                 <font key="font" metaFont="system"/>
@@ -164,7 +199,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="55Q-cR-wSN">
+                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55Q-cR-wSN">
                             <rect key="frame" x="91" y="4" width="39" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="39" id="IQc-Xi-bw9"/>
@@ -230,7 +265,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n1E-Ye-4gB">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1E-Ye-4gB">
                                 <rect key="frame" x="96" y="101" width="276" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="UUP-db-IUa">
@@ -281,7 +316,7 @@
                                             <rect key="frame" x="1" y="1" width="478" height="33"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7zM-un-oA5">
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zM-un-oA5">
                                                     <rect key="frame" x="8" y="8" width="30" height="17"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Size" id="oqT-WM-DvO">
                                                         <font key="font" metaFont="system"/>
@@ -289,7 +324,7 @@
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0dw-H4-lm2">
+                                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dw-H4-lm2">
                                                     <rect key="frame" x="44" y="6" width="50" height="22"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="sm5-fX-Qcw">
                                                         <font key="font" metaFont="system"/>
@@ -297,7 +332,7 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R9e-Xm-3GP">
+                                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9e-Xm-3GP">
                                                     <rect key="frame" x="102" y="6" width="50" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="wU5-p1-IZ8"/>

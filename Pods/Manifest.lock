@@ -1,4 +1,5 @@
 PODS:
+  - Cartography (1.1.0)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
@@ -7,6 +8,7 @@ PODS:
   - NSGIF (1.2.4)
 
 DEPENDENCIES:
+  - Cartography
   - Crashlytics
   - Fabric
   - iPicUploader
@@ -23,12 +25,13 @@ CHECKOUT OPTIONS:
     :git: https://github.com/NSRare/NSGIF
 
 SPEC CHECKSUMS:
+  Cartography: 0538ccb4044acbbda2266335fc58cb4228794d90
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   iPicUploader: 6d27c067bdb7b02968d6c3be6afb5288a0b0bd95
   JFImageSavePanel: f8c88b1e302da9e35377472e44df20b905c6519f
   NSGIF: 442808fd1667ebac3d09046c3f6d4bdd6720cded
 
-PODFILE CHECKSUM: b51475e14c403df7ab6e6e74b4f5dd8b26190401
+PODFILE CHECKSUM: c69cd3eef0b236574e1a442b7b643e74b2eac16e
 
 COCOAPODS: 1.2.0

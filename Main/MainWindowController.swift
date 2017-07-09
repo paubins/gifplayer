@@ -22,6 +22,9 @@ class MainWindowController: NSWindowController {
     
     NotificationCenter.default.addObserver(self, selector: #selector(windowDidMove),
                                            name: NSNotification.Name.NSWindowDidMove, object: nil)
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(windowDidMove),
+                                           name: NSNotification.Name.NSWindowDidResize, object: nil)
   }
     
     func windowDidMove(sender: Notification) {

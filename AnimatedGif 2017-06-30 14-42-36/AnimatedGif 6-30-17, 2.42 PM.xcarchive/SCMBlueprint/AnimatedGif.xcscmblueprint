@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintLocationsKey" : {
+    "B7CFF83D487344746FCA74201A860EBE063E3A8B" : {
+      "DVTSourceControlBranchIdentifierKey" : "master",
+      "DVTSourceControlLocationRevisionKey" : "5bc39ca721111fb69660366eaa7a9bc049fbfc2d",
+      "DVTSourceControlBranchOptionsKey" : 4,
+      "DVTSourceControlWorkspaceBlueprintLocationTypeKey" : "DVTSourceControlBranch"
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B7CFF83D487344746FCA74201A860EBE063E3A8B",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "FEDEA374-092A-4A7B-963E-8AD326B9AFBA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "B7CFF83D487344746FCA74201A860EBE063E3A8B" : "AG\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AnimatedGif",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AnimatedGif.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git@github.com:Waitsnake\/AnimatedGif.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B7CFF83D487344746FCA74201A860EBE063E3A8B"
+    }
+  ]
+}

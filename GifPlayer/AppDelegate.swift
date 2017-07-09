@@ -21,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var windowMenu: NSMenuItem!
     
+    @IBOutlet weak var installScreensaver: NSMenuItem!
     @IBOutlet weak var submitFeedback: NSMenuItem!
     var gifPaths:[String] = []
     
@@ -34,8 +35,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var cloneGIFMenuItem: NSMenuItem!
     
     var newWindow:NSWindow!
+    var openWindow:NSWindow!
     
     var createGIFWindowController:NSWindowController!
+    
+    let feedbackWindowController:NSWindowController = NSWindowController()
+    
+    let openGIFWindowController:NSWindowController = NSWindowController()
     
     let pasteboardWatcher:PasteboardWatcher = PasteboardWatcher(fileKinds: ["gif"])
     
@@ -45,7 +51,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         self.pasteboardWatcher.delegate = self
-        self.pasteboardWatcher.startPolling()
+//        self.pasteboardWatcher.startPolling()
         
         windowMenu.isHidden = true
         UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions" : true])
@@ -183,7 +189,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    @IBAction func installScreensaver(_ sender: Any) {
+        let screensaverPath = Bundle.main.url(forResource: "AnimatedGif", withExtension: "saver")
+        NSWorkspace.shared().open(screensaverPath!)
+    }
 //    imageView.downloadImageFromURL("https://www.google.com/images/logo.gif")
+    
+    var timer:Timer!
     
     func displayWindow(filename: String) -> NSWindowController {
         let windowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "MainWindowController") as! NSWindowController
@@ -195,13 +207,34 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         viewController.filename = filename as NSString
         
+        let imageSize:CGSize!
+        
         if (filename.contains("http")) {
-            viewController.imageView.downloadImageFromURL(filename, usesSpinningWheel: true)
+            viewController.imageView.frame = NSRect(x:0, y:0, width: 300, height: 300)
+            viewController.imageView.downloadImageFromURL(filename, errorImage: NSImage(named: "errorstop.png"), usesSpinningWheel: true)
+            imageSize = CGSize(width: 300, height: 300)
+            
+            self.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { (timer) in
+                if (!viewController.imageView.isLoadingImage) {
+                    let imageSize = (viewController.imageView.image?.size)!
+                    viewController.imageView.frame = NSRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
+//                    let NSRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
+                    let windowSize = windowController.window?.frame.origin
+                    let newWindowSize = NSRect(x: (windowSize?.x)!, y: (windowSize?.y)!, width: imageSize.width, height: imageSize.height)
+                    windowController.window?.setFrame(newWindowSize, display: true, animate: true)
+                    
+                    self.timer.invalidate()
+                    self.timer = nil
+                }
+            })
+            
+            self.timer.fire()
         } else {
             viewController.image = NSImage(byReferencingFile: filename)!
             //viewController.imageView.loadGIF(gifFileName: URL(fileURLWithPath: filename))
             viewController.imageView.animates = true
             viewController.imageView.image = viewController.image
+            imageSize = (viewController.imageView.image?.size)!
         }
 
         let menuItem:NSMenuItem = self.dockMenu.addItem(withTitle: filename, action: #selector(viewController.showWindow), keyEquivalent: "P")
@@ -223,7 +256,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.styleMask.insert(NSWindowStyleMask.fullSizeContentView)
         
         var windowRect:NSRect = window.frame
-        windowRect.size = (viewController.imageView.image?.size)!
+        windowRect.size = imageSize
         
         window.setFrame(windowRect, display: true, animate: true)
         
@@ -394,7 +427,54 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    let feedbackWindowController:NSWindowController = NSWindowController()
+    var textField:NSTextField!
+    
+    func createOpenWindow() {
+        if openWindow == nil {
+            openWindow = NSWindow(contentRect: NSMakeRect(0, 0, NSScreen.main()!.frame.midX, NSScreen.main()!.frame.midY + 150), styleMask: [.closable, .titled], backing: .buffered, defer: false)
+            
+            openWindow.title = "Open from website"
+            openWindow.isOpaque = false
+            openWindow.center()
+            openWindow.isMovableByWindowBackground = true
+
+            let mainView = NSView(frame: NSMakeRect(0, 0, NSScreen.main()!.frame.midX, NSScreen.main()!.frame.midY + 150))
+            mainView.translatesAutoresizingMaskIntoConstraints = false
+            self.textField = NSTextField(labelWithString: "https://media4.giphy.com/media/3o7TKDa4TeqnpmXc6Q/giphy.gif")
+            self.textField.translatesAutoresizingMaskIntoConstraints = false
+            self.textField.isEditable = true
+            self.textField.isEnabled = true
+            self.textField.drawsBackground = true
+            self.textField.isSelectable = true
+            
+            let button:NSButton = NSButton(title: "Open GIF!", target: self, action: #selector(openGIFFromURL))
+            button.translatesAutoresizingMaskIntoConstraints = false
+            
+            mainView.addSubview(button)
+            mainView.addSubview(textField)
+            
+            mainView.widthAnchor.constraint(equalToConstant: 450).isActive = true
+            mainView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+            
+            textField.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 50).isActive = true
+            textField.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -50).isActive = true
+            textField.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 30).isActive = true
+            
+            button.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 10).isActive = true
+            button.centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
+
+            openWindow.contentView = mainView
+            
+            openGIFWindowController.window = openWindow
+        }
+    }
+    
+    func openGIFFromURL() {
+        if (self.textField != nil) && self.textField.stringValue != "" {
+            self.openGIFWindowController.close()
+            let _ = self.displayWindow(filename: self.textField.stringValue)
+        }
+    }
     
     func createNewWindow() {
         if newWindow == nil {
@@ -414,6 +494,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             feedbackWindowController.window = newWindow
         }
+    }
+    
+    @IBAction func openGIFDialog(_ sender: Any) {
+        self.createOpenWindow()
+        openWindow.makeKeyAndOrderFront(openWindow)
     }
     
     @IBAction func submitFeedback(_ sender: Any) {
@@ -466,3 +551,4 @@ extension AppDelegate : NSWindowDelegate {
         return true
     }
 }
+

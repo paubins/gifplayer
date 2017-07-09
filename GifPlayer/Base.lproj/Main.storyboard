@@ -42,9 +42,15 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="DotGIF" systemMenu="apple" autoenablesItems="NO" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="Open GIFs" keyEquivalent="e" id="noY-Iw-4G7">
+                                        <menuItem title="Open GIF" keyEquivalent="e" id="noY-Iw-4G7">
                                             <connections>
                                                 <action selector="openGIFs:" target="Voe-Tx-rLC" id="KL1-gA-JQJ"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Open GIF from website" id="6zc-i0-OaX">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openGIFDialog:" target="Voe-Tx-rLC" id="Oj3-Z6-otx"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="7ek-wZ-5vH"/>

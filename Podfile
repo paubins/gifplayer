@@ -11,5 +11,6 @@ target 'GifPlayer' do
   pod 'Fabric'
   pod "JFImageSavePanel"
   pod 'Crashlytics'
+  pod 'Cartography'
 
 end

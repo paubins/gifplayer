@@ -86,7 +86,7 @@ class MainViewController: NSViewController {
 
     let lineWidth: CGFloat = 2
     let titleHeight: CGFloat = 12
-    let someValue: CGFloat = 20
+    let someValue: CGFloat = 25
 
     return CGRect(x: window.frame.origin.x + lineWidth,
                   y: window.frame.origin.y + titleHeight + someValue + lineWidth,

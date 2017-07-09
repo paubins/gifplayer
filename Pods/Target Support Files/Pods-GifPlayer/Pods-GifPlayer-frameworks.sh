@@ -89,11 +89,13 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Cartography/Cartography.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JFImageSavePanel/JFImageSavePanel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/NSGIF/NSGIF.framework"
   install_framework "$BUILT_PRODUCTS_DIR/iPicUploader/iPicUploader.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Cartography/Cartography.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JFImageSavePanel/JFImageSavePanel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/NSGIF/NSGIF.framework"
   install_framework "$BUILT_PRODUCTS_DIR/iPicUploader/iPicUploader.framework"

@@ -99,6 +99,70 @@
                                                 <action selector="saveGIF:" target="Voe-Tx-rLC" id="d0h-UL-wA0"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="eMt-wK-itZ"/>
+                                        <menuItem title="Actual Size" keyEquivalent="0" id="wEs-6f-Buf">
+                                            <connections>
+                                                <action selector="actualSize:" target="Voe-Tx-rLC" id="DvJ-FW-ptA"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Scale Up" keyEquivalent="=" id="Oz0-hx-Iwj">
+                                            <connections>
+                                                <action selector="makeLarger:" target="Voe-Tx-rLC" id="Ugr-KV-FLW"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Scale Down" keyEquivalent="-" id="XUT-aW-B9x">
+                                            <connections>
+                                                <action selector="makeSmaller:" target="Voe-Tx-rLC" id="bIj-ld-jQf"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Scale Up 1px" keyEquivalent="=" id="WXc-4D-1jy">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="makeLargerOnePixel:" target="Voe-Tx-rLC" id="9EA-GW-yQh"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Scale Down 1px" keyEquivalent="-" id="Ubb-eK-qEx">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="makeSmallerOnePixel:" target="Voe-Tx-rLC" id="5Pk-CQ-FPh"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="oEV-iV-Dq9"/>
+                                        <menuItem title="Move up 1px" tag="20" keyEquivalent="" id="WNn-Az-NDo">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="LgX-TX-Dzi"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Move down 1px" tag="23" keyEquivalent="" id="957-Pu-RVN">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="cSG-o5-3P8"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Move right 1px" tag="22" keyEquivalent="" id="Gkj-o5-C7j">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="EyW-CP-uyo"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Move down 1px" tag="23" keyEquivalent="" id="NJr-3n-CSq">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="WNQ-5Y-7Je"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="umy-N9-5Yt"/>
+                                        <menuItem title="Increase transparency" keyEquivalent="j" id="tqD-3S-S3z">
+                                            <connections>
+                                                <action selector="increaseTransparency:" target="Voe-Tx-rLC" id="71V-s2-2LS"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Decrease transparency" keyEquivalent="k" id="Wdf-QX-wwc">
+                                            <connections>
+                                                <action selector="reduceTransparency:" target="Voe-Tx-rLC" id="Uyx-bT-dJI"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="FRx-pP-PhG"/>
                                         <menuItem title="Close" keyEquivalent="w" id="N0Q-1s-aIf">
                                             <connections>

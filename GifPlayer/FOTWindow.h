@@ -21,6 +21,8 @@
  */
 @interface FOTWindowFrame : NSView
 
+@property CGFloat previousAlphaValue;
+
 @end
 
 /**
@@ -30,6 +32,11 @@
 
 @property (nonatomic, strong) FOTWindowFrame *fullContentView;
 @property (nonatomic, strong) NSMenuItem *menuItem;
+
+- (void)moveBy:(CGPoint)offset;
+- (void)fitsWithSize:(NSSize)size;
+- (void)resizeTo:(NSSize)size animated:(BOOL)animated;
+- (NSRect)constrainFrameRect:(NSRect)frameRect toScreen:(NSScreen *)screen;
 
 /**
  Adds a subview that stays below the title bar.

@@ -87,6 +87,10 @@
     [[window standardWindowButton:NSWindowZoomButton].animator setAlphaValue:1];
     [[window standardWindowButton:NSWindowDocumentIconButton] setAlphaValue:1];
     [_titleBar.animator setAlphaValue:1];
+    
+    self.previousAlphaValue = window.alphaValue;
+    
+    [window setAlphaValue:1];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent
@@ -100,6 +104,8 @@
     [[window standardWindowButton:NSWindowZoomButton].animator setAlphaValue:window.titleBarFadeOutAlphaValue];
     [[window standardWindowButton:NSWindowDocumentIconButton] setAlphaValue:window.titleBarFadeOutAlphaValue];
     [_titleBar.animator setAlphaValue:window.titleBarFadeOutAlphaValue];
+    
+    [window setAlphaValue:self.previousAlphaValue];
 }
 
 
@@ -129,7 +135,6 @@
     [self updateTrackingAreas];
 }
 
-
 @end
 
 #pragma mark -
@@ -146,6 +151,11 @@
     if (self) {
         _titleBarFadeInAlphaValue = 1.0;
         _titleBarFadeOutAlphaValue = 0.0;
+        
+//        self.styleMask = NSWindowStyleMaskBorderless | NSWindowStyleMaskResizable;
+        [self setOpaque:YES];
+        self.backgroundColor = NSColor.clearColor;
+        self.hasShadow = NO;
         
         _originalThemeFrame = [self.contentView superview];
         _originalThemeFrame.wantsLayer = YES;
@@ -216,6 +226,49 @@
 - (void)addSubviewBelowTitleBar:(NSView *)subview
 {
     [_fullContentView addSubview:subview positioned:NSWindowBelow relativeTo:_fullContentView.titleBar];
+}
+
+- (void)moveBy:(CGPoint)offset {
+    NSRect frame = self.frame;
+    frame.origin.x += offset.x;
+    frame.origin.y += offset.y;
+    
+    [self setFrame:frame display:YES];
+}
+
+- (void)fitsWithSize:(NSSize)size {
+    NSRect frame = self.frame;
+    
+    if (frame.size.width < size.width || frame.size.height < size.height) {
+        frame.size = size;
+        [self setFrame:frame display:YES];
+    }
+}
+
+- (void)resizeTo:(NSSize)size animated:(BOOL)animated {
+    NSRect frame = self.frame;
+    frame.size = size;
+    
+    if (!animated) {
+        [self setFrame:frame display:YES];
+    }
+    
+    NSMutableArray *resizeAnimation = [NSMutableArray new];
+    
+    [resizeAnimation addObject:@{
+      NSViewAnimationEndFrameKey: [NSValue valueWithRect:frame],
+      NSViewAnimationTargetKey: self,
+      }];
+    
+    NSAnimation *animations = [[NSViewAnimation alloc] initWithViewAnimations:resizeAnimation];
+    animations.animationBlockingMode = NSAnimationBlocking;
+    animations.animationCurve = NSAnimationEaseInOut;
+    animations.duration = 0.15f;
+    [animations startAnimation];
+}
+
+- (NSRect)constrainFrameRect:(NSRect)frameRect toScreen:(NSScreen *)screen {
+    return frameRect;
 }
 
 @end

@@ -47,6 +47,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var mainTouchBarWindowContoller:WindowController!
     
+    var viewController:ViewController! {
+        for windowController in self.windowControllers {
+            if(windowController.window?.isKeyWindow)! {
+                let viewController:ViewController = windowController.contentViewController as! ViewController
+                return viewController
+            }
+        }
+        
+        return nil
+    }
+    
+    var window:FOTWindow! {
+        for windowController in self.windowControllers {
+            if(windowController.window?.isKeyWindow)! {
+                return windowController.window as! FOTWindow
+            }
+        }
+        
+        return nil
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         Fabric.with([Crashlytics.self])
         
@@ -572,3 +593,114 @@ extension AppDelegate : NSTextFieldDelegate {
     }
 }
 
+
+fileprivate enum ArrowTag: Int {
+    case up = 20
+    case left = 21
+    case right = 22
+    case down = 23
+}
+
+// MARK: - Hotkeys
+
+extension AppDelegate {
+    
+    @IBAction func actualSize(_ sender: AnyObject?) {
+        let image = viewController.imageView.image!
+        window.resize(to: image.size, animated: true)
+    }
+    
+    @IBAction func makeLarger(_ sender: AnyObject) {
+        var size = window.frame.size
+        size = size * 1.1
+        window.resize(to: size, animated: true)
+    }
+    
+    @IBAction func makeSmaller(_ sender: AnyObject) {
+        var size = window.frame.size
+        size = size * 0.9
+        window.resize(to: size, animated: true)
+    }
+    
+    @IBAction func makeLargerOnePixel(_ sender: AnyObject) {
+        var size = window.frame.size
+        size.width += 1
+        size.height += 1
+        window.resize(to: size, animated: true)
+    }
+    
+    @IBAction func makeSmallerOnePixel(_ sender: AnyObject) {
+        var size = window.frame.size
+        size.width -= 1
+        size.height -= 1
+        window.resize(to: size, animated: true)
+    }
+    
+    @IBAction func increaseTransparency(_ sender: AnyObject) {
+        var alpha = window.alphaValue
+        alpha -= 0.1
+        window.alphaValue = max(alpha, 0.05)
+        window.fullContentView.previousAlphaValue = window.alphaValue
+    }
+    
+    @IBAction func reduceTransparency(_ sender: AnyObject) {
+        var alpha = window.alphaValue
+        alpha += 0.1
+        window.alphaValue = min(alpha, 1.0)
+        window.fullContentView.previousAlphaValue = window.alphaValue
+    }
+    
+    @IBAction func toggleLockWindow(_ sender: AnyObject) {
+        let menuItem = sender as! NSMenuItem
+        if menuItem.title == "Lock" {
+            menuItem.title  = "Unlock"
+            window.isMovable = false
+            window.ignoresMouseEvents = true
+            window.level = Int(CGWindowLevelForKey(.maximumWindow))
+        } else {
+            menuItem.title  = "Lock"
+            window.isMovable = true
+            window.ignoresMouseEvents = false
+            window.level = Int(CGWindowLevelForKey(.normalWindow))
+        }
+        
+//        viewController.lockIconImageView.isHidden = window.isMovable || isLockIconHiddenWhileLocked
+    }
+    
+    @IBAction func toggleLockIconVisibility(_ sender: AnyObject) {
+        let menuItem = sender as! NSMenuItem
+        menuItem.state = menuItem.state == NSOnState ? NSOffState : NSOnState
+//        isLockIconHiddenWhileLocked = menuItem.state == NSOnState
+    }
+    
+    @IBAction func moveAround(_ sender: AnyObject) {
+        let menuItem = sender as! NSMenuItem
+        
+        guard let arrow = ArrowTag(rawValue: menuItem.tag) else {
+            return
+        }
+        
+        switch arrow {
+        case .up:
+            window.move(by: CGPoint(x: 0, y: 1))
+        case .left:
+            window.move(by: CGPoint(x: -1, y: 0))
+        case .right:
+            window.move(by: CGPoint(x: 1, y: 0))
+        case .down:
+            window.move(by: CGPoint(x: 0, y: -1))
+        }
+    }
+}
+
+
+
+// MARK: - Helper
+
+func appDelegate() -> AppDelegate {
+    return NSApp.delegate as! AppDelegate
+}
+
+func *(size: NSSize, scale: CGFloat) -> NSSize {
+    return NSMakeSize(size.width * scale, size.height * scale)
+}

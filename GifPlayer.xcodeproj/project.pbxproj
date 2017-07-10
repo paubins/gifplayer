@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5F0D637A1F12E72900DF4FB1 /* errorstop.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0D63791F12E72900DF4FB1 /* errorstop.png */; };
 		5F0D637C1F12F86A00DF4FB1 /* Editing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D637B1F12F86A00DF4FB1 /* Editing.swift */; };
+		5F0D637E1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D637D1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift */; };
 		5F3B13BF1EF3730C00D4A9B4 /* OpenGLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B13BE1EF3730C00D4A9B4 /* OpenGLView.swift */; };
 		5F3B13C11EF4361300D4A9B4 /* Data+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B13C01EF4361300D4A9B4 /* Data+Compression.swift */; };
 		5F5071071EF4735E00A1AFFB /* CameraMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5070F81EF4735E00A1AFFB /* CameraMan.swift */; };
@@ -45,6 +46,7 @@
 		367AB01C00EC649DC5003F5D /* Pods-GifPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-GifPlayer/Pods-GifPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		5F0D63791F12E72900DF4FB1 /* errorstop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = errorstop.png; sourceTree = "<group>"; };
 		5F0D637B1F12F86A00DF4FB1 /* Editing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Editing.swift; sourceTree = "<group>"; };
+		5F0D637D1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCDragAndDropImageView.swift; path = Main/MCDragAndDropImageView.swift; sourceTree = "<group>"; };
 		5F26C3B71F0F4B54000840BB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		5F26C3B81F0F4B5B000840BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		5F26C3B91F0F4B5F000840BB /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -159,13 +161,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		5F5070FD1EF4735E00A1AFFB /* Main */ = {
+		5F5070FD1EF4735E00A1AFFB /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				5F783FBD1EFA13560048A45E /* WindowController.swift */,
 				5F5070FE1EF4735E00A1AFFB /* MainViewController.swift */,
 				5F5070FF1EF4735E00A1AFFB /* MainWindowController.swift */,
 			);
+			name = "View Controllers";
 			path = Main;
 			sourceTree = "<group>";
 		};
@@ -182,6 +185,8 @@
 		5F5071121EF4829200A1AFFB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5F0D637B1F12F86A00DF4FB1 /* Editing.swift */,
+				5F0D637D1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift */,
 				5FA253C31EEDFE2700410048 /* ImageView.swift */,
 				5F3B13BE1EF3730C00D4A9B4 /* OpenGLView.swift */,
 				5F783FBF1EFA221D0048A45E /* DKAsyncImageView.swift */,
@@ -220,14 +225,13 @@
 		5FA74AD01EED0C8C007642C8 = {
 			isa = PBXGroup;
 			children = (
-				5F0D637B1F12F86A00DF4FB1 /* Editing.swift */,
 				5FF416F31EFB60A600FBCBCB /* gif (2)-128.png */,
 				5F0D63791F12E72900DF4FB1 /* errorstop.png */,
 				5F9619391EF87413008A3195 /* Helpers */,
 				5F96193A1EF8741A008A3195 /* Classes */,
 				5F5070F71EF4735E00A1AFFB /* Camera */,
 				5F5070FB1EF4735E00A1AFFB /* Extensions */,
-				5F5070FD1EF4735E00A1AFFB /* Main */,
+				5F5070FD1EF4735E00A1AFFB /* View Controllers */,
 				5F5071031EF4735E00A1AFFB /* Utils */,
 				5F5071121EF4829200A1AFFB /* Views */,
 				5FA253C91EEE20F200410048 /* Window */,
@@ -419,6 +423,7 @@
 			files = (
 				5F3B13C11EF4361300D4A9B4 /* Data+Compression.swift in Sources */,
 				5F3B13BF1EF3730C00D4A9B4 /* OpenGLView.swift in Sources */,
+				5F0D637E1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift in Sources */,
 				5F96192A1EF873F5008A3195 /* AnimatedFrame.swift in Sources */,
 				5F50710F1EF4735E00A1AFFB /* Config.swift in Sources */,
 				5F50710C1EF4735E00A1AFFB /* MainWindowController.swift in Sources */,

@@ -427,7 +427,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    var textField:NSTextField!
+    var textField:Editing!
     
     func createOpenWindow() {
         if openWindow == nil {
@@ -440,12 +440,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
             let mainView = NSView(frame: NSMakeRect(0, 0, NSScreen.main()!.frame.midX, NSScreen.main()!.frame.midY + 150))
             mainView.translatesAutoresizingMaskIntoConstraints = false
-            self.textField = NSTextField(labelWithString: "https://media4.giphy.com/media/3o7TKDa4TeqnpmXc6Q/giphy.gif")
+            self.textField = Editing(labelWithString: "https://media4.giphy.com/media/3o7TKDa4TeqnpmXc6Q/giphy.gif")
             self.textField.translatesAutoresizingMaskIntoConstraints = false
             self.textField.isEditable = true
             self.textField.isEnabled = true
             self.textField.drawsBackground = true
             self.textField.isSelectable = true
+            self.textField.delegate = self
+            
+            let gestureRecognizer:NSClickGestureRecognizer = NSClickGestureRecognizer(target: self, action: #selector(clicked))
+            self.textField.addGestureRecognizer(gestureRecognizer)
             
             let button:NSButton = NSButton(title: "Open GIF!", target: self, action: #selector(openGIFFromURL))
             button.translatesAutoresizingMaskIntoConstraints = false
@@ -547,6 +551,20 @@ extension AppDelegate : NSWindowDelegate {
 //                mainWindowController?.close()
 //            }
 //        }
+        
+        return true
+    }
+    
+    func clicked(gestureRecognizer: NSClickGestureRecognizer) {
+        self.textField.selectText(nil)
+    }
+}
+
+extension AppDelegate : NSTextFieldDelegate {
+    func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+        if commandSelector == #selector(NSText.paste(_:)) {
+            textView.string = "yo"
+        }
         
         return true
     }

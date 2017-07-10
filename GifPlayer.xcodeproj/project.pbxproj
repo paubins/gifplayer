@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F0D637A1F12E72900DF4FB1 /* errorstop.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0D63791F12E72900DF4FB1 /* errorstop.png */; };
+		5F0D637C1F12F86A00DF4FB1 /* Editing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D637B1F12F86A00DF4FB1 /* Editing.swift */; };
 		5F3B13BF1EF3730C00D4A9B4 /* OpenGLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B13BE1EF3730C00D4A9B4 /* OpenGLView.swift */; };
 		5F3B13C11EF4361300D4A9B4 /* Data+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B13C01EF4361300D4A9B4 /* Data+Compression.swift */; };
 		5F5071071EF4735E00A1AFFB /* CameraMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5070F81EF4735E00A1AFFB /* CameraMan.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		367AB01C00EC649DC5003F5D /* Pods-GifPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-GifPlayer/Pods-GifPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		5F0D63791F12E72900DF4FB1 /* errorstop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = errorstop.png; sourceTree = "<group>"; };
+		5F0D637B1F12F86A00DF4FB1 /* Editing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Editing.swift; sourceTree = "<group>"; };
 		5F26C3B71F0F4B54000840BB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		5F26C3B81F0F4B5B000840BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		5F26C3B91F0F4B5F000840BB /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 		5FA74AD01EED0C8C007642C8 = {
 			isa = PBXGroup;
 			children = (
+				5F0D637B1F12F86A00DF4FB1 /* Editing.swift */,
 				5FF416F31EFB60A600FBCBCB /* gif (2)-128.png */,
 				5F0D63791F12E72900DF4FB1 /* errorstop.png */,
 				5F9619391EF87413008A3195 /* Helpers */,
@@ -438,6 +441,7 @@
 				5F50710A1EF4735E00A1AFFB /* Window+Extensions.swift in Sources */,
 				5F783FC21EFA22DF0048A45E /* PasteboardWatcher.swift in Sources */,
 				5F5071071EF4735E00A1AFFB /* CameraMan.swift in Sources */,
+				5F0D637C1F12F86A00DF4FB1 /* Editing.swift in Sources */,
 				5F5071081EF4735E00A1AFFB /* Saver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -50,6 +50,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         Fabric.with([Crashlytics.self])
         
+        NSApp.servicesProvider = self
+        
         self.pasteboardWatcher.delegate = self
 //        self.pasteboardWatcher.startPolling()
         

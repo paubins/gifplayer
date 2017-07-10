@@ -11,10 +11,10 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>gif</string>
+				<string>*</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>GIF</string>
+			<string>File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSHandlerRank</key>

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GifPlayer/FOTWindow.m"
-            timestampString = "519948053.332008"
+            timestampString = "521340075.231697"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "-initWithContentRect:styleMask:backing:defer:"
             landmarkType = "7">
          </BreakpointContent>

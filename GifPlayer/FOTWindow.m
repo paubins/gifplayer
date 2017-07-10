@@ -29,6 +29,7 @@
     self = [super initWithFrame:frameRect];
     
     if (self) {
+        
         _titleBar = [[FOTWindowTitle alloc] initWithFrame:NSMakeRect(0, NSHeight(self.frame)-kTitleBarHeight, NSWidth(self.frame), kTitleBarHeight)];
         [_titleBar setAutoresizingMask:NSViewWidthSizable|NSViewMinYMargin|NSViewMinXMargin];
         [_titleBar setAlphaValue:0];

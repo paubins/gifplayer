@@ -7,42 +7,38 @@
 //
 
 import Cocoa
-import Hue
 
 protocol MCDragAndDropImageViewDelegate: class {
-    func dragAndDropImageViewDidDrop(pasteboard:NSPasteboard)
+	func dragAndDropImageViewDidDrop(_ imageView: MCDragAndDropImageView)
 }
 
 class MCDragAndDropImageView: NSImageView {
 
 	weak var delegate: MCDragAndDropImageViewDelegate?
 
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        register(forDraggedTypes: NSImage.imageTypes())
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+
+		register(forDraggedTypes: NSImage.imageTypes())
         
-        
-        
-        wantsLayer = true
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+        animates = true
+		wantsLayer = true
+	}
+
+	override func setNeedsDisplay() {
+		alphaValue = image == nil ? 1.0 : 0.6
+		super.setNeedsDisplay()
+	}
 
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
-        
-        let gradient = [NSColor(hex: "FFFFFF"), NSColor(hex: "E04F5F"), NSColor(hex: "25B6D2")].gradient()
-        
-        let secondGradient = [NSColor.black, NSColor.orange].gradient { gradient in
-            gradient.locations = [0.00, 0.25, 1.0]
-            return gradient
-        }
-        
-        gradient.cornerRadius = 20
 
-        layer = gradient
+		if let _ = image {
+			layer?.backgroundColor = NSColor.clear.cgColor
+			return
+		}
+
+		layer?.backgroundColor = NSColor(white: isHighlighted ? 0.5 : 0.8, alpha: 1.0).cgColor
 	}
 
 	override var mouseDownCanMoveWindow:Bool {
@@ -88,9 +84,9 @@ extension MCDragAndDropImageView: NSDraggingSource {
 
 	override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
 		if (NSImage.canInit(with: sender.draggingPasteboard())) {
-//			image = NSImage(pasteboard: )
-			delegate?.dragAndDropImageViewDidDrop(pasteboard: sender.draggingPasteboard())
-//			setNeedsDisplay()
+			image = NSImage(pasteboard: sender.draggingPasteboard())
+			delegate?.dragAndDropImageViewDidDrop(self)
+			setNeedsDisplay()
 		}
 
 		return true

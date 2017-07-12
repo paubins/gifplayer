@@ -7,172 +7,212 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05C1C6C0B246E3C5FDF06B2A0BB63F0D /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378F0A42BAB6C25A9C255FAB0590BFE /* View.swift */; };
-		067B84F7E9EFBEAFDC824931CAAD2051 /* Align.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3399782BBA1633F59CA7C4E51F51B /* Align.swift */; };
-		084BFF57FE70517D0515E7E8EE7DD5CB /* iPicUploader-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D3BF0BF2002A667BB63689E39D22908 /* iPicUploader-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0D2E1C878888AAF03EBC1E26FABAB980 /* JFImageSavePanel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BA292EB358EDCAED52831EC416BDF364 /* JFImageSavePanel-dummy.m */; };
-		1431619A2565DD8EAB817240E078707C /* LayoutProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB15B8240008468CA0B11A0F6B680C5 /* LayoutProxy.swift */; };
-		14D33C9C9AEFF0FC18832A8A4D808A3A /* iPicImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882143EE0C861919E8E773856A0BBF00 /* iPicImage.swift */; };
-		17722643053508FA887FD9E8F80B0AF4 /* JFImageSavePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A39B5C7FD5F257CCC5734FD898AA243 /* JFImageSavePanel.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		1A5C60EFB4926F682F709BF5DDDB80B8 /* iPicUploader-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6E53D29ECE08683335E74F4DFDC3C5 /* iPicUploader-dummy.m */; };
-		202EE7823D60C5766CA06B81E4FA40B7 /* NSGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1A9A485140C1D38F47718AE9758557 /* NSGIF.m */; };
-		22B60CFF6E57EB6DF8CCA5D2CAC3178C /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = C708935A46FB09FC1E375C55DBE4BBB0 /* Priority.swift */; };
-		3F2391D80C5AE124D6E13AD3FABFFE01 /* Constrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8DEF8230A837914E53723CE4547BA /* Constrain.swift */; };
-		47CA36D76B7E20E2FF309EF2DF9E55E9 /* iPicUploadResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79514E4D990A26C6C60962B250945EBE /* iPicUploadResult.swift */; };
-		4A8E1085F2F98E0B1330E5E203CD6CF0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
-		569450C76D1E0B626F82EBBCD13B0CCC /* Pods-GifPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB1CFFBBAD48B1CDBFC445070ED216F /* Pods-GifPlayer-dummy.m */; };
-		56EBA0C77344F63CA6A36265A6496A71 /* LayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B341785ACA1B50E35704FA9CABB7855 /* LayoutSupport.swift */; };
-		5CAA19E0EB7CA9EB6047A3E43EC1FC8F /* ConstraintGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144F24319D027652EA96395DFB83663D /* ConstraintGroup.swift */; };
-		5F5D3FB5718F4673DC293DA7D97EF046 /* Compound.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2159811FC178798280056AF8565840A /* Compound.swift */; };
-		61CE56095981587086944F5D90B79F97 /* NSGIF-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DA82906197882839E291C8107A1F3AA4 /* NSGIF-dummy.m */; };
-		697414FCC3C6F8176768FFDDEC73A108 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D52AF7276532DAA447ECAC42D5A2E20 /* Expression.swift */; };
-		6BF0C3CC426154AD01358B1FDEA4C573 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
-		74BD0664EEC77366D314DA22DD4E721F /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E75C19EEF851B13E08990168BD4CB2 /* Size.swift */; };
-		75644646714CC5EBAB9402833A3DB591 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
-		795A151411873F6C174BBF57F57B8F08 /* JFImageSavePanel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CD7DE523F6EA6982DB179735DE30C80 /* JFImageSavePanel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7965A04590F67375EC65249F774B3F6B /* Distribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E12D369A9C8E8249510E5D204A45603 /* Distribute.swift */; };
-		7D65FC933A9CED6DE0F1843EFD8A801F /* JFImageSavePanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFF8B5BCB430BA2C26DC0C4CE6F2A43 /* JFImageSavePanelAccessoryView.xib */; };
-		808977A8D5B1992FB19B6DE04FA831DE /* NSGIF.h in Headers */ = {isa = PBXBuildFile; fileRef = D1CCD8C9991DF8B1818779BCA05D3D05 /* NSGIF.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		88B21B225B2D6BFAB3F50B88495299F1 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F7E66251E95DE63FED98E46098BB30 /* Point.swift */; };
-		8A010CCF683337C17B20651E4D4FE266 /* iPicUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8253B8F29AE0537266693F76BB89D66B /* iPicUploader.swift */; };
-		9258610D4A491BE828DE379A5561352C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
-		9B71D4856DF9CFE5715EDF4E5B3B2844 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD594F7358546A5D655F106E095C4E4A /* ViewUtils.swift */; };
-		9C7E8D85506FA06C506A330B200FCEE7 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EEB66ABF82E4D09FAF00464D9E0A71 /* Context.swift */; };
-		A084DDD7233A950676D60FCB4FA8BE74 /* Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC45ABE6AD909D431C97BC0A0F1A25F /* Edges.swift */; };
-		A67286FF819C5C943D027E9C40DF456D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4ACE1816A470F17B17CFF6A065B54C /* Extensions.swift */; };
-		A7BD4B74A484170A23FF6C7611A11B40 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC239409A7CC1A6597BA96500EA56E /* Property.swift */; };
-		A8729DA91C7B1038C11C2F5B40CADC6C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
-		A9A41F5F9583DBD284B30C29F06F4339 /* NSGIF-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0576968801248B2AA254E6BAD2DAA093 /* NSGIF-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AE7ACD648B84D1C8645049118FE42D54 /* Cartography-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D0E87DF38A78A6A361FCD5C943C43 /* Cartography-dummy.m */; };
-		C2E2993258D9072061A389E518053F8B /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971CC3C312D8DA99B2FA53B8C62F962 /* Constraint.swift */; };
-		C8DA5D5334291A2616620A74B88AC4D7 /* iPicUploadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B40598EF9F97A8F3F8F089C26D7A68 /* iPicUploadHelper.swift */; };
-		CA5CC479DB54F14D6F01D195B795DCDD /* iPicPasteboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D11FF6228BF2FFF55A0BC47D852E8DA /* iPicPasteboardHelper.swift */; };
-		CD587D5E28B0428E3B4163F1604D26BF /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E593A53CE975FF4000BCAB186D126F1 /* Edge.swift */; };
-		D1E219153446AC49F5810CC4DED3322B /* JFImageSavePanel.h in Headers */ = {isa = PBXBuildFile; fileRef = F53556B9F6904ECE0238D3453D1EA577 /* JFImageSavePanel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D6DD39DB9F243D94D69E1559637A8CED /* Pods-GifPlayer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CC78BDA0C54B2AF58AB0A9016D01E991 /* Pods-GifPlayer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DBC0D8FEB6A8101C977332E8BC16E641 /* Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691F12C7BA553B19D182123C38D29869 /* Dimension.swift */; };
-		FC27B916EC313A166CE2704745CB14C0 /* Coefficients.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3E5413ADFC8ABD2507F63F5D18D22 /* Coefficients.swift */; };
-		FE4D13CA6A4999D13875761E5100C1A0 /* Cartography-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ADF4FCB32E81D6A35E1A4AD3EB8EFF8D /* Cartography-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05C1C6C0B246E3C5FDF06B2A0BB63F0D /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA866AC28CF2C1147EC7304FCD4310A7 /* View.swift */; };
+		067B84F7E9EFBEAFDC824931CAAD2051 /* Align.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FD5004CFE21FDA0FB50AE4158794D6 /* Align.swift */; };
+		084BFF57FE70517D0515E7E8EE7DD5CB /* iPicUploader-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 640CD41D72F532A79A053390D0A7C7FA /* iPicUploader-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D2E1C878888AAF03EBC1E26FABAB980 /* JFImageSavePanel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BE9B02C60972EE588AE8517BE5E8D0 /* JFImageSavePanel-dummy.m */; };
+		1431619A2565DD8EAB817240E078707C /* LayoutProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38560E83E2BAB9F3AE2023486D4D0BDE /* LayoutProxy.swift */; };
+		14D33C9C9AEFF0FC18832A8A4D808A3A /* iPicImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46E25C64E5BDE7E45E904C5D7E2A81B /* iPicImage.swift */; };
+		17722643053508FA887FD9E8F80B0AF4 /* JFImageSavePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = E692AE923A68B85CA0FF084F3444609C /* JFImageSavePanel.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		1A5C60EFB4926F682F709BF5DDDB80B8 /* iPicUploader-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBBAAAB2C74CAD3E8FD179950EDC040 /* iPicUploader-dummy.m */; };
+		20070C9501DA782A1D5EDCB4F75AEDE2 /* Hue-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F9D457EF65214B4E6CA470C067CA2163 /* Hue-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		202EE7823D60C5766CA06B81E4FA40B7 /* NSGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D602980CD3037563322715F1F628E5 /* NSGIF.m */; };
+		22B60CFF6E57EB6DF8CCA5D2CAC3178C /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC5787E6D62AE11738F2FE3E93B8AC /* Priority.swift */; };
+		2D03D614E8237F13B855079B816F55ED /* NSImage+Hue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341D75684EAFA2BA3CA48BF3DC04B539 /* NSImage+Hue.swift */; };
+		3A2D821E6890B54B674D5A96AB97D669 /* Pods-GifPlayer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CC78BDA0C54B2AF58AB0A9016D01E991 /* Pods-GifPlayer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3F2391D80C5AE124D6E13AD3FABFFE01 /* Constrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43BEAFB90D62790534F8F3A51BB64CE /* Constrain.swift */; };
+		47CA36D76B7E20E2FF309EF2DF9E55E9 /* iPicUploadResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C22B73DA9B4A9122F21F958E151557 /* iPicUploadResult.swift */; };
+		4E35298D7DFB34F51CEB20A153A238E5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E899B67B9008D6E5D9F5B31BBC55EC9 /* Cocoa.framework */; };
+		56EBA0C77344F63CA6A36265A6496A71 /* LayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B5041B9C6DF6A85D24B9B14EF1A9A /* LayoutSupport.swift */; };
+		5CAA19E0EB7CA9EB6047A3E43EC1FC8F /* ConstraintGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA416377D2E9E1B263A38A97D859076 /* ConstraintGroup.swift */; };
+		5F5D3FB5718F4673DC293DA7D97EF046 /* Compound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16958833B865BB7F32E102ED1C993A66 /* Compound.swift */; };
+		61CE56095981587086944F5D90B79F97 /* NSGIF-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8C99A3AA8C53B45C83B3B8F5DE0822 /* NSGIF-dummy.m */; };
+		62CC84E6950956464FECC84CD6806FF8 /* Hue-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 399B1BBC45F345D94935AC3821FF39CD /* Hue-dummy.m */; };
+		697414FCC3C6F8176768FFDDEC73A108 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DA1D076FB7775487C45477F98E2BCC /* Expression.swift */; };
+		6BF0C3CC426154AD01358B1FDEA4C573 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E899B67B9008D6E5D9F5B31BBC55EC9 /* Cocoa.framework */; };
+		74BD0664EEC77366D314DA22DD4E721F /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C73BD15F8FAC9954AD9273E43AB14A /* Size.swift */; };
+		75644646714CC5EBAB9402833A3DB591 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E899B67B9008D6E5D9F5B31BBC55EC9 /* Cocoa.framework */; };
+		795A151411873F6C174BBF57F57B8F08 /* JFImageSavePanel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 77A8A1B54BB0BC7C96F4B1D74EA128A7 /* JFImageSavePanel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7965A04590F67375EC65249F774B3F6B /* Distribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4487DDAD016C8C3180F7296A16C57AA5 /* Distribute.swift */; };
+		7D65FC933A9CED6DE0F1843EFD8A801F /* JFImageSavePanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71CB712028E9D8E4828FF4A989A94CFB /* JFImageSavePanelAccessoryView.xib */; };
+		808977A8D5B1992FB19B6DE04FA831DE /* NSGIF.h in Headers */ = {isa = PBXBuildFile; fileRef = CA6B78A1941C8E33ADFB91C82DE3F7CA /* NSGIF.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84017F79CE4BDF33D8EB991A61EC3709 /* Pods-GifPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB1CFFBBAD48B1CDBFC445070ED216F /* Pods-GifPlayer-dummy.m */; };
+		88B21B225B2D6BFAB3F50B88495299F1 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03447B24C630295F706E7D361DC7B426 /* Point.swift */; };
+		8A010CCF683337C17B20651E4D4FE266 /* iPicUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60EFE4A02BEF8F3A58F8448715D145 /* iPicUploader.swift */; };
+		9258610D4A491BE828DE379A5561352C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E899B67B9008D6E5D9F5B31BBC55EC9 /* Cocoa.framework */; };
+		9B71D4856DF9CFE5715EDF4E5B3B2844 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94B1AB622D2F89A82C468B66BAB172 /* ViewUtils.swift */; };
+		9C7E8D85506FA06C506A330B200FCEE7 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B49FD4E6FB2FAD3F98A7970D80007 /* Context.swift */; };
+		9FD3059ECFF54BBE22F615755FD6B74C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E899B67B9008D6E5D9F5B31BBC55EC9 /* Cocoa.framework */; };
+		A084DDD7233A950676D60FCB4FA8BE74 /* Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE16822980021471A87D9AD8807E563 /* Edges.swift */; };
+		A67286FF819C5C943D027E9C40DF456D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E5AABD659759D4D60A5583DB018582 /* Extensions.swift */; };
+		A7BD4B74A484170A23FF6C7611A11B40 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D6C09748B60803C0AB8EF144C3C18 /* Property.swift */; };
+		A8729DA91C7B1038C11C2F5B40CADC6C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E899B67B9008D6E5D9F5B31BBC55EC9 /* Cocoa.framework */; };
+		A9A41F5F9583DBD284B30C29F06F4339 /* NSGIF-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 677F481211454F8A948C349ED6BFDB3D /* NSGIF-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE7ACD648B84D1C8645049118FE42D54 /* Cartography-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1161B4C751C1D43BE7A1D52E76335094 /* Cartography-dummy.m */; };
+		C2E2993258D9072061A389E518053F8B /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1977BFA712F31135653F91AAFC46CEA /* Constraint.swift */; };
+		C8DA5D5334291A2616620A74B88AC4D7 /* iPicUploadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9655C95AF682D9A7D934771C1F2908D8 /* iPicUploadHelper.swift */; };
+		CA5CC479DB54F14D6F01D195B795DCDD /* iPicPasteboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D70C4B7C25CC8B211AAEFCD43F0447 /* iPicPasteboardHelper.swift */; };
+		CD587D5E28B0428E3B4163F1604D26BF /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE8FC6213AB1E2C38D3EE9BAD6F681B /* Edge.swift */; };
+		D1E219153446AC49F5810CC4DED3322B /* JFImageSavePanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 011D94FC59B106F845112AEE129260FD /* JFImageSavePanel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D69CD64EA92956AA4F0A7CD73DCE85B2 /* NSColor+Hue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59378A078F0C17F6927AC65F6806619 /* NSColor+Hue.swift */; };
+		DBC0D8FEB6A8101C977332E8BC16E641 /* Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435DC65A387F5B14B03C494ADC2684FB /* Dimension.swift */; };
+		E402C1AFB5027BC3005A8FC4D40C1B23 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 591035820D600E2A53AE10411B6105D0 /* AppKit.framework */; };
+		FC27B916EC313A166CE2704745CB14C0 /* Coefficients.swift in Sources */ = {isa = PBXBuildFile; fileRef = B347011FA30622AED59C545015FC1A28 /* Coefficients.swift */; };
+		FE4D13CA6A4999D13875761E5100C1A0 /* Cartography-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3951AFE55193826AE5E7DCAD5161E68D /* Cartography-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1353FC48B5036C92923A224D34399E08 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6D3CC2E1481FD4B03969ECA2FF3F07A8;
-			remoteInfo = NSGIF;
-		};
-		2E616CEADA68C31030A97FED5A452D80 /* PBXContainerItemProxy */ = {
+		10AB19CB2E8F1F754048A22D06A527E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3F11AB36F22A99700E0D7FA6E95F198D;
 			remoteInfo = JFImageSavePanel;
 		};
-		A74E5F7082FE48164E6D9301A7957868 /* PBXContainerItemProxy */ = {
+		595EB85D68A658E2901065774DF1C679 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B2542602E50EDF091ADB18B4688DF34F;
+			remoteInfo = Hue;
+		};
+		76402D160C80A79A4F937CBB798E804F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 5DE0EA94B458324DD17A7B16C1684AC0;
 			remoteInfo = iPicUploader;
 		};
-		FF0CD2B5D53FDB68F0DB1DC49E6BA1E1 /* PBXContainerItemProxy */ = {
+		81D30EAB3DFAE0189EB3E4A4D97979EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 544212980401A6DA7806F65EAD8C6637;
 			remoteInfo = Cartography;
 		};
+		8E0052607978A84079FE561E2709A9A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D3CC2E1481FD4B03969ECA2FF3F07A8;
+			remoteInfo = NSGIF;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01EEB66ABF82E4D09FAF00464D9E0A71 /* Context.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Context.swift; path = Cartography/Context.swift; sourceTree = "<group>"; };
-		0576968801248B2AA254E6BAD2DAA093 /* NSGIF-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSGIF-umbrella.h"; sourceTree = "<group>"; };
-		144F24319D027652EA96395DFB83663D /* ConstraintGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintGroup.swift; path = Cartography/ConstraintGroup.swift; sourceTree = "<group>"; };
-		1C1A9A485140C1D38F47718AE9758557 /* NSGIF.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NSGIF.m; path = NSGIF/NSGIF.m; sourceTree = "<group>"; };
-		1EC670627DEE4A759DC89AA83D878F28 /* Cartography.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Cartography.xcconfig; sourceTree = "<group>"; };
-		270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		2A6E53D29ECE08683335E74F4DFDC3C5 /* iPicUploader-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "iPicUploader-dummy.m"; sourceTree = "<group>"; };
-		338DD568FE1A758D7921A33AD38C2C9F /* Pods_GifPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GifPlayer.framework; path = "Pods-GifPlayer.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		384A2E1C69AC02C30140A363E5ED6938 /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = OSX/Crashlytics.framework/Versions/A/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
-		3C5127FAB88162D54AC24460C2EA0E80 /* iPicUploader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = iPicUploader.framework; path = iPicUploader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3CD7DE523F6EA6982DB179735DE30C80 /* JFImageSavePanel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JFImageSavePanel-umbrella.h"; sourceTree = "<group>"; };
-		3D90DE3C7385A1C47F23AFD2E16569FB /* NSGIF.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NSGIF.xcconfig; sourceTree = "<group>"; };
-		47885001E3564A3D834DF600C4953793 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		48A7AD2721E224A0C451E952CA18832B /* NSGIF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = NSGIF.framework; path = NSGIF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D30F0C3352A9AFECBA3E11CAC90966B /* Cartography.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Cartography.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		50E75C19EEF851B13E08990168BD4CB2 /* Size.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Size.swift; path = Cartography/Size.swift; sourceTree = "<group>"; };
-		5A1AC6844DC10C40F04357C531FBD067 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5A39B5C7FD5F257CCC5734FD898AA243 /* JFImageSavePanel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JFImageSavePanel.m; path = Pod/Classes/JFImageSavePanel.m; sourceTree = "<group>"; };
-		5CBDAB12063A8109A7FF281DBA2617E5 /* Cartography.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Cartography.modulemap; sourceTree = "<group>"; };
-		5E2531BF50D8057143958D3539E342B8 /* JFImageSavePanel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JFImageSavePanel.xcconfig; sourceTree = "<group>"; };
-		5E3C8B2876C1770A70453A3F6EB1E5D2 /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSAttributes.h; sourceTree = "<group>"; };
-		5E593A53CE975FF4000BCAB186D126F1 /* Edge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Edge.swift; path = Cartography/Edge.swift; sourceTree = "<group>"; };
-		64224F13763813423B1AE4B5DAB5CC8E /* JFImageSavePanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JFImageSavePanel.framework; path = JFImageSavePanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		66012AFA89A17CCDC976FF2AE8DA7B8B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = OSX/Fabric.framework; sourceTree = "<group>"; };
-		691F12C7BA553B19D182123C38D29869 /* Dimension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Dimension.swift; path = Cartography/Dimension.swift; sourceTree = "<group>"; };
-		6A103E527EC8BC6FE638C1FDC13C366C /* iPicUploader.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = iPicUploader.modulemap; sourceTree = "<group>"; };
+		011D94FC59B106F845112AEE129260FD /* JFImageSavePanel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JFImageSavePanel.h; path = Pod/Classes/JFImageSavePanel.h; sourceTree = "<group>"; };
+		0163CBCF8D390E1226BD1413BFF9CC7D /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = OSX/Crashlytics.framework/Versions/A/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
+		03447B24C630295F706E7D361DC7B426 /* Point.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Point.swift; path = Cartography/Point.swift; sourceTree = "<group>"; };
+		03F15677FA3B9AC2184BC0EDE634970C /* Pods_GifPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GifPlayer.framework; path = "Pods-GifPlayer.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		04CA28436660BB3E1948674C6506D3EE /* JFImageSavePanel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JFImageSavePanel.xcconfig; sourceTree = "<group>"; };
+		0BE16822980021471A87D9AD8807E563 /* Edges.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Edges.swift; path = Cartography/Edges.swift; sourceTree = "<group>"; };
+		10171C69B00564F01EDD73CA8F5B436B /* JFImageSavePanel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JFImageSavePanel-prefix.pch"; sourceTree = "<group>"; };
+		1161B4C751C1D43BE7A1D52E76335094 /* Cartography-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Cartography-dummy.m"; sourceTree = "<group>"; };
+		14D185EA5A7D36F3DCE4E04973984159 /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSAttributes.h; sourceTree = "<group>"; };
+		16958833B865BB7F32E102ED1C993A66 /* Compound.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Compound.swift; path = Cartography/Compound.swift; sourceTree = "<group>"; };
+		1E899B67B9008D6E5D9F5B31BBC55EC9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		1E89A9100DD0696D23465F3044F05A48 /* Cartography-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cartography-prefix.pch"; sourceTree = "<group>"; };
+		279651D6E4B529712E6E5BB7AA3621DB /* JFImageSavePanel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = JFImageSavePanel.modulemap; sourceTree = "<group>"; };
+		288AF3902BD9549A9390C598C7F1491A /* Hue.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Hue.modulemap; sourceTree = "<group>"; };
+		2B8B49FD4E6FB2FAD3F98A7970D80007 /* Context.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Context.swift; path = Cartography/Context.swift; sourceTree = "<group>"; };
+		30DA1D076FB7775487C45477F98E2BCC /* Expression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Expression.swift; path = Cartography/Expression.swift; sourceTree = "<group>"; };
+		31193B5555D3BCDBEF6383D22A74DFEB /* Cartography.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Cartography.xcconfig; sourceTree = "<group>"; };
+		341D75684EAFA2BA3CA48BF3DC04B539 /* NSImage+Hue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSImage+Hue.swift"; path = "Source/Mac/NSImage+Hue.swift"; sourceTree = "<group>"; };
+		38560E83E2BAB9F3AE2023486D4D0BDE /* LayoutProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutProxy.swift; path = Cartography/LayoutProxy.swift; sourceTree = "<group>"; };
+		3951AFE55193826AE5E7DCAD5161E68D /* Cartography-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cartography-umbrella.h"; sourceTree = "<group>"; };
+		399B1BBC45F345D94935AC3821FF39CD /* Hue-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Hue-dummy.m"; sourceTree = "<group>"; };
+		435DC65A387F5B14B03C494ADC2684FB /* Dimension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Dimension.swift; path = Cartography/Dimension.swift; sourceTree = "<group>"; };
+		4487DDAD016C8C3180F7296A16C57AA5 /* Distribute.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Distribute.swift; path = Cartography/Distribute.swift; sourceTree = "<group>"; };
+		473F11CFC3A897D70B35674ADEA98F20 /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = OSX/Fabric.framework/Versions/A/Headers/Fabric.h; sourceTree = "<group>"; };
+		4E2B5041B9C6DF6A85D24B9B14EF1A9A /* LayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutSupport.swift; path = Cartography/LayoutSupport.swift; sourceTree = "<group>"; };
+		50B5999CBEA609C8450045B6B1756B9C /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = OSX/Crashlytics.framework/Versions/A/Headers/Answers.h; sourceTree = "<group>"; };
+		591035820D600E2A53AE10411B6105D0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
+		5AA416377D2E9E1B263A38A97D859076 /* ConstraintGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintGroup.swift; path = Cartography/ConstraintGroup.swift; sourceTree = "<group>"; };
+		5CDDCB6EC30B2E3B5D6AC2C1CB3BA862 /* NSGIF.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NSGIF.xcconfig; sourceTree = "<group>"; };
+		5D6EEEEF8A021A53B0393475E4372DAC /* iPicUploader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = iPicUploader.framework; path = iPicUploader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EB0F71E65134E7DA60779DB39BEC7DB /* Cartography.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Cartography.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		640CD41D72F532A79A053390D0A7C7FA /* iPicUploader-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iPicUploader-umbrella.h"; sourceTree = "<group>"; };
+		677F481211454F8A948C349ED6BFDB3D /* NSGIF-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSGIF-umbrella.h"; sourceTree = "<group>"; };
 		6AA18056E97CDCA96323DB5C6155B621 /* Pods-GifPlayer-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GifPlayer-acknowledgements.markdown"; sourceTree = "<group>"; };
-		6E12D369A9C8E8249510E5D204A45603 /* Distribute.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Distribute.swift; path = Cartography/Distribute.swift; sourceTree = "<group>"; };
-		6FC01449EC883ABBA5215E1A9CAD22D4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = OSX/Crashlytics.framework; sourceTree = "<group>"; };
-		712A952BA8A1940A5F861916F9A51027 /* iPicUploader.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = iPicUploader.xcconfig; sourceTree = "<group>"; };
-		78F7E66251E95DE63FED98E46098BB30 /* Point.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Point.swift; path = Cartography/Point.swift; sourceTree = "<group>"; };
-		79514E4D990A26C6C60962B250945EBE /* iPicUploadResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = iPicUploadResult.swift; path = iPicUploader/Classes/iPicUploadResult.swift; sourceTree = "<group>"; };
+		6B71F11DDCF8639D37454F924F152E18 /* Hue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Hue.framework; path = Hue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71CB712028E9D8E4828FF4A989A94CFB /* JFImageSavePanelAccessoryView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = JFImageSavePanelAccessoryView.xib; path = Pod/Assets/JFImageSavePanelAccessoryView.xib; sourceTree = "<group>"; };
+		7217DA9C26FA32EA369655F2D557F0E6 /* Hue.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Hue.xcconfig; sourceTree = "<group>"; };
+		7503AB8C67CC4A714DF2BEAF8426DD43 /* Cartography.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Cartography.modulemap; sourceTree = "<group>"; };
+		7570C16BF9D6C49843357B8D94D1F587 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76BE9B02C60972EE588AE8517BE5E8D0 /* JFImageSavePanel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JFImageSavePanel-dummy.m"; sourceTree = "<group>"; };
+		77A8A1B54BB0BC7C96F4B1D74EA128A7 /* JFImageSavePanel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JFImageSavePanel-umbrella.h"; sourceTree = "<group>"; };
+		78E5AABD659759D4D60A5583DB018582 /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Cartography/Extensions.swift; sourceTree = "<group>"; };
 		7C47A0ECE92648D5591887FD38C7B2B2 /* Pods-GifPlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-GifPlayer.modulemap"; sourceTree = "<group>"; };
-		8076FA51BE00D2388178E7C29FB1AEFF /* JFImageSavePanel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = JFImageSavePanel.modulemap; sourceTree = "<group>"; };
-		8253B8F29AE0537266693F76BB89D66B /* iPicUploader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = iPicUploader.swift; path = iPicUploader/Classes/iPicUploader.swift; sourceTree = "<group>"; };
-		832B2DCB632CA29EF2D49B46A1A4F093 /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = OSX/Fabric.framework/Versions/A/Headers/FABAttributes.h; sourceTree = "<group>"; };
-		8378F0A42BAB6C25A9C255FAB0590BFE /* View.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = View.swift; path = Cartography/View.swift; sourceTree = "<group>"; };
+		7E253AB077DB5305475DD61CFE9652F5 /* NSGIF.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = NSGIF.modulemap; sourceTree = "<group>"; };
+		7E90486C7A53E081767BA59459261E49 /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = OSX/Fabric.framework/Versions/A/Headers/FABAttributes.h; sourceTree = "<group>"; };
+		7F375E35B1977DF2D33F07F2FE164616 /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = OSX/Crashlytics.framework/Versions/A/Headers/Crashlytics.h; sourceTree = "<group>"; };
 		83A49403316D86D2AF044157014C0107 /* Pods-GifPlayer-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GifPlayer-resources.sh"; sourceTree = "<group>"; };
-		854A0EC8D200D08B1A8C88DF515411B2 /* NSGIF-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSGIF-prefix.pch"; sourceTree = "<group>"; };
-		882143EE0C861919E8E773856A0BBF00 /* iPicImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = iPicImage.swift; path = iPicUploader/Classes/iPicImage.swift; sourceTree = "<group>"; };
+		85292B1F43721A8E83910E976C2D35E6 /* iPicUploader.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = iPicUploader.xcconfig; sourceTree = "<group>"; };
+		871B4B04C0B0AE0FB52178EBD9A22C22 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		898238605D2F90AD10D4EDF69F6AAA16 /* Pods-GifPlayer-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GifPlayer-frameworks.sh"; sourceTree = "<group>"; };
 		8BB1CFFBBAD48B1CDBFC445070ED216F /* Pods-GifPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GifPlayer-dummy.m"; sourceTree = "<group>"; };
-		8D4ACE1816A470F17B17CFF6A065B54C /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Cartography/Extensions.swift; sourceTree = "<group>"; };
-		8D52AF7276532DAA447ECAC42D5A2E20 /* Expression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Expression.swift; path = Cartography/Expression.swift; sourceTree = "<group>"; };
+		8E0852C63E41C87446253FB26966D37C /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSLogging.h; sourceTree = "<group>"; };
+		91C73BD15F8FAC9954AD9273E43AB14A /* Size.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Size.swift; path = Cartography/Size.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		948C9671328B3D863F3E1583C9818513 /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = OSX/Fabric.framework/Versions/A/Headers/Fabric.h; sourceTree = "<group>"; };
-		9519BC5EE17B1DF09AAF4EC0656A986F /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = OSX/Crashlytics.framework/Versions/A/Headers/Answers.h; sourceTree = "<group>"; };
-		96581C16E3134F7D2605FFBCF145A8DC /* Cartography-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cartography-prefix.pch"; sourceTree = "<group>"; };
-		987BDACAA345C00ABA60C91AD2AA396B /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
-		9B341785ACA1B50E35704FA9CABB7855 /* LayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutSupport.swift; path = Cartography/LayoutSupport.swift; sourceTree = "<group>"; };
-		9D11FF6228BF2FFF55A0BC47D852E8DA /* iPicPasteboardHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = iPicPasteboardHelper.swift; path = iPicUploader/Classes/iPicPasteboardHelper.swift; sourceTree = "<group>"; };
-		9D3BF0BF2002A667BB63689E39D22908 /* iPicUploader-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iPicUploader-umbrella.h"; sourceTree = "<group>"; };
-		A2A755F841679CDD701D991744B3799E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A2B40598EF9F97A8F3F8F089C26D7A68 /* iPicUploadHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = iPicUploadHelper.swift; path = iPicUploader/Classes/iPicUploadHelper.swift; sourceTree = "<group>"; };
-		A4E3399782BBA1633F59CA7C4E51F51B /* Align.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Align.swift; path = Cartography/Align.swift; sourceTree = "<group>"; };
+		93BC5787E6D62AE11738F2FE3E93B8AC /* Priority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Priority.swift; path = Cartography/Priority.swift; sourceTree = "<group>"; };
+		9655C95AF682D9A7D934771C1F2908D8 /* iPicUploadHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = iPicUploadHelper.swift; path = iPicUploader/Classes/iPicUploadHelper.swift; sourceTree = "<group>"; };
+		9A83C4C09C1B30436F93AB5E5B95CEE7 /* JFImageSavePanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JFImageSavePanel.framework; path = JFImageSavePanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A02624665A565644668BB410C46EC567 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A18D6C09748B60803C0AB8EF144C3C18 /* Property.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Property.swift; path = Cartography/Property.swift; sourceTree = "<group>"; };
+		A3D6803B5D90A30AFF318FFD1A8894E0 /* NSGIF-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSGIF-prefix.pch"; sourceTree = "<group>"; };
+		A43BEAFB90D62790534F8F3A51BB64CE /* Constrain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constrain.swift; path = Cartography/Constrain.swift; sourceTree = "<group>"; };
 		A54C620A4E20A48009E723D26D92BE91 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A7C8DEF8230A837914E53723CE4547BA /* Constrain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constrain.swift; path = Cartography/Constrain.swift; sourceTree = "<group>"; };
-		A971CC3C312D8DA99B2FA53B8C62F962 /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Cartography/Constraint.swift; sourceTree = "<group>"; };
+		A9638323DDE4ED7F5A11A0DEEF3C6174 /* NSGIF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = NSGIF.framework; path = NSGIF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9C22B73DA9B4A9122F21F958E151557 /* iPicUploadResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = iPicUploadResult.swift; path = iPicUploader/Classes/iPicUploadResult.swift; sourceTree = "<group>"; };
 		ACA33E5A4E74F5362C96DEB70EF83EA6 /* Pods-GifPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GifPlayer.release.xcconfig"; sourceTree = "<group>"; };
-		ACC45ABE6AD909D431C97BC0A0F1A25F /* Edges.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Edges.swift; path = Cartography/Edges.swift; sourceTree = "<group>"; };
-		ADF4FCB32E81D6A35E1A4AD3EB8EFF8D /* Cartography-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cartography-umbrella.h"; sourceTree = "<group>"; };
-		B26D0E87DF38A78A6A361FCD5C943C43 /* Cartography-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Cartography-dummy.m"; sourceTree = "<group>"; };
-		B3CC239409A7CC1A6597BA96500EA56E /* Property.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Property.swift; path = Cartography/Property.swift; sourceTree = "<group>"; };
-		BA292EB358EDCAED52831EC416BDF364 /* JFImageSavePanel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JFImageSavePanel-dummy.m"; sourceTree = "<group>"; };
-		BB2ADF165098FA63DCD1A0F6485172D5 /* NSGIF.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = NSGIF.modulemap; sourceTree = "<group>"; };
-		C708935A46FB09FC1E375C55DBE4BBB0 /* Priority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Priority.swift; path = Cartography/Priority.swift; sourceTree = "<group>"; };
-		C7FBA4D78D55475A0E08F7363AB3B00E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF596E11B68EAEC65B4316D9F443E3CB /* iPicUploader-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iPicUploader-prefix.pch"; sourceTree = "<group>"; };
+		B347011FA30622AED59C545015FC1A28 /* Coefficients.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Coefficients.swift; path = Cartography/Coefficients.swift; sourceTree = "<group>"; };
+		B3FD5004CFE21FDA0FB50AE4158794D6 /* Align.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Align.swift; path = Cartography/Align.swift; sourceTree = "<group>"; };
+		BF8C99A3AA8C53B45C83B3B8F5DE0822 /* NSGIF-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSGIF-dummy.m"; sourceTree = "<group>"; };
+		C9D602980CD3037563322715F1F628E5 /* NSGIF.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NSGIF.m; path = NSGIF/NSGIF.m; sourceTree = "<group>"; };
+		CA6B78A1941C8E33ADFB91C82DE3F7CA /* NSGIF.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NSGIF.h; path = NSGIF/NSGIF.h; sourceTree = "<group>"; };
 		CB3A510484D964FB5AC599ACD75E9065 /* Pods-GifPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GifPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		CC78BDA0C54B2AF58AB0A9016D01E991 /* Pods-GifPlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GifPlayer-umbrella.h"; sourceTree = "<group>"; };
-		CCBE0F4C7D95120808BB040A622B74E0 /* JFImageSavePanel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JFImageSavePanel-prefix.pch"; sourceTree = "<group>"; };
-		CDA3E5413ADFC8ABD2507F63F5D18D22 /* Coefficients.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Coefficients.swift; path = Cartography/Coefficients.swift; sourceTree = "<group>"; };
-		CEFF8B5BCB430BA2C26DC0C4CE6F2A43 /* JFImageSavePanelAccessoryView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = JFImageSavePanelAccessoryView.xib; path = Pod/Assets/JFImageSavePanelAccessoryView.xib; sourceTree = "<group>"; };
-		D1CCD8C9991DF8B1818779BCA05D3D05 /* NSGIF.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NSGIF.h; path = NSGIF/NSGIF.h; sourceTree = "<group>"; };
-		D8F2DC72412FAF6BED71CB107205E9D8 /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSReport.h; sourceTree = "<group>"; };
-		DA82906197882839E291C8107A1F3AA4 /* NSGIF-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSGIF-dummy.m"; sourceTree = "<group>"; };
-		DD594F7358546A5D655F106E095C4E4A /* ViewUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewUtils.swift; path = Cartography/ViewUtils.swift; sourceTree = "<group>"; };
-		DDB15B8240008468CA0B11A0F6B680C5 /* LayoutProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutProxy.swift; path = Cartography/LayoutProxy.swift; sourceTree = "<group>"; };
-		E4D4F6802A813F0C2963B9A18B931F6E /* iPicUploader-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iPicUploader-prefix.pch"; sourceTree = "<group>"; };
-		F2159811FC178798280056AF8565840A /* Compound.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Compound.swift; path = Cartography/Compound.swift; sourceTree = "<group>"; };
-		F53556B9F6904ECE0238D3453D1EA577 /* JFImageSavePanel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JFImageSavePanel.h; path = Pod/Classes/JFImageSavePanel.h; sourceTree = "<group>"; };
-		F80CFDA9F427793FE882CF761B1FA5FC /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = OSX/Crashlytics.framework/Versions/A/Headers/Crashlytics.h; sourceTree = "<group>"; };
-		FA02412C9BE0C92F2BF3D669027F2AD7 /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSLogging.h; sourceTree = "<group>"; };
+		CCC0267EECD625998C8D754C37F90316 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D46E25C64E5BDE7E45E904C5D7E2A81B /* iPicImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = iPicImage.swift; path = iPicUploader/Classes/iPicImage.swift; sourceTree = "<group>"; };
+		D7D70C4B7C25CC8B211AAEFCD43F0447 /* iPicPasteboardHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = iPicPasteboardHelper.swift; path = iPicUploader/Classes/iPicPasteboardHelper.swift; sourceTree = "<group>"; };
+		DA866AC28CF2C1147EC7304FCD4310A7 /* View.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = View.swift; path = Cartography/View.swift; sourceTree = "<group>"; };
+		DC94B1AB622D2F89A82C468B66BAB172 /* ViewUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewUtils.swift; path = Cartography/ViewUtils.swift; sourceTree = "<group>"; };
+		DD01B43C6764495ECE3D528BCACCA2DF /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSReport.h; sourceTree = "<group>"; };
+		E23554DE48DC4FA3BE0C401ED61F7F69 /* Hue-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Hue-prefix.pch"; sourceTree = "<group>"; };
+		E59378A078F0C17F6927AC65F6806619 /* NSColor+Hue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSColor+Hue.swift"; path = "Source/Mac/NSColor+Hue.swift"; sourceTree = "<group>"; };
+		E692AE923A68B85CA0FF084F3444609C /* JFImageSavePanel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JFImageSavePanel.m; path = Pod/Classes/JFImageSavePanel.m; sourceTree = "<group>"; };
+		E88F13260F9A4E8C3643B07FB6F729A8 /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
+		EBE8FC6213AB1E2C38D3EE9BAD6F681B /* Edge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Edge.swift; path = Cartography/Edge.swift; sourceTree = "<group>"; };
+		EC60EFE4A02BEF8F3A58F8448715D145 /* iPicUploader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = iPicUploader.swift; path = iPicUploader/Classes/iPicUploader.swift; sourceTree = "<group>"; };
+		F1977BFA712F31135653F91AAFC46CEA /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Cartography/Constraint.swift; sourceTree = "<group>"; };
+		F1A53E9DFC89A63096E0FA52CB84F256 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F50DFE44C7F496764CAEFCF5DE625D47 /* iPicUploader.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = iPicUploader.modulemap; sourceTree = "<group>"; };
+		F9C89331CFE3E69931013DDA6EF38B76 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = OSX/Fabric.framework; sourceTree = "<group>"; };
+		F9D457EF65214B4E6CA470C067CA2163 /* Hue-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Hue-umbrella.h"; sourceTree = "<group>"; };
 		FBEB89E7564FDE96F092A9BE2E1BB931 /* Pods-GifPlayer-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GifPlayer-acknowledgements.plist"; sourceTree = "<group>"; };
+		FCBBAAAB2C74CAD3E8FD179950EDC040 /* iPicUploader-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "iPicUploader-dummy.m"; sourceTree = "<group>"; };
+		FF7B519E07936E6403346887136D8F16 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = OSX/Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0727795FD7F3E74BA701D05D31124804 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E402C1AFB5027BC3005A8FC4D40C1B23 /* AppKit.framework in Frameworks */,
+				9FD3059ECFF54BBE22F615755FD6B74C /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		203E10612F4C49FD1773E298F09B1DB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E35298D7DFB34F51CEB20A153A238E5 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5FA4BCDBC8A48AFF1F8F68AC08329CCB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -197,14 +237,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CDE971D4B6F6D7A0F0B05A052979D15A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4A8E1085F2F98E0B1330E5E203CD6CF0 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		DC277E2DD61FBE2D80A4011154D03E08 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -216,147 +248,202 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		04C068A18C5413F804A2959126093416 /* OS X */ = {
+		0ED4AC1652A89186D1844D068BDC39A6 /* Crashlytics */ = {
 			isa = PBXGroup;
 			children = (
-				270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */,
+				0163CBCF8D390E1226BD1413BFF9CC7D /* ANSCompatibility.h */,
+				50B5999CBEA609C8450045B6B1756B9C /* Answers.h */,
+				14D185EA5A7D36F3DCE4E04973984159 /* CLSAttributes.h */,
+				8E0852C63E41C87446253FB26966D37C /* CLSLogging.h */,
+				DD01B43C6764495ECE3D528BCACCA2DF /* CLSReport.h */,
+				E88F13260F9A4E8C3643B07FB6F729A8 /* CLSStackFrame.h */,
+				7F375E35B1977DF2D33F07F2FE164616 /* Crashlytics.h */,
+				4954F2C65C9917F1498277E7D6F05058 /* Frameworks */,
+			);
+			name = Crashlytics;
+			path = Crashlytics;
+			sourceTree = "<group>";
+		};
+		15879A28613ACE9EDE9EA4C23ED666B0 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				288AF3902BD9549A9390C598C7F1491A /* Hue.modulemap */,
+				7217DA9C26FA32EA369655F2D557F0E6 /* Hue.xcconfig */,
+				399B1BBC45F345D94935AC3821FF39CD /* Hue-dummy.m */,
+				E23554DE48DC4FA3BE0C401ED61F7F69 /* Hue-prefix.pch */,
+				F9D457EF65214B4E6CA470C067CA2163 /* Hue-umbrella.h */,
+				A02624665A565644668BB410C46EC567 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Hue";
+			sourceTree = "<group>";
+		};
+		1C671BDB9071CD295859FD6CFB915A40 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				591035820D600E2A53AE10411B6105D0 /* AppKit.framework */,
+				1E899B67B9008D6E5D9F5B31BBC55EC9 /* Cocoa.framework */,
 			);
 			name = "OS X";
 			sourceTree = "<group>";
 		};
-		31C77A8D8CCD66F84B9C9BDE0BD1D2B6 /* Support Files */ = {
+		285F39E0D53F9716D351E642921738CE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				47885001E3564A3D834DF600C4953793 /* Info.plist */,
-				6A103E527EC8BC6FE638C1FDC13C366C /* iPicUploader.modulemap */,
-				712A952BA8A1940A5F861916F9A51027 /* iPicUploader.xcconfig */,
-				2A6E53D29ECE08683335E74F4DFDC3C5 /* iPicUploader-dummy.m */,
-				E4D4F6802A813F0C2963B9A18B931F6E /* iPicUploader-prefix.pch */,
-				9D3BF0BF2002A667BB63689E39D22908 /* iPicUploader-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/iPicUploader";
-			sourceTree = "<group>";
-		};
-		39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				04C068A18C5413F804A2959126093416 /* OS X */,
+				F9C89331CFE3E69931013DDA6EF38B76 /* Fabric.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3B201DB1FECC696D0B3C8D9DD46CCB5A /* Products */ = {
+		2B46081089F46B94B8C59E4EA2ED92D2 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				4D30F0C3352A9AFECBA3E11CAC90966B /* Cartography.framework */,
-				3C5127FAB88162D54AC24460C2EA0E80 /* iPicUploader.framework */,
-				64224F13763813423B1AE4B5DAB5CC8E /* JFImageSavePanel.framework */,
-				48A7AD2721E224A0C451E952CA18832B /* NSGIF.framework */,
-				338DD568FE1A758D7921A33AD38C2C9F /* Pods_GifPlayer.framework */,
+				7503AB8C67CC4A714DF2BEAF8426DD43 /* Cartography.modulemap */,
+				31193B5555D3BCDBEF6383D22A74DFEB /* Cartography.xcconfig */,
+				1161B4C751C1D43BE7A1D52E76335094 /* Cartography-dummy.m */,
+				1E89A9100DD0696D23465F3044F05A48 /* Cartography-prefix.pch */,
+				3951AFE55193826AE5E7DCAD5161E68D /* Cartography-umbrella.h */,
+				CCC0267EECD625998C8D754C37F90316 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Cartography";
+			sourceTree = "<group>";
+		};
+		4148DF0B78E967D5B73A0C774F68C12E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5EB0F71E65134E7DA60779DB39BEC7DB /* Cartography.framework */,
+				6B71F11DDCF8639D37454F924F152E18 /* Hue.framework */,
+				5D6EEEEF8A021A53B0393475E4372DAC /* iPicUploader.framework */,
+				9A83C4C09C1B30436F93AB5E5B95CEE7 /* JFImageSavePanel.framework */,
+				A9638323DDE4ED7F5A11A0DEEF3C6174 /* NSGIF.framework */,
+				03F15677FA3B9AC2184BC0EDE634970C /* Pods_GifPlayer.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		42F5C15A5D747A7B8554C22E0216A61A /* iPicUploader */ = {
+		4954F2C65C9917F1498277E7D6F05058 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				882143EE0C861919E8E773856A0BBF00 /* iPicImage.swift */,
-				9D11FF6228BF2FFF55A0BC47D852E8DA /* iPicPasteboardHelper.swift */,
-				8253B8F29AE0537266693F76BB89D66B /* iPicUploader.swift */,
-				A2B40598EF9F97A8F3F8F089C26D7A68 /* iPicUploadHelper.swift */,
-				79514E4D990A26C6C60962B250945EBE /* iPicUploadResult.swift */,
-				31C77A8D8CCD66F84B9C9BDE0BD1D2B6 /* Support Files */,
+				FF7B519E07936E6403346887136D8F16 /* Crashlytics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4C12387E06766ED06308A70C5DBD4220 /* iPicUploader */ = {
+			isa = PBXGroup;
+			children = (
+				D46E25C64E5BDE7E45E904C5D7E2A81B /* iPicImage.swift */,
+				D7D70C4B7C25CC8B211AAEFCD43F0447 /* iPicPasteboardHelper.swift */,
+				EC60EFE4A02BEF8F3A58F8448715D145 /* iPicUploader.swift */,
+				9655C95AF682D9A7D934771C1F2908D8 /* iPicUploadHelper.swift */,
+				A9C22B73DA9B4A9122F21F958E151557 /* iPicUploadResult.swift */,
+				7CF60F7064596319C184D2A976BCA1AB /* Support Files */,
 			);
 			name = iPicUploader;
 			path = iPicUploader;
 			sourceTree = "<group>";
 		};
-		4312DCFD852AF5E88AB864A9940B4697 /* JFImageSavePanel */ = {
+		4E870C624FE520CB9B0494C8E5736FB4 /* Fabric */ = {
 			isa = PBXGroup;
 			children = (
-				F53556B9F6904ECE0238D3453D1EA577 /* JFImageSavePanel.h */,
-				5A39B5C7FD5F257CCC5734FD898AA243 /* JFImageSavePanel.m */,
-				B61648B2691327CBE4DBD25A369B113F /* Resources */,
-				9A8144F1C4AB58FC05673E20D04E7CAD /* Support Files */,
-			);
-			name = JFImageSavePanel;
-			path = JFImageSavePanel;
-			sourceTree = "<group>";
-		};
-		43FD3FD95FBF100DF073624AA3446AEB /* NSGIF */ = {
-			isa = PBXGroup;
-			children = (
-				D1CCD8C9991DF8B1818779BCA05D3D05 /* NSGIF.h */,
-				1C1A9A485140C1D38F47718AE9758557 /* NSGIF.m */,
-				722C86839E84A8E9A13F4E13619D958D /* Support Files */,
-			);
-			name = NSGIF;
-			path = NSGIF;
-			sourceTree = "<group>";
-		};
-		6D153F2FA0C3D5875DCBB20A585B2874 /* Fabric */ = {
-			isa = PBXGroup;
-			children = (
-				832B2DCB632CA29EF2D49B46A1A4F093 /* FABAttributes.h */,
-				948C9671328B3D863F3E1583C9818513 /* Fabric.h */,
-				E13D08943C0E9F3E4F8A417E8868E27B /* Frameworks */,
+				7E90486C7A53E081767BA59459261E49 /* FABAttributes.h */,
+				473F11CFC3A897D70B35674ADEA98F20 /* Fabric.h */,
+				285F39E0D53F9716D351E642921738CE /* Frameworks */,
 			);
 			name = Fabric;
 			path = Fabric;
 			sourceTree = "<group>";
 		};
-		722C86839E84A8E9A13F4E13619D958D /* Support Files */ = {
+		54E1B2B2E290FEED1C3A45E1A246EB4A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5A1AC6844DC10C40F04357C531FBD067 /* Info.plist */,
-				BB2ADF165098FA63DCD1A0F6485172D5 /* NSGIF.modulemap */,
-				3D90DE3C7385A1C47F23AFD2E16569FB /* NSGIF.xcconfig */,
-				DA82906197882839E291C8107A1F3AA4 /* NSGIF-dummy.m */,
-				854A0EC8D200D08B1A8C88DF515411B2 /* NSGIF-prefix.pch */,
-				0576968801248B2AA254E6BAD2DAA093 /* NSGIF-umbrella.h */,
+				9D23730D4826C1F6E65C6731CA987689 /* Cartography */,
+				0ED4AC1652A89186D1844D068BDC39A6 /* Crashlytics */,
+				4E870C624FE520CB9B0494C8E5736FB4 /* Fabric */,
+				FEEB28B3D85687FB1129CB21934B5824 /* Hue */,
+				4C12387E06766ED06308A70C5DBD4220 /* iPicUploader */,
+				FB351078488D921CE38E18AA0A0DA6D9 /* JFImageSavePanel */,
+				DEA3F2241355A920C5EB6EEFB52B4B5F /* NSGIF */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5C72D44B8D51C824AA0CAF17896A59DC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				71CB712028E9D8E4828FF4A989A94CFB /* JFImageSavePanelAccessoryView.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		7CF60F7064596319C184D2A976BCA1AB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7570C16BF9D6C49843357B8D94D1F587 /* Info.plist */,
+				F50DFE44C7F496764CAEFCF5DE625D47 /* iPicUploader.modulemap */,
+				85292B1F43721A8E83910E976C2D35E6 /* iPicUploader.xcconfig */,
+				FCBBAAAB2C74CAD3E8FD179950EDC040 /* iPicUploader-dummy.m */,
+				AF596E11B68EAEC65B4316D9F443E3CB /* iPicUploader-prefix.pch */,
+				640CD41D72F532A79A053390D0A7C7FA /* iPicUploader-umbrella.h */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/NSGIF";
+			path = "../Target Support Files/iPicUploader";
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */,
-				B7B7935CDAB80F50F282189F58322CC0 /* Pods */,
-				3B201DB1FECC696D0B3C8D9DD46CCB5A /* Products */,
+				D648CE86F139C7CCFD55D5B8A03BE74B /* Frameworks */,
+				54E1B2B2E290FEED1C3A45E1A246EB4A /* Pods */,
+				4148DF0B78E967D5B73A0C774F68C12E /* Products */,
 				A0EF09CF791E23A1C777DA18501172A6 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		8537E923016EA3496EE5F4C59E531B4B /* Support Files */ = {
+		946290A470AEE533B21C72418EBD0F80 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				5CBDAB12063A8109A7FF281DBA2617E5 /* Cartography.modulemap */,
-				1EC670627DEE4A759DC89AA83D878F28 /* Cartography.xcconfig */,
-				B26D0E87DF38A78A6A361FCD5C943C43 /* Cartography-dummy.m */,
-				96581C16E3134F7D2605FFBCF145A8DC /* Cartography-prefix.pch */,
-				ADF4FCB32E81D6A35E1A4AD3EB8EFF8D /* Cartography-umbrella.h */,
-				A2A755F841679CDD701D991744B3799E /* Info.plist */,
+				871B4B04C0B0AE0FB52178EBD9A22C22 /* Info.plist */,
+				7E253AB077DB5305475DD61CFE9652F5 /* NSGIF.modulemap */,
+				5CDDCB6EC30B2E3B5D6AC2C1CB3BA862 /* NSGIF.xcconfig */,
+				BF8C99A3AA8C53B45C83B3B8F5DE0822 /* NSGIF-dummy.m */,
+				A3D6803B5D90A30AFF318FFD1A8894E0 /* NSGIF-prefix.pch */,
+				677F481211454F8A948C349ED6BFDB3D /* NSGIF-umbrella.h */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/Cartography";
+			path = "../Target Support Files/NSGIF";
 			sourceTree = "<group>";
 		};
-		9A8144F1C4AB58FC05673E20D04E7CAD /* Support Files */ = {
+		9D23730D4826C1F6E65C6731CA987689 /* Cartography */ = {
 			isa = PBXGroup;
 			children = (
-				C7FBA4D78D55475A0E08F7363AB3B00E /* Info.plist */,
-				8076FA51BE00D2388178E7C29FB1AEFF /* JFImageSavePanel.modulemap */,
-				5E2531BF50D8057143958D3539E342B8 /* JFImageSavePanel.xcconfig */,
-				BA292EB358EDCAED52831EC416BDF364 /* JFImageSavePanel-dummy.m */,
-				CCBE0F4C7D95120808BB040A622B74E0 /* JFImageSavePanel-prefix.pch */,
-				3CD7DE523F6EA6982DB179735DE30C80 /* JFImageSavePanel-umbrella.h */,
+				B3FD5004CFE21FDA0FB50AE4158794D6 /* Align.swift */,
+				B347011FA30622AED59C545015FC1A28 /* Coefficients.swift */,
+				16958833B865BB7F32E102ED1C993A66 /* Compound.swift */,
+				A43BEAFB90D62790534F8F3A51BB64CE /* Constrain.swift */,
+				F1977BFA712F31135653F91AAFC46CEA /* Constraint.swift */,
+				5AA416377D2E9E1B263A38A97D859076 /* ConstraintGroup.swift */,
+				2B8B49FD4E6FB2FAD3F98A7970D80007 /* Context.swift */,
+				435DC65A387F5B14B03C494ADC2684FB /* Dimension.swift */,
+				4487DDAD016C8C3180F7296A16C57AA5 /* Distribute.swift */,
+				EBE8FC6213AB1E2C38D3EE9BAD6F681B /* Edge.swift */,
+				0BE16822980021471A87D9AD8807E563 /* Edges.swift */,
+				30DA1D076FB7775487C45477F98E2BCC /* Expression.swift */,
+				78E5AABD659759D4D60A5583DB018582 /* Extensions.swift */,
+				38560E83E2BAB9F3AE2023486D4D0BDE /* LayoutProxy.swift */,
+				4E2B5041B9C6DF6A85D24B9B14EF1A9A /* LayoutSupport.swift */,
+				03447B24C630295F706E7D361DC7B426 /* Point.swift */,
+				93BC5787E6D62AE11738F2FE3E93B8AC /* Priority.swift */,
+				A18D6C09748B60803C0AB8EF144C3C18 /* Property.swift */,
+				91C73BD15F8FAC9954AD9273E43AB14A /* Size.swift */,
+				DA866AC28CF2C1147EC7304FCD4310A7 /* View.swift */,
+				DC94B1AB622D2F89A82C468B66BAB172 /* ViewUtils.swift */,
+				2B46081089F46B94B8C59E4EA2ED92D2 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/JFImageSavePanel";
+			name = Cartography;
+			path = Cartography;
 			sourceTree = "<group>";
 		};
 		A0EF09CF791E23A1C777DA18501172A6 /* Targets Support Files */ = {
@@ -367,55 +454,26 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		B61648B2691327CBE4DBD25A369B113F /* Resources */ = {
+		B3B05A791546114CCA79A4C9CC03D660 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				CEFF8B5BCB430BA2C26DC0C4CE6F2A43 /* JFImageSavePanelAccessoryView.xib */,
+				F1A53E9DFC89A63096E0FA52CB84F256 /* Info.plist */,
+				279651D6E4B529712E6E5BB7AA3621DB /* JFImageSavePanel.modulemap */,
+				04CA28436660BB3E1948674C6506D3EE /* JFImageSavePanel.xcconfig */,
+				76BE9B02C60972EE588AE8517BE5E8D0 /* JFImageSavePanel-dummy.m */,
+				10171C69B00564F01EDD73CA8F5B436B /* JFImageSavePanel-prefix.pch */,
+				77A8A1B54BB0BC7C96F4B1D74EA128A7 /* JFImageSavePanel-umbrella.h */,
 			);
-			name = Resources;
+			name = "Support Files";
+			path = "../Target Support Files/JFImageSavePanel";
 			sourceTree = "<group>";
 		};
-		B7B7935CDAB80F50F282189F58322CC0 /* Pods */ = {
+		D648CE86F139C7CCFD55D5B8A03BE74B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C98BCBF74B8C352C8C6434C45A1CD19B /* Cartography */,
-				DAC8F47D691ACF850C993A2466A31C4E /* Crashlytics */,
-				6D153F2FA0C3D5875DCBB20A585B2874 /* Fabric */,
-				42F5C15A5D747A7B8554C22E0216A61A /* iPicUploader */,
-				4312DCFD852AF5E88AB864A9940B4697 /* JFImageSavePanel */,
-				43FD3FD95FBF100DF073624AA3446AEB /* NSGIF */,
+				1C671BDB9071CD295859FD6CFB915A40 /* OS X */,
 			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		C98BCBF74B8C352C8C6434C45A1CD19B /* Cartography */ = {
-			isa = PBXGroup;
-			children = (
-				A4E3399782BBA1633F59CA7C4E51F51B /* Align.swift */,
-				CDA3E5413ADFC8ABD2507F63F5D18D22 /* Coefficients.swift */,
-				F2159811FC178798280056AF8565840A /* Compound.swift */,
-				A7C8DEF8230A837914E53723CE4547BA /* Constrain.swift */,
-				A971CC3C312D8DA99B2FA53B8C62F962 /* Constraint.swift */,
-				144F24319D027652EA96395DFB83663D /* ConstraintGroup.swift */,
-				01EEB66ABF82E4D09FAF00464D9E0A71 /* Context.swift */,
-				691F12C7BA553B19D182123C38D29869 /* Dimension.swift */,
-				6E12D369A9C8E8249510E5D204A45603 /* Distribute.swift */,
-				5E593A53CE975FF4000BCAB186D126F1 /* Edge.swift */,
-				ACC45ABE6AD909D431C97BC0A0F1A25F /* Edges.swift */,
-				8D52AF7276532DAA447ECAC42D5A2E20 /* Expression.swift */,
-				8D4ACE1816A470F17B17CFF6A065B54C /* Extensions.swift */,
-				DDB15B8240008468CA0B11A0F6B680C5 /* LayoutProxy.swift */,
-				9B341785ACA1B50E35704FA9CABB7855 /* LayoutSupport.swift */,
-				78F7E66251E95DE63FED98E46098BB30 /* Point.swift */,
-				C708935A46FB09FC1E375C55DBE4BBB0 /* Priority.swift */,
-				B3CC239409A7CC1A6597BA96500EA56E /* Property.swift */,
-				50E75C19EEF851B13E08990168BD4CB2 /* Size.swift */,
-				8378F0A42BAB6C25A9C255FAB0590BFE /* View.swift */,
-				DD594F7358546A5D655F106E095C4E4A /* ViewUtils.swift */,
-				8537E923016EA3496EE5F4C59E531B4B /* Support Files */,
-			);
-			name = Cartography;
-			path = Cartography;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D71898A2C4B40C6E0F9511FF5C912901 /* Pods-GifPlayer */ = {
@@ -436,36 +494,38 @@
 			path = "Target Support Files/Pods-GifPlayer";
 			sourceTree = "<group>";
 		};
-		DAC8F47D691ACF850C993A2466A31C4E /* Crashlytics */ = {
+		DEA3F2241355A920C5EB6EEFB52B4B5F /* NSGIF */ = {
 			isa = PBXGroup;
 			children = (
-				384A2E1C69AC02C30140A363E5ED6938 /* ANSCompatibility.h */,
-				9519BC5EE17B1DF09AAF4EC0656A986F /* Answers.h */,
-				5E3C8B2876C1770A70453A3F6EB1E5D2 /* CLSAttributes.h */,
-				FA02412C9BE0C92F2BF3D669027F2AD7 /* CLSLogging.h */,
-				D8F2DC72412FAF6BED71CB107205E9D8 /* CLSReport.h */,
-				987BDACAA345C00ABA60C91AD2AA396B /* CLSStackFrame.h */,
-				F80CFDA9F427793FE882CF761B1FA5FC /* Crashlytics.h */,
-				EF8A5B689461029FE36622FADD134B60 /* Frameworks */,
+				CA6B78A1941C8E33ADFB91C82DE3F7CA /* NSGIF.h */,
+				C9D602980CD3037563322715F1F628E5 /* NSGIF.m */,
+				946290A470AEE533B21C72418EBD0F80 /* Support Files */,
 			);
-			name = Crashlytics;
-			path = Crashlytics;
+			name = NSGIF;
+			path = NSGIF;
 			sourceTree = "<group>";
 		};
-		E13D08943C0E9F3E4F8A417E8868E27B /* Frameworks */ = {
+		FB351078488D921CE38E18AA0A0DA6D9 /* JFImageSavePanel */ = {
 			isa = PBXGroup;
 			children = (
-				66012AFA89A17CCDC976FF2AE8DA7B8B /* Fabric.framework */,
+				011D94FC59B106F845112AEE129260FD /* JFImageSavePanel.h */,
+				E692AE923A68B85CA0FF084F3444609C /* JFImageSavePanel.m */,
+				5C72D44B8D51C824AA0CAF17896A59DC /* Resources */,
+				B3B05A791546114CCA79A4C9CC03D660 /* Support Files */,
 			);
-			name = Frameworks;
+			name = JFImageSavePanel;
+			path = JFImageSavePanel;
 			sourceTree = "<group>";
 		};
-		EF8A5B689461029FE36622FADD134B60 /* Frameworks */ = {
+		FEEB28B3D85687FB1129CB21934B5824 /* Hue */ = {
 			isa = PBXGroup;
 			children = (
-				6FC01449EC883ABBA5215E1A9CAD22D4 /* Crashlytics.framework */,
+				E59378A078F0C17F6927AC65F6806619 /* NSColor+Hue.swift */,
+				341D75684EAFA2BA3CA48BF3DC04B539 /* NSImage+Hue.swift */,
+				15879A28613ACE9EDE9EA4C23ED666B0 /* Support Files */,
 			);
-			name = Frameworks;
+			name = Hue;
+			path = Hue;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -476,14 +536,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				084BFF57FE70517D0515E7E8EE7DD5CB /* iPicUploader-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2720633E95A5B77DE742F1610462EED7 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D6DD39DB9F243D94D69E1559637A8CED /* Pods-GifPlayer-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +557,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64E63B1C4C151517323EC91C60809E2B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A2D821E6890B54B674D5A96AB97D669 /* Pods-GifPlayer-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E66E0C3AA6C50C06CA3BC63165901BDD /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -513,30 +573,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F7A1A54E14DBFCE33CEEFA24B23A9282 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20070C9501DA782A1D5EDCB4F75AEDE2 /* Hue-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0C9D4FD3998C9935ACD743B2F05E0BC1 /* Pods-GifPlayer */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EC5C72DA0ED01176D0978BDCD29E101C /* Build configuration list for PBXNativeTarget "Pods-GifPlayer" */;
-			buildPhases = (
-				12170E08BA0DE3D67C26CCDAF92C3266 /* Sources */,
-				CDE971D4B6F6D7A0F0B05A052979D15A /* Frameworks */,
-				2720633E95A5B77DE742F1610462EED7 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A4A7534C96B45FADC630DD5621BCA848 /* PBXTargetDependency */,
-				6512D3A631EB67D3C2518EE0537A1584 /* PBXTargetDependency */,
-				5D74FFD09BCFA3DFF32D3EBF47CBB44F /* PBXTargetDependency */,
-				D9C8D445E3040542E5455C270A0F2863 /* PBXTargetDependency */,
-			);
-			name = "Pods-GifPlayer";
-			productName = "Pods-GifPlayer";
-			productReference = 338DD568FE1A758D7921A33AD38C2C9F /* Pods_GifPlayer.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		3F11AB36F22A99700E0D7FA6E95F198D /* JFImageSavePanel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 515BC8538BE9FD8716B13A4BF235073F /* Build configuration list for PBXNativeTarget "JFImageSavePanel" */;
@@ -552,7 +599,7 @@
 			);
 			name = JFImageSavePanel;
 			productName = JFImageSavePanel;
-			productReference = 64224F13763813423B1AE4B5DAB5CC8E /* JFImageSavePanel.framework */;
+			productReference = 9A83C4C09C1B30436F93AB5E5B95CEE7 /* JFImageSavePanel.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		544212980401A6DA7806F65EAD8C6637 /* Cartography */ = {
@@ -569,7 +616,7 @@
 			);
 			name = Cartography;
 			productName = Cartography;
-			productReference = 4D30F0C3352A9AFECBA3E11CAC90966B /* Cartography.framework */;
+			productReference = 5EB0F71E65134E7DA60779DB39BEC7DB /* Cartography.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		5DE0EA94B458324DD17A7B16C1684AC0 /* iPicUploader */ = {
@@ -586,7 +633,7 @@
 			);
 			name = iPicUploader;
 			productName = iPicUploader;
-			productReference = 3C5127FAB88162D54AC24460C2EA0E80 /* iPicUploader.framework */;
+			productReference = 5D6EEEEF8A021A53B0393475E4372DAC /* iPicUploader.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		6D3CC2E1481FD4B03969ECA2FF3F07A8 /* NSGIF */ = {
@@ -603,7 +650,46 @@
 			);
 			name = NSGIF;
 			productName = NSGIF;
-			productReference = 48A7AD2721E224A0C451E952CA18832B /* NSGIF.framework */;
+			productReference = A9638323DDE4ED7F5A11A0DEEF3C6174 /* NSGIF.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B2542602E50EDF091ADB18B4688DF34F /* Hue */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C7517784A4541FCDE27289AB3A48C7E6 /* Build configuration list for PBXNativeTarget "Hue" */;
+			buildPhases = (
+				7D89E844EAB421C591C156A322BC1423 /* Sources */,
+				0727795FD7F3E74BA701D05D31124804 /* Frameworks */,
+				F7A1A54E14DBFCE33CEEFA24B23A9282 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Hue;
+			productName = Hue;
+			productReference = 6B71F11DDCF8639D37454F924F152E18 /* Hue.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		DAA8E3D2406F4C8A6388FEB40E6331A5 /* Pods-GifPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8971854A3AE51A7FB6833ADF3F87C599 /* Build configuration list for PBXNativeTarget "Pods-GifPlayer" */;
+			buildPhases = (
+				76D70CAAF1BC9549A61206D63F2A4514 /* Sources */,
+				203E10612F4C49FD1773E298F09B1DB0 /* Frameworks */,
+				64E63B1C4C151517323EC91C60809E2B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F7D528BB80A4596162EE085C33A9E03 /* PBXTargetDependency */,
+				57E3F84FCE155CC8C2692E7C04922CFF /* PBXTargetDependency */,
+				2C40835578FD0662769EF3544A75A725 /* PBXTargetDependency */,
+				95DCEF108AF429599EDC6E0E2EB0B843 /* PBXTargetDependency */,
+				0CDDD092E3789C5618828E194410D7FE /* PBXTargetDependency */,
+			);
+			name = "Pods-GifPlayer";
+			productName = "Pods-GifPlayer";
+			productReference = 03F15677FA3B9AC2184BC0EDE634970C /* Pods_GifPlayer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -623,15 +709,16 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 3B201DB1FECC696D0B3C8D9DD46CCB5A /* Products */;
+			productRefGroup = 4148DF0B78E967D5B73A0C774F68C12E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				544212980401A6DA7806F65EAD8C6637 /* Cartography */,
+				B2542602E50EDF091ADB18B4688DF34F /* Hue */,
 				5DE0EA94B458324DD17A7B16C1684AC0 /* iPicUploader */,
 				3F11AB36F22A99700E0D7FA6E95F198D /* JFImageSavePanel */,
 				6D3CC2E1481FD4B03969ECA2FF3F07A8 /* NSGIF */,
-				0C9D4FD3998C9935ACD743B2F05E0BC1 /* Pods-GifPlayer */,
+				DAA8E3D2406F4C8A6388FEB40E6331A5 /* Pods-GifPlayer */,
 			);
 		};
 /* End PBXProject section */
@@ -648,11 +735,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		12170E08BA0DE3D67C26CCDAF92C3266 /* Sources */ = {
+		76D70CAAF1BC9549A61206D63F2A4514 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				569450C76D1E0B626F82EBBCD13B0CCC /* Pods-GifPlayer-dummy.m in Sources */,
+				84017F79CE4BDF33D8EB991A61EC3709 /* Pods-GifPlayer-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D89E844EAB421C591C156A322BC1423 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62CC84E6950956464FECC84CD6806FF8 /* Hue-dummy.m in Sources */,
+				D69CD64EA92956AA4F0A7CD73DCE85B2 /* NSColor+Hue.swift in Sources */,
+				2D03D614E8237F13B855079B816F55ED /* NSImage+Hue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,108 +816,39 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5D74FFD09BCFA3DFF32D3EBF47CBB44F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = NSGIF;
-			target = 6D3CC2E1481FD4B03969ECA2FF3F07A8 /* NSGIF */;
-			targetProxy = 1353FC48B5036C92923A224D34399E08 /* PBXContainerItemProxy */;
-		};
-		6512D3A631EB67D3C2518EE0537A1584 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = JFImageSavePanel;
-			target = 3F11AB36F22A99700E0D7FA6E95F198D /* JFImageSavePanel */;
-			targetProxy = 2E616CEADA68C31030A97FED5A452D80 /* PBXContainerItemProxy */;
-		};
-		A4A7534C96B45FADC630DD5621BCA848 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Cartography;
-			target = 544212980401A6DA7806F65EAD8C6637 /* Cartography */;
-			targetProxy = FF0CD2B5D53FDB68F0DB1DC49E6BA1E1 /* PBXContainerItemProxy */;
-		};
-		D9C8D445E3040542E5455C270A0F2863 /* PBXTargetDependency */ = {
+		0CDDD092E3789C5618828E194410D7FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = iPicUploader;
 			target = 5DE0EA94B458324DD17A7B16C1684AC0 /* iPicUploader */;
-			targetProxy = A74E5F7082FE48164E6D9301A7957868 /* PBXContainerItemProxy */;
+			targetProxy = 76402D160C80A79A4F937CBB798E804F /* PBXContainerItemProxy */;
+		};
+		2C40835578FD0662769EF3544A75A725 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JFImageSavePanel;
+			target = 3F11AB36F22A99700E0D7FA6E95F198D /* JFImageSavePanel */;
+			targetProxy = 10AB19CB2E8F1F754048A22D06A527E2 /* PBXContainerItemProxy */;
+		};
+		4F7D528BB80A4596162EE085C33A9E03 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Cartography;
+			target = 544212980401A6DA7806F65EAD8C6637 /* Cartography */;
+			targetProxy = 81D30EAB3DFAE0189EB3E4A4D97979EA /* PBXContainerItemProxy */;
+		};
+		57E3F84FCE155CC8C2692E7C04922CFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Hue;
+			target = B2542602E50EDF091ADB18B4688DF34F /* Hue */;
+			targetProxy = 595EB85D68A658E2901065774DF1C679 /* PBXContainerItemProxy */;
+		};
+		95DCEF108AF429599EDC6E0E2EB0B843 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NSGIF;
+			target = 6D3CC2E1481FD4B03969ECA2FF3F07A8 /* NSGIF */;
+			targetProxy = 8E0052607978A84079FE561E2709A9A1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0766008B1CEC5D5295C69FEC7DB46FC4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB3A510484D964FB5AC599ACD75E9065 /* Pods-GifPlayer.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-GifPlayer/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MODULEMAP_FILE = "Target Support Files/Pods-GifPlayer/Pods-GifPlayer.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_GifPlayer;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		1CF496A91B632BB2820365D30FE4A693 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACA33E5A4E74F5362C96DEB70EF83EA6 /* Pods-GifPlayer.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-GifPlayer/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MODULEMAP_FILE = "Target Support Files/Pods-GifPlayer/Pods-GifPlayer.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_GifPlayer;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		34342BBF37D3A9ED85FF2EB654934920 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -867,7 +895,7 @@
 		};
 		3DB614422219E8A48986711F1B1B4ADA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D90DE3C7385A1C47F23AFD2E16569FB /* NSGIF.xcconfig */;
+			baseConfigurationReference = 5CDDCB6EC30B2E3B5D6AC2C1CB3BA862 /* NSGIF.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -901,7 +929,7 @@
 		};
 		432986C3E144F999F8536E757146F481 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1EC670627DEE4A759DC89AA83D878F28 /* Cartography.xcconfig */;
+			baseConfigurationReference = 31193B5555D3BCDBEF6383D22A74DFEB /* Cartography.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -936,7 +964,7 @@
 		};
 		489BA8AC2D6C2AA8A76D27335CC3ADA5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E2531BF50D8057143958D3539E342B8 /* JFImageSavePanel.xcconfig */;
+			baseConfigurationReference = 04CA28436660BB3E1948674C6506D3EE /* JFImageSavePanel.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -970,7 +998,7 @@
 		};
 		4EA94C0789EA6F00579685BBB358BF3B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E2531BF50D8057143958D3539E342B8 /* JFImageSavePanel.xcconfig */;
+			baseConfigurationReference = 04CA28436660BB3E1948674C6506D3EE /* JFImageSavePanel.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1004,7 +1032,7 @@
 		};
 		545498D6417574859BD52C068398E053 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 712A952BA8A1940A5F861916F9A51027 /* iPicUploader.xcconfig */;
+			baseConfigurationReference = 85292B1F43721A8E83910E976C2D35E6 /* iPicUploader.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1039,7 +1067,7 @@
 		};
 		5CF2542AEF2514DDCF055A86B64CB1EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 712A952BA8A1940A5F861916F9A51027 /* iPicUploader.xcconfig */;
+			baseConfigurationReference = 85292B1F43721A8E83910E976C2D35E6 /* iPicUploader.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1071,9 +1099,153 @@
 			};
 			name = Release;
 		};
+		AD165B288687DB2686894B0DB4D2F15E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7217DA9C26FA32EA369655F2D557F0E6 /* Hue.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Hue/Hue-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Hue/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/Hue/Hue.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Hue;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B665EFE7710B80D8B04D8EAAB11AF18D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ACA33E5A4E74F5362C96DEB70EF83EA6 /* Pods-GifPlayer.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-GifPlayer/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MODULEMAP_FILE = "Target Support Files/Pods-GifPlayer/Pods-GifPlayer.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_GifPlayer;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BB41C50E9FF6138A24A60A8637917219 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB3A510484D964FB5AC599ACD75E9065 /* Pods-GifPlayer.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-GifPlayer/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MODULEMAP_FILE = "Target Support Files/Pods-GifPlayer/Pods-GifPlayer.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_GifPlayer;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C5CB6391903025335C50D8C6039A5797 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7217DA9C26FA32EA369655F2D557F0E6 /* Hue.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Hue/Hue-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Hue/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/Hue/Hue.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Hue;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		E29A20890AB08B287FFFAFAC8F395D53 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1EC670627DEE4A759DC89AA83D878F28 /* Cartography.xcconfig */;
+			baseConfigurationReference = 31193B5555D3BCDBEF6383D22A74DFEB /* Cartography.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1107,7 +1279,7 @@
 		};
 		F3BCC9A8490813B812FE53CFF452F814 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D90DE3C7385A1C47F23AFD2E16569FB /* NSGIF.xcconfig */;
+			baseConfigurationReference = 5CDDCB6EC30B2E3B5D6AC2C1CB3BA862 /* NSGIF.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1227,11 +1399,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EC5C72DA0ED01176D0978BDCD29E101C /* Build configuration list for PBXNativeTarget "Pods-GifPlayer" */ = {
+		8971854A3AE51A7FB6833ADF3F87C599 /* Build configuration list for PBXNativeTarget "Pods-GifPlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0766008B1CEC5D5295C69FEC7DB46FC4 /* Debug */,
-				1CF496A91B632BB2820365D30FE4A693 /* Release */,
+				BB41C50E9FF6138A24A60A8637917219 /* Debug */,
+				B665EFE7710B80D8B04D8EAAB11AF18D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C7517784A4541FCDE27289AB3A48C7E6 /* Build configuration list for PBXNativeTarget "Hue" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5CB6391903025335C50D8C6039A5797 /* Debug */,
+				AD165B288687DB2686894B0DB4D2F15E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

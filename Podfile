@@ -5,6 +5,8 @@ target 'GifPlayer' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
+  project 'GifPlayer.xcodeproj'
+
   # Pods for GifPlayer
   pod 'NSGIF', :git => 'https://github.com/NSRare/NSGIF'
   pod "iPicUploader"
@@ -12,5 +14,6 @@ target 'GifPlayer' do
   pod "JFImageSavePanel"
   pod 'Crashlytics'
   pod 'Cartography'
+  pod 'Hue'
 
 end

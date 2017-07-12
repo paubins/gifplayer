@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C1034E1FDA642F1015F2011BD640F518E1814568",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C1034E1FDA642F1015F2011BD640F518E1814568" : 9223372036854775807,
+    "D02C7DA6D8D2293421EF33A4D61A243421181385" : 9223372036854775807,
+    "D0286180A6691C4891CEC25521D4FE16391E566A" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F42872F2-2F8A-4D34-B024-D0A8FE0E5629",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C1034E1FDA642F1015F2011BD640F518E1814568" : "GifPlayer\/",
+    "D02C7DA6D8D2293421EF33A4D61A243421181385" : "gifsicle\/",
+    "D0286180A6691C4891CEC25521D4FE16391E566A" : "ImageOptim\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "GifPlayer",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "GifPlayer.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:paubins\/gifplayer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C1034E1FDA642F1015F2011BD640F518E1814568"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:ImageOptim\/ImageOptim.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D0286180A6691C4891CEC25521D4FE16391E566A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:kohler\/gifsicle.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D02C7DA6D8D2293421EF33A4D61A243421181385"
+    }
+  ]
+}

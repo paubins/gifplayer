@@ -1,0 +1,204 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		5F0D638A1F13EAD100DF4FB1 /* .appveyor.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .appveyor.yml; sourceTree = "<group>"; };
+		5F0D638B1F13EAD100DF4FB1 /* .DS_Store */ = {isa = PBXFileReference; lastKnownFileType = file; path = .DS_Store; sourceTree = "<group>"; };
+		5F0D638C1F13EAD100DF4FB1 /* .git */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .git; sourceTree = "<group>"; };
+		5F0D638D1F13EAD100DF4FB1 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		5F0D638E1F13EAD100DF4FB1 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		5F0D638F1F13EAD100DF4FB1 /* aclocal.m4 */ = {isa = PBXFileReference; lastKnownFileType = text; path = aclocal.m4; sourceTree = "<group>"; };
+		5F0D63901F13EAD100DF4FB1 /* autom4te.cache */ = {isa = PBXFileReference; lastKnownFileType = folder; path = autom4te.cache; sourceTree = "<group>"; };
+		5F0D63911F13EAD100DF4FB1 /* bootstrap.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = bootstrap.sh; sourceTree = "<group>"; };
+		5F0D63921F13EAD100DF4FB1 /* compile */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = compile; sourceTree = "<group>"; };
+		5F0D63931F13EAD100DF4FB1 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		5F0D63941F13EAD100DF4FB1 /* config.h.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.h.in; sourceTree = "<group>"; };
+		5F0D63951F13EAD100DF4FB1 /* config.log */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.log; sourceTree = "<group>"; };
+		5F0D63961F13EAD100DF4FB1 /* config.status */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = config.status; sourceTree = "<group>"; };
+		5F0D63971F13EAD100DF4FB1 /* configure */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = configure; sourceTree = "<group>"; };
+		5F0D63981F13EAD100DF4FB1 /* configure.ac */ = {isa = PBXFileReference; lastKnownFileType = text; path = configure.ac; sourceTree = "<group>"; };
+		5F0D63991F13EAD100DF4FB1 /* COPYING */ = {isa = PBXFileReference; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		5F0D639A1F13EAD100DF4FB1 /* depcomp */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = depcomp; sourceTree = "<group>"; };
+		5F0D639B1F13EAD100DF4FB1 /* gifdiff.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = gifdiff.1; sourceTree = "<group>"; };
+		5F0D639C1F13EAD100DF4FB1 /* gifsicle.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = gifsicle.1; sourceTree = "<group>"; };
+		5F0D639D1F13EAD100DF4FB1 /* gifsicle.spec */ = {isa = PBXFileReference; lastKnownFileType = text; path = gifsicle.spec; sourceTree = "<group>"; };
+		5F0D639E1F13EAD100DF4FB1 /* gifview.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = gifview.1; sourceTree = "<group>"; };
+		5F0D639F1F13EAD100DF4FB1 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
+		5F0D63A01F13EAD100DF4FB1 /* INSTALL */ = {isa = PBXFileReference; lastKnownFileType = text; path = INSTALL; sourceTree = "<group>"; };
+		5F0D63A11F13EAD100DF4FB1 /* install-sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-sh"; sourceTree = "<group>"; };
+		5F0D63A21F13EAD100DF4FB1 /* logo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo.gif; sourceTree = "<group>"; };
+		5F0D63A31F13EAD100DF4FB1 /* logo1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo1.gif; sourceTree = "<group>"; };
+		5F0D63A41F13EAD100DF4FB1 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		5F0D63A51F13EAD100DF4FB1 /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		5F0D63A61F13EAD100DF4FB1 /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		5F0D63A71F13EAD100DF4FB1 /* missing */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = missing; sourceTree = "<group>"; };
+		5F0D63A81F13EAD100DF4FB1 /* NEWS */ = {isa = PBXFileReference; lastKnownFileType = text; path = NEWS; sourceTree = "<group>"; };
+		5F0D63A91F13EAD100DF4FB1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5F0D63AA1F13EAD100DF4FB1 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
+		5F0D63AB1F13EAD100DF4FB1 /* stamp-h1 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "stamp-h1"; sourceTree = "<group>"; };
+		5F0D63AC1F13EAD100DF4FB1 /* test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = test; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		5F0D63841F13EAD100DF4FB1 = {
+			isa = PBXGroup;
+			children = (
+				5F0D638A1F13EAD100DF4FB1 /* .appveyor.yml */,
+				5F0D638B1F13EAD100DF4FB1 /* .DS_Store */,
+				5F0D638C1F13EAD100DF4FB1 /* .git */,
+				5F0D638D1F13EAD100DF4FB1 /* .gitignore */,
+				5F0D638E1F13EAD100DF4FB1 /* .travis.yml */,
+				5F0D638F1F13EAD100DF4FB1 /* aclocal.m4 */,
+				5F0D63901F13EAD100DF4FB1 /* autom4te.cache */,
+				5F0D63911F13EAD100DF4FB1 /* bootstrap.sh */,
+				5F0D63921F13EAD100DF4FB1 /* compile */,
+				5F0D63931F13EAD100DF4FB1 /* config.h */,
+				5F0D63941F13EAD100DF4FB1 /* config.h.in */,
+				5F0D63951F13EAD100DF4FB1 /* config.log */,
+				5F0D63961F13EAD100DF4FB1 /* config.status */,
+				5F0D63971F13EAD100DF4FB1 /* configure */,
+				5F0D63981F13EAD100DF4FB1 /* configure.ac */,
+				5F0D63991F13EAD100DF4FB1 /* COPYING */,
+				5F0D639A1F13EAD100DF4FB1 /* depcomp */,
+				5F0D639B1F13EAD100DF4FB1 /* gifdiff.1 */,
+				5F0D639C1F13EAD100DF4FB1 /* gifsicle.1 */,
+				5F0D639D1F13EAD100DF4FB1 /* gifsicle.spec */,
+				5F0D639E1F13EAD100DF4FB1 /* gifview.1 */,
+				5F0D639F1F13EAD100DF4FB1 /* include */,
+				5F0D63A01F13EAD100DF4FB1 /* INSTALL */,
+				5F0D63A11F13EAD100DF4FB1 /* install-sh */,
+				5F0D63A21F13EAD100DF4FB1 /* logo.gif */,
+				5F0D63A31F13EAD100DF4FB1 /* logo1.gif */,
+				5F0D63A41F13EAD100DF4FB1 /* Makefile */,
+				5F0D63A51F13EAD100DF4FB1 /* Makefile.am */,
+				5F0D63A61F13EAD100DF4FB1 /* Makefile.in */,
+				5F0D63A71F13EAD100DF4FB1 /* missing */,
+				5F0D63A81F13EAD100DF4FB1 /* NEWS */,
+				5F0D63A91F13EAD100DF4FB1 /* README.md */,
+				5F0D63AA1F13EAD100DF4FB1 /* src */,
+				5F0D63AB1F13EAD100DF4FB1 /* stamp-h1 */,
+				5F0D63AC1F13EAD100DF4FB1 /* test */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		5F0D63891F13EAD100DF4FB1 /* gifsicle */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 5F0D63AD1F13EAD100DF4FB1 /* Build configuration list for PBXLegacyTarget "gifsicle" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/patrickaubin/projects/gifsicle;
+			dependencies = (
+			);
+			name = gifsicle;
+			passBuildSettingsInEnvironment = 1;
+			productName = gifsicle;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		5F0D63851F13EAD100DF4FB1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = 5F0D63881F13EAD100DF4FB1 /* Build configuration list for PBXProject "gifsicle" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5F0D63841F13EAD100DF4FB1;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5F0D63891F13EAD100DF4FB1 /* gifsicle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		5F0D63861F13EAD100DF4FB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		5F0D63871F13EAD100DF4FB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		5F0D63AE1F13EAD100DF4FB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = gifsicle;
+			};
+			name = Debug;
+		};
+		5F0D63AF1F13EAD100DF4FB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = gifsicle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5F0D63881F13EAD100DF4FB1 /* Build configuration list for PBXProject "gifsicle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F0D63861F13EAD100DF4FB1 /* Debug */,
+				5F0D63871F13EAD100DF4FB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F0D63AD1F13EAD100DF4FB1 /* Build configuration list for PBXLegacyTarget "gifsicle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F0D63AE1F13EAD100DF4FB1 /* Debug */,
+				5F0D63AF1F13EAD100DF4FB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5F0D63851F13EAD100DF4FB1 /* Project object */;
+}

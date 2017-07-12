@@ -68,6 +68,39 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return nil
     }
     
+    var loadNewGifWindowController:NSWindowController = {
+        let newWindow:NSWindow = NSWindow(contentRect: NSMakeRect(0, 0, 250, 250), styleMask: [.borderless], backing: .buffered, defer: false)
+        
+        newWindow.isOpaque = false
+        newWindow.center()
+        newWindow.isMovableByWindowBackground = true
+        newWindow.backgroundColor = NSColor.clear
+        
+        let imageView:MCDragAndDropImageView = MCDragAndDropImageView(frame: NSMakeRect(0, 0, 250, 250))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer?.cornerRadius = 5
+        
+        newWindow.contentView = imageView
+        newWindow.hasShadow = true
+        
+        let label:NSTextField = NSTextField(frame: .zero)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.isBezeled = false
+        label.drawsBackground = false
+        label.isEditable = false
+        label.isSelectable = false
+        label.stringValue = "Drop GIFs here!"
+        label.font = NSFont(name: "VarelaRound-Regular", size: 20)
+        label.textColor = NSColor.white
+
+        newWindow.contentView?.addSubview(label)
+        
+        label.centerXAnchor.constraint(equalTo: (newWindow.contentView?.centerXAnchor)!).isActive = true
+        label.centerYAnchor.constraint(equalTo: (newWindow.contentView?.centerYAnchor)!).isActive = true
+
+        return NSWindowController(window: newWindow)
+    }()
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         Fabric.with([Crashlytics.self])
         
@@ -98,6 +131,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(changeWindow),
                                                name: Notification.Name(rawValue: "CloseWindowFromTouchBar"), object: nil)
         
+        let contentView:MCDragAndDropImageView = self.loadNewGifWindowController.window!.contentView as! MCDragAndDropImageView
+        contentView.delegate = self
+        
+        self.loadNewGifWindowController.window?.makeKeyAndOrderFront(self.loadNewGifWindowController.window)
+
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -348,7 +386,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         panel.beginSheetModal(for: (mainWindowController?.window!)!) { (result) in
             let path = panel.url?.path
             if (result == NSFileHandlingPanelOKButton) {
-                try? FileManager.default.copyItem(atPath: filepath, toPath: path!)
+                let size = mainWindowController?.window?.frame.size
+//                let data = try? NSData(contentsOfFile: filepath) as Data
+//                GIFResizer.resizeGIF(data!, fileURL: panel.url!, maxEdgeSize: Double((size?.width)!))
+                
+                let gifsicle = Gifsicle()
+                gifsicle.runGifsicle(inputImage: filepath, resizeTo: size,
+                                     optimize: 0,
+                                     limitColors: 0,
+                                     trimmedFrames: nil,
+                                     outputPath: (panel.url?.path)!)
+
+                mainWindowController?.close()
+//                try? FileManager.default.copyItem(atPath: filepath, toPath: path!)
             }
         }
         
@@ -446,6 +496,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.windowControllers.last?.window?.makeKey()
             NSApp.activate(ignoringOtherApps: true)
         } else {
+            self.loadNewGifWindowController.window?.makeKeyAndOrderFront(loadNewGifWindowController.window)
             windowMenu.isHidden = true
         }
     }
@@ -693,7 +744,12 @@ extension AppDelegate {
     }
 }
 
-
+extension AppDelegate : MCDragAndDropImageViewDelegate {
+    func dragAndDropImageViewDidDrop(pasteboard:NSPasteboard) {
+        let url:URL = NSURL(from: pasteboard)! as URL
+        self.displayWindow(filename: url.path)
+    }
+}
 
 // MARK: - Helper
 

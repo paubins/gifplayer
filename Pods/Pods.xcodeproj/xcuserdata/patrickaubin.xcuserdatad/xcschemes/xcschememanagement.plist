@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Hue.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JFImageSavePanel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,11 +37,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0C9D4FD3998C9935ACD743B2F05E0BC1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>3F11AB36F22A99700E0D7FA6E95F198D</key>
 		<dict>
 			<key>primary</key>
@@ -53,6 +53,16 @@
 			<true/>
 		</dict>
 		<key>6D3CC2E1481FD4B03969ECA2FF3F07A8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B2542602E50EDF091ADB18B4688DF34F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DAA8E3D2406F4C8A6388FEB40E6331A5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -10,6 +10,7 @@
 		5F0D637A1F12E72900DF4FB1 /* errorstop.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0D63791F12E72900DF4FB1 /* errorstop.png */; };
 		5F0D637C1F12F86A00DF4FB1 /* Editing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D637B1F12F86A00DF4FB1 /* Editing.swift */; };
 		5F0D637E1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D637D1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift */; };
+		5F0D63811F13277200DF4FB1 /* GIFResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D63801F13277200DF4FB1 /* GIFResizer.swift */; };
 		5F3B13BF1EF3730C00D4A9B4 /* OpenGLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B13BE1EF3730C00D4A9B4 /* OpenGLView.swift */; };
 		5F3B13C11EF4361300D4A9B4 /* Data+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B13C01EF4361300D4A9B4 /* Data+Compression.swift */; };
 		5F5071071EF4735E00A1AFFB /* CameraMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5070F81EF4735E00A1AFFB /* CameraMan.swift */; };
@@ -21,6 +22,8 @@
 		5F50710F1EF4735E00A1AFFB /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5071041EF4735E00A1AFFB /* Config.swift */; };
 		5F5071101EF4735E00A1AFFB /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5071051EF4735E00A1AFFB /* LoadingIndicator.swift */; };
 		5F5071111EF4735E00A1AFFB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5071061EF4735E00A1AFFB /* Utils.swift */; };
+		5F519AF61F15A87700C11215 /* DragAndDropWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F519AF51F15A87700C11215 /* DragAndDropWindow.swift */; };
+		5F519AF81F15DA5E00C11215 /* VarelaRound-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F519AF71F15DA2900C11215 /* VarelaRound-Regular.ttf */; };
 		5F783FBE1EFA13560048A45E /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F783FBD1EFA13560048A45E /* WindowController.swift */; };
 		5F783FC01EFA221D0048A45E /* DKAsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F783FBF1EFA221D0048A45E /* DKAsyncImageView.swift */; };
 		5F783FC21EFA22DF0048A45E /* PasteboardWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F783FC11EFA22DF0048A45E /* PasteboardWatcher.swift */; };
@@ -39,6 +42,8 @@
 		5FA74ADF1EED0C8D007642C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA74ADE1EED0C8D007642C8 /* ViewController.swift */; };
 		5FA74AE41EED0C8D007642C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FA74AE21EED0C8D007642C8 /* Main.storyboard */; };
 		5FF416F41EFB60A600FBCBCB /* gif (2)-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF416F31EFB60A600FBCBCB /* gif (2)-128.png */; };
+		5FFE94361F13F30E006E72A7 /* Gifsicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFE94341F13F30E006E72A7 /* Gifsicle.swift */; };
+		5FFE94371F13F30E006E72A7 /* gifsicle in Resources */ = {isa = PBXBuildFile; fileRef = 5FFE94351F13F30E006E72A7 /* gifsicle */; };
 		B21046DE109895F0BD297548 /* Pods_GifPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CECB0B791EEFC8AFDFC07ADA /* Pods_GifPlayer.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +52,7 @@
 		5F0D63791F12E72900DF4FB1 /* errorstop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = errorstop.png; sourceTree = "<group>"; };
 		5F0D637B1F12F86A00DF4FB1 /* Editing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Editing.swift; sourceTree = "<group>"; };
 		5F0D637D1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCDragAndDropImageView.swift; path = Main/MCDragAndDropImageView.swift; sourceTree = "<group>"; };
+		5F0D63801F13277200DF4FB1 /* GIFResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFResizer.swift; sourceTree = "<group>"; };
 		5F26C3B71F0F4B54000840BB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		5F26C3B81F0F4B5B000840BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		5F26C3B91F0F4B5F000840BB /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -92,6 +98,8 @@
 		5F5071041EF4735E00A1AFFB /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		5F5071051EF4735E00A1AFFB /* LoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		5F5071061EF4735E00A1AFFB /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		5F519AF51F15A87700C11215 /* DragAndDropWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropWindow.swift; sourceTree = "<group>"; };
+		5F519AF71F15DA2900C11215 /* VarelaRound-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VarelaRound-Regular.ttf"; sourceTree = "<group>"; };
 		5F783FBD1EFA13560048A45E /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		5F783FBF1EFA221D0048A45E /* DKAsyncImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKAsyncImageView.swift; sourceTree = "<group>"; };
 		5F783FC11EFA22DF0048A45E /* PasteboardWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardWatcher.swift; sourceTree = "<group>"; };
@@ -115,6 +123,9 @@
 		5FA74AE51EED0C8D007642C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FBE76F81EEDAF73001C2547 /* GifPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GifPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		5FF416F31EFB60A600FBCBCB /* gif (2)-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gif (2)-128.png"; path = "GifPlayer/Assets.xcassets/AppIcon.appiconset/gif (2)-128.png"; sourceTree = "<group>"; };
+		5FFE94341F13F30E006E72A7 /* Gifsicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gifsicle.swift; path = ../GifPlayer/Gifsicle.swift; sourceTree = "<group>"; };
+		5FFE94351F13F30E006E72A7 /* gifsicle */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gifsicle; sourceTree = "<group>"; };
+		5FFE94381F13FA97006E72A7 /* gifsicle.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = gifsicle.entitlements; sourceTree = "<group>"; };
 		CECB0B791EEFC8AFDFC07ADA /* Pods_GifPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GifPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA92E43481015BE60F9FB9B8 /* Pods-GifPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GifPlayer/Pods-GifPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +186,7 @@
 		5F5071031EF4735E00A1AFFB /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5FFE94341F13F30E006E72A7 /* Gifsicle.swift */,
 				5F5071041EF4735E00A1AFFB /* Config.swift */,
 				5F5071051EF4735E00A1AFFB /* LoadingIndicator.swift */,
 				5F5071061EF4735E00A1AFFB /* Utils.swift */,
@@ -205,6 +217,7 @@
 		5F96193A1EF8741A008A3195 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5F0D63801F13277200DF4FB1 /* GIFResizer.swift */,
 				5F783FC11EFA22DF0048A45E /* PasteboardWatcher.swift */,
 				5F9619251EF873F5008A3195 /* AnimatedFrame.swift */,
 				5F9619271EF873F5008A3195 /* FrameStore.swift */,
@@ -217,6 +230,7 @@
 			children = (
 				5FA253C61EEE20EE00410048 /* FOTWindow.h */,
 				5FA253C71EEE20EE00410048 /* FOTWindow.m */,
+				5F519AF51F15A87700C11215 /* DragAndDropWindow.swift */,
 			);
 			name = Window;
 			path = GifPlayer;
@@ -226,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				5FF416F31EFB60A600FBCBCB /* gif (2)-128.png */,
+				5F519AF71F15DA2900C11215 /* VarelaRound-Regular.ttf */,
 				5F0D63791F12E72900DF4FB1 /* errorstop.png */,
 				5F9619391EF87413008A3195 /* Helpers */,
 				5F96193A1EF8741A008A3195 /* Classes */,
@@ -254,6 +269,7 @@
 		5FA74ADB1EED0C8D007642C8 /* GifPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				5FFE94351F13F30E006E72A7 /* gifsicle */,
 				5FA253C51EEE098C00410048 /* .GIF.entitlements */,
 				5FA74ADC1EED0C8D007642C8 /* AppDelegate.swift */,
 				5FA74ADE1EED0C8D007642C8 /* ViewController.swift */,
@@ -262,6 +278,7 @@
 				5FBE76F81EEDAF73001C2547 /* GifPlayer-Bridging-Header.h */,
 				5FA253BB1EEDF57A00410048 /* Assets.xcassets */,
 				5FA253CE1EEE67AA00410048 /* CustomWindow.swift */,
+				5FFE94381F13FA97006E72A7 /* gifsicle.entitlements */,
 			);
 			path = GifPlayer;
 			sourceTree = "<group>";
@@ -347,6 +364,8 @@
 			files = (
 				5FF416F41EFB60A600FBCBCB /* gif (2)-128.png in Resources */,
 				5FA20F531F06CC12006E9076 /* index.html in Resources */,
+				5FFE94371F13F30E006E72A7 /* gifsicle in Resources */,
+				5F519AF81F15DA5E00C11215 /* VarelaRound-Regular.ttf in Resources */,
 				5FA74AE41EED0C8D007642C8 /* Main.storyboard in Resources */,
 				5FA253BC1EEDF57A00410048 /* Assets.xcassets in Resources */,
 				5F0D637A1F12E72900DF4FB1 /* errorstop.png in Resources */,
@@ -425,6 +444,7 @@
 				5F3B13BF1EF3730C00D4A9B4 /* OpenGLView.swift in Sources */,
 				5F0D637E1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift in Sources */,
 				5F96192A1EF873F5008A3195 /* AnimatedFrame.swift in Sources */,
+				5F519AF61F15A87700C11215 /* DragAndDropWindow.swift in Sources */,
 				5F50710F1EF4735E00A1AFFB /* Config.swift in Sources */,
 				5F50710C1EF4735E00A1AFFB /* MainWindowController.swift in Sources */,
 				5FA253C41EEDFE2700410048 /* ImageView.swift in Sources */,
@@ -436,12 +456,14 @@
 				5F96192C1EF873F5008A3195 /* FrameStore.swift in Sources */,
 				5F5071111EF4735E00A1AFFB /* Utils.swift in Sources */,
 				5FA74ADD1EED0C8D007642C8 /* AppDelegate.swift in Sources */,
+				5FFE94361F13F30E006E72A7 /* Gifsicle.swift in Sources */,
 				5FA253CF1EEE67AA00410048 /* CustomWindow.swift in Sources */,
 				5FA253C81EEE20EE00410048 /* FOTWindow.m in Sources */,
 				5F783FC51EFA2E180048A45E /* CameraViewController.swift in Sources */,
 				5F9619341EF873FE008A3195 /* CGSize.swift in Sources */,
 				5F9619381EF87410008A3195 /* ImageSourceHelpers.swift in Sources */,
 				5F9619331EF873FE008A3195 /* Array.swift in Sources */,
+				5F0D63811F13277200DF4FB1 /* GIFResizer.swift in Sources */,
 				5F5071101EF4735E00A1AFFB /* LoadingIndicator.swift in Sources */,
 				5F50710A1EF4735E00A1AFFB /* Window+Extensions.swift in Sources */,
 				5F783FC21EFA22DF0048A45E /* PasteboardWatcher.swift in Sources */,
@@ -604,6 +626,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
+					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
+					/Users/patrickaubin/projects/gifsicle,
+				);
 				INFOPLIST_FILE = GifPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.paubins.DotGif;
@@ -625,6 +654,13 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
+					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
+					/Users/patrickaubin/projects/gifsicle,
+				);
 				INFOPLIST_FILE = GifPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.paubins.DotGif;

@@ -12,6 +12,9 @@ import Crashlytics
 import JFImageSavePanel
 import WebKit
 
+let thumbPath  = NSHomeDirectory() + "/Documents/thumb"
+let folderPath  = NSHomeDirectory() + "/Documents/gif"
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
@@ -33,6 +36,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var recordMenuItem: NSMenuItem!
     @IBOutlet weak var stopMenuItem: NSMenuItem!
     @IBOutlet weak var cloneGIFMenuItem: NSMenuItem!
+    
+    var editWindowController:NSWindowController!
     
     var newWindow:NSWindow!
     var openWindow:NSWindow!
@@ -102,7 +107,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        
+        
+        let fm   = FileManager.default
+        
+        do{
+            try fm.createDirectory(atPath: folderPath, withIntermediateDirectories: true, attributes: nil)
+            try fm.createDirectory(atPath: thumbPath, withIntermediateDirectories: true, attributes: nil)
+        }catch
+        {
+        }
+        
+        
         Fabric.with([Crashlytics.self])
+        
+        self.editWindowController = NSStoryboard(name: "Edit", bundle: nil).instantiateController(withIdentifier: "GIFEditor") as! NSWindowController
+        
+        
+        //self.editWindowController.window?.makeKeyAndOrderFront(self.editWindowController.window)
         
         NSApp.servicesProvider = self
         
@@ -449,6 +471,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return []
     }
     
+    private func openMovieFiles() -> [URL] {
+        let fileTypes:[String] = ["mp4"]
+        
+        let panel = NSOpenPanel()
+        panel.allowsMultipleSelection = true
+        panel.canChooseDirectories = false
+        panel.canChooseFiles = true
+        panel.allowedFileTypes = fileTypes
+        
+        let result: Int = panel.runModal()
+        if result == NSModalResponseOK {
+            return panel.urls
+        }
+        
+        return []
+    }
+    
     @IBAction func openCreateGIFWindow(_ sender: Any) {
         self.createGIFWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "CreateGIFWindowController") as! NSWindowController
         
@@ -468,6 +507,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if !paths.isEmpty {
             for (_, path) in paths.enumerated() {
                 let _ = self.displayWindow(filename: path.path)
+            }
+        }
+    }
+    
+    @IBAction func openMovieFilesFromFileSystem(_ sender: Any) {
+        
+        let viewController:GIFConverterViewController = GIFConverterViewController()
+        let paths: [URL] = self.openMovieFiles()
+        if !paths.isEmpty {
+            for (_, path) in paths.enumerated() {
+                viewController.convertFile(path.path)
             }
         }
     }
@@ -582,6 +632,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func submitFeedback(_ sender: Any) {
         self.createNewWindow()
         newWindow.makeKeyAndOrderFront(newWindow)
+    }
+    
+    // MARK: Menu items
+    @IBAction func menuItemLoad(sender: AnyObject?) {
+        NotificationCenter.default.post(name: GIFMakerViewController.menuItemImportNotificationName, object: self.viewController.filename)
+        self.editWindowController.window?.makeKeyAndOrderFront(self.editWindowController.window)
+    }
+    
+    @IBAction func menuItemExport(sender: AnyObject?) {
+        NotificationCenter.default.post(name: GIFMakerViewController.menuItemExportNotificationName, object: nil)
+    }
+    
+    @IBAction func menuItemAddFrame(sender: AnyObject?) {
+        NotificationCenter.default.post(name: GIFMakerViewController.menuItemAddFrameNotificationName, object: nil)
+    }
+    
+    @IBAction func menuItemReset(sender: AnyObject?) {
+        NotificationCenter.default.post(name: GIFMakerViewController.menuItemResetNotificationName, object: nil)
+    }
+    
+    @IBAction func menuItemPreview(sender: AnyObject?) {
+        NotificationCenter.default.post(name: GIFMakerViewController.menuItemPreviewNotificationName, object: nil)
+    }
+    
+    @IBAction func menuItemEdit(sender: AnyObject?) {
+        NotificationCenter.default.post(name: GIFMakerViewController.menuItemEditNotificationName, object: nil)
     }
 }
 

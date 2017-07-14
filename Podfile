@@ -15,5 +15,7 @@ target 'GifPlayer' do
   pod 'Crashlytics'
   pod 'Cartography'
   pod 'Hue'
+  pod 'lf', '~> 0.7.0'
+  pod 'SwiftyJSON'
 
 end

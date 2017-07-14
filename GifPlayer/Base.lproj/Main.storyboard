@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A306f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
@@ -42,7 +42,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="DotGIF" systemMenu="apple" autoenablesItems="NO" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="Open GIF" keyEquivalent="e" id="noY-Iw-4G7">
+                                        <menuItem title="Open GIF from filesystem" keyEquivalent="o" id="noY-Iw-4G7">
                                             <connections>
                                                 <action selector="openGIFs:" target="Voe-Tx-rLC" id="KL1-gA-JQJ"/>
                                             </connections>
@@ -54,9 +54,19 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="7ek-wZ-5vH"/>
-                                        <menuItem title="Create GIF" keyEquivalent="n" id="tgx-Ya-wNe">
+                                        <menuItem title="Capture GIF from Desktop" keyEquivalent="n" id="tgx-Ya-wNe">
                                             <connections>
                                                 <action selector="openCreateGIFWindow:" target="Voe-Tx-rLC" id="zQD-ag-MyL"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Capture GIF from Camera" id="fhb-mu-pio">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="caR-yt-7p9"/>
+                                        <menuItem title="Import movie file as GIF" id="7ra-0O-hXC">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openMovieFilesFromFileSystem:" target="Voe-Tx-rLC" id="bJd-RV-qGD"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="IsA-QM-RGP"/>
@@ -82,6 +92,11 @@
                                         <menuItem title="Play" keyEquivalent="p" id="U8d-jE-tgS">
                                             <connections>
                                                 <action selector="playGIF:" target="Voe-Tx-rLC" id="wwA-Ef-HkZ"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Edit" keyEquivalent="e" id="e3P-wY-GTR">
+                                            <connections>
+                                                <action selector="menuItemLoadWithSender:" target="Voe-Tx-rLC" id="3BD-si-sGt"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Stop" keyEquivalent="S" id="4cI-dw-CQq">
@@ -167,6 +182,45 @@
                                         <menuItem title="Close" keyEquivalent="w" id="N0Q-1s-aIf">
                                             <connections>
                                                 <action selector="closeWindow:" target="Voe-Tx-rLC" id="xPB-g6-FOr"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Options" id="iTS-lD-eg4">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Options" id="6JC-Eq-M4W">
+                                    <items>
+                                        <menuItem title="Add frame" id="pZV-AO-agR">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuItemAddFrameWithSender:" target="Voe-Tx-rLC" id="tPu-mW-r2C"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Wu6-Gd-HKb"/>
+                                        <menuItem title="Edit" id="P5D-Th-SQp">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuItemEditWithSender:" target="Voe-Tx-rLC" id="HyD-hb-cJ3"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Preview" id="tT3-Cc-4c7">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuItemPreviewWithSender:" target="Voe-Tx-rLC" id="Qps-Mv-ita"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Reset" id="dWF-jW-pH2">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuItemResetWithSender:" target="Voe-Tx-rLC" id="np5-03-bk6"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="8US-H3-aRy"/>
+                                        <menuItem title="Export and open" id="ztL-79-Pap">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuItemExportWithSender:" target="Voe-Tx-rLC" id="kfC-R0-JRZ"/>
                                             </connections>
                                         </menuItem>
                                     </items>

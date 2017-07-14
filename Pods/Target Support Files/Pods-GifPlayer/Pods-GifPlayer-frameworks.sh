@@ -93,14 +93,22 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Hue/Hue.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JFImageSavePanel/JFImageSavePanel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/NSGIF/NSGIF.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ObjcExceptionBridging/ObjcExceptionBridging.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/XCGLogger/XCGLogger.framework"
   install_framework "$BUILT_PRODUCTS_DIR/iPicUploader/iPicUploader.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/lf/lf.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Cartography/Cartography.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Hue/Hue.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JFImageSavePanel/JFImageSavePanel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/NSGIF/NSGIF.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ObjcExceptionBridging/ObjcExceptionBridging.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/XCGLogger/XCGLogger.framework"
   install_framework "$BUILT_PRODUCTS_DIR/iPicUploader/iPicUploader.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/lf/lf.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

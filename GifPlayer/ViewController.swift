@@ -135,5 +135,9 @@ class ViewController: NSViewController {
         NSApp.activate(ignoringOtherApps: true)
 //        menuItem.state = NSOnState
     }
+    
+    func creatSearchableItem() {
+        
+    }
 }
 

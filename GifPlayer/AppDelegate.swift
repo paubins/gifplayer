@@ -22,6 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var stopButtonMenuItem: NSMenuItem!
     @IBOutlet weak var playButtonMenuItem: NSMenuItem!
     
+    @IBOutlet weak var optionsMenu: NSMenuItem!
     @IBOutlet weak var windowMenu: NSMenuItem!
     
     @IBOutlet weak var installScreensaver: NSMenuItem!
@@ -118,11 +119,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         {
         }
         
+        self.optionsMenu.isHidden = true
         
         Fabric.with([Crashlytics.self])
         
         self.editWindowController = NSStoryboard(name: "Edit", bundle: nil).instantiateController(withIdentifier: "GIFEditor") as! NSWindowController
-        
         
         //self.editWindowController.window?.makeKeyAndOrderFront(self.editWindowController.window)
         
@@ -804,6 +805,10 @@ extension AppDelegate {
         let menuItem = sender as! NSMenuItem
         
         guard let arrow = ArrowTag(rawValue: menuItem.tag) else {
+            return
+        }
+        
+        if (window == nil) {
             return
         }
         

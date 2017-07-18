@@ -6,7 +6,7 @@
 //  Copyright © 2017 com.paubins.GifPlayer. All rights reserved.
 //
 
-//#import "SpotlightController.h"
+#import "SpotlightController.h"
 
 //#import <CoreSpotlight/CoreSpotlight.h>
 //#import <MobileCoreServices/MobileCoreServices.h>

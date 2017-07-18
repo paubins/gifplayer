@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A306f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
@@ -42,34 +42,6 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="DotGIF" systemMenu="apple" autoenablesItems="NO" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="Open GIF from filesystem" keyEquivalent="o" id="noY-Iw-4G7">
-                                            <connections>
-                                                <action selector="openGIFs:" target="Voe-Tx-rLC" id="KL1-gA-JQJ"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Open GIF from website" id="6zc-i0-OaX">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="openGIFDialog:" target="Voe-Tx-rLC" id="Oj3-Z6-otx"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="7ek-wZ-5vH"/>
-                                        <menuItem title="Capture GIF from Desktop" keyEquivalent="n" id="tgx-Ya-wNe">
-                                            <connections>
-                                                <action selector="openCreateGIFWindow:" target="Voe-Tx-rLC" id="zQD-ag-MyL"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Capture GIF from Camera" id="fhb-mu-pio">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="caR-yt-7p9"/>
-                                        <menuItem title="Import movie file as GIF" id="7ra-0O-hXC">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="openMovieFilesFromFileSystem:" target="Voe-Tx-rLC" id="bJd-RV-qGD"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="IsA-QM-RGP"/>
                                         <menuItem title="About DotGIF" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -85,6 +57,40 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="File" id="lLd-pG-Zpf">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="File" id="lWH-h2-ovQ">
+                                    <items>
+                                        <menuItem title="Open GIF from filesystem" keyEquivalent="o" id="2QE-mF-LG0">
+                                            <connections>
+                                                <action selector="openGIFs:" target="Voe-Tx-rLC" id="OAW-HT-N4c"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Open GIF from website" id="ush-Ve-4Sj">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openGIFDialog:" target="Voe-Tx-rLC" id="xh4-vw-lWS"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="uq6-cZ-ohU"/>
+                                        <menuItem title="Capture GIF from Desktop" keyEquivalent="n" id="lJS-HP-dS6">
+                                            <connections>
+                                                <action selector="openCreateGIFWindow:" target="Voe-Tx-rLC" id="5QE-By-fPw"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Capture GIF from Camera" hidden="YES" id="qDo-cH-zaA">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" hidden="YES" id="xB0-hG-JSG"/>
+                                        <menuItem title="Import movie file as GIF" hidden="YES" id="8ce-1Z-cPw">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openMovieFilesFromFileSystem:" target="Voe-Tx-rLC" id="hL9-ll-27w"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Window" hidden="YES" id="yKo-SV-iBN">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" autoenablesItems="NO" id="J7P-yV-Odr">
@@ -94,7 +100,7 @@
                                                 <action selector="playGIF:" target="Voe-Tx-rLC" id="wwA-Ef-HkZ"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Edit" keyEquivalent="e" id="e3P-wY-GTR">
+                                        <menuItem title="Edit" hidden="YES" keyEquivalent="e" id="e3P-wY-GTR">
                                             <connections>
                                                 <action selector="menuItemLoadWithSender:" target="Voe-Tx-rLC" id="3BD-si-sGt"/>
                                             </connections>
@@ -248,7 +254,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="DotGIF" customModuleProvider="target">
                     <connections>
                         <outlet property="cloneGIFMenuItem" destination="wnz-fP-8Le" id="XdK-1D-hnq"/>
-                        <outlet property="createGifMenuItem" destination="tgx-Ya-wNe" id="tOn-sY-TVq"/>
+                        <outlet property="optionsMenu" destination="iTS-lD-eg4" id="UsG-P6-lWv"/>
                         <outlet property="playButtonMenuItem" destination="U8d-jE-tgS" id="GSV-5q-oHy"/>
                         <outlet property="saveButton" destination="maX-wv-io5" id="EBM-ZV-uAa"/>
                         <outlet property="stopButtonMenuItem" destination="4cI-dw-CQq" id="QYr-z3-Vf1"/>

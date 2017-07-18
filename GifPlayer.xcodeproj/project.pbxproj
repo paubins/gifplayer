@@ -65,8 +65,6 @@
 		5FA770001F184ECA0022EC52 /* DragDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA76FFA1F184ECA0022EC52 /* DragDropView.swift */; };
 		5FA770011F184ECA0022EC52 /* Priview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA76FFB1F184ECA0022EC52 /* Priview.swift */; };
 		5FA770021F184ECA0022EC52 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA76FFC1F184ECA0022EC52 /* RangeSlider.swift */; };
-		5FA770061F184EE60022EC52 /* ffmpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5FA770041F184EE60022EC52 /* ffmpeg */; };
-		5FA770071F184EE60022EC52 /* ffprobe in Resources */ = {isa = PBXBuildFile; fileRef = 5FA770051F184EE60022EC52 /* ffprobe */; };
 		5FF416F41EFB60A600FBCBCB /* gif (2)-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF416F31EFB60A600FBCBCB /* gif (2)-128.png */; };
 		5FFE94361F13F30E006E72A7 /* Gifsicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFE94341F13F30E006E72A7 /* Gifsicle.swift */; };
 		5FFE94371F13F30E006E72A7 /* gifsicle in Resources */ = {isa = PBXBuildFile; fileRef = 5FFE94351F13F30E006E72A7 /* gifsicle */; };
@@ -149,6 +147,9 @@
 		5F783FBF1EFA221D0048A45E /* DKAsyncImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKAsyncImageView.swift; sourceTree = "<group>"; };
 		5F783FC11EFA22DF0048A45E /* PasteboardWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardWatcher.swift; sourceTree = "<group>"; };
 		5F783FC41EFA2E180048A45E /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = SOURCE_ROOT; };
+		5F9505CC1F1DBFA500DD76C3 /* ffmpeg.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ffmpeg.entitlements; sourceTree = "<group>"; };
+		5F9505CD1F1DBFA500DD76C3 /* ffprobe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ffprobe.entitlements; sourceTree = "<group>"; };
+		5F9505CE1F1DBFA500DD76C3 /* gifsicle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = gifsicle.entitlements; sourceTree = "<group>"; };
 		5F9619251EF873F5008A3195 /* AnimatedFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFrame.swift; sourceTree = "<group>"; };
 		5F9619271EF873F5008A3195 /* FrameStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameStore.swift; sourceTree = "<group>"; };
 		5F96192F1EF873FE008A3195 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -172,15 +173,10 @@
 		5FA76FFA1F184ECA0022EC52 /* DragDropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragDropView.swift; sourceTree = "<group>"; };
 		5FA76FFB1F184ECA0022EC52 /* Priview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Priview.swift; sourceTree = "<group>"; };
 		5FA76FFC1F184ECA0022EC52 /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
-		5FA770041F184EE60022EC52 /* ffmpeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ffmpeg; sourceTree = "<group>"; };
-		5FA770051F184EE60022EC52 /* ffprobe */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ffprobe; sourceTree = "<group>"; };
-		5FA770081F184F240022EC52 /* ffmpeg.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ffmpeg.entitlements; sourceTree = "<group>"; };
-		5FA770091F184F410022EC52 /* ffprobe.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ffprobe.entitlements; sourceTree = "<group>"; };
 		5FBE76F81EEDAF73001C2547 /* GifPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GifPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		5FF416F31EFB60A600FBCBCB /* gif (2)-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gif (2)-128.png"; path = "GifPlayer/Assets.xcassets/AppIcon.appiconset/gif (2)-128.png"; sourceTree = "<group>"; };
 		5FFE94341F13F30E006E72A7 /* Gifsicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gifsicle.swift; path = ../GifPlayer/Gifsicle.swift; sourceTree = "<group>"; };
 		5FFE94351F13F30E006E72A7 /* gifsicle */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gifsicle; sourceTree = "<group>"; };
-		5FFE94381F13FA97006E72A7 /* gifsicle.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = gifsicle.entitlements; sourceTree = "<group>"; };
 		CECB0B791EEFC8AFDFC07ADA /* Pods_GifPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GifPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA92E43481015BE60F9FB9B8 /* Pods-GifPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GifPlayer/Pods-GifPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -368,10 +364,11 @@
 		5FA74ADB1EED0C8D007642C8 /* GifPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				5FA770041F184EE60022EC52 /* ffmpeg */,
-				5FA770051F184EE60022EC52 /* ffprobe */,
 				5FFE94351F13F30E006E72A7 /* gifsicle */,
 				5FA253C51EEE098C00410048 /* .GIF.entitlements */,
+				5F9505CC1F1DBFA500DD76C3 /* ffmpeg.entitlements */,
+				5F9505CD1F1DBFA500DD76C3 /* ffprobe.entitlements */,
+				5F9505CE1F1DBFA500DD76C3 /* gifsicle.entitlements */,
 				5FA74ADC1EED0C8D007642C8 /* AppDelegate.swift */,
 				5FA74ADE1EED0C8D007642C8 /* ViewController.swift */,
 				5F0B9A181F1826BC00BFFAFA /* Edit.storyboard */,
@@ -380,9 +377,6 @@
 				5FBE76F81EEDAF73001C2547 /* GifPlayer-Bridging-Header.h */,
 				5FA253BB1EEDF57A00410048 /* Assets.xcassets */,
 				5FA253CE1EEE67AA00410048 /* CustomWindow.swift */,
-				5FFE94381F13FA97006E72A7 /* gifsicle.entitlements */,
-				5FA770081F184F240022EC52 /* ffmpeg.entitlements */,
-				5FA770091F184F410022EC52 /* ffprobe.entitlements */,
 			);
 			path = GifPlayer;
 			sourceTree = "<group>";
@@ -484,11 +478,9 @@
 				5FFE94371F13F30E006E72A7 /* gifsicle in Resources */,
 				5F519AF81F15DA5E00C11215 /* VarelaRound-Regular.ttf in Resources */,
 				5F0B9A191F1826BC00BFFAFA /* Edit.storyboard in Resources */,
-				5FA770061F184EE60022EC52 /* ffmpeg in Resources */,
 				5FA74AE41EED0C8D007642C8 /* Main.storyboard in Resources */,
 				5F0B9A111F181FAA00BFFAFA /* FrameCollectionViewItem.xib in Resources */,
 				5FA253BC1EEDF57A00410048 /* Assets.xcassets in Resources */,
-				5FA770071F184EE60022EC52 /* ffprobe in Resources */,
 				5F0D637A1F12E72900DF4FB1 /* errorstop.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -768,7 +760,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3XSPEUHQ6Y;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -796,7 +788,7 @@
 				CODE_SIGN_ENTITLEMENTS = GifPlayer/.GIF.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3XSPEUHQ6Y;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",

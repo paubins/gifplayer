@@ -120,6 +120,17 @@
                                                 <action selector="saveGIF:" target="Voe-Tx-rLC" id="d0h-UL-wA0"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Bcd-57-fKZ"/>
+                                        <menuItem title="Speed Up" keyEquivalent="]" id="IVa-CV-uE0">
+                                            <connections>
+                                                <action selector="speedUp:" target="Voe-Tx-rLC" id="zSK-16-Sb7"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Slow Down" keyEquivalent="[" id="r9b-V9-GPB">
+                                            <connections>
+                                                <action selector="slowDown:" target="Voe-Tx-rLC" id="VSU-Og-ZCM"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="eMt-wK-itZ"/>
                                         <menuItem title="Actual Size" keyEquivalent="0" id="wEs-6f-Buf">
                                             <connections>

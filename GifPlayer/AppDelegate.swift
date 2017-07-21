@@ -74,6 +74,83 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return nil
     }
     
+    func currentGIFDelay() -> (Int, Double) {
+        let gifsicle:Gifsicle = Gifsicle()
+        
+        let (numberOfFrames, _, frameDelay) = gifsicle.getGifsicleInfo(inputImage: viewController.filename as String)
+        
+        return (numberOfFrames, frameDelay)
+    }
+    
+    func changeSpeed(filePath: String, speed: Double){
+        let gifsicle:Gifsicle = Gifsicle()
+        
+        gifsicle.runGifsicle(inputImage: filePath,
+                             resizeTo: nil,
+                             optimize: 0,
+                             framesToDrop: nil,
+                             limitColors: 0,
+                             delay: speed,
+                             trimmedFrames: nil,
+                             outputPath: filePath)
+    }
+    
+    func dropOddFrames(filePath: String, totalFrames: Int) -> String {
+        let gifsicle:Gifsicle = Gifsicle()
+        
+        let outputURL = URL(fileURLWithPath: NSTemporaryDirectory())
+            .appendingPathComponent(UUID().uuidString)
+            .appendingPathExtension("gif")
+        
+        var framesToDrop:[Int] = []
+        
+        for var i in 0...totalFrames {
+            if (i % 2 != 0) {
+                framesToDrop.append(i)
+            }
+        }
+        
+        gifsicle.runGifsicle(inputImage: filePath,
+                             resizeTo: nil,
+                             optimize: 0,
+                             framesToDrop: framesToDrop,
+                             limitColors: 0,
+                             delay: nil,
+                             trimmedFrames: nil,
+                             outputPath: outputURL.path)
+        
+        return outputURL.path
+    }
+    
+    @IBAction func speedUp(_ sender: Any) {
+        print("speeding up")
+
+        let (numberOfFrames, frameDelay) = self.currentGIFDelay()
+        self.changeSpeed(filePath: viewController.filename as String, speed: Double(frameDelay-0.1) * 100.0)
+        
+        print(frameDelay-0.1)
+        
+        viewController.filename = viewController.filename
+        viewController.image = NSImage(byReferencingFile: viewController.filename as String)!
+        viewController.imageView.animates = true
+        viewController.imageView.image = viewController.image
+    }
+    
+    @IBAction func slowDown(_ sender: Any) {
+        print("slow down")
+        
+        let (numberOfFrames, frameDelay) = self.currentGIFDelay()
+        self.changeSpeed(filePath: viewController.filename as String, speed: Double(frameDelay+0.1) * 100.0)
+        
+        print(frameDelay+0.1)
+        
+        viewController.filename = viewController.filename
+        viewController.image = NSImage(byReferencingFile: viewController.filename as String)!
+        viewController.imageView.animates = true
+        viewController.imageView.image = viewController.image
+    }
+    
+    
     var loadNewGifWindowController:NSWindowController = {
         let newWindow:NSWindow = NSWindow(contentRect: NSMakeRect(0, 0, 250, 250), styleMask: [.borderless], backing: .buffered, defer: false)
         
@@ -96,7 +173,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         label.isEditable = false
         label.isSelectable = false
         label.stringValue = "Drop GIFs here!"
-        label.font = NSFont(name: "VarelaRound-Regular", size: 20)
+        label.font = NSFont(name: "VarelaRound-Regular", size: 200)
         label.textColor = NSColor.white
 
         newWindow.contentView?.addSubview(label)
@@ -416,7 +493,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 let gifsicle = Gifsicle()
                 gifsicle.runGifsicle(inputImage: filepath, resizeTo: size,
                                      optimize: 0,
+                                     framesToDrop: nil,
                                      limitColors: 0,
+                                     delay: nil,
                                      trimmedFrames: nil,
                                      outputPath: (panel.url?.path)!)
 

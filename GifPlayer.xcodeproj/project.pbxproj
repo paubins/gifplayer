@@ -46,6 +46,7 @@
 		5F783FC01EFA221D0048A45E /* DKAsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F783FBF1EFA221D0048A45E /* DKAsyncImageView.swift */; };
 		5F783FC21EFA22DF0048A45E /* PasteboardWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F783FC11EFA22DF0048A45E /* PasteboardWatcher.swift */; };
 		5F783FC51EFA2E180048A45E /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F783FC41EFA2E180048A45E /* CameraViewController.swift */; };
+		5F95067F1F21352100DD76C3 /* gifsicle.new in Resources */ = {isa = PBXBuildFile; fileRef = 5F95067E1F21352100DD76C3 /* gifsicle.new */; };
 		5F96192A1EF873F5008A3195 /* AnimatedFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9619251EF873F5008A3195 /* AnimatedFrame.swift */; };
 		5F96192C1EF873F5008A3195 /* FrameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9619271EF873F5008A3195 /* FrameStore.swift */; };
 		5F9619331EF873FE008A3195 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F96192F1EF873FE008A3195 /* Array.swift */; };
@@ -150,6 +151,7 @@
 		5F9505CC1F1DBFA500DD76C3 /* ffmpeg.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ffmpeg.entitlements; sourceTree = "<group>"; };
 		5F9505CD1F1DBFA500DD76C3 /* ffprobe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ffprobe.entitlements; sourceTree = "<group>"; };
 		5F9505CE1F1DBFA500DD76C3 /* gifsicle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = gifsicle.entitlements; sourceTree = "<group>"; };
+		5F95067E1F21352100DD76C3 /* gifsicle.new */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gifsicle.new; sourceTree = "<group>"; };
 		5F9619251EF873F5008A3195 /* AnimatedFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFrame.swift; sourceTree = "<group>"; };
 		5F9619271EF873F5008A3195 /* FrameStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameStore.swift; sourceTree = "<group>"; };
 		5F96192F1EF873FE008A3195 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 		5FA74ADB1EED0C8D007642C8 /* GifPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				5F95067E1F21352100DD76C3 /* gifsicle.new */,
 				5FFE94351F13F30E006E72A7 /* gifsicle */,
 				5FA253C51EEE098C00410048 /* .GIF.entitlements */,
 				5F9505CC1F1DBFA500DD76C3 /* ffmpeg.entitlements */,
@@ -477,6 +480,7 @@
 				5FA20F531F06CC12006E9076 /* index.html in Resources */,
 				5FFE94371F13F30E006E72A7 /* gifsicle in Resources */,
 				5F519AF81F15DA5E00C11215 /* VarelaRound-Regular.ttf in Resources */,
+				5F95067F1F21352100DD76C3 /* gifsicle.new in Resources */,
 				5F0B9A191F1826BC00BFFAFA /* Edit.storyboard in Resources */,
 				5FA74AE41EED0C8D007642C8 /* Main.storyboard in Resources */,
 				5F0B9A111F181FAA00BFFAFA /* FrameCollectionViewItem.xib in Resources */,

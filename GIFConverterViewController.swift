@@ -27,7 +27,6 @@ class GIFConverterViewController: GIFViewController,DragDropViewDelegate,RangeSl
     
     let c:ZXConverter = ZXConverter()
     
-    
     @IBOutlet weak var indicator: NSProgressIndicator!
     
     
@@ -110,6 +109,7 @@ class GIFConverterViewController: GIFViewController,DragDropViewDelegate,RangeSl
         }
         
     }
+    
     func convertFile(_ file: String)
     {
         let theGIF  = GIF()

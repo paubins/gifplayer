@@ -32,7 +32,9 @@ extension Gifsicle {
     func runGifsicle(inputImage: String,
                      resizeTo: NSSize!,
                      optimize: Int?,
+                     framesToDrop: [Int]?,
                      limitColors: Int?,
+                     delay: Double?,
                      trimmedFrames: String?,
                      outputPath: String) {
         assert((pathToGifsicle?.characters.count)! > 0, "No path to Gifsicle executable")
@@ -40,12 +42,37 @@ extension Gifsicle {
         /*  Here the basic arguments for gifsicle are plugged in for the process
             See: https://www.lcdf.org/gifsicle/ */
         
-        var arguments = ["-i", inputImage]
+        var arguments:[String] = []
+        
+        if framesToDrop != nil {
+            arguments.append("-i")
+            arguments.append(inputImage)
+            
+            arguments.append("-o")
+            arguments.append(outputPath)
+        }
         
         if trimmedFrames != nil {
             let trimmedFramesArgument = "#\(trimmedFrames!)"
             
             arguments.append(trimmedFramesArgument)
+        }
+        
+        if delay != nil {
+            arguments.append("--delay")
+            arguments.append("\(Int(delay!))")
+        }
+        
+        if framesToDrop != nil {
+            arguments.append("--delete")
+            var frameString = ""
+            
+            framesToDrop?.forEach { (frame) in
+                frameString.append("#\(frame),")
+            }
+
+            arguments.append("\(frameString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).trimmingCharacters(in: CharacterSet(charactersIn: ", ")))")
+            arguments.append("--done")
         }
         
         if resizeTo != nil {
@@ -63,8 +90,14 @@ extension Gifsicle {
             arguments.append("\(limitColors!)")
         }
         
-        arguments.append("--output")
-        arguments.append(outputPath)
+        if framesToDrop == nil {
+            arguments.append("-i")
+            arguments.append(inputImage)
+            
+            arguments.append("--output")
+            arguments.append(outputPath)
+        }
+
         
         let _ = runSystemTask(executablePath: pathToGifsicle!,
                               arguments: arguments)

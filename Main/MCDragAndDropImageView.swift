@@ -33,13 +33,7 @@ class MCDragAndDropImageView: NSImageView {
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
         
-        let gradient = [NSColor(hex: "FFFFFF"), NSColor(hex: "E04F5F"), NSColor(hex: "25B6D2")].gradient()
-        
-        let secondGradient = [NSColor.black, NSColor.orange].gradient { gradient in
-            gradient.locations = [0.00, 0.25, 1.0]
-            return gradient
-        }
-        
+        let gradient = [NSColor(hex: "000"), NSColor(hex: "000"), NSColor(hex: "000")].gradient()
         gradient.cornerRadius = 20
 
         layer = gradient

@@ -12,6 +12,7 @@ class ViewController: NSViewController {
 
     var image:NSImage!
     var filename:NSString!
+    var editedFilename:NSString!
     
     var textView: NSTextView = NSTextView() // REMOVE
     

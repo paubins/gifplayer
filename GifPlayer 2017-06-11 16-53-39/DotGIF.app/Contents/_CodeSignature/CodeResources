@@ -12,7 +12,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			uLuzCHN3fBzrBV4LQ4NLYVfR41Q=
+			e4nogR1MKvrjEnkxVey4JPCFXVw=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -21,7 +21,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Vq9m+tpGxGFY84YefVlhui0yFfY=
+			5gXuWmW3uA/N+4Gviha03EceIZk=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -30,7 +30,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			38YWBDQd6xBFjN3JJehM1Ll131c=
+			dThXS8Zu7ffmy+n5+mGH/TVaYTc=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -39,7 +39,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			drIu6FoTb55M15mi3wpYSvBDgwg=
+			VVpfKhtkPkm1Aw6K+mwj9lTjhQo=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -48,7 +48,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			LCa5GmyUzt+37ls/H7jbWxzumMg=
+			PEsIB0nP9VyTI7SRMk7Ur4Xm5Vk=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -66,11 +66,43 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			VZBAJHMVZ3vzwUOc5RoidRMmVUk=
+			VkiWGOFfjMKWKDumS94pCvNUf2k=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
+		<key>Resources/Edit.storyboardc/EditingWindow.nib</key>
+		<data>
+		qlwGc2faafMZzBY1Shx5HaNo0jo=
+		</data>
+		<key>Resources/Edit.storyboardc/GIFEditor.nib</key>
+		<data>
+		al9a/fbPl1Gt/prs2ENWHbhAMuQ=
+		</data>
+		<key>Resources/Edit.storyboardc/Info.plist</key>
+		<data>
+		y/mE1tGTW9KhGbh1XRjHORakqRk=
+		</data>
+		<key>Resources/Edit.storyboardc/MFk-Ct-PSX-view-gxT-PU-9tt.nib</key>
+		<data>
+		hLw8Yxlezi15MUaVXhzvCtVVbyw=
+		</data>
+		<key>Resources/Edit.storyboardc/NSViewController-bcM-KL-fP7.nib</key>
+		<data>
+		RH4Zmec9rdZnxqxLBbeivjYeTVM=
+		</data>
+		<key>Resources/Edit.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
+		<data>
+		GapsNZoi4ScVNJ81qTOQnpvaBCg=
+		</data>
+		<key>Resources/Edit.storyboardc/bcM-KL-fP7-view-SUP-8b-kfX.nib</key>
+		<data>
+		AJaHYRS/+I1DNH3Vp6yWF40vOfw=
+		</data>
+		<key>Resources/FrameCollectionViewItem.nib</key>
+		<data>
+		CIoQ0QOHmq+0pw7X9MfdKVd12q8=
+		</data>
 		<key>Resources/VarelaRound-Regular.ttf</key>
 		<data>
 		6nacArr4yOuGpsDGNKrp41QAXMY=
@@ -189,6 +221,10 @@
 		<key>Resources/gifsicle</key>
 		<data>
 		LKcRjBN5ZUH7Jytowgubl2ubE/Y=
+		</data>
+		<key>Resources/gifsicle.new</key>
+		<data>
+		yCPwStNnAWGGIGDThUn9uQWHgQ0=
 		</data>
 		<key>Resources/he.lproj/Main.strings</key>
 		<dict>
@@ -408,7 +444,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			7IizegD/l9RnEdMXHV6RsigTilg=
+			ipDUTt5QBNqhtaU8jNbkhG/E4r4=
 			</data>
 			<key>requirement</key>
 			<string>(anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "3XSPEUHQ6Y") and identifier "org.cocoapods.Cartography"</string>
@@ -417,7 +453,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			nyOYsPZEf1YVENePEGuDivkXCpc=
+			xQz4DXwOu++j9p3stpqlqyPx+R4=
 			</data>
 			<key>requirement</key>
 			<string>(anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "3XSPEUHQ6Y") and identifier "org.cocoapods.Hue"</string>
@@ -426,7 +462,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			EljWW1apcx23dOkBzYB/uVAifA0=
+			XS4i/xuITFqhIVcXXyjpUk/sDZA=
 			</data>
 			<key>requirement</key>
 			<string>(anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "3XSPEUHQ6Y") and identifier "org.cocoapods.JFImageSavePanel"</string>
@@ -435,19 +471,55 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			ek4tCxKcu06jPRRyKT4skaFDiFo=
+			rJ1XmW/xMbjdXe/fimSt3MRyifM=
 			</data>
 			<key>requirement</key>
 			<string>(anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "3XSPEUHQ6Y") and identifier "org.cocoapods.NSGIF"</string>
+		</dict>
+		<key>Frameworks/ObjcExceptionBridging.framework</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			PIWNhvXX9yzSf2NOAGpLsDPx4TA=
+			</data>
+			<key>requirement</key>
+			<string>(anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "3XSPEUHQ6Y") and identifier "org.cocoapods.ObjcExceptionBridging"</string>
+		</dict>
+		<key>Frameworks/SwiftyJSON.framework</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			mQpaJjWLeqc+m3IDCEFSPV8bepo=
+			</data>
+			<key>requirement</key>
+			<string>(anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "3XSPEUHQ6Y") and identifier "org.cocoapods.SwiftyJSON"</string>
+		</dict>
+		<key>Frameworks/XCGLogger.framework</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			es06KiCmF82v13uVOkI6eeVXMqg=
+			</data>
+			<key>requirement</key>
+			<string>(anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "3XSPEUHQ6Y") and identifier "org.cocoapods.XCGLogger"</string>
 		</dict>
 		<key>Frameworks/iPicUploader.framework</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			mg4W4kOj7yXRkgXpb7oamceFre0=
+			Djcn9o9vYlZqDWF8Yn/HOPBTPVA=
 			</data>
 			<key>requirement</key>
 			<string>(anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "3XSPEUHQ6Y") and identifier "org.cocoapods.iPicUploader"</string>
+		</dict>
+		<key>Frameworks/lf.framework</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			D3J+3x+MX2KT6qfn6qbY6SGs690=
+			</data>
+			<key>requirement</key>
+			<string>(anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "3XSPEUHQ6Y") and identifier "org.cocoapods.lf"</string>
 		</dict>
 		<key>Frameworks/libswiftAVFoundation.dylib</key>
 		<dict>
@@ -613,7 +685,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AwCJ144fSSpyYSx744yjRCnCpwq2mZXk9P0yV+jQfAo=
+			XnZhkFDl1NwB5N8pPSVc+8hHejsGMurtKmF22oqT9jw=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -622,7 +694,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			IYaLXZyV+vm2jbndP0gZMH6KSKEBsS0ny+bjYtEyJYI=
+			8SP5Gg9NGxqHreQMEx0nIHlYpd54Gvh0w3TWfRgiFsI=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -631,7 +703,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			C7zAfdAkC5KvkDmAKUTDjfvBxLWxp0WcHPtvLseqiy0=
+			ODPl1tCtYmlXxvuWAmHJIiVbG4pd657rj9KLBUb43VA=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -640,7 +712,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			TAs4vbzJfvh0G8kxSVsQwSYoLh1Fu/SKw3eI5CsfAPo=
+			SEJNtj0l5F/GyQ7Yv7wfUalvUGYcJ+IxDBmaaIwXbQk=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -649,7 +721,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			WmJFIDYpeL8CFyTD0WtBt0i9MzFJwAUlFUgXuzV0v8o=
+			PkxLLBg0ESDai4Szq7jb/zWGsOZ1oBokdEwpladAlDg=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -667,10 +739,66 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			2GGxqB7ykz59KhAXcipAjufxdyatSEB2AGP+rh2Nfh4=
+			Of1F4O4I1AkxZiqe+97iBR3YapXgnwd1hvbqTg5zMz0=
 			</data>
 			<key>optional</key>
 			<true/>
+		</dict>
+		<key>Resources/Edit.storyboardc/EditingWindow.nib</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			S8WgMWg9oUaboCGXD7GAa0uv0/fDuKfS7yRezU39d7I=
+			</data>
+		</dict>
+		<key>Resources/Edit.storyboardc/GIFEditor.nib</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			m2zsmfoGAHZT5v0bTfc3uDoKNK9a2NETuiuVxjQYEn4=
+			</data>
+		</dict>
+		<key>Resources/Edit.storyboardc/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			H0/6/y5UK8ot203F+0tYh043GYFHxP/pm+7zs+UYc8o=
+			</data>
+		</dict>
+		<key>Resources/Edit.storyboardc/MFk-Ct-PSX-view-gxT-PU-9tt.nib</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			apLEG34aaAr7uGtoxEFUPVg31ls6xNGpgAwePCgKdXA=
+			</data>
+		</dict>
+		<key>Resources/Edit.storyboardc/NSViewController-bcM-KL-fP7.nib</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			yNa0rKkxzovACTdxK9vNoHj0drUwLXetGJCP/mfCFQg=
+			</data>
+		</dict>
+		<key>Resources/Edit.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			kkMuD04YnbAuCsB+7xdUF5ZQed58wfjPlAFNH79wBOQ=
+			</data>
+		</dict>
+		<key>Resources/Edit.storyboardc/bcM-KL-fP7-view-SUP-8b-kfX.nib</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			bcVYDUuw+m07isTMkywf4YdPcxdAFlfCiElRqBEmHuk=
+			</data>
+		</dict>
+		<key>Resources/FrameCollectionViewItem.nib</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			zW4++aieLmF7gcOJbREcMfVJJ4J947U0l2ukYUUhXFk=
+			</data>
 		</dict>
 		<key>Resources/VarelaRound-Regular.ttf</key>
 		<dict>
@@ -804,6 +932,13 @@
 			<key>hash2</key>
 			<data>
 			FvJQgrzR1KhEUbZuK8WJho8uHZQ661ub06+6plvW9RI=
+			</data>
+		</dict>
+		<key>Resources/gifsicle.new</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xsDn03FNUzIEhsZLg+Ax8yE6bwYaYzI+6uJ5gPN1IWo=
 			</data>
 		</dict>
 		<key>Resources/he.lproj/Main.strings</key>

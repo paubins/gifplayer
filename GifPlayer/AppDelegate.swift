@@ -44,6 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var openWindow:NSWindow!
     
     var createGIFWindowController:NSWindowController!
+    var openGifConverterWindowController:NSWindowController!
     
     let feedbackWindowController:NSWindowController = NSWindowController()
     
@@ -82,6 +83,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return (numberOfFrames, frameDelay)
     }
     
+    @IBAction func dropFrames(_ sender: Any) {
+        let (numberOfFrames, _) = self.currentGIFDelay()
+        
+        let newPath:String = self.dropOddFrames(filePath: viewController.filename as String, totalFrames: numberOfFrames)
+        
+        viewController.filename = newPath as NSString
+        viewController.image = NSImage(byReferencingFile: viewController.filename as String)!
+        viewController.imageView.animates = true
+        viewController.imageView.image = viewController.image
+    }
+    
+    @IBAction func addFrames(_ sender: Any) {
+        
+    }
+    
     func changeSpeed(filePath: String, speed: Double){
         let gifsicle:Gifsicle = Gifsicle()
         
@@ -89,7 +105,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                              resizeTo: nil,
                              optimize: 0,
                              framesToDrop: nil,
-                             limitColors: 0,
+                             limitColors: 256,
                              delay: speed,
                              trimmedFrames: nil,
                              outputPath: filePath)
@@ -104,7 +120,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         var framesToDrop:[Int] = []
         
-        for var i in 0...totalFrames {
+        for i in 0...totalFrames {
             if (i % 2 != 0) {
                 framesToDrop.append(i)
             }
@@ -114,7 +130,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                              resizeTo: nil,
                              optimize: 0,
                              framesToDrop: framesToDrop,
-                             limitColors: 0,
+                             limitColors: 256,
                              delay: nil,
                              trimmedFrames: nil,
                              outputPath: outputURL.path)
@@ -125,7 +141,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func speedUp(_ sender: Any) {
         print("speeding up")
 
-        let (numberOfFrames, frameDelay) = self.currentGIFDelay()
+        let (_, frameDelay) = self.currentGIFDelay()
         self.changeSpeed(filePath: viewController.filename as String, speed: Double(frameDelay-0.1) * 100.0)
         
         print(frameDelay-0.1)
@@ -139,7 +155,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func slowDown(_ sender: Any) {
         print("slow down")
         
-        let (numberOfFrames, frameDelay) = self.currentGIFDelay()
+        let (_, frameDelay) = self.currentGIFDelay()
         self.changeSpeed(filePath: viewController.filename as String, speed: Double(frameDelay+0.1) * 100.0)
         
         print(frameDelay+0.1)
@@ -484,7 +500,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         panel.canCreateDirectories = false
         panel.allowedFileTypes = ["gif"]
         panel.beginSheetModal(for: (mainWindowController?.window!)!) { (result) in
-            let path = panel.url?.path
+            _ = panel.url?.path
             if (result == NSFileHandlingPanelOKButton) {
                 let size = mainWindowController?.window?.frame.size
 //                let data = try? NSData(contentsOfFile: filepath) as Data
@@ -494,7 +510,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 gifsicle.runGifsicle(inputImage: filepath, resizeTo: size,
                                      optimize: 0,
                                      framesToDrop: nil,
-                                     limitColors: 0,
+                                     limitColors: 256,
                                      delay: nil,
                                      trimmedFrames: nil,
                                      outputPath: (panel.url?.path)!)
@@ -552,18 +568,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     private func openMovieFiles() -> [URL] {
-        let fileTypes:[String] = ["mp4"]
         
-        let panel = NSOpenPanel()
-        panel.allowsMultipleSelection = true
-        panel.canChooseDirectories = false
-        panel.canChooseFiles = true
-        panel.allowedFileTypes = fileTypes
-        
-        let result: Int = panel.runModal()
-        if result == NSModalResponseOK {
-            return panel.urls
-        }
         
         return []
     }
@@ -592,14 +597,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func openMovieFilesFromFileSystem(_ sender: Any) {
+        self.openGifConverterWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "VideoToGifConverterWindowController") as! NSWindowController
         
-        let viewController:GIFConverterViewController = GIFConverterViewController()
-        let paths: [URL] = self.openMovieFiles()
-        if !paths.isEmpty {
-            for (_, path) in paths.enumerated() {
-                viewController.convertFile(path.path)
-            }
-        }
+        (self.openGifConverterWindowController.contentViewController as! VideoToGifViewController).delegate = self
+        
+        self.openGifConverterWindowController.window?.makeKeyAndOrderFront(self)
+        NSApp.activate(ignoringOtherApps: true)
     }
     
     @IBAction func cloneCurrentGIFWindow(_ sender: Any) {
@@ -743,7 +746,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 extension AppDelegate : PasteboardWatcherDelegate {
     func newlyCopiedUrlObtained(copiedUrl: NSURL) {
-        self.displayWindow(filename: copiedUrl.absoluteString!)
+        _ = self.displayWindow(filename: copiedUrl.absoluteString!)
     }
 }
 
@@ -907,7 +910,13 @@ extension AppDelegate {
 extension AppDelegate : MCDragAndDropImageViewDelegate {
     func dragAndDropImageViewDidDrop(pasteboard:NSPasteboard) {
         let url:URL = NSURL(from: pasteboard)! as URL
-        self.displayWindow(filename: url.path)
+        _ = self.displayWindow(filename: url.path)
+    }
+}
+
+extension AppDelegate : VideoToGifViewControllerDelegate {
+    func videoDidConvert(path: String) {
+        _ = self.displayWindow(filename: path)
     }
 }
 

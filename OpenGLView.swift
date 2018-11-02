@@ -60,7 +60,7 @@ class OpenGLView: NSOpenGLView
             return kCVReturnSuccess
         }
         
-        var swapInterval:GLint = 1
+        var _:GLint = 1
 //        self.openGLContext?.setValues(&swapInterval, for: NSOpenGLCPSwapInterval)
         
         CVDisplayLinkCreateWithActiveCGDisplays( &displayLink )

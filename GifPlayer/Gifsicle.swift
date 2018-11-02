@@ -44,7 +44,7 @@ extension Gifsicle {
         
         var arguments:[String] = []
         
-        if framesToDrop != nil {
+        if framesToDrop == nil {
             arguments.append("-i")
             arguments.append(inputImage)
             
@@ -64,15 +64,18 @@ extension Gifsicle {
         }
         
         if framesToDrop != nil {
-            arguments.append("--delete")
+            arguments.append("-U")
+            arguments.append(inputImage)
             var frameString = ""
             
             framesToDrop?.forEach { (frame) in
                 frameString.append("#\(frame),")
             }
 
-            arguments.append("\(frameString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).trimmingCharacters(in: CharacterSet(charactersIn: ", ")))")
-            arguments.append("--done")
+            arguments.append("\(frameString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).trimmingCharacters(in: CharacterSet(charactersIn: " ")))")
+            
+            arguments.append("-o")
+            arguments.append(outputPath)
         }
         
         if resizeTo != nil {
@@ -89,15 +92,6 @@ extension Gifsicle {
             arguments.append("--colors")
             arguments.append("\(limitColors!)")
         }
-        
-        if framesToDrop == nil {
-            arguments.append("-i")
-            arguments.append(inputImage)
-            
-            arguments.append("--output")
-            arguments.append(outputPath)
-        }
-
         
         let _ = runSystemTask(executablePath: pathToGifsicle!,
                               arguments: arguments)

@@ -40,8 +40,7 @@ class Saver {
   }
 
   func gifUrl() -> URL {
-    let fileManager:FileManager = FileManager.default
-//    let documentsURL:URL = nil //fileManager.urls(for: .downloadsDirectory, in: .userDomainMask).last!
+
     
     let tempGIFUrl = URL(fileURLWithPath: NSTemporaryDirectory())
         .appendingPathComponent(UUID().uuidString)
@@ -51,7 +50,7 @@ class Saver {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd HH.mm.ss"
     
-    let dateString = formatter.string(from: Date())
+    _ = formatter.string(from: Date())
     
     // This returns a URL? even though it is an NSURL class method
    // return  NSURL.fileURL(withPathComponents: [documentsURL.path, dateString])!.appendingPathExtension("gif")

@@ -23,7 +23,6 @@
 		5F0B9A101F181FAA00BFFAFA /* FrameCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0B9A061F181FAA00BFFAFA /* FrameCollectionViewItem.swift */; };
 		5F0B9A111F181FAA00BFFAFA /* FrameCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F0B9A071F181FAA00BFFAFA /* FrameCollectionViewItem.xib */; };
 		5F0B9A151F181FC000BFFAFA /* GIFHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0B9A131F181FC000BFFAFA /* GIFHandler.swift */; };
-		5F0B9A161F181FC000BFFAFA /* GIFFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0B9A141F181FC000BFFAFA /* GIFFrame.swift */; };
 		5F0B9A191F1826BC00BFFAFA /* Edit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F0B9A181F1826BC00BFFAFA /* Edit.storyboard */; };
 		5F0D637A1F12E72900DF4FB1 /* errorstop.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0D63791F12E72900DF4FB1 /* errorstop.png */; };
 		5F0D637C1F12F86A00DF4FB1 /* Editing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D637B1F12F86A00DF4FB1 /* Editing.swift */; };
@@ -66,6 +65,11 @@
 		5FA770001F184ECA0022EC52 /* DragDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA76FFA1F184ECA0022EC52 /* DragDropView.swift */; };
 		5FA770011F184ECA0022EC52 /* Priview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA76FFB1F184ECA0022EC52 /* Priview.swift */; };
 		5FA770021F184ECA0022EC52 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA76FFC1F184ECA0022EC52 /* RangeSlider.swift */; };
+		5FD59CB8218C9F2400CF22FF /* GIFFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD59CB7218C9F2400CF22FF /* GIFFrame.swift */; };
+		5FEC1A201F263BDD008F913A /* VideoToGifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC1A1C1F263BDD008F913A /* VideoToGifViewController.swift */; };
+		5FEC1A211F263BDD008F913A /* VideoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC1A1D1F263BDD008F913A /* VideoState.swift */; };
+		5FEC1A221F263BDD008F913A /* URL+Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC1A1E1F263BDD008F913A /* URL+Metadata.swift */; };
+		5FEC1A231F263BDD008F913A /* NSProgressIndicator+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC1A1F1F263BDD008F913A /* NSProgressIndicator+Convenience.swift */; };
 		5FF416F41EFB60A600FBCBCB /* gif (2)-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF416F31EFB60A600FBCBCB /* gif (2)-128.png */; };
 		5FFE94361F13F30E006E72A7 /* Gifsicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFE94341F13F30E006E72A7 /* Gifsicle.swift */; };
 		5FFE94371F13F30E006E72A7 /* gifsicle in Resources */ = {isa = PBXBuildFile; fileRef = 5FFE94351F13F30E006E72A7 /* gifsicle */; };
@@ -91,7 +95,6 @@
 		5F0B9A061F181FAA00BFFAFA /* FrameCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameCollectionViewItem.swift; sourceTree = "<group>"; };
 		5F0B9A071F181FAA00BFFAFA /* FrameCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FrameCollectionViewItem.xib; sourceTree = "<group>"; };
 		5F0B9A131F181FC000BFFAFA /* GIFHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GIFHandler.swift; path = "../GIF-Maker/GIF/GIF/GIFHandler.swift"; sourceTree = "<group>"; };
-		5F0B9A141F181FC000BFFAFA /* GIFFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GIFFrame.swift; path = "../GIF-Maker/GIF/GIF/GIFFrame.swift"; sourceTree = "<group>"; };
 		5F0B9A181F1826BC00BFFAFA /* Edit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Edit.storyboard; sourceTree = "<group>"; };
 		5F0D63791F12E72900DF4FB1 /* errorstop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = errorstop.png; sourceTree = "<group>"; };
 		5F0D637B1F12F86A00DF4FB1 /* Editing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Editing.swift; sourceTree = "<group>"; };
@@ -176,6 +179,11 @@
 		5FA76FFB1F184ECA0022EC52 /* Priview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Priview.swift; sourceTree = "<group>"; };
 		5FA76FFC1F184ECA0022EC52 /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 		5FBE76F81EEDAF73001C2547 /* GifPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GifPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
+		5FD59CB7218C9F2400CF22FF /* GIFFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GIFFrame.swift; path = ../../.Trash/GIFFrame.swift; sourceTree = "<group>"; };
+		5FEC1A1C1F263BDD008F913A /* VideoToGifViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoToGifViewController.swift; sourceTree = "<group>"; };
+		5FEC1A1D1F263BDD008F913A /* VideoState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoState.swift; sourceTree = "<group>"; };
+		5FEC1A1E1F263BDD008F913A /* URL+Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Metadata.swift"; sourceTree = "<group>"; };
+		5FEC1A1F1F263BDD008F913A /* NSProgressIndicator+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSProgressIndicator+Convenience.swift"; sourceTree = "<group>"; };
 		5FF416F31EFB60A600FBCBCB /* gif (2)-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gif (2)-128.png"; path = "GifPlayer/Assets.xcassets/AppIcon.appiconset/gif (2)-128.png"; sourceTree = "<group>"; };
 		5FFE94341F13F30E006E72A7 /* Gifsicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gifsicle.swift; path = ../GifPlayer/Gifsicle.swift; sourceTree = "<group>"; };
 		5FFE94351F13F30E006E72A7 /* gifsicle */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gifsicle; sourceTree = "<group>"; };
@@ -234,7 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				5F0B9A131F181FC000BFFAFA /* GIFHandler.swift */,
-				5F0B9A141F181FC000BFFAFA /* GIFFrame.swift */,
+				5FD59CB7218C9F2400CF22FF /* GIFFrame.swift */,
 			);
 			name = "GIF Classes";
 			sourceTree = "<group>";
@@ -328,6 +336,7 @@
 		5FA74AD01EED0C8C007642C8 = {
 			isa = PBXGroup;
 			children = (
+				5FEC1A1B1F263BD0008F913A /* VideoToGif */,
 				5F0B99EC1F1817A600BFFAFA /* SpotlightController.h */,
 				5F0B99ED1F1817A600BFFAFA /* SpotlightController.m */,
 				5FF416F31EFB60A600FBCBCB /* gif (2)-128.png */,
@@ -397,6 +406,17 @@
 			name = "GIF Converter";
 			sourceTree = "<group>";
 		};
+		5FEC1A1B1F263BD0008F913A /* VideoToGif */ = {
+			isa = PBXGroup;
+			children = (
+				5FEC1A1C1F263BDD008F913A /* VideoToGifViewController.swift */,
+				5FEC1A1D1F263BDD008F913A /* VideoState.swift */,
+				5FEC1A1E1F263BDD008F913A /* URL+Metadata.swift */,
+				5FEC1A1F1F263BDD008F913A /* NSProgressIndicator+Convenience.swift */,
+			);
+			name = VideoToGif;
+			sourceTree = "<group>";
+		};
 		6B50CE3C945E1E745DC93617 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -442,7 +462,7 @@
 				TargetAttributes = {
 					5FA74AD81EED0C8C007642C8 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 3XSPEUHQ6Y;
+						DevelopmentTeam = 42N9D6EK46;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -561,12 +581,15 @@
 				5F3B13C11EF4361300D4A9B4 /* Data+Compression.swift in Sources */,
 				5F0B9A081F181FAA00BFFAFA /* ZoomView.swift in Sources */,
 				5F3B13BF1EF3730C00D4A9B4 /* OpenGLView.swift in Sources */,
+				5FEC1A221F263BDD008F913A /* URL+Metadata.swift in Sources */,
+				5FD59CB8218C9F2400CF22FF /* GIFFrame.swift in Sources */,
 				5F0D637E1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift in Sources */,
 				5F0B9A091F181FAA00BFFAFA /* PixelImageView.swift in Sources */,
 				5F0B9A101F181FAA00BFFAFA /* FrameCollectionViewItem.swift in Sources */,
 				5F0B9A0B1F181FAA00BFFAFA /* FancyButtonCell.swift in Sources */,
 				5F96192A1EF873F5008A3195 /* AnimatedFrame.swift in Sources */,
 				5F519AF61F15A87700C11215 /* DragAndDropWindow.swift in Sources */,
+				5FEC1A231F263BDD008F913A /* NSProgressIndicator+Convenience.swift in Sources */,
 				5F50710F1EF4735E00A1AFFB /* Config.swift in Sources */,
 				5F0B9A0C1F181FAA00BFFAFA /* FancyButton.swift in Sources */,
 				5F50710C1EF4735E00A1AFFB /* MainWindowController.swift in Sources */,
@@ -576,6 +599,7 @@
 				5FA76FFD1F184ECA0022EC52 /* GIFViewController.swift in Sources */,
 				5F50710B1EF4735E00A1AFFB /* MainViewController.swift in Sources */,
 				5F783FC01EFA221D0048A45E /* DKAsyncImageView.swift in Sources */,
+				5FEC1A211F263BDD008F913A /* VideoState.swift in Sources */,
 				5F0B9A0E1F181FAA00BFFAFA /* SmartTextField.swift in Sources */,
 				5F783FBE1EFA13560048A45E /* WindowController.swift in Sources */,
 				5F5071091EF4735E00A1AFFB /* State.swift in Sources */,
@@ -588,6 +612,7 @@
 				5FA770011F184ECA0022EC52 /* Priview.swift in Sources */,
 				5F5071111EF4735E00A1AFFB /* Utils.swift in Sources */,
 				5FA74ADD1EED0C8D007642C8 /* AppDelegate.swift in Sources */,
+				5FEC1A201F263BDD008F913A /* VideoToGifViewController.swift in Sources */,
 				5FFE94361F13F30E006E72A7 /* Gifsicle.swift in Sources */,
 				5FA253CF1EEE67AA00410048 /* CustomWindow.swift in Sources */,
 				5FA253C81EEE20EE00410048 /* FOTWindow.m in Sources */,
@@ -597,7 +622,6 @@
 				5F9619381EF87410008A3195 /* ImageSourceHelpers.swift in Sources */,
 				5F9619331EF873FE008A3195 /* Array.swift in Sources */,
 				5F0B99FC1F181F1900BFFAFA /* EditViewController.swift in Sources */,
-				5F0B9A161F181FC000BFFAFA /* GIFFrame.swift in Sources */,
 				5F0D63811F13277200DF4FB1 /* GIFResizer.swift in Sources */,
 				5F0B99EE1F1817A600BFFAFA /* SpotlightController.m in Sources */,
 				5F0B99FB1F181F1900BFFAFA /* PreviewViewController.swift in Sources */,
@@ -764,7 +788,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 3XSPEUHQ6Y;
+				DEVELOPMENT_TEAM = 42N9D6EK46;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -792,7 +816,7 @@
 				CODE_SIGN_ENTITLEMENTS = GifPlayer/.GIF.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 3XSPEUHQ6Y;
+				DEVELOPMENT_TEAM = 42N9D6EK46;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",

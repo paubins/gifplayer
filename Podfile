@@ -17,5 +17,6 @@ target 'GifPlayer' do
   pod 'Hue'
   pod 'lf', '~> 0.7.0'
   pod 'SwiftyJSON'
+  pod 'Regift'
 
 end

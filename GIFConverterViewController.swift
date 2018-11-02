@@ -144,8 +144,8 @@ class GIFConverterViewController: GIFViewController,DragDropViewDelegate,RangeSl
     
     func configOptions(_ gif:GIF)
     {
-        self.widthLabel.stringValue = String(format:"%0.f",gif.size.width   ?? 0)
-        self.heightLabel.stringValue = String(format:"%0.f",gif.size.height ?? 0)
+        self.widthLabel.stringValue = String(format:"%0.f",gif.size.width)
+        self.heightLabel.stringValue = String(format:"%0.f",gif.size.height)
     }
     
     func showPreview(_ gif:GIF)
@@ -210,8 +210,7 @@ class GIFConverterViewController: GIFViewController,DragDropViewDelegate,RangeSl
                 let fm  = FileManager.default
                 if let url = panel.url
                 {
-                    if let path:String = url.path
-                    {
+                    if let path:String = url.path {
                         do {
                         try fm.copyItem(atPath: file, toPath: path)
                         }catch{}

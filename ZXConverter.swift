@@ -76,7 +76,7 @@ class GIF: NSObject
     override var description: String
         {
         get{
-            return "=====================\npath:\(path)\nfileName:\(fileName)\ngifFileName:\(gifFileName)\nduration:\(duration)\nvideoSize:\(size)\nwantSize:\(wantSize)\nframes:\(thumb?.count)\n\n====================="
+            return "=====================\npath:\(path)\nfileName:\(fileName)\ngifFileName:\(gifFileName)\nduration:\(duration)\nvideoSize:\(size)\nwantSize:\(String(describing: wantSize))\nframes:\(String(describing: thumb?.count))\n\n====================="
         }
     }
     func  valid() -> (valid:Bool,error:String) {
@@ -338,7 +338,7 @@ class ZXConverter: NSObject {
                 r = min(r,6)
                 r = max(r,1)
                 let arguments =  ["-i",path,"-r",String(format:"%.0d",Int(r)),"-vf",scale,thumbPath + "/t%5d.jpg"]
-                self.shell(self.ffmpeg,arguments:arguments)
+                _ = self.shell(self.ffmpeg,arguments:arguments)
                 
                 var files = [String]()
                 do{

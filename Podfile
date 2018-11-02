@@ -13,9 +13,7 @@ target 'GifPlayer' do
   pod 'Fabric'
   pod "JFImageSavePanel"
   pod 'Crashlytics'
-  pod 'Cartography'
   pod 'Hue'
-  pod 'lf', '~> 0.7.0'
   pod 'SwiftyJSON'
   pod 'Regift'
 

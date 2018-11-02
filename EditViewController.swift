@@ -51,20 +51,20 @@ class EditViewController: NSViewController, ZoomViewDelegate, NSWindowDelegate {
         super.viewWillAppear()
         
         // Sets up UI controls
-        imageBackgroundView.backgroundColor = ViewController.backgroundColor
+        imageBackgroundView.backgroundColor = GIFMakerViewController.backgroundColor
         currentFrameImageView.backgroundColor = DrawingOptionsHandler.shared.imageBackgroundColor
         
         imageBackgroundView.zoomView = currentFrameImageView
         imageBackgroundView.delegate = self
-        imageScrollView.backgroundColor = ViewController.backgroundColor
+        imageScrollView.backgroundColor = GIFMakerViewController.backgroundColor
         
-        self.view.backgroundColor = ViewController.backgroundColor
+        self.view.backgroundColor = GIFMakerViewController.backgroundColor
         
         // Sets up window border
         self.view.window?.titlebarAppearsTransparent = true
         self.view.window?.isMovableByWindowBackground = true
         self.view.window?.titleVisibility = NSWindowTitleVisibility.hidden
-        self.view.window?.backgroundColor = ViewController.backgroundColor
+        self.view.window?.backgroundColor = GIFMakerViewController.backgroundColor
         self.view.window?.acceptsMouseMovedEvents = true
         self.view.window?.delegate = self
     }
@@ -75,7 +75,7 @@ class EditViewController: NSViewController, ZoomViewDelegate, NSWindowDelegate {
     }
 
     func windowWillClose(_ notification: Notification) {
-        NotificationCenter.default.post(name: ViewController.editingEndedNotificationName, object: nil)
+        NotificationCenter.default.post(name: GIFMakerViewController.editingEndedNotificationName, object: nil)
     }
     
     

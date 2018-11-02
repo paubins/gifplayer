@@ -16,7 +16,7 @@ class PreviewViewController: NSViewController {
         super.viewDidLoad()
         
         self.view.wantsLayer = true
-        self.view.backgroundColor = ViewController.backgroundColor
+        self.view.backgroundColor = GIFMakerViewController.backgroundColor
         
         if let previewImage = previewImage {
             previewImageView.image = previewImage
@@ -27,7 +27,7 @@ class PreviewViewController: NSViewController {
         super.viewDidAppear()
         
         self.view.wantsLayer = true
-        self.view.backgroundColor = ViewController.backgroundColor
+        self.view.backgroundColor = GIFMakerViewController.backgroundColor
     }
     
     @IBAction func closeButtonClicked(sender: AnyObject?) {

@@ -111,6 +111,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                              outputPath: filePath)
     }
     
+    @IBAction func rewind(_ sender: Any) {
+        viewController.imageView.rewind()
+    }
+    
+    @IBAction func forward(_ sender: Any) {
+        viewController.imageView.forward()
+    }
+    
     func dropOddFrames(filePath: String, totalFrames: Int) -> String {
         let gifsicle:Gifsicle = Gifsicle()
         
@@ -140,30 +148,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func speedUp(_ sender: Any) {
         print("speeding up")
-
-        let (_, frameDelay) = self.currentGIFDelay()
-        self.changeSpeed(filePath: viewController.filename as String, speed: Double(frameDelay-0.1) * 100.0)
-        
-        print(frameDelay-0.1)
-        
-        viewController.filename = viewController.filename
-        viewController.image = NSImage(byReferencingFile: viewController.filename as String)!
-        viewController.imageView.animates = true
-        viewController.imageView.image = viewController.image
+        viewController.speedUp()
     }
     
     @IBAction func slowDown(_ sender: Any) {
         print("slow down")
-        
-        let (_, frameDelay) = self.currentGIFDelay()
-        self.changeSpeed(filePath: viewController.filename as String, speed: Double(frameDelay+0.1) * 100.0)
-        
-        print(frameDelay+0.1)
-        
-        viewController.filename = viewController.filename
-        viewController.image = NSImage(byReferencingFile: viewController.filename as String)!
-        viewController.imageView.animates = true
-        viewController.imageView.image = viewController.image
+        viewController.slowDown()
     }
     
     
@@ -342,10 +332,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         for windowController in self.windowControllers {
             if(windowController.window?.isKeyWindow)! {
                 let viewController:ViewController = windowController.contentViewController as! ViewController
-                if(viewController.imageView.animates) {
-                    viewController.imageView.animates = false
+                if(viewController.imageView.isPaused) {
+                    viewController.imageView.isPaused = false
                 } else {
-                    viewController.imageView.animates = true
+                    viewController.imageView.isPaused = true
                 }
                 
                 windowController.window?.makeKey()
@@ -398,7 +388,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             viewController.image = NSImage(byReferencingFile: filename)!
             //viewController.imageView.loadGIF(gifFileName: URL(fileURLWithPath: filename))
             viewController.imageView.animates = true
-            viewController.imageView.image = viewController.image
+            viewController.imageView.loadGIF(gifFileName: URL(fileURLWithPath: filename))
             imageSize = (viewController.imageView.image?.size)!
         }
 

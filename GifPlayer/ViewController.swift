@@ -149,5 +149,13 @@ class ViewController: NSViewController {
     override func mouseExited(with event: NSEvent) {
         self.active = false
     }
+    
+    func speedUp() {
+        self.imageView.speedUp()
+    }
+    
+    func slowDown() {
+        self.imageView.slowDown()
+    }
 }
 

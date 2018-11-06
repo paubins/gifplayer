@@ -32,11 +32,14 @@ class OpenGLView: NSOpenGLView
     var animationImages:[Data] = []
     var frameStore:FrameStore!
     
-    var img:NSImage! = nil
+    var image:NSImage! = nil
     
     var timer:Timer! = nil
+    var animates:Bool = false
+    var imageScaling:NSImageScaling = .scaleNone
+    var isPaused:Bool = false
 
-    override func prepareOpenGL()
+    override open func prepareOpenGL()
     {
         
         self.screenRect = (self.window?.frame)!
@@ -92,7 +95,7 @@ class OpenGLView: NSOpenGLView
         var target:NSRect = self.screenRect
         
         let screenRatio:Float = self.pictureRatioFromWidth(iWidth:Float(screenRect.size.width), iHeight:Float(screenRect.size.height))
-        let imgRatio:Float = self.pictureRatioFromWidth(iWidth:Float(img.size.width), iHeight:Float(img.size.height))
+        let imgRatio:Float = self.pictureRatioFromWidth(iWidth:Float(image.size.width), iHeight:Float(image.size.height))
         
         if (imgRatio >= screenRatio)
         {
@@ -109,10 +112,10 @@ class OpenGLView: NSOpenGLView
             target.origin.y = -1*(target.size.height - screenRect.size.height)/2;
         }
         
-        target.size.height = img.size.height;
-        target.size.width = img.size.width;
-        target.origin.y = (screenRect.size.height - img.size.height)/2;
-        target.origin.x = (screenRect.size.width - img.size.width)/2;
+        target.size.height = image.size.height;
+        target.size.width = image.size.width;
+        target.origin.y = (screenRect.size.height - image.size.height)/2;
+        target.origin.x = (screenRect.size.width - image.size.width)/2;
         
         self.openGLContext!.makeCurrentContext()
         
@@ -190,7 +193,7 @@ class OpenGLView: NSOpenGLView
         CGLUnlockContext( self.openGLContext!.cglContextObj! )
         
         if (currFrameCount < maxFrameCount-1) {
-            if (!self.inLiveResize) {
+            if (!self.inLiveResize && !self.isPaused) {
                 currFrameCount += 1
             }
         }
@@ -206,9 +209,9 @@ class OpenGLView: NSOpenGLView
     }
     
     func loadGIF(gifFileName:URL) {
-        img = NSImage(byReferencingFile: gifFileName.path)!;
+        image = NSImage(byReferencingFile: gifFileName.path)!;
         
-        self.gifRep = img.representations[FIRST_FRAME] as! NSBitmapImageRep
+        self.gifRep = image.representations[FIRST_FRAME] as! NSBitmapImageRep
         self.maxFrameCount = gifRep.value(forProperty: NSImageFrameCount) as! Int
         
         self.currFrameCount = FIRST_FRAME
@@ -220,9 +223,9 @@ class OpenGLView: NSOpenGLView
             
         }
 
-        self.frameStore = FrameStore(data: data!, size: img.size, contentMode: .scaleAxesIndependently, framePreloadCount: 10, loopCount: 10)
-        
-        self.frameStore.prepareFrames()
+//        self.frameStore = FrameStore(data: data!, size: image.size, contentMode: .scaleAxesIndependently, framePreloadCount: 10, loopCount: 10)
+//
+//        self.frameStore.prepareFrames()
         
         for frame in 0 ..< self.maxFrameCount {
             gifRep.setProperty(NSImageCurrentFrame, withValue: frame)
@@ -235,10 +238,15 @@ class OpenGLView: NSOpenGLView
         }
         
         let source:CGImageSource = CGImageSourceCreateWithURL(NSURL(fileURLWithPath: gifFileName.path), nil)!
-        let cfdProperties:NSDictionary = CGImageSourceCopyPropertiesAtIndex(source, 0, nil)!
+        let cfdProperties:NSDictionary = CGImageSourceCopyPropertiesAtIndex(source, 1, nil)!
         
         let property:NSDictionary = cfdProperties.object(forKey: kCGImagePropertyGIFDictionary) as! NSDictionary
-        let duration:Float =  property.object(forKey: kCGImagePropertyGIFUnclampedDelayTime) as! Float
+        let unclampedDuration:Float = property.object(forKey: kCGImagePropertyGIFUnclampedDelayTime) as! Float
+        var duration:NSNumber = property.object(forKey: kCGImagePropertyGIFDelayTime) as! NSNumber
+        
+        if (unclampedDuration != 0) {
+            duration = NSNumber(value: unclampedDuration)
+        }
         
         self.timer = Timer(timeInterval: TimeInterval(duration), target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
         self.timer.fire()
@@ -253,5 +261,39 @@ class OpenGLView: NSOpenGLView
     
     override var mouseDownCanMoveWindow:Bool {
         return true
+    }
+    
+    func rewind() {
+        if (0 < currFrameCount) {
+            currFrameCount -= 1
+        }
+        else {
+            currFrameCount = FIRST_FRAME;
+        }
+    }
+    
+    func forward() {
+        if (currFrameCount < maxFrameCount-1) {
+            currFrameCount += 1
+        }
+        else {
+            currFrameCount = FIRST_FRAME;
+        }
+    }
+    
+    func speedUp() {
+        self.timer.invalidate()
+        self.timer = Timer(timeInterval: TimeInterval(self.timer.timeInterval*0.7), target: self,
+                           selector: #selector(timerFired), userInfo: nil, repeats: true)
+        self.timer.fire()
+        RunLoop.main.add(self.timer, forMode: RunLoopMode.defaultRunLoopMode)
+    }
+    
+    func slowDown() {
+        self.timer.invalidate()
+        self.timer = Timer(timeInterval: TimeInterval(self.timer.timeInterval*1.2), target: self,
+                           selector: #selector(timerFired), userInfo: nil, repeats: true)
+        self.timer.fire()
+        RunLoop.main.add(self.timer, forMode: RunLoopMode.defaultRunLoopMode)
     }
 }

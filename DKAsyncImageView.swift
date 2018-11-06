@@ -25,7 +25,7 @@
 import Cocoa
 
 /// A Swift subclass of NSImageView for loading remote images asynchronously.
-open class DKAsyncImageView: NSImageView, URLSessionDelegate, URLSessionDownloadDelegate {
+class DKAsyncImageView: OpenGLView, URLSessionDelegate, URLSessionDownloadDelegate {
     fileprivate var imageURLDownloadTask: URLSessionDownloadTask?
     fileprivate var networkSession: Foundation.URLSession?
     fileprivate var imageDownloadData: Data?

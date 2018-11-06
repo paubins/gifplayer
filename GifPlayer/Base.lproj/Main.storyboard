@@ -192,6 +192,19 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="umy-N9-5Yt"/>
+                                        <menuItem title="Back a Frame" tag="23" keyEquivalent="" id="2FR-Nn-c2g">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                                            <connections>
+                                                <action selector="rewind:" target="Voe-Tx-rLC" id="R2m-wX-aPa"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Forward a Frame" tag="23" keyEquivalent="" id="xrm-7M-V2V">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                                            <connections>
+                                                <action selector="forward:" target="Voe-Tx-rLC" id="rtY-iC-WnS"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="A9W-6g-jQJ"/>
                                         <menuItem title="Increase transparency" keyEquivalent="j" id="tqD-3S-S3z">
                                             <connections>
                                                 <action selector="increaseTransparency:" target="Voe-Tx-rLC" id="71V-s2-2LS"/>

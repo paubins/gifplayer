@@ -13,6 +13,7 @@ class ViewController: NSViewController {
     var image:NSImage!
     var filename:NSString!
     var editedFilename:NSString!
+    var active:Bool = false
     
     var textView: NSTextView = NSTextView() // REMOVE
     
@@ -139,6 +140,14 @@ class ViewController: NSViewController {
     
     func creatSearchableItem() {
         
+    }
+
+    override func mouseEntered(with event: NSEvent) {
+        self.active = true
+    }
+    
+    override func mouseExited(with event: NSEvent) {
+        self.active = false
     }
 }
 

@@ -344,21 +344,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 let viewController:ViewController = windowController.contentViewController as! ViewController
                 if(viewController.imageView.animates) {
                     viewController.imageView.animates = false
+                } else {
+                    viewController.imageView.animates = true
                 }
-                
-                viewController.imageView.animates = true
-                
-                windowController.window?.makeKey()
-                NSApp.activate(ignoringOtherApps: true)
-            }
-        }
-    }
-    
-    @IBAction func stopGIF(_ sender: Any) {
-        for windowController in self.windowControllers {
-            if(windowController.window?.isKeyWindow)! {
-                let viewController:ViewController = windowController.contentViewController as! ViewController
-                viewController.imageView.animates = false
                 
                 windowController.window?.makeKey()
                 NSApp.activate(ignoringOtherApps: true)

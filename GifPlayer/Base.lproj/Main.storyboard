@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="12121"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="box content view" minToolsVersion="7.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -96,7 +93,8 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" autoenablesItems="NO" id="J7P-yV-Odr">
                                     <items>
-                                        <menuItem title="Play" keyEquivalent="p" id="U8d-jE-tgS">
+                                        <menuItem title="Play/Pause" keyEquivalent=" " id="U8d-jE-tgS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="playGIF:" target="Voe-Tx-rLC" id="wwA-Ef-HkZ"/>
                                             </connections>
@@ -104,11 +102,6 @@
                                         <menuItem title="Edit" hidden="YES" keyEquivalent="e" id="e3P-wY-GTR">
                                             <connections>
                                                 <action selector="menuItemLoadWithSender:" target="Voe-Tx-rLC" id="3BD-si-sGt"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Stop" keyEquivalent="S" id="4cI-dw-CQq">
-                                            <connections>
-                                                <action selector="stopGIF:" target="Voe-Tx-rLC" id="XwH-iq-ngw"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Clone" keyEquivalent="D" id="wnz-fP-8Le">
@@ -282,7 +275,6 @@
                         <outlet property="optionsMenu" destination="iTS-lD-eg4" id="UsG-P6-lWv"/>
                         <outlet property="playButtonMenuItem" destination="U8d-jE-tgS" id="GSV-5q-oHy"/>
                         <outlet property="saveButton" destination="maX-wv-io5" id="EBM-ZV-uAa"/>
-                        <outlet property="stopButtonMenuItem" destination="4cI-dw-CQq" id="QYr-z3-Vf1"/>
                         <outlet property="submitFeedback" destination="YRO-vh-u6V" id="YSx-nb-D37"/>
                         <outlet property="windowMenu" destination="yKo-SV-iBN" id="wr3-Fw-Ohf"/>
                     </connections>
@@ -308,7 +300,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController storyboardIdentifier="MainWindowController" id="B8D-0N-5wS" customClass="WindowController" customModule="DotGIF" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="FOTWindow">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="FOTWindow">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -331,6 +323,9 @@
                                 <outlet property="delegate" destination="B8D-0N-5wS" id="Gcg-3E-bc8"/>
                             </connections>
                         </toolbar>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="eL0-pp-ZFM"/>
+                        </connections>
                     </window>
                     <connections>
                         <outlet property="fontSizeField" destination="55Q-cR-wSN" id="Ze5-nU-GZ4"/>
@@ -346,16 +341,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="135" height="32"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <subviews>
-                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f98-HX-vIK">
-                            <rect key="frame" x="4" y="6" width="64" height="20"/>
+                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f98-HX-vIK">
+                            <rect key="frame" x="4" y="7" width="64" height="19"/>
                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Font Size:" id="zcF-u3-QfB">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55Q-cR-wSN">
-                            <rect key="frame" x="91" y="4" width="39" height="24"/>
+                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="55Q-cR-wSN">
+                            <rect key="frame" x="91" y="5" width="39" height="23"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="39" id="IQc-Xi-bw9"/>
                             </constraints>
@@ -420,7 +415,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1E-Ye-4gB">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n1E-Ye-4gB">
                                 <rect key="frame" x="96" y="101" width="276" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="UUP-db-IUa">
@@ -440,11 +435,14 @@
         <scene sceneID="f8B-kw-Rgq">
             <objects>
                 <windowController storyboardIdentifier="CreateGIFWindowController" id="DX9-tu-Jdy" customClass="MainWindowController" customModule="DotGIF" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="RecordWindow" title="Record" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="GifCaptureAutosave" animationBehavior="default" id="O18-xP-gZu">
+                    <window key="window" identifier="RecordWindow" title="Record" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="GifCaptureAutosave" animationBehavior="default" id="O18-xP-gZu">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="400" height="400"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="DX9-tu-Jdy" id="3WN-x4-Zhc"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="gKm-Gc-KLQ" kind="relationship" relationship="window.shadowedContentViewController" id="oSj-Xp-ogg"/>
@@ -471,7 +469,7 @@
                                             <rect key="frame" x="1" y="1" width="478" height="33"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zM-un-oA5">
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7zM-un-oA5">
                                                     <rect key="frame" x="8" y="8" width="30" height="17"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Size" id="oqT-WM-DvO">
                                                         <font key="font" metaFont="system"/>
@@ -479,22 +477,22 @@
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dw-H4-lm2">
+                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0dw-H4-lm2">
                                                     <rect key="frame" x="44" y="6" width="50" height="22"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="sm5-fX-Qcw">
                                                         <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9e-Xm-3GP">
+                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R9e-Xm-3GP">
                                                     <rect key="frame" x="102" y="6" width="50" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="wU5-p1-IZ8"/>
                                                     </constraints>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="nnG-ZJ-dlO">
                                                         <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
@@ -570,11 +568,14 @@
         <scene sceneID="Zn9-hH-WFf">
             <objects>
                 <windowController storyboardIdentifier="VideoToGifConverterWindowController" id="Zqn-MV-fkt" sceneMemberID="viewController">
-                    <window key="window" title="Video to GIF Converter" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="IDa-RA-W4N">
+                    <window key="window" title="Video to GIF Converter" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="IDa-RA-W4N">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="208" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+                        <connections>
+                            <outlet property="delegate" destination="Zqn-MV-fkt" id="Le9-BI-6Fc"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="ns5-fk-USH" kind="relationship" relationship="window.shadowedContentViewController" id="yms-Xm-ZOP"/>
@@ -598,7 +599,7 @@
                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vv4-9o-ljS">
                                         <rect key="frame" x="20" y="106" width="206" height="58"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QiA-oZ-oSm">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QiA-oZ-oSm">
                                                 <rect key="frame" x="-2" y="41" width="210" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Choose a video to convert to GIF." id="Ekr-CC-plH">
                                                     <font key="font" metaFont="system"/>
@@ -607,7 +608,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K1T-4m-kAF">
-                                                <rect key="frame" x="40.5" y="-7" width="125" height="32"/>
+                                                <rect key="frame" x="41" y="-7" width="125" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Choose Video" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kTN-hb-PPx">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -640,9 +641,9 @@
                                 <rect key="frame" x="247" y="0.0" width="246" height="270"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="15" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q9K-fP-biB">
-                                        <rect key="frame" x="20" y="93" width="206" height="83"/>
+                                        <rect key="frame" x="20" y="94" width="206" height="83"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BY-4m-GmT">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9BY-4m-GmT">
                                                 <rect key="frame" x="80" y="66" width="46" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="15 FPS" id="Vo2-wI-ige">
                                                     <font key="font" metaFont="system"/>
@@ -680,7 +681,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="i8a-my-HKU">
-                                        <rect key="frame" x="107" y="51" width="32" height="32"/>
+                                        <rect key="frame" x="107" y="52" width="32" height="32"/>
                                     </progressIndicator>
                                 </subviews>
                                 <constraints>

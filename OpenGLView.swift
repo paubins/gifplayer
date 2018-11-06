@@ -238,15 +238,8 @@ class OpenGLView: NSOpenGLView
         }
         
         let source:CGImageSource = CGImageSourceCreateWithURL(NSURL(fileURLWithPath: gifFileName.path), nil)!
-        let cfdProperties:NSDictionary = CGImageSourceCopyPropertiesAtIndex(source, 1, nil)!
-        
-        let property:NSDictionary = cfdProperties.object(forKey: kCGImagePropertyGIFDictionary) as! NSDictionary
-        let unclampedDuration:Float = property.object(forKey: kCGImagePropertyGIFUnclampedDelayTime) as! Float
-        var duration:NSNumber = property.object(forKey: kCGImagePropertyGIFDelayTime) as! NSNumber
-        
-        if (unclampedDuration != 0) {
-            duration = NSNumber(value: unclampedDuration)
-        }
+        let duration:Double = max(CGImageFrameDuration(with: source, atIndex: 0),
+                                  CGImageFrameDuration(with: source, atIndex: 1))
         
         self.timer = Timer(timeInterval: TimeInterval(duration), target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
         self.timer.fire()

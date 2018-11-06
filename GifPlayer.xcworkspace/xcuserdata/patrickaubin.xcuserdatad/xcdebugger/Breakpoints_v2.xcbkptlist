@@ -46,12 +46,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OpenGLView.swift"
-            timestampString = "563173135.4534121"
+            timestampString = "563175314.291622"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
-            landmarkName = "loadGIF(gifFileName:)"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
+            landmarkName = "speedUp()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -62,12 +62,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OpenGLView.swift"
-            timestampString = "563173135.45474"
+            timestampString = "563175314.292631"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
-            landmarkName = "speedUp()"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "draw(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

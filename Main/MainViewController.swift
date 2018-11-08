@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import iPicUploader
 
 class MainViewController: NSViewController {
 
@@ -124,14 +123,6 @@ class MainViewController: NSViewController {
       state = .idle
       if let url = url {
         showNotification(url: url)
-//        iPic.uploadImage(url.path, handler: { (imageLink, error) in
-//            if let imageLink = imageLink {
-//                showNotification(url: imageLink)
-//                
-//            } else if let error = error {
-//                // Some error happened
-//            }
-//        })
       } else {
 
       }

@@ -7,38 +7,26 @@
 //
 
 import Cocoa
-import Hue
 
 protocol MCDragAndDropImageViewDelegate: class {
     func dragAndDropImageViewDidDrop(pasteboard:NSPasteboard)
 }
 
-class MCDragAndDropImageView: NSImageView {
+class MCDragAndDropImageView: NSView {
 
 	weak var delegate: MCDragAndDropImageViewDelegate?
 
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        register(forDraggedTypes: NSImage.imageTypes())
-        
-        
-        
+        register(forDraggedTypes: NSImage.imageTypes() + [NSFilenamesPboardType])
+        self.backgroundColor = .black
         wantsLayer = true
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-	override func draw(_ dirtyRect: NSRect) {
-		super.draw(dirtyRect)
-        
-        let gradient = [NSColor(hex: "000"), NSColor(hex: "000"), NSColor(hex: "000")].gradient()
-        gradient.cornerRadius = 20
-
-        layer = gradient
-	}
-
+    
 	override var mouseDownCanMoveWindow:Bool {
 		return true
 	}
@@ -51,10 +39,6 @@ extension MCDragAndDropImageView: NSDraggingSource {
 	override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
 
 		if (NSImage.canInit(with: sender.draggingPasteboard())) {
-			isHighlighted = true
-
-			setNeedsDisplay()
-
 			let sourceDragMask = sender.draggingSourceOperationMask()
 			let pboard = sender.draggingPasteboard()
 
@@ -68,23 +52,13 @@ extension MCDragAndDropImageView: NSDraggingSource {
 		return NSDragOperation()
 	}
 
-	override func draggingExited(_ sender: NSDraggingInfo?) {
-		isHighlighted = false
-		setNeedsDisplay()
-	}
-
 	override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
-		isHighlighted = false
-		setNeedsDisplay()
-
 		return NSImage.canInit(with: sender.draggingPasteboard())
 	}
 
 	override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
 		if (NSImage.canInit(with: sender.draggingPasteboard())) {
-//			image = NSImage(pasteboard: )
-			delegate?.dragAndDropImageViewDidDrop(pasteboard: sender.draggingPasteboard())
-//			setNeedsDisplay()
+            delegate?.dragAndDropImageViewDidDrop(pasteboard: sender.draggingPasteboard())
 		}
 
 		return true

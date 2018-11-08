@@ -9,12 +9,8 @@ target 'GifPlayer' do
 
   # Pods for GifPlayer
   pod 'NSGIF', :git => 'https://github.com/NSRare/NSGIF'
-  pod "iPicUploader"
   pod 'Fabric'
-  pod "JFImageSavePanel"
   pod 'Crashlytics'
-  pod 'Hue'
   pod 'SwiftyJSON'
-  pod 'Regift'
 
 end

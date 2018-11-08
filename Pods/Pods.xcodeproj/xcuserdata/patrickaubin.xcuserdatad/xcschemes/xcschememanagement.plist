@@ -4,16 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Hue.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>JFImageSavePanel.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>NSGIF.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -24,17 +14,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Regift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SwiftyJSON.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>iPicUploader.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

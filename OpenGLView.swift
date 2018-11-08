@@ -44,7 +44,13 @@ class OpenGLView: NSOpenGLView
         
         self.screenRect = (self.window?.frame)!
         
-        let attributes:[NSOpenGLPixelFormatAttribute] = [UInt32(NSOpenGLPFADoubleBuffer), UInt32(NSOpenGLPFAAccelerated)]
+        let attributes:[NSOpenGLPixelFormatAttribute] = [
+            UInt32(NSOpenGLPFADoubleBuffer),
+            UInt32(NSOpenGLPFANoRecovery),
+            UInt32(NSOpenGLPFAColorSize),
+            UInt32(NSOpenGLPFADepthSize),
+            UInt32(NSOpenGLPFAAccelerated)]
+        
         self.pixelFormat = NSOpenGLPixelFormat(attributes: attributes)
         
         /* Set up DisplayLink. */
@@ -63,9 +69,14 @@ class OpenGLView: NSOpenGLView
             return kCVReturnSuccess
         }
         
-        var _:GLint = 1
-//        self.openGLContext?.setValues(&swapInterval, for: NSOpenGLCPSwapInterval)
+        var swapInterval:GLint = 1
+        self.openGLContext?.setValues(&swapInterval, for: NSOpenGLCPSwapInterval)
         
+        if (gifRep.hasAlpha) {
+            var aValue:GLint = 0;
+            self.openGLContext?.setValues(&aValue, for: NSOpenGLCPSurfaceOpacity)
+        }
+
         CVDisplayLinkCreateWithActiveCGDisplays( &displayLink )
         CVDisplayLinkSetOutputCallback( displayLink!, displayLinkOutputCallback, Unmanaged.passUnretained(self).toOpaque() )
 //        CVDisplayLinkStart( displayLink! )
@@ -118,17 +129,25 @@ class OpenGLView: NSOpenGLView
         target.origin.x = (screenRect.size.width - image.size.width)/2;
         
         self.openGLContext!.makeCurrentContext()
-        
+
+//        OpenGLHelpers::clear(Colours::transparentBlack);
+
         // Start phase
         glPushMatrix()
         
         // defines the pixel resolution of the screen (can be smaller than real screen, but than you will see pixels)
         glOrtho(0, GLdouble(screenRect.size.width), GLdouble(screenRect.size.height), 0, -1, 1)
-
+        
+//        glEnable(GLenum(GL_SAMPLE_ALPHA_TO_COVERAGE))
         glEnable(GLenum(GL_TEXTURE_2D))
         if (gifRep.hasAlpha) {
-            glEnable(GLenum(GL_BLEND))
-            glBlendFunc(GLenum(GL_ONE), GLenum(GL_ONE_MINUS_SRC_ALPHA))
+//            glEnable(GLenum(GL_BLEND))
+//            glBlendFunc(GLenum(GL_ONE), GLenum(GL_ONE_MINUS_SRC_ALPHA))
+//            glEnable(GLenum(GL_SAMPLE_ALPHA_TO_COVERAGE))
+            glClearColor(0.5, 0.6, 0.7, 1.0)
+            glEnable(GLenum(GL_DEPTH_TEST))
+//            glColor4f(1.0, 1.0, 1.0, 1.0);
+//            glBlendFuncSeparate(GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA), GLenum(GL_ONE), GLenum(GL_ZERO));
         }
         
         //get one free texture name
@@ -144,12 +163,14 @@ class OpenGLView: NSOpenGLView
         glTexParameterf(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_MAG_FILTER), GLfloat(GLenum(GL_LINEAR)))
         glTexParameterf(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_WRAP_S), GLfloat(GLenum(GL_CLAMP_TO_EDGE)))
         glTexParameterf(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_WRAP_T), GLfloat(GLenum(GL_CLAMP_TO_EDGE)))
+//        glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_TEXTURE_ENV_MODE), GL_REPLACE);
+//        glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_TEXTURE_ENV_MODE), GL_MODULATE);
         
         // we load bitmap data from memory and save CPU time (created during startAnimation)
         let pixels:NSData = animationImages[currFrameCount] as NSData //.uncompressed(using: .lz4)! as NSData
         
         // let pixels:NSData = self.frameStore.frame(at: currFrameCount)!
-        
+//        glEnable(GLenum(GL_DEPTH_TEST));
         glTexImage2D(GLenum(GL_TEXTURE_2D),
                      0,
                      GL_RGBA,
@@ -208,43 +229,36 @@ class OpenGLView: NSOpenGLView
         CVDisplayLinkStop( displayLink! );
     }
     
-    func loadGIF(gifFileName:URL) {
+    func loadGIF(gifFileName:URL) -> Bool {
         image = NSImage(byReferencingFile: gifFileName.path)!;
         
-        self.gifRep = image.representations[FIRST_FRAME] as! NSBitmapImageRep
-        self.maxFrameCount = gifRep.value(forProperty: NSImageFrameCount) as! Int
-        
-        self.currFrameCount = FIRST_FRAME
-        
-        var data:Data? = nil
-        do {
-            data = try Data(contentsOf: gifFileName)
-        } catch {
+        self.gifRep = (image.representations[FIRST_FRAME] as! NSBitmapImageRep)
+        if let maxFrameCount = gifRep.value(forProperty: NSImageFrameCount) {
+            self.maxFrameCount = maxFrameCount as! Int
+            self.currFrameCount = FIRST_FRAME
             
-        }
-
-//        self.frameStore = FrameStore(data: data!, size: image.size, contentMode: .scaleAxesIndependently, framePreloadCount: 10, loopCount: 10)
-//
-//        self.frameStore.prepareFrames()
-        
-        for frame in 0 ..< self.maxFrameCount {
-            gifRep.setProperty(NSImageCurrentFrame, withValue: frame)
+            for frame in 0 ..< self.maxFrameCount {
+                gifRep.setProperty(NSImageCurrentFrame, withValue: frame)
+                
+                let data = gifRep.bitmapData
+                let size = gifRep.bytesPerPlane
+                // copy the bitmap data into an NSData object, that can be save transferred to animateOneFrame
+                let imgData:Data = NSData(bytes: data, length: size) as Data
+                animationImages.append(imgData)//.compressed(using: Compression.lz4)!)
+            }
             
-            let data = gifRep.bitmapData
-            let size = gifRep.bytesPerPlane
-            // copy the bitmap data into an NSData object, that can be save transferred to animateOneFrame
-            let imgData:Data = NSData(bytes: data, length: size) as Data
-            animationImages.append(imgData)//.compressed(using: Compression.lz4)!)
+            let source:CGImageSource = CGImageSourceCreateWithURL(NSURL(fileURLWithPath: gifFileName.path), nil)!
+            let duration:Double = max(CGImageFrameDuration(with: source, atIndex: 0),
+                                      CGImageFrameDuration(with: source, atIndex: 1))
+            
+            self.timer = Timer(timeInterval: TimeInterval(duration), target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
+            self.timer.fire()
+            
+            RunLoop.main.add(self.timer, forMode: RunLoopMode.defaultRunLoopMode)
+            return true
         }
         
-        let source:CGImageSource = CGImageSourceCreateWithURL(NSURL(fileURLWithPath: gifFileName.path), nil)!
-        let duration:Double = max(CGImageFrameDuration(with: source, atIndex: 0),
-                                  CGImageFrameDuration(with: source, atIndex: 1))
-        
-        self.timer = Timer(timeInterval: TimeInterval(duration), target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
-        self.timer.fire()
-        
-        RunLoop.main.add(self.timer, forMode: RunLoopMode.defaultRunLoopMode)
+        return false
     }
     
     func timerFired() {
@@ -288,5 +302,9 @@ class OpenGLView: NSOpenGLView
                            selector: #selector(timerFired), userInfo: nil, repeats: true)
         self.timer.fire()
         RunLoop.main.add(self.timer, forMode: RunLoopMode.defaultRunLoopMode)
+    }
+    
+    func currentDelay() -> TimeInterval {
+        return self.timer!.timeInterval
     }
 }

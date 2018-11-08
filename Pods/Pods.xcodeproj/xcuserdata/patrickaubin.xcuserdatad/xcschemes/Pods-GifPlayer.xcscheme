@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "1010"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B821EA69C728016BD2A4B74792C07A8B"
+               BlueprintIdentifier = "342EA22BBF242D37AEA74205B6916D6B"
                BuildableName = "Pods_GifPlayer.framework"
                BlueprintName = "Pods-GifPlayer"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B821EA69C728016BD2A4B74792C07A8B"
+            BlueprintIdentifier = "342EA22BBF242D37AEA74205B6916D6B"
             BuildableName = "Pods_GifPlayer.framework"
             BlueprintName = "Pods-GifPlayer"
             ReferencedContainer = "container:Pods.xcodeproj">

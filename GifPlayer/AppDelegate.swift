@@ -9,7 +9,6 @@
 import Cocoa
 import Fabric
 import Crashlytics
-import JFImageSavePanel
 import WebKit
 
 let thumbPath  = NSHomeDirectory() + "/Documents/thumb"
@@ -32,6 +31,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var fileToOpen:String = ""
     var windowControllers:[WindowController] = []
     let dockMenu = NSMenu()
+    
+    var alert:AXAlert! = nil
     
     @IBOutlet weak var createGifMenuItem: NSMenuItem!
     @IBOutlet weak var recordMenuItem: NSMenuItem!
@@ -68,7 +69,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var window:FOTWindow! {
         for windowController in self.windowControllers {
             if(windowController.window?.isKeyWindow)! {
-                return windowController.window as! FOTWindow
+                return windowController.window as? FOTWindow
             }
         }
         
@@ -206,7 +207,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         Fabric.with([Crashlytics.self])
         
-        self.editWindowController = NSStoryboard(name: "Edit", bundle: nil).instantiateController(withIdentifier: "GIFEditor") as! NSWindowController
+        self.editWindowController = NSStoryboard(name: "Edit", bundle: nil).instantiateController(withIdentifier: "GIFEditor") as? NSWindowController
         
         //self.editWindowController.window?.makeKeyAndOrderFront(self.editWindowController.window)
         
@@ -239,7 +240,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let contentView:MCDragAndDropImageView = self.loadNewGifWindowController.window!.contentView as! MCDragAndDropImageView
         contentView.delegate = self
-        
         self.loadNewGifWindowController.window?.makeKeyAndOrderFront(self.loadNewGifWindowController.window)
 
     }
@@ -293,9 +293,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             break
         case Notification.Name("CloneCurrentWindow"):
             print("cloning")
-            let newWindowController = self.displayWindow(filename: viewController.filename as String)
-            newWindowController.window?.makeKey()
-            NSApp.activate(ignoringOtherApps: true)
+            if let newWindowController = self.displayWindow(filename: viewController.filename as String) {
+                newWindowController.window?.makeKey()
+                NSApp.activate(ignoringOtherApps: true)
+            }
+
             break
         case Notification.Name("OpenNextWindow"):
             let nextWindowIndex = self.windowControllers.index(after: windowIndex!)
@@ -352,7 +354,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var timer:Timer!
     
-    func displayWindow(filename: String) -> NSWindowController {
+    func displayWindow(filename: String) -> NSWindowController? {
         let windowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "MainWindowController") as! NSWindowController
         
         windowController.shouldCascadeWindows = true
@@ -388,7 +390,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             viewController.image = NSImage(byReferencingFile: filename)!
             //viewController.imageView.loadGIF(gifFileName: URL(fileURLWithPath: filename))
             viewController.imageView.animates = true
-            viewController.imageView.loadGIF(gifFileName: URL(fileURLWithPath: filename))
+            if !viewController.imageView.loadGIF(gifFileName: URL(fileURLWithPath: filename)) {
+                return nil
+            }
             imageSize = (viewController.imageView.image?.size)!
         }
 
@@ -438,9 +442,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         for windowController in self.windowControllers {
             if(windowController.window?.isKeyWindow)! {
                 let viewController:ViewController = windowController.contentViewController as! ViewController
-                let newWindowController = self.displayWindow(filename: viewController.filename as String)
-                newWindowController.window?.makeKey()
-                NSApp.activate(ignoringOtherApps: true)
+                if let newWindowController = self.displayWindow(filename: viewController.filename as String) {
+                    newWindowController.window?.makeKey()
+                    NSApp.activate(ignoringOtherApps: true)
+                }
             }
         }
     }
@@ -453,20 +458,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.createGIFWindowController.close()
         self.createGIFWindowController = nil
-        self.createGIFWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "CreateGIFWindowController") as! NSWindowController
+        self.createGIFWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "CreateGIFWindowController") as? NSWindowController
     }
     
     
     @IBAction func saveGIF(_ sender: Any) {
         var viewController:ViewController? = nil
         var mainWindowController:WindowController? = nil
-        var filepath = ""
-        
+        var filepath:String = ""
+
         for windowController in self.windowControllers {
             if(windowController.window?.isKeyWindow)! {
                 mainWindowController = windowController
                 viewController = windowController.contentViewController as? ViewController
                 filepath = viewController?.filename! as! String
+                
             }
         }
 
@@ -481,20 +487,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             _ = panel.url?.path
             if (result == NSFileHandlingPanelOKButton) {
                 let size = mainWindowController?.window?.frame.size
-//                let data = try? NSData(contentsOfFile: filepath) as Data
-//                GIFResizer.resizeGIF(data!, fileURL: panel.url!, maxEdgeSize: Double((size?.width)!))
                 
                 let gifsicle = Gifsicle()
-                gifsicle.runGifsicle(inputImage: filepath, resizeTo: size,
+                gifsicle.runGifsicle(inputImage: filepath,
+                                     resizeTo: size,
                                      optimize: 0,
                                      framesToDrop: nil,
                                      limitColors: 256,
-                                     delay: nil,
+                                     delay: abs((viewController?.imageView.currentDelay())!*100),
                                      trimmedFrames: nil,
                                      outputPath: (panel.url?.path)!)
 
+                
                 mainWindowController?.close()
-//                try? FileManager.default.copyItem(atPath: filepath, toPath: path!)
             }
         }
         
@@ -552,7 +557,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func openCreateGIFWindow(_ sender: Any) {
-        self.createGIFWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "CreateGIFWindowController") as! NSWindowController
+        self.createGIFWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "CreateGIFWindowController") as? NSWindowController
         
         self.createGIFWindowController.window?.makeKeyAndOrderFront(self)
         NSApp.activate(ignoringOtherApps: true)
@@ -575,7 +580,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func openMovieFilesFromFileSystem(_ sender: Any) {
-        self.openGifConverterWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "VideoToGifConverterWindowController") as! NSWindowController
+        self.openGifConverterWindowController = (NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "VideoToGifConverterWindowController") as! NSWindowController)
         
         (self.openGifConverterWindowController.contentViewController as! VideoToGifViewController).delegate = self
         
@@ -886,9 +891,18 @@ extension AppDelegate {
 }
 
 extension AppDelegate : MCDragAndDropImageViewDelegate {
+    
     func dragAndDropImageViewDidDrop(pasteboard:NSPasteboard) {
         let url:URL = NSURL(from: pasteboard)! as URL
-        _ = self.displayWindow(filename: url.path)
+        if self.displayWindow(filename: url.path) == nil {
+            self.alert = AXAlert(title: "Error", informativeText: "There was an error parsing this GIF")
+            
+            self.alert.addButton(AXAlertButton(alert: self.alert, title: "Okay", action: #selector(self.okay)))
+        }
+    }
+    
+    func okay() {
+        print("alert di")
     }
 }
 

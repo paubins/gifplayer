@@ -37,7 +37,7 @@ extension Gifsicle {
                      delay: Double?,
                      trimmedFrames: String?,
                      outputPath: String) {
-        assert((pathToGifsicle?.characters.count)! > 0, "No path to Gifsicle executable")
+        assert((pathToGifsicle?.count)! > 0, "No path to Gifsicle executable")
         
         /*  Here the basic arguments for gifsicle are plugged in for the process
             See: https://www.lcdf.org/gifsicle/ */
@@ -98,7 +98,7 @@ extension Gifsicle {
     }
     
     func getGifsicleInfo(inputImage: String) -> (GifInfo) {
-        assert((pathToGifsicle?.characters.count)! > 0, "No path to Gifsicle executable")
+        assert((pathToGifsicle?.count)! > 0, "No path to Gifsicle executable")
         
         let gifInfo =
             runSystemTaskForStringOutput(executablePath: pathToGifsicle!,

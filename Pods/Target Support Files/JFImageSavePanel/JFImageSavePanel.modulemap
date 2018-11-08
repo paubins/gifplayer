@@ -1,6 +1,0 @@
-framework module JFImageSavePanel {
-  umbrella header "JFImageSavePanel-umbrella.h"
-
-  export *
-  module * { export * }
-}

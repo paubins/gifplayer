@@ -152,8 +152,10 @@
         _titleBarFadeInAlphaValue = 1.0;
         _titleBarFadeOutAlphaValue = 0.0;
         
+        self.toolbar.showsBaselineSeparator = NO;
+        
 //        self.styleMask = NSWindowStyleMaskBorderless | NSWindowStyleMaskResizable;
-        [self setOpaque:YES];
+        [self setOpaque:NO];
         self.backgroundColor = NSColor.clearColor;
         self.hasShadow = NO;
         

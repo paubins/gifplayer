@@ -44,6 +44,11 @@ extension Gifsicle {
         
         var arguments:[String] = []
         
+        if delay != nil {
+            arguments.append("--delay")
+            arguments.append("\(Int(delay!))")
+        }
+        
         if framesToDrop == nil {
             arguments.append("-i")
             arguments.append(inputImage)
@@ -53,14 +58,9 @@ extension Gifsicle {
         }
         
         if trimmedFrames != nil {
-            let trimmedFramesArgument = "#\(trimmedFrames!)"
+            let trimmedFramesArgument = "\"#\(trimmedFrames!)\""
             
             arguments.append(trimmedFramesArgument)
-        }
-        
-        if delay != nil {
-            arguments.append("--delay")
-            arguments.append("\(Int(delay!))")
         }
         
         if framesToDrop != nil {

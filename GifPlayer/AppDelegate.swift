@@ -491,9 +491,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 let gifsicle = Gifsicle()
                 gifsicle.runGifsicle(inputImage: filepath,
                                      resizeTo: size,
-                                     optimize: 0,
+                                     optimize: nil,
                                      framesToDrop: nil,
-                                     limitColors: 256,
+                                     limitColors: nil,
                                      delay: abs((viewController?.imageView.currentDelay())!*100),
                                      trimmedFrames: nil,
                                      outputPath: (panel.url?.path)!)
@@ -894,11 +894,14 @@ extension AppDelegate : MCDragAndDropImageViewDelegate {
     
     func dragAndDropImageViewDidDrop(pasteboard:NSPasteboard) {
         let url:URL = NSURL(from: pasteboard)! as URL
-        if self.displayWindow(filename: url.path) == nil {
+        guard let image = (NSImage(byReferencingFile: url.path)?.representations[FIRST_FRAME] as! NSBitmapImageRep).value(forProperty: NSImageFrameCount) else {
             self.alert = AXAlert(title: "Error", informativeText: "There was an error parsing this GIF")
-            
             self.alert.addButton(AXAlertButton(alert: self.alert, title: "Okay", action: #selector(self.okay)))
+            self.alert.runModal()
+            return
         }
+        
+        self.displayWindow(filename: url.path)
     }
     
     func okay() {

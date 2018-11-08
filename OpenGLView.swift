@@ -49,6 +49,7 @@ class OpenGLView: NSOpenGLView
             UInt32(NSOpenGLPFANoRecovery),
             UInt32(NSOpenGLPFAColorSize),
             UInt32(NSOpenGLPFADepthSize),
+            
             UInt32(NSOpenGLPFAAccelerated)]
         
         self.pixelFormat = NSOpenGLPixelFormat(attributes: attributes)
@@ -69,8 +70,8 @@ class OpenGLView: NSOpenGLView
             return kCVReturnSuccess
         }
         
-        var swapInterval:GLint = 1
-        self.openGLContext?.setValues(&swapInterval, for: NSOpenGLCPSwapInterval)
+//        var swapInterval:GLint = 1
+//        self.openGLContext?.setValues(&swapInterval, for: NSOpenGLCPSwapInterval)
         
         if (gifRep.hasAlpha) {
             var aValue:GLint = 0;
@@ -141,13 +142,33 @@ class OpenGLView: NSOpenGLView
 //        glEnable(GLenum(GL_SAMPLE_ALPHA_TO_COVERAGE))
         glEnable(GLenum(GL_TEXTURE_2D))
         if (gifRep.hasAlpha) {
+//            glClearColor(0,0,0,0)
 //            glEnable(GLenum(GL_BLEND))
 //            glBlendFunc(GLenum(GL_ONE), GLenum(GL_ONE_MINUS_SRC_ALPHA))
 //            glEnable(GLenum(GL_SAMPLE_ALPHA_TO_COVERAGE))
-            glClearColor(0.5, 0.6, 0.7, 1.0)
-            glEnable(GLenum(GL_DEPTH_TEST))
+//            glClearColor(0.5, 0.6, 0.7, 1.0)
+//            glEnable(GLenum(GL_DEPTH_TEST))
 //            glColor4f(1.0, 1.0, 1.0, 1.0);
 //            glBlendFuncSeparate(GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA), GLenum(GL_ONE), GLenum(GL_ZERO));
+//            glEnable(GLenum(GL_ALPHA_TEST));
+//            glEnable(GLenum(GL_BLEND));
+//            glBlendFuncSeparate(GLenum(GL_ONE), GLenum(GL_ONE_MINUS_SRC_ALPHA), GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA));
+//            glDisable(GLenum(GL_CULL_FACE));
+//            glDisable(GLenum(GL_DEPTH_TEST))
+//            glClear(GLbitfield(GL_COLOR_BUFFER_BIT |
+//                GL_DEPTH_BUFFER_BIT));
+            
+//            glEnable(GLenum(GL_ALPHA_TEST));
+//
+//            glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_TEXTURE_ENV_MODE), GL_COMBINE);
+//            glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_COMBINE_RGB), GL_REPLACE);
+//            glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_SOURCE0_RGB), GL_PREVIOUS);
+//            glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_OPERAND0_RGB), GL_SRC_COLOR);
+//            glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_COMBINE_ALPHA), GL_REPLACE);
+//            glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_SOURCE0_ALPHA), GL_TEXTURE);
+//            glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_OPERAND0_ALPHA), GL_SRC_ALPHA);
+//
+//            glAlphaFunc(GLenum(GL_GREATER), 0.5);
         }
         
         //get one free texture name

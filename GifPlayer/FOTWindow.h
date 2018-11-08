@@ -80,4 +80,6 @@ typedef void (^FOTWindowTitleDrawingBlock)(BOOL drawsAsMainWindow, NSRect titleB
  */
 @property (nonatomic, strong) FOTWindowTitleDrawingBlock titleDrawingBlock;
 
+@property (readwrite) BOOL active;
+
 @end

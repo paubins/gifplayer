@@ -332,7 +332,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func playGIF(_ sender: Any) {
         for windowController in self.windowControllers {
-            if(windowController.window?.isKeyWindow)! {
+            if ((windowController.window?.isKeyWindow)! || (windowController.window as! FOTWindow).active) {
                 let viewController:ViewController = windowController.contentViewController as! ViewController
                 if(viewController.imageView.isPaused) {
                     viewController.imageView.isPaused = false

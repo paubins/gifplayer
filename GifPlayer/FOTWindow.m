@@ -90,6 +90,8 @@
     
     self.previousAlphaValue = window.alphaValue;
     
+    window.active = YES;
+    
     [window setAlphaValue:1];
 }
 
@@ -104,6 +106,8 @@
     [[window standardWindowButton:NSWindowZoomButton].animator setAlphaValue:window.titleBarFadeOutAlphaValue];
     [[window standardWindowButton:NSWindowDocumentIconButton] setAlphaValue:window.titleBarFadeOutAlphaValue];
     [_titleBar.animator setAlphaValue:window.titleBarFadeOutAlphaValue];
+    
+    window.active = NO;
     
     [window setAlphaValue:self.previousAlphaValue];
 }

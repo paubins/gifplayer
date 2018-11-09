@@ -41,6 +41,9 @@ class OpenGLView: NSOpenGLView
 
     override open func prepareOpenGL()
     {
+        if (self.animationImages.count == 0) {
+            return
+        }
         
         self.screenRect = (self.window?.frame)!
         
@@ -103,6 +106,9 @@ class OpenGLView: NSOpenGLView
     
     override func draw(_ dirtyRect: NSRect)
     {
+        if (self.animationImages.count == 0) {
+            return
+        }
         
         var target:NSRect = self.screenRect
         
@@ -139,38 +145,8 @@ class OpenGLView: NSOpenGLView
         // defines the pixel resolution of the screen (can be smaller than real screen, but than you will see pixels)
         glOrtho(0, GLdouble(screenRect.size.width), GLdouble(screenRect.size.height), 0, -1, 1)
         
-//        glEnable(GLenum(GL_SAMPLE_ALPHA_TO_COVERAGE))
         glEnable(GLenum(GL_TEXTURE_2D))
-        if (gifRep.hasAlpha) {
-//            glClearColor(0,0,0,0)
-//            glEnable(GLenum(GL_BLEND))
-//            glBlendFunc(GLenum(GL_ONE), GLenum(GL_ONE_MINUS_SRC_ALPHA))
-//            glEnable(GLenum(GL_SAMPLE_ALPHA_TO_COVERAGE))
-//            glClearColor(0.5, 0.6, 0.7, 1.0)
-//            glEnable(GLenum(GL_DEPTH_TEST))
-//            glColor4f(1.0, 1.0, 1.0, 1.0);
-//            glBlendFuncSeparate(GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA), GLenum(GL_ONE), GLenum(GL_ZERO));
-//            glEnable(GLenum(GL_ALPHA_TEST));
-//            glEnable(GLenum(GL_BLEND));
-//            glBlendFuncSeparate(GLenum(GL_ONE), GLenum(GL_ONE_MINUS_SRC_ALPHA), GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA));
-//            glDisable(GLenum(GL_CULL_FACE));
-//            glDisable(GLenum(GL_DEPTH_TEST))
-//            glClear(GLbitfield(GL_COLOR_BUFFER_BIT |
-//                GL_DEPTH_BUFFER_BIT));
-            
-//            glEnable(GLenum(GL_ALPHA_TEST));
-//
-//            glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_TEXTURE_ENV_MODE), GL_COMBINE);
-//            glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_COMBINE_RGB), GL_REPLACE);
-//            glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_SOURCE0_RGB), GL_PREVIOUS);
-//            glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_OPERAND0_RGB), GL_SRC_COLOR);
-//            glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_COMBINE_ALPHA), GL_REPLACE);
-//            glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_SOURCE0_ALPHA), GL_TEXTURE);
-//            glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_OPERAND0_ALPHA), GL_SRC_ALPHA);
-//
-//            glAlphaFunc(GLenum(GL_GREATER), 0.5);
-        }
-        
+
         //get one free texture name
         var frameTextureName: GLuint = 0
         
@@ -184,14 +160,11 @@ class OpenGLView: NSOpenGLView
         glTexParameterf(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_MAG_FILTER), GLfloat(GLenum(GL_LINEAR)))
         glTexParameterf(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_WRAP_S), GLfloat(GLenum(GL_CLAMP_TO_EDGE)))
         glTexParameterf(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_WRAP_T), GLfloat(GLenum(GL_CLAMP_TO_EDGE)))
-//        glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_TEXTURE_ENV_MODE), GL_REPLACE);
-//        glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_TEXTURE_ENV_MODE), GL_MODULATE);
+        glTexEnvi(GLenum(GL_TEXTURE_ENV), GLenum(GL_TEXTURE_ENV_MODE), GL_REPLACE);
         
         // we load bitmap data from memory and save CPU time (created during startAnimation)
         let pixels:NSData = animationImages[currFrameCount] as NSData //.uncompressed(using: .lz4)! as NSData
         
-        // let pixels:NSData = self.frameStore.frame(at: currFrameCount)!
-//        glEnable(GLenum(GL_DEPTH_TEST));
         glTexImage2D(GLenum(GL_TEXTURE_2D),
                      0,
                      GL_RGBA,
@@ -251,7 +224,12 @@ class OpenGLView: NSOpenGLView
     }
     
     func loadGIF(gifFileName:URL) -> Bool {
-        image = NSImage(byReferencingFile: gifFileName.path)!;
+        return self.loadGIF(data: try! Data(contentsOf: gifFileName))
+    }
+    
+    
+    func loadGIF(data: Data) -> Bool {
+        self.image = NSImage(data: data as Data)
         
         self.gifRep = (image.representations[FIRST_FRAME] as! NSBitmapImageRep)
         if let maxFrameCount = gifRep.value(forProperty: NSImageFrameCount) {
@@ -268,12 +246,14 @@ class OpenGLView: NSOpenGLView
                 animationImages.append(imgData)//.compressed(using: Compression.lz4)!)
             }
             
-            let source:CGImageSource = CGImageSourceCreateWithURL(NSURL(fileURLWithPath: gifFileName.path), nil)!
+            let source:CGImageSource = CGImageSourceCreateWithData(data as CFData, nil)!
             let duration:Double = max(CGImageFrameDuration(with: source, atIndex: 0),
                                       CGImageFrameDuration(with: source, atIndex: 1))
             
             self.timer = Timer(timeInterval: TimeInterval(duration), target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
             self.timer.fire()
+            
+            self.screenRect = (self.window?.frame)!
             
             RunLoop.main.add(self.timer, forMode: RunLoopMode.defaultRunLoopMode)
             return true

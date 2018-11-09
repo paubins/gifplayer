@@ -10,7 +10,7 @@
 
 @implementation AXAlertWindow
 
--(instancetype)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag{
+-(instancetype)initWithContentRect:(NSRect)contentRect styleMask:(NSWindowStyleMask)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag{
     
     self = [super initWithContentRect:contentRect styleMask:aStyle backing:bufferingType defer:flag];
     
@@ -32,7 +32,7 @@
 
 +(AXAlertWindow *)defaultWindow{
     
-    AXAlertWindow *window = [[AXAlertWindow alloc] initWithContentRect:centerScreenRectFromSize(AXAlertDefaultSize) styleMask:(NSTitledWindowMask | NSWindowStyleMaskClosable | NSMiniaturizableWindowMask | NSFullSizeContentViewWindowMask) backing:NSBackingStoreBuffered defer:YES];
+    AXAlertWindow *window = [[AXAlertWindow alloc] initWithContentRect:centerScreenRectFromSize(AXAlertDefaultSize) styleMask:(NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskFullSizeContentView) backing:NSBackingStoreBuffered defer:YES];
     
     [window setOpaque:NO];
     

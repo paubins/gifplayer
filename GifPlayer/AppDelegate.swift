@@ -350,8 +350,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let screensaverPath = Bundle.main.url(forResource: "AnimatedGif", withExtension: "saver")
         NSWorkspace.shared().open(screensaverPath!)
     }
-//    imageView.downloadImageFromURL("https://www.google.com/images/logo.gif")
-    
+
     var timer:Timer!
     
     func displayWindow(filename: String) -> NSWindowController? {
@@ -364,38 +363,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         viewController.filename = filename as NSString
         
-        let imageSize:CGSize!
-        
-        if (filename.contains("http")) {
-            viewController.imageView.frame = NSRect(x:0, y:0, width: 300, height: 300)
-            viewController.imageView.downloadImageFromURL(filename, errorImage: NSImage(named: "errorstop.png"), usesSpinningWheel: true)
-            imageSize = CGSize(width: 300, height: 300)
-            
-            self.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { (timer) in
-                if (!viewController.imageView.isLoadingImage) {
-                    let imageSize = (viewController.imageView.image?.size)!
-                    viewController.imageView.frame = NSRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
-//                    let NSRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
-                    let windowSize = windowController.window?.frame.origin
-                    let newWindowSize = NSRect(x: (windowSize?.x)!, y: (windowSize?.y)!, width: imageSize.width, height: imageSize.height)
-                    windowController.window?.setFrame(newWindowSize, display: true, animate: true)
-                    
-                    self.timer.invalidate()
-                    self.timer = nil
-                }
-            })
-            
-            self.timer.fire()
-        } else {
-            viewController.image = NSImage(byReferencingFile: filename)!
-            //viewController.imageView.loadGIF(gifFileName: URL(fileURLWithPath: filename))
-            viewController.imageView.animates = true
-            if !viewController.imageView.loadGIF(gifFileName: URL(fileURLWithPath: filename)) {
-                return nil
-            }
-            imageSize = (viewController.imageView.image?.size)!
-        }
-
         let menuItem:NSMenuItem = self.dockMenu.addItem(withTitle: filename, action: #selector(viewController.showWindow), keyEquivalent: "P")
         menuItem.target = viewController
         
@@ -414,10 +381,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.titleVisibility = .hidden
         window.styleMask.insert(NSWindowStyleMask.fullSizeContentView)
         
-        var windowRect:NSRect = window.frame
-        windowRect.size = imageSize
+        let imageSize:CGSize!
         
-        window.setFrame(windowRect, display: true, animate: true)
+        if (filename.contains("http")) {
+            viewController.download(url: filename) { (success, size) in
+                if (!success) {
+                    self.alert = AXAlert(title: "Error", informativeText: "There was an error parsing this GIF")
+                    self.alert.addButton(AXAlertButton(alert: self.alert, title: "Okay", action: #selector(self.okay)))
+                    self.alert.runModal()
+                } else {
+                    let windowSize = windowController.window?.frame.origin
+                    let newWindowSize = NSRect(x: (windowSize?.x)!,
+                                               y: (windowSize?.y)!,
+                                               width: size.width, height: size.height)
+                    windowController.window?.setFrame(newWindowSize, display: true, animate: true)
+                }
+            }
+        } else {
+            viewController.image = NSImage(byReferencingFile: filename)!
+            viewController.imageView.animates = true
+            if !viewController.imageView.loadGIF(gifFileName: URL(fileURLWithPath: filename)) {
+                return nil
+            }
+            var windowRect:NSRect = window.frame
+            windowRect.size = (viewController.imageView.image?.size)!
+            window.setFrame(windowRect, display: true, animate: true)
+        }
+
         
         let topLeftPoint:NSPoint = (self.windowControllers.last?.window?.frame.origin)!
         
@@ -901,7 +891,7 @@ extension AppDelegate : MCDragAndDropImageViewDelegate {
             return
         }
         
-        self.displayWindow(filename: url.path)
+        var _ = self.displayWindow(filename: url.path)
     }
     
     func okay() {

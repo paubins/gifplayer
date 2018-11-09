@@ -28,7 +28,7 @@ import Cocoa
 class DKAsyncImageView: OpenGLView, URLSessionDelegate, URLSessionDownloadDelegate {
     fileprivate var imageURLDownloadTask: URLSessionDownloadTask?
     fileprivate var networkSession: Foundation.URLSession?
-    fileprivate var imageDownloadData: Data?
+    var imageDownloadData: Data?
     fileprivate var errorImage: NSImage?
     
     fileprivate var spinningWheel: NSProgressIndicator?
@@ -167,9 +167,11 @@ class DKAsyncImageView: OpenGLView, URLSessionDelegate, URLSessionDownloadDelega
         
         spinningWheel?.stopAnimation(self)
         spinningWheel?.removeFromSuperview()
-        imageDownloadData = nil
+//        imageDownloadData = nil
         imageURLDownloadTask = nil
         errorImage = nil
+        
+//        self.loadGIF(gifFileName: <#T##URL#>)
 
     }
     

@@ -162,6 +162,7 @@
         [self setOpaque:NO];
         self.backgroundColor = NSColor.clearColor;
         self.hasShadow = NO;
+        [self setContentBorderThickness:0 forEdge:NSMaxYEdge];
         
         _originalThemeFrame = [self.contentView superview];
         _originalThemeFrame.wantsLayer = YES;

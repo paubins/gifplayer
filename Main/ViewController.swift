@@ -15,6 +15,8 @@ class ViewController: NSViewController {
     var editedFilename:NSString!
     var active:Bool = false
     
+    @IBOutlet weak var loadingIndicator: NSProgressIndicator!
+    
     var textView: NSTextView = NSTextView() // REMOVE
     
     let imageView:ImageView = {
@@ -27,10 +29,11 @@ class ViewController: NSViewController {
         
         return imageView
     }()
-    
+
     var widthConstraint:NSLayoutConstraint!
     var heightConstraint:NSLayoutConstraint!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -160,6 +163,30 @@ class ViewController: NSViewController {
     
     func currentDelay() -> TimeInterval {
         return self.imageView.currentDelay()
+    }
+    
+    var timer:Timer!
+    var alert:AXAlert!
+    
+    func download(url: String, completionHandler: @escaping (Bool, CGSize) -> ()) {
+        self.imageView.frame = NSRect(x:0, y:0, width: 300, height: 300)
+        self.imageView.downloadImageFromURL(url, errorImage: NSImage(named: "errorstop.png"),
+                                                      usesSpinningWheel: true)
+        
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { (timer) in
+            if (!self.imageView.isLoadingImage) {
+                let imageSize = (self.imageView.image?.size)!
+                
+                self.imageView.frame = NSRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
+                
+                self.timer.invalidate()
+                self.timer = nil
+
+                completionHandler(self.imageView.loadGIF(data: self.imageView.imageDownloadData!), imageSize)
+            }
+        })
+        
+        self.timer.fire()
     }
 }
 

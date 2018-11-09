@@ -437,8 +437,18 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="a6v-iA-HAb">
+                                <rect key="frame" x="224" y="119" width="32" height="32"/>
+                            </progressIndicator>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="a6v-iA-HAb" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="eFY-N4-UYs"/>
+                            <constraint firstItem="a6v-iA-HAb" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="uTW-Ii-mi8"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loadingIndicator" destination="a6v-iA-HAb" id="xeq-BG-32R"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -538,6 +548,7 @@
                                                 <constraint firstItem="7zM-un-oA5" firstAttribute="centerY" secondItem="e1l-hY-Hf1" secondAttribute="centerY" id="Beo-gw-hiL"/>
                                                 <constraint firstItem="6Ar-Cz-PUj" firstAttribute="centerY" secondItem="e1l-hY-Hf1" secondAttribute="centerY" id="ErM-mq-NAZ"/>
                                                 <constraint firstItem="0dw-H4-lm2" firstAttribute="centerY" secondItem="e1l-hY-Hf1" secondAttribute="centerY" id="WGI-3m-qa8"/>
+                                                <constraint firstItem="6Ar-Cz-PUj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="R9e-Xm-3GP" secondAttribute="trailing" constant="8" symbolic="YES" id="cIm-Rf-CG4"/>
                                                 <constraint firstItem="R9e-Xm-3GP" firstAttribute="leading" secondItem="0dw-H4-lm2" secondAttribute="trailing" constant="8" id="cNS-Da-ayT"/>
                                                 <constraint firstItem="hc8-en-dtt" firstAttribute="centerY" secondItem="e1l-hY-Hf1" secondAttribute="centerY" id="jJ5-79-FzX"/>
                                                 <constraint firstAttribute="trailing" secondItem="hc8-en-dtt" secondAttribute="trailing" constant="10" id="sdd-NY-nqm"/>

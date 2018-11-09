@@ -70,7 +70,7 @@
     
     if (self.shouldBlackout) {
     
-        NSWindow *window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, [[NSScreen mainScreen] frame].size.width, [[NSScreen mainScreen] frame].size.height) styleMask:(NSTitledWindowMask | NSWindowStyleMaskClosable | NSMiniaturizableWindowMask | NSFullSizeContentViewWindowMask) backing:NSBackingStoreBuffered defer:YES];
+        NSWindow *window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, [[NSScreen mainScreen] frame].size.width, [[NSScreen mainScreen] frame].size.height) styleMask:(NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskFullSizeContentView) backing:NSBackingStoreBuffered defer:YES];
     
     [window setOpaque:NO];
     

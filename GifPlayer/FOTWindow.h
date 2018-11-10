@@ -28,7 +28,7 @@
 /**
  NSWindow subclass to make auto hiding and showing a window's title bar (a la QuickTime X) easier.
  */
-@interface FOTWindow : NSWindow
+@interface FOTWindow : NSWindow <NSAnimationDelegate>
 
 @property (nonatomic, strong) FOTWindowFrame *fullContentView;
 @property (nonatomic, strong) NSMenuItem *menuItem;

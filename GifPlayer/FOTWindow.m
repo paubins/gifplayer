@@ -70,7 +70,7 @@
     if(self.trackingArea) {
         [self removeTrackingArea:self.trackingArea];
         
-        self.trackingArea = [[NSTrackingArea alloc] initWithRect:self.bounds options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveAlways ) owner:self userInfo:nil];
+        self.trackingArea = [[NSTrackingArea alloc] initWithRect:self.frame options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveAlways ) owner:self userInfo:nil];
         
         [self addTrackingArea:self.trackingArea];
     }
@@ -158,7 +158,7 @@
         
         self.toolbar.showsBaselineSeparator = NO;
         
-//        self.styleMask = NSWindowStyleMaskBorderless | NSWindowStyleMaskResizable;
+        self.styleMask = NSWindowStyleMaskBorderless;
         [self setOpaque:NO];
         self.backgroundColor = NSColor.clearColor;
         self.hasShadow = NO;
@@ -271,11 +271,20 @@
     animations.animationBlockingMode = NSAnimationBlocking;
     animations.animationCurve = NSAnimationEaseInOut;
     animations.duration = 0.15f;
+    animations.delegate = self;
     [animations startAnimation];
 }
 
 - (NSRect)constrainFrameRect:(NSRect)frameRect toScreen:(NSScreen *)screen {
     return frameRect;
+}
+
+- (BOOL)canBecomeKeyWindow {
+    return YES;
+}
+
+- (void)animationDidEnd:(NSAnimation *)animation {
+    _originalThemeFrame.frame = self.fullContentView.bounds;
 }
 
 @end

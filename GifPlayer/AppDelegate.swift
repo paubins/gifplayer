@@ -34,6 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var alert:AXAlert! = nil
     
+    @IBOutlet weak var minimizeButton: NSMenuItem!
     @IBOutlet weak var createGifMenuItem: NSMenuItem!
     @IBOutlet weak var recordMenuItem: NSMenuItem!
     @IBOutlet weak var stopMenuItem: NSMenuItem!
@@ -48,9 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var openGifConverterWindowController:NSWindowController!
     
     let feedbackWindowController:NSWindowController = NSWindowController()
-    
     let openGIFWindowController:NSWindowController = NSWindowController()
-    
     let pasteboardWatcher:PasteboardWatcher = PasteboardWatcher(fileKinds: ["gif"])
     
     var mainTouchBarWindowContoller:WindowController!
@@ -82,6 +81,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let (numberOfFrames, _, frameDelay) = gifsicle.getGifsicleInfo(inputImage: viewController.filename as String)
         
         return (numberOfFrames, frameDelay)
+    }
+    
+    @IBAction func minimizeWindow(_ sender: Any) {
+        for windowController in self.windowControllers {
+            if(windowController.window?.isKeyWindow)! {
+                (windowController.window as? FOTWindow)?.toggleFullScreen(self)
+            }
+        }
     }
     
     @IBAction func dropFrames(_ sender: Any) {

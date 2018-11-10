@@ -216,9 +216,9 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="FRx-pP-PhG"/>
-                                        <menuItem title="Close" keyEquivalent="w" id="N0Q-1s-aIf">
+                                        <menuItem title="Close" keyEquivalent="w" id="umD-3z-a3b">
                                             <connections>
-                                                <action selector="closeWindow:" target="Voe-Tx-rLC" id="xPB-g6-FOr"/>
+                                                <action selector="closeWindow:" target="Voe-Tx-rLC" id="xAi-qB-wfW"/>
                                             </connections>
                                         </menuItem>
                                     </items>

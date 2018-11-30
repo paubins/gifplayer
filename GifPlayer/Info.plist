@@ -6,21 +6,6 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string></string>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>*</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>File</string>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
-		</dict>
-	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -73,21 +58,61 @@
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.compuserve.gif</string>
+			</array>
+			<key>LSIsAppleDefaultForType</key>
+			<true/>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>com.compuserve.gif </string>
+				<string>com.compuserve.gif</string>
+				<string>public.gif</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>GIF</string>
 			<key>UTTypeIconFile</key>
-			<string></string>
+			<string>gif (2)-128</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.paubins.DotGif</string>
+			<string>com.compuserve.gif</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
 					<string>gif</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>image/gif</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>LSIsAppleDefaultForType</key>
+			<true/>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.compuserve.gif</string>
+				<string>public.gif</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>DotGif</string>
+			<key>UTTypeIconFile</key>
+			<string>gif (2)-128</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.compuserve.gif</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>gif</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>image/gif</string>
 				</array>
 			</dict>
 		</dict>

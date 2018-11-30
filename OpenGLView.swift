@@ -136,9 +136,7 @@ class OpenGLView: NSOpenGLView
         target.origin.x = (screenRect.size.width - image.size.width)/2;
         
         self.openGLContext!.makeCurrentContext()
-
-//        OpenGLHelpers::clear(Colours::transparentBlack);
-
+        
         // Start phase
         glPushMatrix()
         
@@ -196,6 +194,7 @@ class OpenGLView: NSOpenGLView
         glDisable(GLenum(GL_BLEND));
         glDisable(GLenum(GL_TEXTURE_2D));
         
+
         //End phase
         glPopMatrix();
         

@@ -409,7 +409,6 @@
 				5FA74AD61EED0C8C007642C8 /* Frameworks */,
 				5FA74AD71EED0C8C007642C8 /* Resources */,
 				A0FC463A558CB7D98EBACA7C /* [CP] Embed Pods Frameworks */,
-				C3EC1FBB59E2F730077C43DF /* [CP] Copy Pods Resources */,
 				5FCD5F041EF6F135003775D1 /* ShellScript */,
 			);
 			buildRules = (
@@ -433,7 +432,7 @@
 				TargetAttributes = {
 					5FA74AD81EED0C8C007642C8 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 3XSPEUHQ6Y;
+						DevelopmentTeam = 42N9D6EK46;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -532,21 +531,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GifPlayer/Pods-GifPlayer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C3EC1FBB59E2F730077C43DF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GifPlayer/Pods-GifPlayer-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -787,7 +771,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 3XSPEUHQ6Y;
+				DEVELOPMENT_TEAM = 42N9D6EK46;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -815,7 +799,7 @@
 				CODE_SIGN_ENTITLEMENTS = GifPlayer/.GIF.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 3XSPEUHQ6Y;
+				DEVELOPMENT_TEAM = 42N9D6EK46;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",

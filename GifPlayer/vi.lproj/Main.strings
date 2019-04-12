@@ -3,10 +3,10 @@
 "1Xt-HY-uBw.title" = "DotGIF";
 
 /* Class = "NSMenuItem"; title = "Stop"; ObjectID = "4cI-dw-CQq"; */
-"4cI-dw-CQq.title" = "Stop";
+"4cI-dw-CQq.title" = "Dừng lại";
 
 /* Class = "NSMenuItem"; title = "About DotGIF"; ObjectID = "5kV-Vb-QxS"; */
-"5kV-Vb-QxS.title" = "About DotGIF";
+"5kV-Vb-QxS.title" = "Giới thiệu về DotGIF";
 
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
 "AYu-sK-qS6.title" = "Main Menu";
@@ -27,31 +27,31 @@
 "JIQ-vy-0mX.ibExternalAccessibilityDescription" = "Bottom Bar";
 
 /* Class = "NSMenuItem"; title = "Close"; ObjectID = "N0Q-1s-aIf"; */
-"N0Q-1s-aIf.title" = "Close";
+"N0Q-1s-aIf.title" = "Gần";
 
 /* Class = "NSWindow"; title = "Record"; ObjectID = "O18-xP-gZu"; */
-"O18-xP-gZu.title" = "Record";
+"O18-xP-gZu.title" = "Ghi lại";
 
 /* Class = "NSMenu"; title = "Menu"; ObjectID = "PmE-NM-Naz"; */
-"PmE-NM-Naz.title" = "Menu";
+"PmE-NM-Naz.title" = "Thực đơn";
 
 /* Class = "NSMenuItem"; title = "Italic"; ObjectID = "Pme-iZ-7yS"; */
 "Pme-iZ-7yS.title" = "Italic";
 
 /* Class = "NSMenuItem"; title = "Feedback"; ObjectID = "Pxa-ao-5Ga"; */
-"Pxa-ao-5Ga.title" = "Feedback";
+"Pxa-ao-5Ga.title" = "Phản hồi";
 
 /* Class = "NSMenuItem"; title = "Play"; ObjectID = "U8d-jE-tgS"; */
-"U8d-jE-tgS.title" = "Play";
+"U8d-jE-tgS.title" = "Chơi";
 
 /* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "Vci-nF-CKH"; */
 "Vci-nF-CKH.title" = "Item 1";
 
 /* Class = "NSMenu"; title = "Feedback"; ObjectID = "XiK-Sk-z4g"; */
-"XiK-Sk-z4g.title" = "Feedback";
+"XiK-Sk-z4g.title" = "Phản hồi";
 
 /* Class = "NSMenuItem"; title = "Submit Feedback"; ObjectID = "YRO-vh-u6V"; */
-"YRO-vh-u6V.title" = "Submit Feedback";
+"YRO-vh-u6V.title" = "Gửi phản hồi";
 
 /* Class = "NSMenuItem"; title = "Bold"; ObjectID = "icP-E7-qDg"; */
 "icP-E7-qDg.title" = "Bold";
@@ -66,37 +66,37 @@
 "kOI-fL-xWP.ibShadowedLabels[2]" = "Italic";
 
 /* Class = "NSMenuItem"; title = "Save"; ObjectID = "maX-wv-io5"; */
-"maX-wv-io5.title" = "Save";
+"maX-wv-io5.title" = "Tiết kiệm";
 
 /* Class = "NSMenuItem"; title = "Open GIFs"; ObjectID = "noY-Iw-4G7"; */
-"noY-Iw-4G7.title" = "Open GIFs";
+"noY-Iw-4G7.title" = "Mở GIF";
 
 /* Class = "NSMenuItem"; title = "Plain Text"; ObjectID = "nyL-ut-DIe"; */
 "nyL-ut-DIe.title" = "Plain Text";
 
 /* Class = "NSTextFieldCell"; title = "Size"; ObjectID = "oqT-WM-DvO"; */
-"oqT-WM-DvO.title" = "Size";
+"oqT-WM-DvO.title" = "Kích thước";
 
 /* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "rGB-tR-SGW"; */
 "rGB-tR-SGW.title" = "Item 3";
 
 /* Class = "NSButtonCell"; title = "Stop"; ObjectID = "t32-c6-W2T"; */
-"t32-c6-W2T.title" = "Stop";
+"t32-c6-W2T.title" = "Dừng lại";
 
 /* Class = "NSMenuItem"; title = "Create GIF"; ObjectID = "tgx-Ya-wNe"; */
-"tgx-Ya-wNe.title" = "Create GIF";
+"tgx-Ya-wNe.title" = "Tạo ảnh GIF";
 
 /* Class = "NSMenu"; title = "DotGIF"; ObjectID = "uQy-DD-JDr"; */
 "uQy-DD-JDr.title" = "DotGIF";
 
 /* Class = "NSMenuItem"; title = "Quit"; ObjectID = "vfh-7F-RdY"; */
-"vfh-7F-RdY.title" = "Quit";
+"vfh-7F-RdY.title" = "Thoát";
 
 /* Class = "NSButtonCell"; title = "Record"; ObjectID = "wd7-zu-euY"; */
-"wd7-zu-euY.title" = "Record";
+"wd7-zu-euY.title" = "Ghi lại";
 
 /* Class = "NSMenuItem"; title = "Clone"; ObjectID = "wnz-fP-8Le"; */
-"wnz-fP-8Le.title" = "Clone";
+"wnz-fP-8Le.title" = "Bản sao";
 
 /* Class = "NSMenuItem"; title = "Window"; ObjectID = "yKo-SV-iBN"; */
 "yKo-SV-iBN.title" = "Window";

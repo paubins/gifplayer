@@ -10,12 +10,12 @@ import Foundation
 
 class Editing: NSTextField {
     
-    private let commandKey = NSEventModifierFlags.command.rawValue
-    private let commandShiftKey = NSEventModifierFlags.command.rawValue | NSEventModifierFlags.shift.rawValue
+    private let commandKey = NSEvent.ModifierFlags.command.rawValue
+    private let commandShiftKey = NSEvent.ModifierFlags.command.rawValue | NSEvent.ModifierFlags.shift.rawValue
     
     override func performKeyEquivalent(with event: NSEvent) -> Bool {
-        if event.type == NSEventType.keyDown {
-            if (event.modifierFlags.rawValue & NSEventModifierFlags.deviceIndependentFlagsMask.rawValue) == commandKey {
+        if event.type == NSEvent.EventType.keyDown {
+            if (event.modifierFlags.rawValue & NSEvent.ModifierFlags.deviceIndependentFlagsMask.rawValue) == commandKey {
                 switch event.charactersIgnoringModifiers! {
                 case "x":
                     if NSApp.sendAction(#selector(NSText.cut(_:)), to:nil, from:self) { return true }
@@ -31,7 +31,7 @@ class Editing: NSTextField {
                     break
                 }
             }
-            else if (event.modifierFlags.rawValue & NSEventModifierFlags.deviceIndependentFlagsMask.rawValue) == commandShiftKey {
+            else if (event.modifierFlags.rawValue & NSEvent.ModifierFlags.deviceIndependentFlagsMask.rawValue) == commandShiftKey {
                 if event.charactersIgnoringModifiers == "Z" {
                     if NSApp.sendAction(Selector(("redo:")), to:nil, from:self) { return true }
                 }

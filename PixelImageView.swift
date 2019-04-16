@@ -24,7 +24,7 @@ class PixelImageView: NSImageView {
     // Disables antialiasing (No smoothing, clean pixels)
     override func draw(_ dirtyRect: NSRect) {
         NSGraphicsContext.saveGraphicsState()
-        NSGraphicsContext.current()?.imageInterpolation = .none
+        NSGraphicsContext.current?.imageInterpolation = .none
         super.draw(dirtyRect)
         NSGraphicsContext.restoreGraphicsState()
     }

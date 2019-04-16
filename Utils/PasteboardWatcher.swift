@@ -22,7 +22,7 @@ protocol PasteboardWatcherDelegate {
 class PasteboardWatcher : NSObject {
     
     // assigning a pasteboard object
-    private let pasteboard = NSPasteboard.general()
+    private let pasteboard = NSPasteboard.general
     
     // to keep track of count of objects currently copied
     // also helps in determining if a new object is copied
@@ -60,7 +60,7 @@ class PasteboardWatcher : NSObject {
     @objc private func checkForChangesInPasteboard() {
         // check if there is any new item copied
         // also check if kind of copied item is string
-        if let copiedString = pasteboard.string(forType: NSPasteboardTypeString), pasteboard.changeCount != changeCount {
+        if let copiedString = pasteboard.string(forType: NSPasteboard.PasteboardType.string), pasteboard.changeCount != changeCount {
             
             // obtain url from copied link if its path extension is one of the desired extensions
             if let fileUrl = NSURL(string: copiedString), self.fileKinds.contains(fileUrl.pathExtension!){

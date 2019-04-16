@@ -33,7 +33,7 @@ class EditViewController: NSViewController, ZoomViewDelegate, NSWindowDelegate {
         super.viewDidLoad()
         
         // Event listeners
-        NotificationCenter.default.addObserver(self, selector: #selector(EditViewController.windowResized), name: NSNotification.Name.NSWindowDidResize, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EditViewController.windowResized), name: NSWindow.didResizeNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(EditViewController.imageBackgroundColorUpdated), name: DrawingOptionsHandler.backgroundColorChangedNotificationName, object: nil)
 
         colorPicker.addObserver(self, forKeyPath: "color", options: .new, context: nil)
@@ -63,7 +63,7 @@ class EditViewController: NSViewController, ZoomViewDelegate, NSWindowDelegate {
         // Sets up window border
         self.view.window?.titlebarAppearsTransparent = true
         self.view.window?.isMovableByWindowBackground = true
-        self.view.window?.titleVisibility = NSWindowTitleVisibility.hidden
+        self.view.window?.titleVisibility = NSWindow.TitleVisibility.hidden
         self.view.window?.backgroundColor = GIFMakerViewController.backgroundColor
         self.view.window?.acceptsMouseMovedEvents = true
         self.view.window?.delegate = self
@@ -113,7 +113,7 @@ class EditViewController: NSViewController, ZoomViewDelegate, NSWindowDelegate {
     }
     
     // Called when something changes the color from outside this viewcontroller
-    func colorChangedOutside() {
+    @objc func colorChangedOutside() {
         colorPicker.color = DrawingOptionsHandler.shared.drawingColor
     }
     
@@ -194,13 +194,13 @@ class EditViewController: NSViewController, ZoomViewDelegate, NSWindowDelegate {
     }
 
     // When window resizes, make sure image is center
-    func windowResized() {
+    @objc func windowResized() {
         handleCenterImage()
     }
 
     
     // Called when the user changes the background color of the image
-    func imageBackgroundColorUpdated() {
+    @objc func imageBackgroundColorUpdated() {
         currentFrameImageView.backgroundColor = DrawingOptionsHandler.shared.imageBackgroundColor
     }
     

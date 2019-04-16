@@ -68,7 +68,7 @@ class VideoToGifViewController: NSViewController {
         selectVideoDialog.beginSheetModal(for: window, completionHandler: { result in
 
             // If the user pressed on the "Select Video" button, get the URL of the file.
-            if result == NSModalResponseOK {
+            if result == NSApplication.ModalResponse.OK {
                 // Close the open panel dialog.
                 self.selectVideoDialog.close()
                 
@@ -159,7 +159,7 @@ class VideoToGifViewController: NSViewController {
 
             self.saveGIFDialog.close()
 
-            if let destinationURL = self.saveGIFDialog.url, result == NSModalResponseOK {
+            if let destinationURL = self.saveGIFDialog.url, result == NSApplication.ModalResponse.OK {
                 self.videoState = .converted(url: destinationURL)
             } else {
                 print("No video choosen")

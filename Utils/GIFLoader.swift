@@ -30,12 +30,12 @@ class GIFLoader {
         }
         
         gifLoader.gifRep = (gifLoader.image.representations[FIRST_FRAME] as! NSBitmapImageRep)
-        if let maxFrameCount = gifLoader.gifRep.value(forProperty: NSImageFrameCount) {
+        if let maxFrameCount = gifLoader.gifRep.value(forProperty: NSBitmapImageRep.PropertyKey.frameCount) {
             gifLoader.maxFrameCount = maxFrameCount as! Int
             gifLoader.currFrameCount = FIRST_FRAME
             
             for frame in 0 ..< gifLoader.maxFrameCount {
-                gifLoader.gifRep.setProperty(NSImageCurrentFrame, withValue: frame)
+                gifLoader.gifRep.setProperty(NSBitmapImageRep.PropertyKey.currentFrame, withValue: frame)
                 
                 let data = gifLoader.gifRep.bitmapData
                 let size = gifLoader.gifRep.bytesPerPlane

@@ -70,7 +70,7 @@ class GIFConverterViewController: GIFViewController,DragDropViewDelegate,RangeSl
     
     var lock:Bool = true{
         didSet{
-            self.lockButton.image = NSImage(named: (lock == true) ? "lock" : "unlock")
+            self.lockButton.image = NSImage(named: (lock == true) ? NSImage.Name(rawValue: "lock") : NSImage.Name(rawValue: "unlock"))
         }
     }
     
@@ -119,7 +119,7 @@ class GIFConverterViewController: GIFViewController,DragDropViewDelegate,RangeSl
         theGIF.quality = Quality.normal
         
 
-        bg.image = NSImage(named: "loading")
+        bg.image = NSImage(named: NSImage.Name(rawValue: "loading"))
         indicator.isHidden = false
         indicator.startAnimation(nil)
         
@@ -162,13 +162,13 @@ class GIFConverterViewController: GIFViewController,DragDropViewDelegate,RangeSl
     
     func startLoading()
     {
-        bg.image = NSImage(named: "loading")
+        bg.image = NSImage(named: NSImage.Name(rawValue: "loading"))
         indicator.isHidden = false
         indicator.startAnimation(nil)
     }
     func stopLoading()
     {
-        self.bg.image = NSImage(named: "bg")
+        self.bg.image = NSImage(named: NSImage.Name(rawValue: "bg"))
         self.indicator.isHidden = true
         self.indicator.stopAnimation(nil)
     }
@@ -205,7 +205,7 @@ class GIFConverterViewController: GIFViewController,DragDropViewDelegate,RangeSl
         panel.nameFieldStringValue = (file as NSString).lastPathComponent
         panel.begin { (result) in
             
-            if result == NSFileHandlingPanelOKButton
+            if result.rawValue == NSFileHandlingPanelOKButton
             {
                 let fm  = FileManager.default
                 if let url = panel.url {

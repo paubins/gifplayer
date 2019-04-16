@@ -88,7 +88,7 @@ class GIFMakerViewController: NSViewController {
         // Sets up window border
         self.view.window?.titlebarAppearsTransparent = true
         self.view.window?.isMovableByWindowBackground = true
-        self.view.window?.titleVisibility = NSWindowTitleVisibility.hidden
+        self.view.window?.titleVisibility = NSWindow.TitleVisibility.hidden
         self.view.window?.backgroundColor = GIFMakerViewController.backgroundColor
         
         self.imageCollectionView.backgroundView?.backgroundColor = GIFMakerViewController.backgroundColor
@@ -107,7 +107,7 @@ class GIFMakerViewController: NSViewController {
     
     // View changing
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowPreview" {
+        if segue.identifier!.rawValue == "ShowPreview" {
             if let viewController = segue.destinationController as? PreviewViewController {
                 let previewImg = GIFHandler.createGIF(with: previewImages, loops: previewLoops, secondsPrFrame: previewFrameDuration)
                 viewController.previewImage = previewImg
@@ -140,7 +140,7 @@ class GIFMakerViewController: NSViewController {
 
     }
     
-    func reloadImages() {
+    @objc func reloadImages() {
         imageCollectionView.reloadData()
     }
     
@@ -162,8 +162,8 @@ class GIFMakerViewController: NSViewController {
     // Edit button clicked
     @IBAction func editButtonClicked(sender: AnyObject?) {
         if editingWindowController == nil {
-            let storyboard = NSStoryboard(name: "Edit", bundle: nil)
-            editingWindowController = storyboard.instantiateController(withIdentifier: "EditingWindow") as? NSWindowController
+            let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Edit"), bundle: nil)
+            editingWindowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "EditingWindow")) as? NSWindowController
         }
         
         if let contentViewController = editingWindowController?.contentViewController as? EditViewController {
@@ -195,10 +195,10 @@ class GIFMakerViewController: NSViewController {
         let panel = NSSavePanel()
         panel.allowedFileTypes = ["gif"]
         panel.begin { (res) in
-            if res == NSFileHandlingPanelOKButton {
+            if res.rawValue == NSFileHandlingPanelOKButton {
                 if let url = panel.url {
                     GIFHandler.createAndSaveGIF(with: tmpImages, savePath: url, loops: loops, secondsPrFrame: spf)
-                    NSWorkspace.shared().activateFileViewerSelecting([url])
+                    NSWorkspace.shared.activateFileViewerSelecting([url])
                 }
             }
         }
@@ -222,7 +222,7 @@ class GIFMakerViewController: NSViewController {
         alert.addButton(withTitle: "No")
         
         alert.beginSheetModal(for: self.view.window!) { (resp) in
-            if resp == NSAlertFirstButtonReturn { // Yes clicked, reset
+            if resp == NSApplication.ModalResponse.alertFirstButtonReturn { // Yes clicked, reset
                 self.currentFrames = [GIFFrame.emptyFrame()]
                 self.frameDurationTextField.stringValue = String(GIFHandler.defaultFrameDuration)
                 self.loopsTextField.stringValue = String(GIFHandler.defaultLoops)
@@ -261,7 +261,7 @@ class GIFMakerViewController: NSViewController {
         self.previewFrameDuration = spf
         self.previewImages = tmpImages
         
-        self.performSegue(withIdentifier: "ShowPreview", sender: self)
+        self.performSegue(withIdentifier: NSStoryboard.SegueIdentifier(rawValue: "ShowPreview"), sender: self)
     }
     
     
@@ -283,7 +283,7 @@ class GIFMakerViewController: NSViewController {
     
     // MARK: NotificationCenter calls (Mainly by UI components)
     // A frame wants to be removed (Get index of sender, and remove from 'currentImages')
-    func removeFrameCalled(sender: NSNotification) {
+    @objc func removeFrameCalled(sender: NSNotification) {
         guard let object = sender.object as? FrameCollectionViewItem else { return }
         
         // Remove the index and reload everything
@@ -296,7 +296,7 @@ class GIFMakerViewController: NSViewController {
 
     // An image was dragged to an imageView
     // Replace the image at the views location to the new one
-    func imageDraggedToImageView(sender: NSNotification) {
+    @objc func imageDraggedToImageView(sender: NSNotification) {
         guard let imgView = sender.object as? DragNotificationImageView,
               let owner = imgView.ownerCollectionViewItem,
               let frame = imgView.gifFrame else { return }
@@ -308,7 +308,7 @@ class GIFMakerViewController: NSViewController {
     
     // An ImageView was clicked
     // Show an open dialog and insert image in view and 'currentImages'
-    func clickedImageView(sender: NSNotification) {
+    @objc func clickedImageView(sender: NSNotification) {
         guard let imgView = sender.object as? DragNotificationImageView,
               let owner = imgView.ownerCollectionViewItem else { return }
         
@@ -321,7 +321,7 @@ class GIFMakerViewController: NSViewController {
         panel.beginSheetModal(for: self.view.window!) { (response) -> Void in
             
             // Insert image into imageview and 'currentImages' and reload
-            if response == NSFileHandlingPanelOKButton {
+            if response.rawValue == NSFileHandlingPanelOKButton {
                 let URL = panel.url
                 if URL != nil {
                     if let image = NSImage(contentsOf: URL!) {
@@ -338,7 +338,7 @@ class GIFMakerViewController: NSViewController {
     }
     
     // Notification when an error occurs in GIFHandler
-    func gifError(sender: NSNotification) {
+    @objc func gifError(sender: NSNotification) {
         guard let userInfo = sender.userInfo,
               let error = userInfo["Error"] as? String else {
             return
@@ -368,7 +368,7 @@ extension GIFMakerViewController: NSCollectionViewDelegate, NSCollectionViewData
         // Layout
         let flowLayout = NSCollectionViewFlowLayout()
         flowLayout.itemSize = NSSize(width: 200.0, height: 220.0)
-        flowLayout.sectionInset = EdgeInsets(top: 10.0, left: 20.0, bottom: 10.0, right: 20.0)
+        flowLayout.sectionInset = NSEdgeInsets(top: 10.0, left: 20.0, bottom: 10.0, right: 20.0)
         flowLayout.minimumInteritemSpacing = 20.0
         flowLayout.minimumLineSpacing = 20.0
         imageCollectionView.collectionViewLayout = flowLayout
@@ -376,9 +376,9 @@ extension GIFMakerViewController: NSCollectionViewDelegate, NSCollectionViewData
         view.wantsLayer = true
         
         // Drag
-        var dragTypes = NSImage.imageTypes()
-        dragTypes.append(NSURLPboardType)
-        imageCollectionView.register(forDraggedTypes: dragTypes)
+        var dragTypes = NSImage.imageTypes
+//        dragTypes.append(NSPasteboard.PasteboardType.fileURL)
+//        imageCollectionView.registerForDraggedTypes(dragTypes)
         imageCollectionView.setDraggingSourceOperationMask(NSDragOperation.every, forLocal: true)
         imageCollectionView.setDraggingSourceOperationMask(NSDragOperation.every, forLocal: false)
     }
@@ -399,7 +399,7 @@ extension GIFMakerViewController: NSCollectionViewDelegate, NSCollectionViewData
     
     // Creates item(frame) in collection view
     public func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        let item = collectionView.makeItem(withIdentifier: "FrameCollectionViewItem", for: indexPath)
+        let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "FrameCollectionViewItem"), for: indexPath)
         
         // Cast to FrameCollectionView, set index and reset image (To remove old index image)
         guard let frameCollectionViewItem = item as? FrameCollectionViewItem else { print("NO"); return item}
@@ -475,10 +475,10 @@ extension GIFMakerViewController: NSCollectionViewDelegate, NSCollectionViewData
     }
     
     // Is the drag allowed (And if so, what type of event is needed?)
-    func collectionView(_ collectionView: NSCollectionView, validateDrop draggingInfo: NSDraggingInfo, proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath>, dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
+    private func collectionView(_ collectionView: NSCollectionView, validateDrop draggingInfo: NSDraggingInfo, proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath>, dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionView.DropOperation>) -> NSDragOperation {
         
-        if proposedDropOperation.pointee == NSCollectionViewDropOperation.on {
-            proposedDropOperation.pointee = NSCollectionViewDropOperation.before
+        if proposedDropOperation.pointee == NSCollectionView.DropOperation.on {
+            proposedDropOperation.pointee = NSCollectionView.DropOperation.before
         }
         
         if indexPathsOfItemsBeingDragged == nil {
@@ -489,7 +489,7 @@ extension GIFMakerViewController: NSCollectionViewDelegate, NSCollectionViewData
     }
     
     // On drag complete (Frames inserted or moved here)
-    func collectionView(_ collectionView: NSCollectionView, acceptDrop draggingInfo: NSDraggingInfo, indexPath: IndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
+    private func collectionView(_ collectionView: NSCollectionView, acceptDrop draggingInfo: NSDraggingInfo, indexPath: IndexPath, dropOperation: NSCollectionView.DropOperation) -> Bool {
         // From outside (Finder, or whatever)
         if indexPathsOfItemsBeingDragged == nil {
             handleOutsideDrag(draggingInfo: draggingInfo, indexPath: indexPath)
@@ -510,7 +510,7 @@ extension GIFMakerViewController: NSCollectionViewDelegate, NSCollectionViewData
         
         // Enumerate URLs, load images, and insert into currentImages
         var dropped:[GIFFrame] = []
-        draggingInfo.enumerateDraggingItems(options: NSDraggingItemEnumerationOptions.concurrent, for: imageCollectionView, classes: [NSURL.self], searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey : NSNumber(value: true)]) { (draggingItem, idx, stop) in
+        draggingInfo.enumerateDraggingItems(options: NSDraggingItemEnumerationOptions.concurrent, for: imageCollectionView, classes: [NSURL.self], searchOptions: [NSPasteboard.ReadingOptionKey.urlReadingFileURLsOnly : NSNumber(value: true)]) { (draggingItem, idx, stop) in
             if let url = draggingItem.item as? URL,
                 let image = NSImage(contentsOf: url){
                 let frame = GIFFrame(image: image)

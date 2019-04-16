@@ -448,8 +448,43 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
+				fr,
+				"zh-Hans",
+				"zh-Hant",
+				de,
+				ja,
+				es,
+				"es-419",
+				it,
+				"es-MX",
+				nl,
+				ko,
+				"pt-BR",
+				"pt-PT",
+				da,
+				fi,
+				nb,
+				sv,
+				ru,
+				pl,
+				tr,
+				ar,
+				th,
+				cs,
+				hu,
+				ca,
+				hr,
+				el,
+				he,
+				ro,
+				sk,
+				uk,
+				id,
+				ms,
+				vi,
 			);
 			mainGroup = 5FA74AD01EED0C8C007642C8;
 			productRefGroup = 5FA74ADA1EED0C8D007642C8 /* Products */;
@@ -781,12 +816,13 @@
 				);
 				INFOPLIST_FILE = GifPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paubins.DotGif;
 				PRODUCT_NAME = DotGIF;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GifPlayer/GifPlayer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -809,11 +845,12 @@
 				);
 				INFOPLIST_FILE = GifPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paubins.DotGif;
 				PRODUCT_NAME = DotGIF;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GifPlayer/GifPlayer-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

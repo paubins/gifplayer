@@ -28,7 +28,7 @@ class DragDropView: NSView {
     override func awakeFromNib() {
         
         
-        register(forDraggedTypes: [NSFilenamesPboardType])
+        registerForDraggedTypes([NSPasteboard.PasteboardType.fileURL])
     }
 
 
@@ -37,7 +37,7 @@ class DragDropView: NSView {
         let sourceDragMask = sender.draggingSourceOperationMask()
         let pboard = sender.draggingPasteboard()
         
-        if pboard.availableType(from: [NSFilenamesPboardType]) == NSFilenamesPboardType {
+        if pboard.availableType(from: [NSPasteboard.PasteboardType.fileURL]) == NSPasteboard.PasteboardType.fileURL {
             if sourceDragMask.rawValue & NSDragOperation.generic.rawValue != 0 {
                 return NSDragOperation.link
             }
@@ -49,7 +49,7 @@ class DragDropView: NSView {
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
         
         
-        if let pasteboard = sender.draggingPasteboard().propertyList(forType: NSFilenamesPboardType) as? NSArray {
+        if let pasteboard = sender.draggingPasteboard().propertyList(forType: NSPasteboard.PasteboardType.fileURL) as? NSArray {
             if let path = pasteboard[0] as? String {
                 
                 if let suffix = (path as NSString).lastPathComponent.components(separatedBy: ".").last

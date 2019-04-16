@@ -6,7 +6,7 @@ class MainWindowController: NSWindowController {
     super.windowDidLoad()
 
     shouldCascadeWindows = false
-    windowFrameAutosaveName = "GifCaptureAutosave"
+    windowFrameAutosaveName = NSWindow.FrameAutosaveName(rawValue: "GifCaptureAutosave")
     
     window?.isOpaque = false
     window?.backgroundColor = NSColor.clear
@@ -21,13 +21,13 @@ class MainWindowController: NSWindowController {
     viewController.setup()
     
     NotificationCenter.default.addObserver(self, selector: #selector(windowDidMove),
-                                           name: NSNotification.Name.NSWindowDidMove, object: nil)
+                                           name: NSWindow.didMoveNotification, object: nil)
     
     NotificationCenter.default.addObserver(self, selector: #selector(windowDidMove),
-                                           name: NSNotification.Name.NSWindowDidResize, object: nil)
+                                           name: NSWindow.didResizeNotification, object: nil)
   }
     
-    func windowDidMove(sender: Notification) {
+    @objc func windowDidMove(sender: Notification) {
         let viewController:MainViewController = self.contentViewController as! MainViewController
         viewController.setup()
     }

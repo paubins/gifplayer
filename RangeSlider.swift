@@ -31,7 +31,7 @@ class RangeSlider: NSView {
             }
         }
     }
-    var track:NSTrackingRectTag?
+    var track:NSView.TrackingRectTag?
     var leftLabel : NSTextField!
     var rightLabel : NSTextField!
     
@@ -124,8 +124,8 @@ class RangeSlider: NSView {
         begin.wantsLayer = true
         end.wantsLayer = true
         
-        begin.image = NSImage(named:"dot")
-        end.image = NSImage(named:"dot")
+        begin.image = NSImage(named:NSImage.Name(rawValue: "dot"))
+        end.image = NSImage(named:NSImage.Name(rawValue: "dot"))
         
         
         

@@ -79,10 +79,10 @@ class DKAsyncImageView: OpenGLView, URLSessionDelegate, URLSessionDownloadDelega
                 spinningWheel = NSProgressIndicator()
                 if let spinningWheel = spinningWheel {
                     addSubview(spinningWheel)
-                    spinningWheel.style = NSProgressIndicatorStyle.spinningStyle
+                    spinningWheel.style = NSProgressIndicator.Style.spinning
                     spinningWheel.isDisplayedWhenStopped = false
                     spinningWheel.frame = NSMakeRect(self.frame.size.width * 0.5 - 16, self.frame.size.height * 0.5 - 16, 32, 32)
-                    spinningWheel.controlSize = NSControlSize.regular
+                    spinningWheel.controlSize = NSControl.ControlSize.regular
                     spinningWheel.startAnimation(self)
                 }
                 
@@ -90,10 +90,10 @@ class DKAsyncImageView: OpenGLView, URLSessionDelegate, URLSessionDownloadDelega
                 spinningWheel = NSProgressIndicator()
                 if let spinningWheel = spinningWheel {
                     addSubview(spinningWheel)
-                    spinningWheel.style = NSProgressIndicatorStyle.spinningStyle
+                    spinningWheel.style = NSProgressIndicator.Style.spinning
                     spinningWheel.isDisplayedWhenStopped = false
                     spinningWheel.frame = NSMakeRect(self.frame.size.width * 0.5 - 8, self.frame.size.height * 0.5 - 8, 16, 16)
-                    spinningWheel.controlSize = NSControlSize.small
+                    spinningWheel.controlSize = NSControl.ControlSize.small
                     spinningWheel.startAnimation(self)
                 }
             }
@@ -227,7 +227,7 @@ class DKAsyncImageView: OpenGLView, URLSessionDelegate, URLSessionDownloadDelega
             removeTrackingArea(trackingArea)
         }
         
-        let opts: NSTrackingAreaOptions = NSTrackingAreaOptions(rawValue: NSTrackingAreaOptions.mouseEnteredAndExited.rawValue | NSTrackingAreaOptions.activeAlways.rawValue)
+        let opts: NSTrackingArea.Options = NSTrackingArea.Options(rawValue: NSTrackingArea.Options.mouseEnteredAndExited.rawValue | NSTrackingArea.Options.activeAlways.rawValue)
         trackingArea = NSTrackingArea(rect: self.bounds, options: opts, owner: self, userInfo: nil)
         if let trackingArea = trackingArea {
             self.addTrackingArea(trackingArea)

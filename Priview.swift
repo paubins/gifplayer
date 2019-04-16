@@ -61,14 +61,14 @@ class Priview: NSView {
         close.bezelStyle = .disclosure
         close.isBordered = false
         //close.layer?.backgroundColor = NSColor.clearColor().CGColor
-        close.image = NSImage(named: "close")
+        close.image = NSImage(named: NSImage.Name(rawValue: "close"))
         //close.wantsLayer = true
         close.target = self
         close.action = #selector(self.close)
         self.addSubview(close)
         
     }
-    func close()
+    @objc func close()
     {
         self.isHidden = true
         delegate?.didClose()

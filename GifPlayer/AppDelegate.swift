@@ -214,7 +214,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         Fabric.with([Crashlytics.self])
         
-        self.editWindowController = NSStoryboard(name: "Edit", bundle: nil).instantiateController(withIdentifier: "GIFEditor") as? NSWindowController
+        self.editWindowController = NSStoryboard(name: NSStoryboard.Name(rawValue: "Edit"), bundle: nil).instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "GIFEditor")) as? NSWindowController
         
         //self.editWindowController.window?.makeKeyAndOrderFront(self.editWindowController.window)
         
@@ -280,7 +280,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return self.dockMenu
     }
     
-    func changeWindow(sender: Notification) {
+    @objc func changeWindow(sender: Notification) {
         assert(Thread.isMainThread)
         
         let windowController:WindowController = sender.object as! WindowController
@@ -355,13 +355,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func installScreensaver(_ sender: Any) {
         let screensaverPath = Bundle.main.url(forResource: "AnimatedGif", withExtension: "saver")
-        NSWorkspace.shared().open(screensaverPath!)
+        NSWorkspace.shared.open(screensaverPath!)
     }
 
     var timer:Timer!
     
     func displayWindow(filename: String) -> NSWindowController? {
-        let windowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "MainWindowController") as! NSWindowController
+        let windowController = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil).instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "MainWindowController")) as! NSWindowController
         
         windowController.shouldCascadeWindows = true
         windowMenu.isHidden = false
@@ -386,7 +386,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.menuItem = menuItem
         window.titlebarAppearsTransparent = true
         window.titleVisibility = .hidden
-        window.styleMask.insert(NSWindowStyleMask.fullSizeContentView)
+        window.styleMask.insert(NSWindow.StyleMask.fullSizeContentView)
         
         let imageSize:CGSize!
         
@@ -422,15 +422,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.makeKeyAndOrderFront(self)
         
         NotificationCenter.default.addObserver(self, selector: #selector(windowClosed),
-                                               name: NSNotification.Name.NSWindowWillClose, object: window)
+                                               name: NSWindow.willCloseNotification, object: window)
         
         NotificationCenter.default.addObserver(self, selector: #selector(windowBecameKey),
-                                               name: NSNotification.Name.NSWindowDidBecomeKey, object: window)
+                                               name: NSWindow.didBecomeKeyNotification, object: window)
         
         NotificationCenter.default.addObserver(self, selector: #selector(windowDidResignKey),
-                                               name: NSNotification.Name.NSWindowDidResignKey, object: window)
+                                               name: NSWindow.didResignKeyNotification, object: window)
         
-        window.menuItem.state = NSOnState
+        window.menuItem.state = NSControl.StateValue.on
     
         return windowController
     }
@@ -447,7 +447,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func newGIFRecorded(sender: Notification) {
+    @objc func newGIFRecorded(sender: Notification) {
         let path:String = sender.object as! String
         let windowController:WindowController = self.displayWindow(filename: path) as! WindowController
         windowController.unsavedGIF = true
@@ -455,7 +455,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.createGIFWindowController.close()
         self.createGIFWindowController = nil
-        self.createGIFWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "CreateGIFWindowController") as? NSWindowController
+        self.createGIFWindowController = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil).instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CreateGIFWindowController")) as? NSWindowController
     }
     
     
@@ -475,14 +475,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         let panel:NSSavePanel = NSSavePanel()
         
-        panel.setFrameUsingName("Save GIF")
+        panel.setFrameUsingName(NSWindow.FrameAutosaveName(rawValue: "Save GIF"))
         panel.message = "Save the recorded GIF"
         panel.allowsOtherFileTypes = false
         panel.canCreateDirectories = false
         panel.allowedFileTypes = ["gif"]
         panel.beginSheetModal(for: (mainWindowController?.window!)!) { (result) in
             _ = panel.url?.path
-            if (result == NSFileHandlingPanelOKButton) {
+            if (result.rawValue == NSFileHandlingPanelOKButton) {
                 let size = mainWindowController?.window?.frame.size
                 
                 let gifsicle = Gifsicle()
@@ -510,10 +510,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func windowBecameKey(sender: Notification) {
+    @objc func windowBecameKey(sender: Notification) {
         let window:FOTWindow = sender.object as! FOTWindow
         if(self.dockMenu.index(of: window.menuItem) >= 0) {
-            window.menuItem.state = NSOnState
+            window.menuItem.state = NSControl.StateValue.on
             
             for windowController in self.windowControllers {
                 if(windowController.window == window && windowController.unsavedGIF) {
@@ -523,10 +523,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func windowDidResignKey(sender: Notification) {
+    @objc func windowDidResignKey(sender: Notification) {
         let window:FOTWindow = sender.object as! FOTWindow
         if(self.dockMenu.index(of: window.menuItem) >= 0) {
-            window.menuItem.state = NSOffState
+            window.menuItem.state = NSControl.StateValue.off
         }
     }
     
@@ -539,8 +539,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         panel.canChooseFiles = true
         panel.allowedFileTypes = fileTypes
 
-        let result: Int = panel.runModal()
-        if result == NSModalResponseOK {
+        let result: Int = panel.runModal().rawValue
+        if result == NSApplication.ModalResponse.OK.rawValue {
             return panel.urls
         }
         
@@ -554,7 +554,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func openCreateGIFWindow(_ sender: Any) {
-        self.createGIFWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "CreateGIFWindowController") as? NSWindowController
+        self.createGIFWindowController = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil).instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CreateGIFWindowController")) as? NSWindowController
         
         self.createGIFWindowController.window?.makeKeyAndOrderFront(self)
         NSApp.activate(ignoringOtherApps: true)
@@ -577,7 +577,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func openMovieFilesFromFileSystem(_ sender: Any) {
-        self.openGifConverterWindowController = (NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "VideoToGifConverterWindowController") as! NSWindowController)
+        self.openGifConverterWindowController = (NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil).instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "VideoToGifConverterWindowController")) as! NSWindowController)
         
         (self.openGifConverterWindowController.contentViewController as! VideoToGifViewController).delegate = self
         
@@ -592,10 +592,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func quit(_ sender: Any) {
         NSLog("Exit")
-        NSApplication.shared().terminate(nil)
+        NSApplication.shared.terminate(nil)
     }
     
-    func windowClosed(sender: Notification) {
+    @objc func windowClosed(sender: Notification) {
         let window:FOTWindow = sender.object as! FOTWindow
     
         if(self.dockMenu.index(of: window.menuItem) >= 0) {
@@ -618,14 +618,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func createOpenWindow() {
         if openWindow == nil {
-            openWindow = NSWindow(contentRect: NSMakeRect(0, 0, NSScreen.main()!.frame.midX, NSScreen.main()!.frame.midY + 150), styleMask: [.closable, .titled], backing: .buffered, defer: false)
+            openWindow = NSWindow(contentRect: NSMakeRect(0, 0, NSScreen.main!.frame.midX, NSScreen.main!.frame.midY + 150), styleMask: [.closable, .titled], backing: .buffered, defer: false)
             
             openWindow.title = "Open from website"
             openWindow.isOpaque = false
             openWindow.center()
             openWindow.isMovableByWindowBackground = true
 
-            let mainView = NSView(frame: NSMakeRect(0, 0, NSScreen.main()!.frame.midX, NSScreen.main()!.frame.midY + 150))
+            let mainView = NSView(frame: NSMakeRect(0, 0, NSScreen.main!.frame.midX, NSScreen.main!.frame.midY + 150))
             mainView.translatesAutoresizingMaskIntoConstraints = false
             self.textField = Editing(labelWithString: "https://media4.giphy.com/media/3o7TKDa4TeqnpmXc6Q/giphy.gif")
             self.textField.translatesAutoresizingMaskIntoConstraints = false
@@ -660,7 +660,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func openGIFFromURL() {
+    @objc func openGIFFromURL() {
         if (self.textField != nil) && self.textField.stringValue != "" {
             self.openGIFWindowController.close()
             let _ = self.displayWindow(filename: self.textField.stringValue)
@@ -669,7 +669,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func createNewWindow() {
         if newWindow == nil {
-            newWindow = NSWindow(contentRect: NSMakeRect(0, 0, NSScreen.main()!.frame.midX, NSScreen.main()!.frame.midY + 150), styleMask: [.closable, .titled], backing: .buffered, defer: false)
+            newWindow = NSWindow(contentRect: NSMakeRect(0, 0, NSScreen.main!.frame.midX, NSScreen.main!.frame.midY + 150), styleMask: [.closable, .titled], backing: .buffered, defer: false)
             
             newWindow.title = "Feedback"
             newWindow.isOpaque = false
@@ -678,7 +678,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             newWindow.backgroundColor = NSColor(calibratedHue: 0, saturation: 1.0, brightness: 0, alpha: 0.7)
             
             
-            let webView = WebView(frame: NSMakeRect(0, 0, NSScreen.main()!.frame.midX, NSScreen.main()!.frame.midY))
+            let webView = WebView(frame: NSMakeRect(0, 0, NSScreen.main!.frame.midX, NSScreen.main!.frame.midY))
             webView.mainFrameURL = Bundle.main.url(forResource: "index", withExtension: "html")?.absoluteString
             
             newWindow.contentView = webView
@@ -731,7 +731,7 @@ extension AppDelegate : PasteboardWatcherDelegate {
 }
 
 extension AppDelegate : NSWindowDelegate {
-    func windowShouldClose(_ sender: Any) -> Bool {
+    private func windowShouldClose(_ sender: Any) -> Bool {
 //        let currentWindow = sender as! FOTWindow
 //        var viewController:ViewController? = nil
 //        var mainWindowController:WindowController? = nil
@@ -768,7 +768,7 @@ extension AppDelegate : NSWindowDelegate {
         return true
     }
     
-    func clicked(gestureRecognizer: NSClickGestureRecognizer) {
+    @objc func clicked(gestureRecognizer: NSClickGestureRecognizer) {
         self.textField.selectText(nil)
     }
 }
@@ -846,12 +846,12 @@ extension AppDelegate {
             menuItem.title  = "Unlock"
             window.isMovable = false
             window.ignoresMouseEvents = true
-            window.level = Int(CGWindowLevelForKey(.maximumWindow))
+            window.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.maximumWindow)))
         } else {
             menuItem.title  = "Lock"
             window.isMovable = true
             window.ignoresMouseEvents = false
-            window.level = Int(CGWindowLevelForKey(.normalWindow))
+            window.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
         }
         
 //        viewController.lockIconImageView.isHidden = window.isMovable || isLockIconHiddenWhileLocked
@@ -859,7 +859,7 @@ extension AppDelegate {
     
     @IBAction func toggleLockIconVisibility(_ sender: AnyObject) {
         let menuItem = sender as! NSMenuItem
-        menuItem.state = menuItem.state == NSOnState ? NSOffState : NSOnState
+        menuItem.state = menuItem.state == NSControl.StateValue.on ? NSControl.StateValue.off : NSControl.StateValue.on
 //        isLockIconHiddenWhileLocked = menuItem.state == NSOnState
     }
     
@@ -891,7 +891,7 @@ extension AppDelegate : MCDragAndDropImageViewDelegate {
     
     func dragAndDropImageViewDidDrop(pasteboard:NSPasteboard) {
         let url:URL = NSURL(from: pasteboard)! as URL
-        guard let image = (NSImage(byReferencingFile: url.path)?.representations[FIRST_FRAME] as! NSBitmapImageRep).value(forProperty: NSImageFrameCount) else {
+        guard (NSImage(byReferencingFile: url.path)?.representations[FIRST_FRAME] as! NSBitmapImageRep).value(forProperty: NSBitmapImageRep.PropertyKey.frameCount) != nil else {
             self.alert = AXAlert(title: "Error", informativeText: "There was an error parsing this GIF")
             self.alert.addButton(AXAlertButton(alert: self.alert, title: "Okay", action: #selector(self.okay)))
             self.alert.runModal()
@@ -901,7 +901,7 @@ extension AppDelegate : MCDragAndDropImageViewDelegate {
         var _ = self.displayWindow(filename: url.path)
     }
     
-    func okay() {
+    @objc func okay() {
         print("alert di")
     }
 }

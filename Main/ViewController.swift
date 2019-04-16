@@ -48,13 +48,13 @@ class ViewController: NSViewController {
         
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
-        let window:NSWindow = NSApplication.shared().windows.last!
+        let window:NSWindow = NSApplication.shared.windows.last!
         window.isMovableByWindowBackground = true
         
         self.view.window?.isMovableByWindowBackground = true
         self.imageView.window?.isMovableByWindowBackground = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(respondToWindowResize), name: NSNotification.Name.NSWindowDidResize, object: window)
+        NotificationCenter.default.addObserver(self, selector: #selector(respondToWindowResize), name: NSWindow.didResizeNotification, object: window)
 
         self.view.addSubview(self.imageView)
         
@@ -64,19 +64,19 @@ class ViewController: NSViewController {
 
         var topConstraint = self.imageView.topAnchor.constraint(equalTo: self.view.topAnchor)
         topConstraint.isActive = true
-        topConstraint.priority = 300
+        topConstraint.priority = NSLayoutConstraint.Priority(rawValue: 300)
         
         topConstraint = self.imageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         topConstraint.isActive = true
-        topConstraint.priority = 300
+        topConstraint.priority = NSLayoutConstraint.Priority(rawValue: 300)
         
         topConstraint = self.imageView.leftAnchor.constraint(equalTo: self.view.leftAnchor)
         topConstraint.isActive = true
-        topConstraint.priority = 300
+        topConstraint.priority = NSLayoutConstraint.Priority(rawValue: 300)
         
         topConstraint = self.imageView.rightAnchor.constraint(equalTo: self.view.rightAnchor)
         topConstraint.isActive = true
-        topConstraint.priority = 300
+        topConstraint.priority = NSLayoutConstraint.Priority(rawValue: 300)
         
         self.widthConstraint = self.imageView.widthAnchor.constraint(equalToConstant: window.frame.size.width)
         self.heightConstraint = self.imageView.heightAnchor.constraint(equalToConstant: window.frame.size.height)
@@ -92,7 +92,7 @@ class ViewController: NSViewController {
         }
     }
     
-    func respondToWindowResize(notification: NSNotification) {
+    @objc func respondToWindowResize(notification: NSNotification) {
         let window:NSWindow = notification.object as! NSWindow
         self.imageView.frame = window.frame
         
@@ -128,14 +128,14 @@ class ViewController: NSViewController {
         var imageRect:CGRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
         let imageRef = image.cgImage(forProposedRect: &imageRect, context: nil, hints: nil)
         
-        // Create NSImage from the CGImage using the new size
+        // Create NSImage from the CGImage using th@objc e new size
         let imageWithNewSize = NSImage(cgImage: imageRef!, size: newSize)
         
         // Return the new image
         return imageWithNewSize
     }
     
-    func showWindow(menuItem: NSMenuItem) {
+    @objc func showWindow(menuItem: NSMenuItem) {
         self.view.window?.makeKeyAndOrderFront(self)
         NSApp.activate(ignoringOtherApps: true)
 //        menuItem.state = NSOnState
@@ -170,7 +170,7 @@ class ViewController: NSViewController {
     
     func download(url: String, completionHandler: @escaping (Bool, CGSize) -> ()) {
         self.imageView.frame = NSRect(x:0, y:0, width: 300, height: 300)
-        self.imageView.downloadImageFromURL(url, errorImage: NSImage(named: "errorstop.png"),
+        self.imageView.downloadImageFromURL(url, errorImage: NSImage(named: NSImage.Name(rawValue: "errorstop.png")),
                                                       usesSpinningWheel: true)
         
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { (timer) in

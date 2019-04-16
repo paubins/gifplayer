@@ -78,7 +78,7 @@ class OpenGLView: NSOpenGLView
         
         if (gifRep.hasAlpha) {
             var aValue:GLint = 0;
-            self.openGLContext?.setValues(&aValue, for: NSOpenGLCPSurfaceOpacity)
+            self.openGLContext?.setValues(&aValue, for: NSOpenGLContext.Parameter.surfaceOpacity)
         }
 
         CVDisplayLinkCreateWithActiveCGDisplays( &displayLink )
@@ -87,7 +87,7 @@ class OpenGLView: NSOpenGLView
         
         /* BUG: When exiting a fullscreen view windowClosing() will be called. */
         NotificationCenter.default.addObserver( self, selector: #selector( OpenGLView.windowClosing ),
-                                                          name: NSNotification.Name.NSWindowWillClose,
+                                                name: NSWindow.willCloseNotification,
                                                         object: self.window )
     }
     
@@ -217,7 +217,7 @@ class OpenGLView: NSOpenGLView
     }
     
     
-    func windowClosing()
+    @objc func windowClosing()
     {
         CVDisplayLinkStop( displayLink! );
     }
@@ -231,12 +231,12 @@ class OpenGLView: NSOpenGLView
         self.image = NSImage(data: data as Data)
         
         self.gifRep = (image.representations[FIRST_FRAME] as! NSBitmapImageRep)
-        if let maxFrameCount = gifRep.value(forProperty: NSImageFrameCount) {
+        if let maxFrameCount = gifRep.value(forProperty: NSBitmapImageRep.PropertyKey.frameCount) {
             self.maxFrameCount = maxFrameCount as! Int
             self.currFrameCount = FIRST_FRAME
             
             for frame in 0 ..< self.maxFrameCount {
-                gifRep.setProperty(NSImageCurrentFrame, withValue: frame)
+                gifRep.setProperty(NSBitmapImageRep.PropertyKey.currentFrame, withValue: frame)
                 
                 let data = gifRep.bitmapData
                 let size = gifRep.bytesPerPlane
@@ -261,7 +261,7 @@ class OpenGLView: NSOpenGLView
         return false
     }
     
-    func timerFired() {
+    @objc func timerFired() {
         self.setNeedsDisplay(self.frame)
     }
     

@@ -21,9 +21,9 @@ class GIFHandler {
         
         // Attempt to fetch the number of frames, frame duration, and loop count from the .gif
         guard let bitmapRep = image.representations[0] as? NSBitmapImageRep,
-            let frameCount = (bitmapRep.value(forProperty: NSImageFrameCount) as? NSNumber)?.intValue,
-            let loopCount = (bitmapRep.value(forProperty: NSImageLoopCount) as? NSNumber)?.intValue,
-            let frameDuration = (bitmapRep.value(forProperty: NSImageCurrentFrameDuration) as? NSNumber)?.floatValue else {
+            let frameCount = (bitmapRep.value(forProperty: NSBitmapImageRep.PropertyKey.frameCount) as? NSNumber)?.intValue,
+            let loopCount = (bitmapRep.value(forProperty: NSBitmapImageRep.PropertyKey.loopCount) as? NSNumber)?.intValue,
+            let frameDuration = (bitmapRep.value(forProperty: NSBitmapImageRep.PropertyKey.currentFrameDuration) as? NSNumber)?.floatValue else {
                 
             print("Error loading gif")
             NotificationCenter.default.post(name: errorNotificationName, object: self, userInfo: ["Error":"Could not load gif. The file does not contain the metadata required for a gif."])
@@ -36,9 +36,9 @@ class GIFHandler {
         
         // Iterate the frames, set the current frame on the bitmapRep and add this to 'retImages'
         for n in 0 ..< frameCount {
-            bitmapRep.setProperty(NSImageCurrentFrame, withValue: NSNumber(value: n))
+            bitmapRep.setProperty(NSBitmapImageRep.PropertyKey.currentFrame, withValue: NSNumber(value: n))
             
-            if let data = bitmapRep.representation(using: .GIF, properties: [:]),
+            if let data = bitmapRep.representation(using: .gif, properties: [:]),
                let img = NSImage(data: data) {
                 let frame = GIFFrame(image: img)
                 retFrames.append(frame)
@@ -109,9 +109,9 @@ class GIFHandler {
     static func isAnimatedGIF(_ image: NSImage) -> Bool {
         // Attempt to fetch the number of frames, frame duration, and loop count from the .gif
         guard let bitmapRep = image.representations[0] as? NSBitmapImageRep,
-            let frameCount = (bitmapRep.value(forProperty: NSImageFrameCount) as? NSNumber)?.intValue,
-            let _ = (bitmapRep.value(forProperty: NSImageLoopCount) as? NSNumber)?.intValue,
-            let _ = (bitmapRep.value(forProperty: NSImageCurrentFrameDuration) as? NSNumber)?.floatValue else {
+            let frameCount = (bitmapRep.value(forProperty: NSBitmapImageRep.PropertyKey.frameCount) as? NSNumber)?.intValue,
+            let _ = (bitmapRep.value(forProperty: NSBitmapImageRep.PropertyKey.loopCount) as? NSNumber)?.intValue,
+            let _ = (bitmapRep.value(forProperty: NSBitmapImageRep.PropertyKey.currentFrameDuration) as? NSNumber)?.floatValue else {
             return false
         }
 
@@ -129,7 +129,12 @@ class GIFHandler {
         var returnImages:[NSImage] = []
         
         let string:NSString = "Smart GIF Maker"
-        let attrs:[String:Any] = [NSForegroundColorAttributeName: NSColor.white, NSFontAttributeName: font, NSStrokeWidthAttributeName: -3, NSStrokeColorAttributeName: NSColor.black]
+        let attrs:[NSAttributedStringKey:Any] = [
+            NSAttributedString.Key(rawValue: NSAttributedStringKey.foregroundColor.rawValue): NSColor.white,
+            NSAttributedString.Key(rawValue: NSAttributedStringKey.font.rawValue): font,
+            NSAttributedString.Key(rawValue: NSAttributedStringKey.strokeWidth.rawValue): -3,
+            NSAttributedString.Key(rawValue: NSAttributedStringKey.strokeColor.rawValue): NSColor.black
+        ]
         
         for image in images {
             // We need to create a 'copy' of the imagerep, as we need 'isPlanar' to be false in order to draw on it
@@ -142,14 +147,14 @@ class GIFHandler {
                                           samplesPerPixel: tmpRep.samplesPerPixel,
                                           hasAlpha: true,
                                           isPlanar: false,
-                                          colorSpaceName: NSDeviceRGBColorSpace,
-                                          bitmapFormat: NSAlphaFirstBitmapFormat,
+                                          colorSpaceName: NSColorSpaceName.deviceRGB,
+                                          bitmapFormat: NSBitmapImageRep.Format.alphaFirst,
                                           bytesPerRow: tmpRep.bytesPerRow,
                                           bitsPerPixel: tmpRep.bitsPerPixel)
             
             
             NSGraphicsContext.saveGraphicsState()
-            NSGraphicsContext.setCurrent(NSGraphicsContext.init(bitmapImageRep: imgRep!))
+            NSGraphicsContext.current = NSGraphicsContext.init(bitmapImageRep: imgRep!)
             
             // Draw image
             image.draw(at: NSPoint.zero, from: NSZeroRect, operation: .copy, fraction: 1.0)
@@ -159,7 +164,7 @@ class GIFHandler {
             
             NSGraphicsContext.restoreGraphicsState()
             
-            let data = imgRep?.representation(using: .GIF, properties: [:])
+            let data = imgRep?.representation(using: .gif, properties: [:])
             let newImg = NSImage(data: data!)
             returnImages.append(newImg!)
         }

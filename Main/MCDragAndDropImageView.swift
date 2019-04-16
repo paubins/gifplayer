@@ -18,7 +18,11 @@ class MCDragAndDropImageView: NSView {
 
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        register(forDraggedTypes: NSImage.imageTypes() + [NSFilenamesPboardType])
+        if #available(OSX 10.13, *) {
+            registerForDraggedTypes([NSPasteboard.PasteboardType.fileURL] as! [NSPasteboard.PasteboardType])
+        } else {
+            // Fallback on earlier versions
+        }
         self.backgroundColor = .black
         wantsLayer = true
     }
@@ -42,11 +46,15 @@ extension MCDragAndDropImageView: NSDraggingSource {
 			let sourceDragMask = sender.draggingSourceOperationMask()
 			let pboard = sender.draggingPasteboard()
 
-			if pboard.availableType(from: [NSFilenamesPboardType]) == NSFilenamesPboardType {
-				if sourceDragMask.rawValue & NSDragOperation.copy.rawValue != 0 {
-					return NSDragOperation.copy
-				}
-			}
+            if #available(OSX 10.13, *) {
+                if pboard.availableType(from: [NSPasteboard.PasteboardType.fileURL]) == NSPasteboard.PasteboardType.fileURL {
+                    if sourceDragMask.rawValue & NSDragOperation.copy.rawValue != 0 {
+                        return NSDragOperation.copy
+                    }
+                }
+            } else {
+                // Fallback on earlier versions
+            }
 		}
 
 		return NSDragOperation()

@@ -8,15 +8,17 @@
 
 import Cocoa
 
-fileprivate extension NSTouchBarCustomizationIdentifier {
+@available(OSX 10.12.2, *)
+fileprivate extension NSTouchBar.CustomizationIdentifier {
     
-    static let touchBar = NSTouchBarCustomizationIdentifier("com.ToolbarSample.touchBar")
+    static let touchBar = NSTouchBar.CustomizationIdentifier("com.ToolbarSample.touchBar")
 }
 
-fileprivate extension NSTouchBarItemIdentifier {
+@available(OSX 10.12.2, *)
+fileprivate extension NSTouchBarItem.Identifier {
     
-    static let popover = NSTouchBarItemIdentifier("com.ToolbarSample.TouchBarItem.popover")
-    static let fontStyle = NSTouchBarItemIdentifier("com.ToolbarSample.TouchBarItem.fontStyle")
+    static let popover = NSTouchBarItem.Identifier("com.ToolbarSample.TouchBarItem.popover")
+    static let fontStyle = NSTouchBarItem.Identifier("com.ToolbarSample.TouchBarItem.fontStyle")
 }
 
 class WindowController: NSWindowController, NSToolbarDelegate {
@@ -86,9 +88,9 @@ class WindowController: NSWindowController, NSToolbarDelegate {
         fontSizeField.floatValue = round(fontSize)
         
         let attrs = self.contentTextView().typingAttributes
-        var theFont : NSFont = attrs["NSFont"] as! NSFont
+        var theFont : NSFont = attrs[NSAttributedStringKey.font] as! NSFont
         
-        theFont = NSFontManager.shared().convert(theFont, toSize: CGFloat(fontSize))
+        theFont = NSFontManager.shared.convert(theFont, toSize: CGFloat(fontSize))
         
         if (self.contentTextView().selectedRange().length > 0) {
             // We have a selection, change the selected text
@@ -96,7 +98,7 @@ class WindowController: NSWindowController, NSToolbarDelegate {
         }
         else {
             // No selection, so just change the font size at insertion.
-            let attributesDict = [ NSFontAttributeName: theFont ]
+            let attributesDict = [ NSAttributedStringKey.font: theFont ]
             self.contentTextView().typingAttributes = attributesDict
         }
     }
@@ -144,12 +146,12 @@ class WindowController: NSWindowController, NSToolbarDelegate {
     // MARK: - Action Functions
     
     /// This action is called from the change font style toolbar item, from the segmented control in the custom view.
-    func changeGIFState(_ sender: NSSegmentedControl) {
+    @objc func changeGIFState(_ sender: NSSegmentedControl) {
         let style = sender.selectedSegment
         self.setTextViewFont(index: style)
     }
     
-    func changeWindowState(_ sender: NSSegmentedControl) {
+    @objc func changeWindowState(_ sender: NSSegmentedControl) {
         let style = sender.selectedSegment
         self.setWindowState(index: style)
     }
@@ -171,7 +173,7 @@ class WindowController: NSWindowController, NSToolbarDelegate {
     */
     func customToolbarItem(itemForItemIdentifier itemIdentifier: String, label: String, paletteLabel: String, toolTip: String, target: AnyObject, itemContent: AnyObject, action: Selector?, menu: NSMenu?) -> NSToolbarItem? {
         
-        let toolbarItem = NSToolbarItem(itemIdentifier: itemIdentifier)
+        let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier(rawValue: itemIdentifier))
         
         toolbarItem.label = label
         toolbarItem.paletteLabel = paletteLabel
@@ -220,7 +222,7 @@ class WindowController: NSWindowController, NSToolbarDelegate {
         
         let itemIdentifier = addedItem.itemIdentifier
         
-        if itemIdentifier == "NSToolbarPrintItem" {
+        if itemIdentifier.rawValue == "NSToolbarPrintItem" {
             addedItem.toolTip = "Print your document"
             addedItem.target = self
         }
@@ -232,7 +234,7 @@ class WindowController: NSWindowController, NSToolbarDelegate {
         whether this toolbar item is going into an actual toolbar, or whether it's going to be displayed
         in a customization palette.
     */
-    func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: String, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+    private func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: String, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
         
         var toolbarItem: NSToolbarItem = NSToolbarItem()
         
@@ -255,7 +257,7 @@ class WindowController: NSWindowController, NSToolbarDelegate {
         NSToolbar delegates require this function.  It returns an array holding identifiers for the default
         set of toolbar items.  It can also be called by the customization palette to display the default toolbar.
     */
-    func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [String] {
+    private func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [String] {
         
         return [FontStyleToolbarItemID, FontSizeToolbarItemID]
         /*  Note:
@@ -268,13 +270,13 @@ class WindowController: NSWindowController, NSToolbarDelegate {
         NSToolbar delegates require this function.  It returns an array holding identifiers for all allowed
         toolbar items in this toolbar.  Any not listed here will not be available in the customization palette.
     */
-    func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [String] {
+    private func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [String] {
         
         return [ FontStyleToolbarItemID,
                  FontSizeToolbarItemID,
-                 NSToolbarSpaceItemIdentifier,
-                 NSToolbarFlexibleSpaceItemIdentifier,
-                 NSToolbarPrintItemIdentifier ]
+                 NSToolbarItem.Identifier.space.rawValue,
+                 NSToolbarItem.Identifier.flexibleSpace.rawValue,
+                 NSToolbarItem.Identifier.print.rawValue ]
     }
     
     // MARK: - NSTouchBar
@@ -296,11 +298,11 @@ class WindowController: NSWindowController, NSToolbarDelegate {
 extension WindowController: NSTouchBarDelegate {
     
     @available(OSX 10.12.2, *)
-    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItemIdentifier) -> NSTouchBarItem? {
+    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         
         switch identifier {
             
-            case NSTouchBarItemIdentifier.popover:
+        case NSTouchBarItem.Identifier.popover:
                 let fontStyleItem = NSCustomTouchBarItem(identifier: identifier)
                 fontStyleItem.customizationLabel = "Font Style"
                 
@@ -316,7 +318,7 @@ extension WindowController: NSTouchBarDelegate {
                 return fontStyleItem;
 
             
-            case NSTouchBarItemIdentifier.fontStyle:
+        case NSTouchBarItem.Identifier.fontStyle:
                 
                 let fontStyleItem = NSCustomTouchBarItem(identifier: identifier)
                 fontStyleItem.customizationLabel = "Font Style"

@@ -15,7 +15,7 @@ class SmartTextField: NSTextField {
     }
     
     override func performKeyEquivalent(with theEvent: NSEvent) -> Bool {
-        if theEvent.type == .keyDown && theEvent.modifierFlags.contains(NSEventModifierFlags.command) {
+        if theEvent.type == .keyDown && theEvent.modifierFlags.contains(NSEvent.ModifierFlags.command) {
             let responder = self.window?.firstResponder
             
             if responder != nil && responder is NSTextView {
@@ -29,7 +29,7 @@ class SmartTextField: NSTextField {
 
                 //6 = Z, 7 = X, 8 = C, 9 = V, A = 0
                 if keyCode == 6 {
-                    if theEvent.modifierFlags.contains(NSEventModifierFlags.shift) {
+                    if theEvent.modifierFlags.contains(NSEvent.ModifierFlags.shift) {
                         if ((textView.undoManager?.canRedo) != nil) {
                             textView.undoManager?.redo()
                             bHandled = true

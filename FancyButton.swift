@@ -18,14 +18,14 @@ class FancyButton: NSButton {
     override func awakeFromNib() {
         let style = NSMutableParagraphStyle()
         style.alignment = .center
-        let attrs = [NSForegroundColorAttributeName: self.textColor, NSParagraphStyleAttributeName: style]
+        let attrs = [NSAttributedStringKey.foregroundColor: self.textColor, NSAttributedStringKey.paragraphStyle: style]
         let attrString = NSAttributedString(string: self.title, attributes: attrs)
         self.attributedTitle = attrString
         
         self.focusRingType = .none
         
         // Mouse in / out
-        let area = NSTrackingArea.init(rect: self.bounds, options: [NSTrackingAreaOptions.mouseEnteredAndExited, NSTrackingAreaOptions.activeAlways], owner: self, userInfo: nil)
+        let area = NSTrackingArea.init(rect: self.bounds, options: [NSTrackingArea.Options.mouseEnteredAndExited, NSTrackingArea.Options.activeAlways], owner: self, userInfo: nil)
         self.addTrackingArea(area)
     }
     

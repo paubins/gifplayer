@@ -58,16 +58,16 @@ class WindowController: NSWindowController, NSToolbarDelegate {
             that the "Customize Toolbar" menu item is hooked up to that method in Interface Builder.
         */
         
-        self.toolbar.allowsUserCustomization = true
+//        self.toolbar.allowsUserCustomization = true
         
         /*  Tell the toolbar that it should save any configuration changes to user defaults, i.e. mode
             changes, or reordering will persist.  Specifically they will be written in the app domain using
             the toolbar identifier as the key.
         */
-        self.toolbar.autosavesConfiguration = true
+//        self.toolbar.autosavesConfiguration = true
         
         // Tell the toolbar to show icons only by default.
-        self.toolbar.displayMode = .iconOnly
+//        self.toolbar.displayMode = .iconOnly
         
         // Initialize our font size control here to 18-point font, and set our view controller's NSTextView to that size.
         self.fontSizeStepper.integerValue = Int(DefaultFontSize)

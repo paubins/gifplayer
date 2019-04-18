@@ -27,7 +27,9 @@ class OpenGLView: NSOpenGLView
     
     var currFrameCount:Int = 0
     
-    var screenRect:NSRect! = nil
+    var screenRect:NSRect! {
+        return (self.window?.frame)!
+    }
     
     var animationImages:[Data] = []
     var frameStore:FrameStore!
@@ -45,7 +47,7 @@ class OpenGLView: NSOpenGLView
             return
         }
         
-        self.screenRect = (self.window?.frame)!
+//        self.screenRect = (self.window?.frame)!
         
         let attributes:[NSOpenGLPixelFormatAttribute] = [
             UInt32(NSOpenGLPFADoubleBuffer),
@@ -112,28 +114,32 @@ class OpenGLView: NSOpenGLView
         
         var target:NSRect = self.screenRect
         
-        let screenRatio:Float = self.pictureRatioFromWidth(iWidth:Float(screenRect.size.width), iHeight:Float(screenRect.size.height))
-        let imgRatio:Float = self.pictureRatioFromWidth(iWidth:Float(image.size.width), iHeight:Float(image.size.height))
+//        let screenRatio:Float = self.pictureRatioFromWidth(iWidth:Float(screenRect.size.width), iHeight:Float(screenRect.size.height))
+//        let imgRatio:Float = self.pictureRatioFromWidth(iWidth:Float(image.size.width), iHeight:Float(image.size.height))
+//
+//        if (imgRatio >= screenRatio)
+//        {
+//            target.size.height = screenRect.size.height;
+//            target.origin.y = screenRect.origin.y;
+//            target.size.width = CGFloat(self.calcWidthFromRatio(iHeight:Float(screenRect.size.width), iRatio:imgRatio))
+//            target.origin.x = -1*(target.size.width - screenRect.size.width)/2;
+//        }
+//        else
+//        {
+//            target.size.width = screenRect.size.width;
+//            target.origin.x = screenRect.origin.x;
+//            target.size.height = CGFloat(self.calcHeightFromRatio(iWidth: Float(screenRect.size.height), iRatio: imgRatio))
+//            target.origin.y = -1*(target.size.height - screenRect.size.height)/2;
+//        }
         
-        if (imgRatio >= screenRatio)
-        {
-            target.size.height = screenRect.size.height;
-            target.origin.y = screenRect.origin.y;
-            target.size.width = CGFloat(self.calcWidthFromRatio(iHeight:Float(screenRect.size.width), iRatio:imgRatio))
-            target.origin.x = -1*(target.size.width - screenRect.size.width)/2;
-        }
-        else
-        {
-            target.size.width = screenRect.size.width;
-            target.origin.x = screenRect.origin.x;
-            target.size.height = CGFloat(self.calcHeightFromRatio(iWidth: Float(screenRect.size.height), iRatio: imgRatio))
-            target.origin.y = -1*(target.size.height - screenRect.size.height)/2;
-        }
+        target.size.height = screenRect.size.height;
+        target.size.width = screenRect.size.width;
+        target.origin.y = 0; //(screenRect.size.height - image.size.height)/2;
+        target.origin.x = 0; //(screenRect.size.width - image.size.width)/2;
         
-        target.size.height = image.size.height;
-        target.size.width = image.size.width;
-        target.origin.y = (screenRect.size.height - image.size.height)/2;
-        target.origin.x = (screenRect.size.width - image.size.width)/2;
+        glViewport(0,0,
+                   GLsizei(target.size.width),
+                   GLsizei(target.size.height));
         
         self.openGLContext!.makeCurrentContext()
         
@@ -252,7 +258,7 @@ class OpenGLView: NSOpenGLView
             self.timer = Timer(timeInterval: TimeInterval(duration), target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
             self.timer.fire()
             
-            self.screenRect = (self.window?.frame)!
+//            self.screenRect = (self.window?.frame)!
             
             RunLoop.main.add(self.timer, forMode: RunLoopMode.defaultRunLoopMode)
             return true

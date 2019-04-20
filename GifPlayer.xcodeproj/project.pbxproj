@@ -199,6 +199,7 @@
 		5FF416F31EFB60A600FBCBCB /* gif (2)-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gif (2)-128.png"; sourceTree = "<group>"; };
 		5FFE94341F13F30E006E72A7 /* Gifsicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gifsicle.swift; path = ../GifPlayer/Gifsicle.swift; sourceTree = "<group>"; };
 		5FFE94351F13F30E006E72A7 /* gifsicle */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gifsicle; sourceTree = "<group>"; };
+		C18AD539226AD2B7007123BB /* DotGIF.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DotGIF.entitlements; sourceTree = "<group>"; };
 		CECB0B791EEFC8AFDFC07ADA /* Pods_GifPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GifPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA92E43481015BE60F9FB9B8 /* Pods-GifPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GifPlayer/Pods-GifPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -372,6 +373,7 @@
 		5FA74ADB1EED0C8D007642C8 /* GifPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				C18AD539226AD2B7007123BB /* DotGIF.entitlements */,
 				5F95067E1F21352100DD76C3 /* gifsicle.new */,
 				5FFE94351F13F30E006E72A7 /* gifsicle */,
 				5FA253C51EEE098C00410048 /* .GIF.entitlements */,
@@ -437,7 +439,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -736,7 +738,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -789,7 +791,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -802,7 +804,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = GifPlayer/.GIF.entitlements;
+				CODE_SIGN_ENTITLEMENTS = GifPlayer/DotGIF.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -832,7 +834,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = GifPlayer/.GIF.entitlements;
+				CODE_SIGN_ENTITLEMENTS = GifPlayer/DotGIF.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8DWW4HLE3Z;

@@ -36,7 +36,7 @@ class VideoToGifViewController: NSViewController {
     lazy var selectVideoDialog: NSOpenPanel = {
         let panel = NSOpenPanel()
         
-        let fileTypes:[String] = ["mp4"]
+        let fileTypes:[String] = ["mp4", "mov", "mpg"]
         
         panel.allowedFileTypes = fileTypes
         panel.prompt = "Select Video"

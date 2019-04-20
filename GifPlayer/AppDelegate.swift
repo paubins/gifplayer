@@ -259,7 +259,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             NSApp.activate(ignoringOtherApps: true)
         }
     }
-
+    
     func application(_ sender: NSApplication, openFile filename: String) -> Bool {
         self.fileToOpen = filename
 

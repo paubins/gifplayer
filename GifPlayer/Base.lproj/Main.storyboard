@@ -538,7 +538,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="4aj-JT-UxS"/>
                                         </constraints>
-                                        <color key="fillColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="fillColor" name="placeholderTextColor" catalog="System" colorSpace="catalog"/>
                                     </box>
                                 </subviews>
                                 <constraints>

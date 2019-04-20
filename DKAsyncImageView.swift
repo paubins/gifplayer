@@ -227,8 +227,11 @@ class DKAsyncImageView: OpenGLView, URLSessionDelegate, URLSessionDownloadDelega
             removeTrackingArea(trackingArea)
         }
         
-        let opts: NSTrackingArea.Options = NSTrackingArea.Options(rawValue: NSTrackingArea.Options.mouseEnteredAndExited.rawValue | NSTrackingArea.Options.activeAlways.rawValue)
-        trackingArea = NSTrackingArea(rect: self.bounds, options: opts, owner: self, userInfo: nil)
+        trackingArea = NSTrackingArea(rect: self.bounds,
+                                      options: [NSTrackingArea.Options.mouseEnteredAndExited,
+                                                NSTrackingArea.Options.activeAlways],
+                                      owner: self,
+                                      userInfo: nil)
         if let trackingArea = trackingArea {
             self.addTrackingArea(trackingArea)
         }

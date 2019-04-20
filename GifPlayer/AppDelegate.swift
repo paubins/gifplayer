@@ -199,15 +199,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
-        
         let fm   = FileManager.default
-        
         do{
             try fm.createDirectory(atPath: folderPath, withIntermediateDirectories: true, attributes: nil)
             try fm.createDirectory(atPath: thumbPath, withIntermediateDirectories: true, attributes: nil)
-        }catch
-        {
+        } catch {
+            
         }
         
         self.optionsMenu.isHidden = true
@@ -216,13 +213,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.editWindowController = NSStoryboard(name: NSStoryboard.Name(rawValue: "Edit"), bundle: nil).instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "GIFEditor")) as? NSWindowController
         
-        //self.editWindowController.window?.makeKeyAndOrderFront(self.editWindowController.window)
-        
         NSApp.servicesProvider = self
         
         self.pasteboardWatcher.delegate = self
-//        self.pasteboardWatcher.startPolling()
-        
+
         windowMenu.isHidden = true
         UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions" : true])
         

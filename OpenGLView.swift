@@ -113,25 +113,7 @@ class OpenGLView: NSOpenGLView
         }
         
         var target:NSRect = self.screenRect
-        
-//        let screenRatio:Float = self.pictureRatioFromWidth(iWidth:Float(screenRect.size.width), iHeight:Float(screenRect.size.height))
-//        let imgRatio:Float = self.pictureRatioFromWidth(iWidth:Float(image.size.width), iHeight:Float(image.size.height))
-//
-//        if (imgRatio >= screenRatio)
-//        {
-//            target.size.height = screenRect.size.height;
-//            target.origin.y = screenRect.origin.y;
-//            target.size.width = CGFloat(self.calcWidthFromRatio(iHeight:Float(screenRect.size.width), iRatio:imgRatio))
-//            target.origin.x = -1*(target.size.width - screenRect.size.width)/2;
-//        }
-//        else
-//        {
-//            target.size.width = screenRect.size.width;
-//            target.origin.x = screenRect.origin.x;
-//            target.size.height = CGFloat(self.calcHeightFromRatio(iWidth: Float(screenRect.size.height), iRatio: imgRatio))
-//            target.origin.y = -1*(target.size.height - screenRect.size.height)/2;
-//        }
-        
+    
         target.size.height = screenRect.size.height;
         target.size.width = screenRect.size.width;
         target.origin.y = 0; //(screenRect.size.height - image.size.height)/2;

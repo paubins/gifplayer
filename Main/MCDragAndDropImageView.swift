@@ -18,11 +18,8 @@ class MCDragAndDropImageView: NSView {
 
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        if #available(OSX 10.13, *) {
-            registerForDraggedTypes([NSPasteboard.PasteboardType.fileURL] as! [NSPasteboard.PasteboardType])
-        } else {
-            // Fallback on earlier versions
-        }
+        
+        registerForDraggedTypes([.fileURL])
         self.backgroundColor = .black
         wantsLayer = true
     }

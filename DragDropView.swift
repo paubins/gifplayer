@@ -26,14 +26,11 @@ class DragDropView: NSView {
     
     
     override func awakeFromNib() {
-        
-        
         registerForDraggedTypes([NSPasteboard.PasteboardType.fileURL])
     }
 
 
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
-      
         let sourceDragMask = sender.draggingSourceOperationMask()
         let pboard = sender.draggingPasteboard()
         
@@ -47,8 +44,6 @@ class DragDropView: NSView {
     }
 
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        
-        
         if let pasteboard = sender.draggingPasteboard().propertyList(forType: NSPasteboard.PasteboardType.fileURL) as? NSArray {
             if let path = pasteboard[0] as? String {
                 

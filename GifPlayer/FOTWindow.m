@@ -59,6 +59,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowWillEndSheet:)
                                                      name: NSWindowDidEndSheetNotification
                                                    object:self.window];
+        
     }
     
     return self;
@@ -70,7 +71,10 @@
     if(self.trackingArea) {
         [self removeTrackingArea:self.trackingArea];
         
-        self.trackingArea = [[NSTrackingArea alloc] initWithRect:self.frame options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveAlways ) owner:self userInfo:nil];
+        self.trackingArea = [[NSTrackingArea alloc] initWithRect:self.frame
+                                                         options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveAlways )
+                                                           owner:self
+                                                        userInfo:nil];
         
         [self addTrackingArea:self.trackingArea];
     }
@@ -139,6 +143,10 @@
     [self updateTrackingAreas];
 }
 
+- (BOOL)mouseDownCanMoveWindow {
+    return YES;
+}
+
 @end
 
 #pragma mark -
@@ -156,9 +164,6 @@
         _titleBarFadeInAlphaValue = 1.0;
         _titleBarFadeOutAlphaValue = 0.0;
         
-//        self.toolbar.showsBaselineSeparator = NO;
-        
-        self.styleMask = NSWindowStyleMaskBorderless | NSWindowStyleMaskResizable;
         [self setOpaque:NO];
         self.backgroundColor = NSColor.clearColor;
         self.hasShadow = NO;

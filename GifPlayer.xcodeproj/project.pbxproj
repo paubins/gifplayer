@@ -434,7 +434,7 @@
 				TargetAttributes = {
 					5FA74AD81EED0C8C007642C8 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 8DWW4HLE3Z;
+						DevelopmentTeam = 3XSPEUHQ6Y;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -808,7 +808,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 8DWW4HLE3Z;
+				DEVELOPMENT_TEAM = 3XSPEUHQ6Y;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -837,7 +837,7 @@
 				CODE_SIGN_ENTITLEMENTS = GifPlayer/DotGIF.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 8DWW4HLE3Z;
+				DEVELOPMENT_TEAM = 3XSPEUHQ6Y;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",

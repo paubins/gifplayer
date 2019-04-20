@@ -46,7 +46,7 @@
 	<key>NSApplicationCrashOnExceptions</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2017 .GIF All rights reserved. Icon by Alfredo Hernandez See more at https://www.alfredocreates.com/</string>
+	<string>Copyright © 2019 DotGif All rights reserved. Icon by Alfredo Hernandez See more at https://www.alfredocreates.com/</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
@@ -68,6 +68,7 @@
 			<array>
 				<string>com.compuserve.gif</string>
 				<string>public.gif</string>
+				<string>public.image</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>GIF</string>
@@ -77,6 +78,12 @@
 			<string>com.compuserve.gif</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
+				<key>com.apple.nspboard-type</key>
+				<array>
+					<string>com.compuserve.gif</string>
+					<string>public.gif</string>
+					<string>public.image</string>
+				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>gif</string>
@@ -97,6 +104,7 @@
 			<array>
 				<string>com.compuserve.gif</string>
 				<string>public.gif</string>
+				<string>public.image</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>DotGif</string>
@@ -106,6 +114,12 @@
 			<string>com.compuserve.gif</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
+				<key>com.apple.nspboard-type</key>
+				<array>
+					<string>com.compuserve.gif</string>
+					<string>public.gif</string>
+					<string>public.image</string>
+				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>gif</string>

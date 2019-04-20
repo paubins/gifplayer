@@ -60,7 +60,7 @@ class CameraMan: NSObject {
 
     // Input
     input = AVCaptureScreenInput(displayID: CGMainDisplayID())
-    input.cropRect = rect
+//    input.cropRect = rect
     
     if session.canAddInput(input) {
       session.addInput(input)
@@ -79,7 +79,7 @@ class CameraMan: NSObject {
 
 extension CameraMan: AVCaptureFileOutputRecordingDelegate {
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
-        
+        delegate?.cameraMan(man: self, didChange: .stop)
     }
     
 

@@ -37,9 +37,10 @@
 @end
 @implementation CameraMan
 
-- (id)init:(CGRect)rect {
+- (id)init:(CGRect)rect fileURL:(NSURL *)fileURL {
     if (self = [super init]) {
         self.cropRect = rect;
+        self.recordedFile = fileURL;
     }
     
     return self;
@@ -136,21 +137,23 @@
     
 }
 -(void)initWrite{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documents = [paths objectAtIndex:0];
-    NSString *recordPath = [documents stringByAppendingString:@"/record111"];
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documents = [paths objectAtIndex:0];
+//    NSString *recordPath = [documents stringByAppendingString:@"/record111"];
     NSError *error = nil;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:recordPath]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:recordPath
-                                  withIntermediateDirectories: NO
-                                                   attributes:nil
-                                                        error:&error];
-    }
-    NSString *fileName = [recordPath stringByAppendingString:@"/tem.mov"];
-    self.assetWriter = [AVAssetWriter assetWriterWithURL:[NSURL fileURLWithPath:fileName]
+//    if (![[NSFileManager defaultManager] fileExistsAtPath:recordPath]) {
+//        [[NSFileManager defaultManager] createDirectoryAtPath:recordPath
+//                                  withIntermediateDirectories: NO
+//                                                   attributes:nil
+//                                                        error:&error];
+//    }
+//    NSString *fileName = [recordPath stringByAppendingString:@"/tem.mov"];
+//
+//    self.recordedFilePath = fileName;
+    self.assetWriter = [AVAssetWriter assetWriterWithURL:[NSURL fileURLWithPath: self.recordedFile.path]
                                                 fileType:AVFileTypeQuickTimeMovie error:&error];
     
-    CGSize outputSize = CGSizeMake(2880, 1800);
+    CGSize outputSize = self.cropRect.size;
     NSInteger numPixels = outputSize.width * outputSize.height;
     CGFloat   bitsPerPixel = 1.0;
     NSInteger bitsPerSecond = numPixels * bitsPerPixel;
@@ -290,13 +293,14 @@
         [self.assetWriter finishWritingWithCompletionHandler:^{
             NSError * error = self.assetWriter.error;
             if(error){
-                
                 NSLog(@"AssetWriterFinishError:%@",error);
             }else{
                 self.canWrite = YES;
                 NSLog(@"成功!");
             }
             self.assetWriter = nil;
+            
+            [self.delegate cameraMan:self didChangeState:StateFinish];
         }];
     }
 }

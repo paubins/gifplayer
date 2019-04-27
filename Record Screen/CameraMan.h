@@ -23,8 +23,9 @@ typedef NS_ENUM(NSUInteger, State) {
 @interface CameraMan : NSObject
 
 @property (nonatomic, weak) id<CameraManDelegate> delegate;
+@property (nonatomic, strong) NSURL *recordedFile;
 
-- (id)init:(CGRect)rect;
+- (id)init:(CGRect)rect fileURL:(NSURL *)fileURL;
 
 - (void)resume;
 - (void)pause;

@@ -40,8 +40,6 @@ class Saver {
   }
 
   func gifUrl() -> URL {
-
-    
     let tempGIFUrl = URL(fileURLWithPath: NSTemporaryDirectory())
         .appendingPathComponent(UUID().uuidString)
         .appendingPathExtension("gif")

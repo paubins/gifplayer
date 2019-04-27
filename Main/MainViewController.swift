@@ -16,6 +16,8 @@ class MainViewController: NSViewController {
   @IBOutlet weak var recordButton: NSButton!
   @IBOutlet weak var stopButton: NSButton!
   var loadingIndicator: LoadingIndicator!
+    
+    let saver:Saver = Saver()
 
   var cameraMan: CameraMan?
   var state: State = .idle {
@@ -29,11 +31,16 @@ class MainViewController: NSViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-//    setup()
+    
   }
     
   func setup() {
-    cameraMan = CameraMan(recordFrame())
+
+    let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+    let tempVideoUrl = URL(fileURLWithPath: documents).appendingPathComponent(UUID().uuidString)
+        .appendingPathExtension("mov")
+
+    cameraMan = CameraMan(recordFrame(), fileURL: tempVideoUrl)
     cameraMan?.delegate = self
     
     stopButton.isEnabled = false
@@ -120,16 +127,11 @@ class MainViewController: NSViewController {
       toggleStopButton(enabled: false)
       loadingIndicator.show()
     case .finish:
-      state = .idle
-//      if let url = url {
-//        showNotification(url: url)
-//      } else {
-//
-//      }
+        self.saver.save(videoUrl:  (self.cameraMan?.recordedFile)!) { (url) in
+            self.state = .idle
+            self.showNotification(path: url!.path)
+        }
     case .idle:
-//      cameraMan = CameraMan(rect: recordFrame())
-//      cameraMan?.delegate = self
-        
       recordButton.title = "Record"
       toggleStopButton(enabled: false)
       toggleRecordButton(enabled: true)
@@ -140,20 +142,9 @@ class MainViewController: NSViewController {
 
   // MARK: - Notification
 
-  func showNotification(url: URL) {
-    
-//    let userNotification = NSUserNotification()
-//    
-//    userNotification.identifier = "com.gifplayer.newgif-notification"
-//    userNotification.title = "New Gif Recorded!"
-//    userNotification.informativeText = url.absoluteString
-//    userNotification.hasActionButton = true
-//    userNotification.actionButtonTitle = "Open"
-//
-//    NSUserNotificationCenter.default.deliver(userNotification)
-    
+  func showNotification(path: String) {
     var notification = Notification.init(name: Notification.Name(rawValue: "newGIFRecorded"))
-    notification.object = url.path
+    notification.object = path
     
     NotificationCenter.default.post(notification)
   }

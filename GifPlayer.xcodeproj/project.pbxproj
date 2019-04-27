@@ -25,9 +25,7 @@
 		5F0D63811F13277200DF4FB1 /* GIFResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D63801F13277200DF4FB1 /* GIFResizer.swift */; };
 		5F3B13BF1EF3730C00D4A9B4 /* OpenGLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B13BE1EF3730C00D4A9B4 /* OpenGLView.swift */; };
 		5F3B13C11EF4361300D4A9B4 /* Data+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B13C01EF4361300D4A9B4 /* Data+Compression.swift */; };
-		5F5071071EF4735E00A1AFFB /* CameraMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5070F81EF4735E00A1AFFB /* CameraMan.swift */; };
 		5F5071081EF4735E00A1AFFB /* Saver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5070F91EF4735E00A1AFFB /* Saver.swift */; };
-		5F5071091EF4735E00A1AFFB /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5070FA1EF4735E00A1AFFB /* State.swift */; };
 		5F50710A1EF4735E00A1AFFB /* Window+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5070FC1EF4735E00A1AFFB /* Window+Extensions.swift */; };
 		5F50710B1EF4735E00A1AFFB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5070FE1EF4735E00A1AFFB /* MainViewController.swift */; };
 		5F50710C1EF4735E00A1AFFB /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5070FF1EF4735E00A1AFFB /* MainWindowController.swift */; };
@@ -78,6 +76,7 @@
 		5FFE94361F13F30E006E72A7 /* Gifsicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFE94341F13F30E006E72A7 /* Gifsicle.swift */; };
 		5FFE94371F13F30E006E72A7 /* gifsicle in Resources */ = {isa = PBXBuildFile; fileRef = 5FFE94351F13F30E006E72A7 /* gifsicle */; };
 		B21046DE109895F0BD297548 /* Pods_GifPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CECB0B791EEFC8AFDFC07ADA /* Pods_GifPlayer.framework */; };
+		C1F3E688226B83C0009C5832 /* CameraMan.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F3E686226B83C0009C5832 /* CameraMan.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,9 +134,7 @@
 		5F26C3D81F0F4BCE000840BB /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Main.strings; sourceTree = "<group>"; };
 		5F3B13BE1EF3730C00D4A9B4 /* OpenGLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenGLView.swift; sourceTree = "<group>"; };
 		5F3B13C01EF4361300D4A9B4 /* Data+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Data+Compression.swift"; path = "../Data+Compression.swift"; sourceTree = "<group>"; };
-		5F5070F81EF4735E00A1AFFB /* CameraMan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraMan.swift; sourceTree = "<group>"; };
 		5F5070F91EF4735E00A1AFFB /* Saver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Saver.swift; sourceTree = "<group>"; };
-		5F5070FA1EF4735E00A1AFFB /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		5F5070FC1EF4735E00A1AFFB /* Window+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Window+Extensions.swift"; sourceTree = "<group>"; };
 		5F5070FE1EF4735E00A1AFFB /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5F5070FF1EF4735E00A1AFFB /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
@@ -200,6 +197,8 @@
 		5FFE94341F13F30E006E72A7 /* Gifsicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gifsicle.swift; path = ../GifPlayer/Gifsicle.swift; sourceTree = "<group>"; };
 		5FFE94351F13F30E006E72A7 /* gifsicle */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gifsicle; sourceTree = "<group>"; };
 		C18AD539226AD2B7007123BB /* DotGIF.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DotGIF.entitlements; sourceTree = "<group>"; };
+		C1F3E686226B83C0009C5832 /* CameraMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraMan.m; sourceTree = "<group>"; };
+		C1F3E687226B83C0009C5832 /* CameraMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraMan.h; sourceTree = "<group>"; };
 		CECB0B791EEFC8AFDFC07ADA /* Pods_GifPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GifPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA92E43481015BE60F9FB9B8 /* Pods-GifPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GifPlayer/Pods-GifPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -258,7 +257,6 @@
 		5F5071031EF4735E00A1AFFB /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				5F5070F81EF4735E00A1AFFB /* CameraMan.swift */,
 				5F5070F91EF4735E00A1AFFB /* Saver.swift */,
 				5F0D63801F13277200DF4FB1 /* GIFResizer.swift */,
 				5F783FC11EFA22DF0048A45E /* PasteboardWatcher.swift */,
@@ -318,7 +316,6 @@
 		5F9619391EF87413008A3195 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				5F5070FA1EF4735E00A1AFFB /* State.swift */,
 				5F0B99EC1F1817A600BFFAFA /* SpotlightController.h */,
 				5F0B99ED1F1817A600BFFAFA /* SpotlightController.m */,
 				5FD59CB9218CA53300CF22FF /* DrawingOptionsHandler.swift */,
@@ -348,6 +345,7 @@
 		5FA74AD01EED0C8C007642C8 = {
 			isa = PBXGroup;
 			children = (
+				C1F3E685226B83AB009C5832 /* Record Screen */,
 				5F5071121EF4829200A1AFFB /* Views */,
 				5F5070FD1EF4735E00A1AFFB /* View Controllers */,
 				5FA253C91EEE20F200410048 /* Windows */,
@@ -397,6 +395,15 @@
 				367AB01C00EC649DC5003F5D /* Pods-GifPlayer.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C1F3E685226B83AB009C5832 /* Record Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C1F3E687226B83C0009C5832 /* CameraMan.h */,
+				C1F3E686226B83C0009C5832 /* CameraMan.m */,
+			);
+			path = "Record Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -599,11 +606,11 @@
 				5FA76FFD1F184ECA0022EC52 /* GIFViewController.swift in Sources */,
 				5FD59CC1218CA53300CF22FF /* EditViewController.swift in Sources */,
 				5F50710B1EF4735E00A1AFFB /* MainViewController.swift in Sources */,
+				C1F3E688226B83C0009C5832 /* CameraMan.m in Sources */,
 				5F783FC01EFA221D0048A45E /* DKAsyncImageView.swift in Sources */,
 				5FEC1A211F263BDD008F913A /* VideoState.swift in Sources */,
 				5F0B9A0E1F181FAA00BFFAFA /* SmartTextField.swift in Sources */,
 				5F783FBE1EFA13560048A45E /* WindowController.swift in Sources */,
-				5F5071091EF4735E00A1AFFB /* State.swift in Sources */,
 				5F0B9A0D1F181FAA00BFFAFA /* NSViewExtension.swift in Sources */,
 				5FA74ADF1EED0C8D007642C8 /* ViewController.swift in Sources */,
 				5F0B9A0A1F181FAA00BFFAFA /* FancyAlert.swift in Sources */,
@@ -632,7 +639,6 @@
 				5F50710A1EF4735E00A1AFFB /* Window+Extensions.swift in Sources */,
 				5F783FC21EFA22DF0048A45E /* PasteboardWatcher.swift in Sources */,
 				5FD59CC8218CA5BB00CF22FF /* GIFMakerViewController.swift in Sources */,
-				5F5071071EF4735E00A1AFFB /* CameraMan.swift in Sources */,
 				5F0D637C1F12F86A00DF4FB1 /* Editing.swift in Sources */,
 				5FA76FFF1F184ECA0022EC52 /* ZXConverter.swift in Sources */,
 				5F5071081EF4735E00A1AFFB /* Saver.swift in Sources */,

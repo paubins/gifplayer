@@ -33,7 +33,7 @@ class MainViewController: NSViewController {
   }
     
   func setup() {
-    cameraMan = CameraMan(rect: recordFrame())
+    cameraMan = CameraMan(recordFrame())
     cameraMan?.delegate = self
     
     stopButton.isEnabled = false
@@ -119,13 +119,13 @@ class MainViewController: NSViewController {
       toggleRecordButton(enabled: false)
       toggleStopButton(enabled: false)
       loadingIndicator.show()
-    case .finish(let url):
+    case .finish:
       state = .idle
-      if let url = url {
-        showNotification(url: url)
-      } else {
-
-      }
+//      if let url = url {
+//        showNotification(url: url)
+//      } else {
+//
+//      }
     case .idle:
 //      cameraMan = CameraMan(rect: recordFrame())
 //      cameraMan?.delegate = self
@@ -183,8 +183,8 @@ class MainViewController: NSViewController {
 
 extension MainViewController: CameraManDelegate {
 
-  func cameraMan(man: CameraMan, didChange state: State) {
-    self.state = state
-  }
+    func cameraMan(_ man: CameraMan, didChange state: State) {
+        self.state = state
+    }
 }
 

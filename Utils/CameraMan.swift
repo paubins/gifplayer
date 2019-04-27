@@ -9,20 +9,34 @@
 import Cocoa
 import AVFoundation
 
-protocol CameraManDelegate: class {
+protocol CameraManDelegate2: class {
   func cameraMan(man: CameraMan, didChange state: State)
 }
 
-class CameraMan: NSObject {
+class CameraMan2: NSObject {
 
   weak var delegate: CameraManDelegate?
 
   // MARK: - Public
 
   func record() {
-    let tempVideoUrl = URL(fileURLWithPath: NSTemporaryDirectory())
-      .appendingPathComponent(UUID().uuidString)
-      .appendingPathExtension("mov")
+//    let tempVideoUrl = URL(fileURLWithPath: NSTemporaryDirectory())
+    
+    
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documents = [paths objectAtIndex:0];
+//    NSString *recordPath = [documents stringByAppendingString:@"/record111"];
+//    if (![[NSFileManager defaultManager] fileExistsAtPath:recordPath]) {
+//        [[NSFileManager defaultManager] createDirectoryAtPath:recordPath withIntermediateDirectories: NO attributes:nil error:nil];
+//    }
+//    NSString *fileName = [recordPath stringByAppendingString:@"/tem.mov"];
+//
+//
+    
+    let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+    let tempVideoUrl = URL(fileURLWithPath: documents).appendingPathComponent(UUID().uuidString)
+        .appendingPathExtension("mov")
+    
 
     session.startRunning()
     output.startRecording(to: tempVideoUrl, recordingDelegate: self)
@@ -60,7 +74,8 @@ class CameraMan: NSObject {
 
     // Input
     input = AVCaptureScreenInput(displayID: CGMainDisplayID())
-//    input.cropRect = rect
+    input.cropRect = rect
+    input.minFrameDuration = CMTimeMake(1, 10);
     
     if session.canAddInput(input) {
       session.addInput(input)

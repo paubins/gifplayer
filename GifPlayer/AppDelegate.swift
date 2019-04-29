@@ -260,6 +260,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    func application(_ sender: NSApplication, openFiles filenames: [String]) {
+
+    }
+    
+    func application(_ application: NSApplication, open urls: [URL]) {
+        self.fileToOpen = (urls.first?.path)!
+        
+        for url in urls {
+            if (application.isActive) {
+                let _ = self.displayWindow(filename: url.path)
+            }
+        }
+    }
+    
     func application(_ sender: NSApplication, openFile filename: String) -> Bool {
         self.fileToOpen = filename
 

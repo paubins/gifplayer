@@ -6,6 +6,29 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string></string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>gif</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>gif (2)-128</string>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>image/gif</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>gif</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.compuserve.gif</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -19,7 +42,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>2.4.1</string>
 	<key>CFBundleVersion</key>
-	<string>33</string>
+	<string>34</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>

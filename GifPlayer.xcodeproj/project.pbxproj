@@ -34,9 +34,6 @@
 		5F5071111EF4735E00A1AFFB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5071061EF4735E00A1AFFB /* Utils.swift */; };
 		5F519AF61F15A87700C11215 /* DragAndDropWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F519AF51F15A87700C11215 /* DragAndDropWindow.swift */; };
 		5F519AF81F15DA5E00C11215 /* VarelaRound-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F519AF71F15DA2900C11215 /* VarelaRound-Regular.ttf */; };
-		5F69BBEE21934AC60016B665 /* AXAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F69BBE921934AC40016B665 /* AXAlert.m */; };
-		5F69BBEF21934AC60016B665 /* AXAlertWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F69BBEA21934AC50016B665 /* AXAlertWindow.m */; };
-		5F69BBF021934AC60016B665 /* AXAlertButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F69BBED21934AC60016B665 /* AXAlertButton.m */; };
 		5F69BBF22193CB970016B665 /* GIFLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69BBF12193CB970016B665 /* GIFLoader.swift */; };
 		5F783FBE1EFA13560048A45E /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F783FBD1EFA13560048A45E /* WindowController.swift */; };
 		5F783FC01EFA221D0048A45E /* DKAsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F783FBF1EFA221D0048A45E /* DKAsyncImageView.swift */; };
@@ -143,12 +140,6 @@
 		5F5071061EF4735E00A1AFFB /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		5F519AF51F15A87700C11215 /* DragAndDropWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropWindow.swift; sourceTree = "<group>"; };
 		5F519AF71F15DA2900C11215 /* VarelaRound-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VarelaRound-Regular.ttf"; sourceTree = "<group>"; };
-		5F69BBE821934AC40016B665 /* AXAlertButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXAlertButton.h; sourceTree = "<group>"; };
-		5F69BBE921934AC40016B665 /* AXAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXAlert.m; sourceTree = "<group>"; };
-		5F69BBEA21934AC50016B665 /* AXAlertWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXAlertWindow.m; sourceTree = "<group>"; };
-		5F69BBEB21934AC50016B665 /* AXAlertWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXAlertWindow.h; sourceTree = "<group>"; };
-		5F69BBEC21934AC60016B665 /* AXAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXAlert.h; sourceTree = "<group>"; };
-		5F69BBED21934AC60016B665 /* AXAlertButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXAlertButton.m; sourceTree = "<group>"; };
 		5F69BBF12193CB970016B665 /* GIFLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFLoader.swift; sourceTree = "<group>"; };
 		5F783FBD1EFA13560048A45E /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		5F783FBF1EFA221D0048A45E /* DKAsyncImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKAsyncImageView.swift; sourceTree = "<group>"; };
@@ -274,12 +265,6 @@
 		5F5071121EF4829200A1AFFB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5F69BBEC21934AC60016B665 /* AXAlert.h */,
-				5F69BBE921934AC40016B665 /* AXAlert.m */,
-				5F69BBE821934AC40016B665 /* AXAlertButton.h */,
-				5F69BBED21934AC60016B665 /* AXAlertButton.m */,
-				5F69BBEB21934AC50016B665 /* AXAlertWindow.h */,
-				5F69BBEA21934AC50016B665 /* AXAlertWindow.m */,
 				5F5071051EF4735E00A1AFFB /* LoadingIndicator.swift */,
 				5FA76FFC1F184ECA0022EC52 /* RangeSlider.swift */,
 				5FA76FFB1F184ECA0022EC52 /* Priview.swift */,
@@ -587,7 +572,6 @@
 				5FA76FFE1F184ECA0022EC52 /* GIFConverterViewController.swift in Sources */,
 				5F3B13C11EF4361300D4A9B4 /* Data+Compression.swift in Sources */,
 				5F0B9A081F181FAA00BFFAFA /* ZoomView.swift in Sources */,
-				5F69BBEE21934AC60016B665 /* AXAlert.m in Sources */,
 				5F3B13BF1EF3730C00D4A9B4 /* OpenGLView.swift in Sources */,
 				5FEC1A221F263BDD008F913A /* URL+Metadata.swift in Sources */,
 				5F0D637E1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift in Sources */,
@@ -618,7 +602,6 @@
 				5FD59CC0218CA53300CF22FF /* GIFHandler.swift in Sources */,
 				5FA770011F184ECA0022EC52 /* Priview.swift in Sources */,
 				5F5071111EF4735E00A1AFFB /* Utils.swift in Sources */,
-				5F69BBF021934AC60016B665 /* AXAlertButton.m in Sources */,
 				5FA74ADD1EED0C8D007642C8 /* AppDelegate.swift in Sources */,
 				5FD59CBF218CA53300CF22FF /* PreviewViewController.swift in Sources */,
 				5FEC1A201F263BDD008F913A /* VideoToGifViewController.swift in Sources */,
@@ -642,7 +625,6 @@
 				5F0D637C1F12F86A00DF4FB1 /* Editing.swift in Sources */,
 				5FA76FFF1F184ECA0022EC52 /* ZXConverter.swift in Sources */,
 				5F5071081EF4735E00A1AFFB /* Saver.swift in Sources */,
-				5F69BBEF21934AC60016B665 /* AXAlertWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

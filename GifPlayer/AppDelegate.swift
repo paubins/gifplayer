@@ -32,8 +32,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var windowControllers:[WindowController] = []
     let dockMenu = NSMenu()
     
-    var alert:AXAlert! = nil
-    
     @IBOutlet weak var minimizeButton: NSMenuItem!
     @IBOutlet weak var createGifMenuItem: NSMenuItem!
     @IBOutlet weak var recordMenuItem: NSMenuItem!
@@ -401,9 +399,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if (filename.contains("http")) {
             viewController.download(url: filename) { (success, size) in
                 if (!success) {
-                    self.alert = AXAlert(title: "Error", informativeText: "There was an error parsing this GIF")
-                    self.alert.addButton(AXAlertButton(alert: self.alert, title: "Okay", action: #selector(self.okay)))
-                    self.alert.runModal()
+                    let alert = NSAlert.init()
+                    alert.messageText = "Error"
+                    alert.informativeText = "There was an error parsing this GIF"
+                    alert.addButton(withTitle: "OK")
+                    alert.runModal()
                 } else {
                     let windowSize = windowController.window?.frame.origin
                     let newWindowSize = NSRect(x: (windowSize?.x)!,
@@ -900,9 +900,11 @@ extension AppDelegate : MCDragAndDropImageViewDelegate {
     func dragAndDropImageViewDidDrop(pasteboard:NSPasteboard) {
         let url:URL = NSURL(from: pasteboard)! as URL
         guard (NSImage(byReferencingFile: url.path)?.representations[FIRST_FRAME] as! NSBitmapImageRep).value(forProperty: NSBitmapImageRep.PropertyKey.frameCount) != nil else {
-            self.alert = AXAlert(title: "Error", informativeText: "There was an error parsing this GIF")
-            self.alert.addButton(AXAlertButton(alert: self.alert, title: "Okay", action: #selector(self.okay)))
-            self.alert.runModal()
+            let alert = NSAlert.init()
+            alert.messageText = "Error"
+            alert.informativeText = "There was an error parsing this GIF"
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
             return
         }
         

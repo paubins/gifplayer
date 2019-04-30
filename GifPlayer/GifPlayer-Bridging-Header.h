@@ -3,5 +3,4 @@
 //
 
 #import "FOTWindow.h"
-#import "AXAlert.h"
 #import "CameraMan.h"

@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Record Screen/CameraMan.m"
-            timestampString = "578194269.313103"
+            timestampString = "578290672.5690759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GifPlayer/AppDelegate.swift"
-            timestampString = "578194269.314275"
+            timestampString = "578290672.569427"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
             landmarkName = "application(_:openFile:)"
             landmarkType = "7">
          </BreakpointContent>

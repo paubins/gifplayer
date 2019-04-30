@@ -166,7 +166,6 @@ class ViewController: NSViewController {
     }
     
     var timer:Timer!
-    var alert:AXAlert!
     
     func download(url: String, completionHandler: @escaping (Bool, CGSize) -> ()) {
         self.imageView.frame = NSRect(x:0, y:0, width: 300, height: 300)

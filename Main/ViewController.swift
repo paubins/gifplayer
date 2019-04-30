@@ -180,8 +180,17 @@ class ViewController: NSViewController {
                 
                 self.timer.invalidate()
                 self.timer = nil
-
-                completionHandler(self.imageView.loadGIF(data: self.imageView.imageDownloadData!), imageSize)
+                
+                if let data = self.imageView.imageDownloadData {
+                    completionHandler(self.imageView.loadGIF(data: data), imageSize)
+                } else {
+                    let alert = NSAlert.init()
+                    alert.messageText = "Error"
+                    alert.informativeText = "Unable to load gif at URL."
+                    alert.addButton(withTitle: "OK")
+                    alert.runModal()
+                }
+                
             }
         })
         

@@ -669,9 +669,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func openGIFFromURL() {
-        if (self.textField != nil) && self.textField.stringValue != "" {
+        if (self.textField != nil) && self.textField.stringValue != "" && self.textField.stringValue.contains("http") {
             self.openGIFWindowController.close()
             let _ = self.displayWindow(filename: self.textField.stringValue)
+        } else {
+            let alert = NSAlert.init()
+            alert.messageText = "Error"
+            alert.informativeText = "Invalid URL."
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
         }
     }
     

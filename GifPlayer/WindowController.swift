@@ -112,12 +112,11 @@ class WindowController: NSWindowController, NSToolbarDelegate {
         switch (index) {
             case 0: // plain
                 let viewController:ViewController = self.contentViewController as! ViewController
-                viewController.imageView.animates = false
-                viewController.imageView.animates = true
+                viewController.imageView.isPaused = false
             
             case 1: // bold
                 let viewController:ViewController = self.contentViewController as! ViewController
-                viewController.imageView.animates = false
+                viewController.imageView.isPaused = true
                 
             case 2: // italic
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseWindowFromTouchBar"), object: self)

@@ -219,7 +219,8 @@ class OpenGLView: NSOpenGLView
         self.image = NSImage(data: data as Data)
         
         self.gifRep = (image.representations[FIRST_FRAME] as! NSBitmapImageRep)
-        if let maxFrameCount = gifRep.value(forProperty: NSBitmapImageRep.PropertyKey.frameCount) {
+        let frameCount = gifRep.value(forProperty: NSBitmapImageRep.PropertyKey.frameCount) == nil ? 1 : gifRep.value(forProperty: NSBitmapImageRep.PropertyKey.frameCount)
+        if let maxFrameCount = frameCount {
             self.maxFrameCount = maxFrameCount as! Int
             self.currFrameCount = FIRST_FRAME
             

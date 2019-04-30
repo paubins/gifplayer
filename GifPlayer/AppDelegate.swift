@@ -401,7 +401,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 if (!success) {
                     let alert = NSAlert.init()
                     alert.messageText = "Error"
-                    alert.informativeText = "There was an error parsing this GIF"
+                    alert.informativeText = "There was an error parsing this gif."
                     alert.addButton(withTitle: "OK")
                     alert.runModal()
                 } else {
@@ -899,15 +899,6 @@ extension AppDelegate : MCDragAndDropImageViewDelegate {
     
     func dragAndDropImageViewDidDrop(pasteboard:NSPasteboard) {
         let url:URL = NSURL(from: pasteboard)! as URL
-        guard (NSImage(byReferencingFile: url.path)?.representations[FIRST_FRAME] as! NSBitmapImageRep).value(forProperty: NSBitmapImageRep.PropertyKey.frameCount) != nil else {
-            let alert = NSAlert.init()
-            alert.messageText = "Error"
-            alert.informativeText = "There was an error parsing this GIF"
-            alert.addButton(withTitle: "OK")
-            alert.runModal()
-            return
-        }
-        
         var _ = self.displayWindow(filename: url.path)
     }
     

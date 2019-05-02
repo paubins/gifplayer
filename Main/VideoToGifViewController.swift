@@ -156,7 +156,7 @@ class VideoToGifViewController: NSViewController {
         guard let window = view.window else { return }
 
         saveGIFDialog.beginSheetModal(for: window, completionHandler: { result in
-
+            
             self.saveGIFDialog.close()
 
             if let destinationURL = self.saveGIFDialog.url, result == NSApplication.ModalResponse.OK {
@@ -164,6 +164,8 @@ class VideoToGifViewController: NSViewController {
             } else {
                 print("No video choosen")
             }
+            
+            window.close()
         })
     }
 }

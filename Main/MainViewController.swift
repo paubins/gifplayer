@@ -15,9 +15,13 @@ class MainViewController: NSViewController {
   @IBOutlet weak var heightTextField: NSTextField!
   @IBOutlet weak var recordButton: NSButton!
   @IBOutlet weak var stopButton: NSButton!
+  @IBOutlet weak var closeButton: NSButton!
+    
+  var timer:Timer!
   var loadingIndicator: LoadingIndicator!
     
-    let saver:Saver = Saver()
+  let saver:Saver = Saver()
+  var elapsedTime:Int = 0
 
   var cameraMan: CameraMan?
   var state: State = .idle {
@@ -28,14 +32,11 @@ class MainViewController: NSViewController {
     }
   }
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
+    @IBAction func closeWindow(_ sender: Any) {
+        self.view.window?.close()
+    }
     
-  }
-    
-  func setup() {
-
+    func setup() {
     let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
     let tempVideoUrl = URL(fileURLWithPath: documents).appendingPathComponent(UUID().uuidString)
         .appendingPathExtension("mov")
@@ -115,9 +116,20 @@ class MainViewController: NSViewController {
     case .start:
       cameraMan?.record()
     case .record:
-      recordButton.title = "Pause"
+//      recordButton.title = "Pause"
+      toggleRecordButton(enabled: false)
       toggleStopButton(enabled: true)
+      self.closeButton.isEnabled = false
       view.window?.toggleMoving(enabled: false)
+      
+      self.timer = Timer(fireAt: Date(timeIntervalSinceNow: 0),
+                         interval: 1.0,
+                         target: self,
+                         selector: #selector(self.updateLabel),
+                         userInfo: nil,
+                         repeats: true)
+      RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
+        
     case .pause:
       recordButton.title = "Resume"
     case .resume:
@@ -126,6 +138,8 @@ class MainViewController: NSViewController {
       toggleRecordButton(enabled: false)
       toggleStopButton(enabled: false)
       loadingIndicator.show()
+      self.timer.invalidate()
+      self.timer = nil
     case .finish:
         self.saver.save(videoUrl:  (self.cameraMan?.recordedFile)!) { (url) in
             self.state = .idle
@@ -170,6 +184,17 @@ class MainViewController: NSViewController {
   @IBAction func stopMenuItemTouched(_ sender: NSMenuItem) {
     cameraMan?.stop()
   }
+    
+    @objc func updateLabel(timer: Timer) {
+        print("recording... \(self.elapsedTime)")
+        if (10 <= self.elapsedTime) {
+            cameraMan?.stop()
+        } else {
+            self.elapsedTime += 1
+            self.recordButton.title = "Record \(10-self.elapsedTime)s"
+            self.view.window?.title = "\(10-self.elapsedTime)s remaining"
+        }
+    }
 }
 
 extension MainViewController: CameraManDelegate {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -438,11 +438,14 @@
         <scene sceneID="f8B-kw-Rgq">
             <objects>
                 <windowController storyboardIdentifier="CreateGIFWindowController" id="DX9-tu-Jdy" customClass="MainWindowController" customModule="DotGIF" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="RecordWindow" title="Record" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="GifCaptureAutosave" animationBehavior="default" id="O18-xP-gZu">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" fullSizeContentView="YES"/>
+                    <window key="window" identifier="RecordWindow" title="Record GIF for 10s" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="GifCaptureAutosave" animationBehavior="default" id="O18-xP-gZu">
+                        <windowStyleMask key="styleMask" titled="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="400" height="400"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <value key="minSize" type="size" width="400" height="400"/>
+                        <value key="minFullScreenContentSize" type="size" width="400" height="400"/>
+                        <value key="maxFullScreenContentSize" type="size" width="800" height="600"/>
                         <connections>
                             <outlet property="delegate" destination="DX9-tu-Jdy" id="3WN-x4-Zhc"/>
                         </connections>
@@ -519,6 +522,17 @@
                                                         <action selector="stopButtonTouched:" target="gKm-Gc-KLQ" id="pvo-ZW-RtV"/>
                                                     </connections>
                                                 </button>
+                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R66-5h-IRa">
+                                                    <rect key="frame" x="158" y="-1" width="75" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="T6o-K0-0wm">
+                                                        <behavior key="behavior" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="closeWindow:" target="gKm-Gc-KLQ" id="txg-wA-Zv3"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="R9e-Xm-3GP" firstAttribute="centerY" secondItem="e1l-hY-Hf1" secondAttribute="centerY" id="0L0-z2-wFT"/>
@@ -558,6 +572,7 @@
                     </view>
                     <connections>
                         <outlet property="bottomBox" destination="9sb-vk-SU7" id="Vx4-nt-mcu"/>
+                        <outlet property="closeButton" destination="R66-5h-IRa" id="npi-yO-Fzt"/>
                         <outlet property="heightTextField" destination="R9e-Xm-3GP" id="L4d-Vq-H5c"/>
                         <outlet property="recordButton" destination="6Ar-Cz-PUj" id="mpX-LE-Geq"/>
                         <outlet property="stopButton" destination="hc8-en-dtt" id="Se8-DO-5ud"/>
@@ -573,7 +588,7 @@
             <objects>
                 <windowController storyboardIdentifier="VideoToGifConverterWindowController" id="Zqn-MV-fkt" sceneMemberID="viewController">
                     <window key="window" title="Video to GIF Converter" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="IDa-RA-W4N">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="208" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>

@@ -7,10 +7,5 @@ target 'GifPlayer' do
 
   project 'GifPlayer.xcodeproj'
 
-  # Pods for GifPlayer
-  pod 'NSGIF', :git => 'https://github.com/NSRare/NSGIF'
-  pod 'Fabric'
-  pod 'Crashlytics'
-  pod 'SwiftyJSON'
 
 end

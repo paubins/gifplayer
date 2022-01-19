@@ -3,4 +3,5 @@
 //
 
 #import "FOTWindow.h"
-#import "CameraMan.h"
+#import "NSGIF.h"
+#import "AAPLShaderTypes.h"

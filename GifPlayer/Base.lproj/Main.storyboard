@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="dxP-1g-tlz">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <plugIn identifier="com.apple.WebKit2IBPlugin" version="19529"/>
@@ -48,7 +48,7 @@
                                         <menuItem title="Quit" id="vfh-7F-RdY">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="quit:" target="Voe-Tx-rLC" id="a8w-1X-fQy"/>
+                                                <action selector="quit:" target="Voe-Tx-rLC" id="R97-Fe-uSb"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -174,7 +174,7 @@
                                         <menuItem title="Submit Feedback" id="YRO-vh-u6V">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="submitFeedback:" target="Voe-Tx-rLC" id="tMQ-70-ihQ"/>
+                                                <action selector="submitFeedback:" target="Voe-Tx-rLC" id="04C-SP-FMa"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -186,7 +186,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="GIFController" customModule="DotGIF" customModuleProvider="target">
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="DotGIF" customModuleProvider="target">
                     <connections>
                         <outlet property="saveButton" destination="maX-wv-io5" id="EBM-ZV-uAa"/>
                         <outlet property="windowMenu" destination="yKo-SV-iBN" id="HQJ-vt-odI"/>
@@ -200,7 +200,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController storyboardIdentifier="MainWindowController" id="B8D-0N-5wS" customClass="CustomWindowController" customModule="DotGIF" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="GIFWindow" customModule="DotGIF" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -218,7 +218,7 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="462" y="253"/>
+            <point key="canvasLocation" x="462" y="216"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -320,9 +320,9 @@
         <!--Window Controller-->
         <scene sceneID="Qxz-M5-rNW">
             <objects>
-                <windowController storyboardIdentifier="MainDragAndDropWindow" showSeguePresentationStyle="single" id="dxP-1g-tlz" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="dxP-1g-tlz" customClass="GIFWindowController" customModule="DotGIF" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="ffp-S1-wrP">
-                        <windowStyleMask key="styleMask" miniaturizable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="268" y="340" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1792" height="1120"/>
@@ -349,13 +349,10 @@
         <scene sceneID="iA8-RC-dzR">
             <objects>
                 <viewController id="1kv-c3-rdm" sceneMemberID="viewController">
-                    <view key="view" id="qLc-XN-M2X">
+                    <view key="view" id="qLc-XN-M2X" customClass="MCDragAndDropImageView" customModule="DotGIF" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="2Gr-7T-fp9" customClass="MCDragAndDropImageView" customModule="DotGIF" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                            </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qzu-8k-57g">
                                 <rect key="frame" x="193" y="127" width="95" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Drop GIFs here" id="J8f-hw-eBw">
@@ -366,18 +363,56 @@
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="2Gr-7T-fp9" secondAttribute="trailing" id="SES-AQ-SnQ"/>
                             <constraint firstItem="Qzu-8k-57g" firstAttribute="centerX" secondItem="qLc-XN-M2X" secondAttribute="centerX" id="STj-Dy-SZP"/>
-                            <constraint firstItem="2Gr-7T-fp9" firstAttribute="top" secondItem="qLc-XN-M2X" secondAttribute="top" id="XGi-CK-47A"/>
-                            <constraint firstItem="2Gr-7T-fp9" firstAttribute="leading" secondItem="qLc-XN-M2X" secondAttribute="leading" id="aMJ-BI-O3c"/>
                             <constraint firstItem="Qzu-8k-57g" firstAttribute="centerY" secondItem="qLc-XN-M2X" secondAttribute="centerY" id="asF-qO-y3U"/>
-                            <constraint firstAttribute="bottom" secondItem="2Gr-7T-fp9" secondAttribute="bottom" id="cos-fX-7d7"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="yMZ-4W-pOf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1162" y="486"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="YHn-sH-AqM">
+            <objects>
+                <windowController storyboardIdentifier="FeedbackWindowController" id="IdT-8f-cLQ" sceneMemberID="viewController">
+                    <window key="window" title="Feedback" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Q9Q-XW-CX6">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="268" y="340" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1792" height="1120"/>
+                        <view key="contentView" id="rpp-ey-6vG">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="IdT-8f-cLQ" id="2t7-48-KFh"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="OdC-ee-azF" kind="relationship" relationship="window.shadowedContentViewController" id="eTM-No-Ykk"/>
+                    </connections>
+                </windowController>
+                <customObject id="zXt-Px-CYT" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="104" y="-970"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eBp-iC-vmn">
+            <objects>
+                <viewController id="OdC-ee-azF" sceneMemberID="viewController">
+                    <wkWebView key="view" wantsLayer="YES" id="pZ6-tx-Gnm">
+                        <rect key="frame" x="0.0" y="0.0" width="531" height="438"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <wkWebViewConfiguration key="configuration">
+                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                            <wkPreferences key="preferences"/>
+                        </wkWebViewConfiguration>
+                    </wkWebView>
+                </viewController>
+                <customObject id="j3O-KZ-mDw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-60" y="-492"/>
         </scene>
     </scenes>
 </document>

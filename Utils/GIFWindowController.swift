@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreImage
+import AppKit
 
 enum GIFAction {
     case rewind
@@ -73,6 +74,13 @@ class GIFManager {
     var gifs:[GIF] = []
     static let shared = GIFManager()
     
+    let loadingViewController:NSWindowController = {
+        let windowController = NSStoryboard(name: "Main", bundle: nil)
+            .instantiateController(withIdentifier: "LoadingWindow") as! NSWindowController
+        return windowController
+    }()
+    
+    
     func getIndex(for gif: String) -> Int {
         let indexes = gifs.enumerated().filter({ $0.element.name == gif }).map({ $0.offset })
         if indexes.count == 1 {
@@ -80,9 +88,85 @@ class GIFManager {
         }
         return -1
     }
+    
+    func convertToGIF(url: URL) {
+        GIFManager.shared.showLoader(message: "Converting GIF...")
+        NSGIF.createGIFfromURL(url, withFrameCount: Int32(15), delayTime: 1/100, loopCount: 0) { url in
+            GIFManager.shared.hideLoader()
+            if let url = url {
+                GIFManager.shared.powerLoadGIF(url: url)
+            }
+        }
+    }
+    
+    func powerLoadGIF(url: URL) {
+        GIFManager.shared.showLoader(message: "Loading GIF...")
+        let windowController = NSStoryboard(name: "Main", bundle: nil)
+            .instantiateController(withIdentifier: "MainWindowController") as! CustomWindowController
+        windowController.shouldCascadeWindows = true
+        
+        if let window = windowController.window as? GIFWindow {
+            window.titlebarAppearsTransparent = true
+            window.titleVisibility = .hidden
+            window.styleMask.insert(NSWindow.StyleMask.fullSizeContentView)
+            windowController.keyPressCallback = { action in
+                window.parseAction(action: action)
+            }
+        }
+        
+        (windowController.window as! GIFWindow).loadGIF(gifFileName: url) {
+            guard let window = windowController.window as? GIFWindow else {
+                return
+            }
+            
+            if let contentView = window.contentView!.subviews.first, let pixelBuffer = window.getNextImage() {
+                let width = window.frame.size.width * NSScreen.main!.backingScaleFactor
+                let height = window.frame.size.height * NSScreen.main!.backingScaleFactor
+
+                (contentView as! MetalView).create(coords: [CGPoint(x: width, y: height),
+                                                              CGPoint(x: 0, y: height),
+                                                              CGPoint(x: 0, y: 0),
+                                                              CGPoint(x: width, y: height),
+                                                              CGPoint(x: 0, y: 0),
+                                                              CGPoint(x: width, y: 0)])
+                (contentView as! MetalView).replace(with: .image(pixelBuffer))
+                
+            }
+            window.orderFrontRegardless()
+            GIFManager.shared.hideLoader()
+        } timerCallback: {
+            guard let window = windowController.window as? GIFWindow,
+                  let contentView = window.contentView,
+                  let metalView = contentView.subviews.first as? MetalView,
+                  let pixelBuffer = window.getNextImage() else {
+                      return
+                  }
+            metalView.replace(with: .image(pixelBuffer))
+        }
+    }
+    
+    func showLoader(message: String) {
+        DispatchQueue.main.async { [self] in
+            if let window = self.loadingViewController.window  {
+                let viewController = (window.contentViewController as! ViewController)
+                viewController.toggleLoading(message: message)
+                window.orderFrontRegardless()
+            }
+        }
+    }
+    
+    func hideLoader() {
+        DispatchQueue.main.async { [self] in
+            if let window = self.loadingViewController.window  {
+                let viewController = (window.contentViewController as! ViewController)
+                viewController.toggleLoading(message: "")
+                window.orderOut(self)
+            }
+        }
+    }
 }
 
-class GIFWindow {
+class GIFWindow : NSWindow {
     private var gifIndex:Int = 0
     
     private var animationImages:[CGImage]? {
@@ -101,17 +185,11 @@ class GIFWindow {
     private var maxFrameCount:Int = 29
     private var defaultInterval = 0.05
     
-    private var completion:((CustomWindowController)->())?
-    private var timerCallback:((CustomWindowController)->())?
-    
-    var windowController:CustomWindowController?
+    private var timerCallback:(()->())?
     
     func getSize(completion: @escaping ((NSSize) -> ())) {
         DispatchQueue.main.async { [self] in
-            if let windowController = windowController,
-                let window = windowController.window {
-                completion(window.frame.size)
-            }
+            completion(frame.size)
         }
     }
     
@@ -157,9 +235,7 @@ class GIFWindow {
         self.timer = Timer.scheduledTimer(withTimeInterval: self.defaultInterval * 0.5, repeats: true, block: { [self] timer in
             if let timerCallback = timerCallback {
                 DispatchQueue.main.async {
-                    if let windowController = self.windowController {
-                        timerCallback(windowController)
-                    }
+                    timerCallback()
                 }
             }
         })
@@ -176,9 +252,7 @@ class GIFWindow {
         self.timer = Timer.scheduledTimer(withTimeInterval: self.defaultInterval * 2.0, repeats: true, block: { [self] timer in
             if let timerCallback = timerCallback {
                 DispatchQueue.main.async {
-                    if let windowController = self.windowController {
-                        timerCallback(windowController)
-                    }
+                    timerCallback()
                 }
             }
         })
@@ -188,8 +262,7 @@ class GIFWindow {
         return self.timer!.timeInterval
     }
     
-    func loadGIF(gifFileName:URL, completion:((CustomWindowController)->())? = nil, timerCallback:((CustomWindowController)->())?=nil) {
-        self.completion = completion
+    func loadGIF(gifFileName:URL, completion:(()->())? = nil, timerCallback:(()->())?=nil) {
         self.timerCallback = timerCallback
         
         var windowSize:NSSize = .zero
@@ -211,24 +284,14 @@ class GIFWindow {
         
         if let completion = completion {
             DispatchQueue.main.async {
-                if self.windowController == nil {
-                    self.windowController = self.retrieveWindowForDisplay(size: windowSize)
-                    self.windowController!.keyPressCallback = { action in
-                        self.parseAction(action: action)
-                    }
-                }
-                if let windowController = self.windowController {
-                    completion(windowController)
-                }
+                completion()
             }
         }
         
         self.timer = Timer.scheduledTimer(withTimeInterval: self.defaultInterval, repeats: true, block: { timer in
             if let timerCallback = timerCallback {
                 DispatchQueue.main.async {
-                    if let windowController = self.windowController {
-                        timerCallback(windowController)
-                    }
+                    timerCallback()
                 }
             }
         })
@@ -385,10 +448,9 @@ class GIFWindow {
         case .actualSize:
             self.resetWindow()
         case .clone:
-            print(self.gifIndex)
             if let urlString = GIFManager.shared.gifs[self.gifIndex].name,
                let url = URL(string: urlString) {
-                GIFController.shared.powerLoadGIF(url: url)
+                GIFManager.shared.powerLoadGIF(url: url)
             }
             break
         case .save(let saveStarted, let saveEnded):
@@ -406,7 +468,7 @@ class GIFWindow {
                     DispatchQueue.main.async { [self] in
                         if let windowController = self.windowController {
                             if let timerCallback = self.timerCallback {
-                                timerCallback(windowController)
+                                timerCallback()
                             }
                         }
                     }
@@ -417,247 +479,37 @@ class GIFWindow {
     }
 }
 
-class GIFController : NSObject {
-    var screenRect:NSRect! {
-        return (self.topMostWindow?.frame)!
-    }
+class GIFWindowController : NSWindowController {
+
+    let pasteboardWatcher:PasteboardWatcher = PasteboardWatcher(fileKinds: ["gif", "mp4"])
     
-    static let shared = GIFController()
-    let dockMenu = NSMenu()
-    
-    var newWindow:NSWindow!
-    let feedbackWindowController:NSWindowController = NSWindowController()
-    let loadingViewController:NSWindowController = {
-        let windowController = NSStoryboard(name: "Main", bundle: nil)
-            .instantiateController(withIdentifier: "LoadingWindow") as! NSWindowController
-        return windowController
-    }()
-    
-    @IBOutlet weak var windowMenu: NSMenuItem!
-    @IBOutlet weak var saveButton: NSMenuItem!
-    
-    var gifWindows:[GIFWindow] = []
-    
-    let pasteboardWatcher:PasteboardWatcher = PasteboardWatcher(fileKinds: ["gif"])
-    
-    var topMostWindow:FOTWindow! {
-        for gifWindow in self.gifWindows {
-            if let windowController = gifWindow.windowController {
-                if(windowController.window?.isKeyWindow)! {
-                    return windowController.window as? FOTWindow
-                }
-            }
-        }
-        return nil
-    }
-    
-    var fileToOpen:String = ""
-    
-    override init() {
-        super.init()
+    override func awakeFromNib() {
+        super.awakeFromNib()
         self.pasteboardWatcher.delegate = self
         UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions" : true])
-        let contentView:MCDragAndDropImageView = self.loadNewGifWindowController.window!.contentView as! MCDragAndDropImageView
-        contentView.delegate = self
-        self.loadNewGifWindowController.window?.makeKeyAndOrderFront(self.loadNewGifWindowController.window)
-    }
-    
-    @IBAction func minimizeWindow(_ sender: Any) {
-        for gifWindow in self.gifWindows {
-            if let windowController = gifWindow.windowController {
-                if(windowController.window?.isKeyWindow)! {
-                    (windowController.window as? FOTWindow)?.toggleFullScreen(self)
-                }
-            }
+        if let window = self.window {
+            let contentView:MCDragAndDropImageView = window.contentView as! MCDragAndDropImageView
+            contentView.delegate = self
         }
-    }
-
-    var loadNewGifWindowController:NSWindowController = {
-        let newWindow:NSWindow = NSWindow(contentRect: NSMakeRect(0, 0, 250, 250),
-                                          styleMask: [.borderless],
-                                          backing: .buffered,
-                                          defer: false)
-        
-        newWindow.isOpaque = false
-        newWindow.center()
-        newWindow.isMovableByWindowBackground = true
-        newWindow.backgroundColor = NSColor.black
-        
-        let imageView:MCDragAndDropImageView = MCDragAndDropImageView(frame: NSMakeRect(0, 0, 250, 250))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer?.cornerRadius = 5
-        
-        newWindow.contentView = imageView
-        newWindow.hasShadow = true
-        
-        let label:NSTextField = NSTextField(frame: .zero)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.isBezeled = false
-        label.drawsBackground = false
-        label.isEditable = false
-        label.isSelectable = false
-        label.stringValue = "Drop GIFs here!"
-        label.font = NSFont(name: "VarelaRound-Regular", size: 200)
-        label.textColor = NSColor.white
-
-        newWindow.contentView?.addSubview(label)
-        
-        label.centerXAnchor.constraint(equalTo: (newWindow.contentView?.centerXAnchor)!).isActive = true
-        label.centerYAnchor.constraint(equalTo: (newWindow.contentView?.centerYAnchor)!).isActive = true
-
-        return NSWindowController(window: newWindow)
-    }()
-    
-    private func convertToGIF() {
-        NSGIF.createGIFfromURL(URL(string: ""), withFrameCount: Int32(15), delayTime: 1/100, loopCount: 0) { (url) in
-            
-        }
-    }
-    
-    @objc func windowClosed(sender: Notification) {
-        let window:FOTWindow = sender.object as! FOTWindow
-    
-//        if(self.dockMenu.index(of: window.menuItem) >= 0) {
-//            self.dockMenu.removeItem(window.menuItem)
-//
-//            let windowIndex = self.windowControllers.firstIndex(of: window.windowController!)
-//            self.windowControllers.remove(at: windowIndex!)
-//        }
-//
-//        if(self.gifWindows.count > 0) {
-//            self.windowControllers.last?.window?.makeKey()
-//            NSApp.activate(ignoringOtherApps: true)
-//        } else {
-//            self.loadNewGifWindowController.window?.makeKeyAndOrderFront(loadNewGifWindowController.window)
-////            windowMenu.isHidden = true
-//        }
-    }
-
-    @IBAction func closeWindow(_ sender: Any) {
-        for gifWindow in self.gifWindows {
-            if let windowController = gifWindow.windowController {
-                if(windowController.window?.isKeyWindow)! {
-                    windowController.window?.close()
-                }
-            }
-        }
-    }
-    
-    func openFile(file: String) {
-        self.fileToOpen = file
-//        self.displayWindow(filename: self.fileToOpen)
-    }
-    
-    func openFiles(urls: [URL]) {
-        for url in urls {
-//            let _ = self.displayWindow(filename: url.path)
-        }
-    }
-    
-    func showLoader(message: String) {
-        DispatchQueue.main.async { [self] in
-            if let window = self.loadingViewController.window  {
-                let viewController = (window.contentViewController as! ViewController)
-                viewController.toggleLoading(message: message)
-                window.orderFrontRegardless()
-            }
-        }
-    }
-    
-    func hideLoader() {
-        DispatchQueue.main.async { [self] in
-            if let window = self.loadingViewController.window  {
-                let viewController = (window.contentViewController as! ViewController)
-                viewController.toggleLoading(message: "")
-                window.orderOut(self)
-            }
-        }
-    }
-    
-    func createNewWindow() {
-        if newWindow == nil {
-            newWindow = NSWindow(contentRect: NSMakeRect(0, 0, NSScreen.main!.frame.midX, NSScreen.main!.frame.midY + 150), styleMask: [.closable, .titled], backing: .buffered, defer: false)
-            
-            newWindow.title = "Feedback"
-            newWindow.isOpaque = false
-            newWindow.center()
-            newWindow.isMovableByWindowBackground = true
-            newWindow.backgroundColor = NSColor(calibratedHue: 0, saturation: 1.0, brightness: 0, alpha: 0.7)
-            
-            
-            let webView = WebView(frame: NSMakeRect(0, 0, NSScreen.main!.frame.midX, NSScreen.main!.frame.midY))
-            webView.mainFrameURL = Bundle.main.url(forResource: "index", withExtension: "html")?.absoluteString
-            
-            newWindow.contentView = webView
-            
-            feedbackWindowController.window = newWindow
-        }
-    }
-    
-    @IBAction func submitFeedback(_ sender: Any) {
-        self.createNewWindow()
-        newWindow.makeKeyAndOrderFront(newWindow)
-    }
-    
-    @IBAction func quit(_ sender: Any) {
-        NSLog("Exit")
-        NSApplication.shared.terminate(nil)
-    }
-   
-    func powerLoadGIF(url: URL) {
-//        self.windowMenu.isHidden = false
-        self.showLoader(message: "Loading GIF...")
-        let gifWindow = GIFWindow()
-        gifWindow.loadGIF(gifFileName: url, completion: { windowController in
-            if let window = windowController.window {
-                if let contentView = window.contentView!.subviews.first, let pixelBuffer = gifWindow.getNextImage() {
-                    let width = window.frame.size.width * NSScreen.main!.backingScaleFactor
-                    let height = window.frame.size.height * NSScreen.main!.backingScaleFactor
-//                    print("wh: \(width) \(height)")
-                    
-                    (contentView as! MetalView).create(coords: [CGPoint(x: width, y: height),
-                                                                  CGPoint(x: 0, y: height),
-                                                                  CGPoint(x: 0, y: 0),
-                                                                  CGPoint(x: width, y: height),
-                                                                  CGPoint(x: 0, y: 0),
-                                                                  CGPoint(x: width, y: 0)])
-                    (contentView as! MetalView).replace(with: .image(pixelBuffer))
-                    
-                }
-                window.orderFrontRegardless()
-                self.hideLoader()
-            }
-        }) { windowController in
-            if let window = windowController.window {
-                if let contentView = window.contentView!.subviews.first, let pixelBuffer = gifWindow.getNextImage() {
-                    let width = window.frame.size.width * NSScreen.main!.backingScaleFactor
-                    let height = window.frame.size.height * NSScreen.main!.backingScaleFactor
-//                    print("wh: \(width) \(height)")
-                    (contentView as! MetalView).replace(with: .image(pixelBuffer))
-                }
-            }
-        }
-        self.gifWindows += [gifWindow]
     }
 }
 
 
-extension GIFController : MCDragAndDropImageViewDelegate {
+extension GIFWindowController : MCDragAndDropImageViewDelegate {
     func dragAndDropImageViewDidDrop(pasteboard:NSPasteboard) {
         let url:URL = NSURL(from: pasteboard)! as URL
-        self.powerLoadGIF(url: url)
+        if url.pathExtension == "mp4" {
+            GIFManager.shared.convertToGIF(url: url)
+        } else {
+            GIFManager.shared.powerLoadGIF(url: url)
+        }
     }
 }
 
-extension GIFController : PasteboardWatcherDelegate {
+extension GIFWindowController : PasteboardWatcherDelegate {
     func newlyCopiedUrlObtained(copiedUrl: NSURL) {
 //        _ = self.displayWindow(filename: copiedUrl.absoluteString!)
     }
-}
-// MARK: - Helper
-
-func *(size: NSSize, scale: CGFloat) -> NSSize {
-    return NSMakeSize(size.width * scale, size.height * scale)
 }
 
 class CustomWindowController : NSWindowController {
@@ -683,9 +535,9 @@ class CustomWindowController : NSWindowController {
         switch event.keyCode {
         case 1:
             keyPressCallback(.save({
-                GIFController.shared.showLoader(message: "Saving GIF...")
+                GIFManager.shared.showLoader(message: "Saving GIF...")
             }, {
-                GIFController.shared.hideLoader()
+                GIFManager.shared.hideLoader()
             }))
         case 2:
             keyPressCallback(.slowDown)
@@ -717,4 +569,10 @@ class CustomWindowController : NSWindowController {
             print("idk")
         }
     }
+}
+
+// MARK: - Helper
+
+func *(size: NSSize, scale: CGFloat) -> NSSize {
+    return NSMakeSize(size.width * scale, size.height * scale)
 }

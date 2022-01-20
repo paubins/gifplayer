@@ -8,7 +8,7 @@
 
 import Cocoa
 
-protocol MCDragAndDropImageViewDelegate: class {
+protocol MCDragAndDropImageViewDelegate: AnyObject {
     func dragAndDropImageViewDidDrop(pasteboard:NSPasteboard)
 }
 
@@ -16,11 +16,12 @@ class MCDragAndDropImageView: NSView {
 
 	weak var delegate: MCDragAndDropImageViewDelegate?
 
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
         registerForDraggedTypes([.fileURL])
         wantsLayer = true
+//        self.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -30,10 +31,6 @@ class MCDragAndDropImageView: NSView {
 	override var mouseDownCanMoveWindow:Bool {
 		return true
 	}
-    
-    override func awakeFromNib() {
-        self.delegate = self
-    }
 }
 
 // MARK: - NSDraggingSource
@@ -80,40 +77,3 @@ extension MCDragAndDropImageView: NSDraggingSource {
 	}
 }
 
-
-extension MCDragAndDropImageView : MCDragAndDropImageViewDelegate {
-    func dragAndDropImageViewDidDrop(pasteboard:NSPasteboard) {
-        let url:URL = NSURL(from: pasteboard)! as URL
-        GIFController.shared.windowMenu.isHidden = false
-        let gifWindow = GIFWindow()
-        gifWindow.loadGIF(gifFileName: url, completion: { windowController in
-            if let window = windowController.window {
-                if let contentView = window.contentView!.subviews.first, let pixelBuffer = gifWindow.getNextImage() {
-                    let width = window.frame.size.width * NSScreen.main!.backingScaleFactor
-                    let height = window.frame.size.height * NSScreen.main!.backingScaleFactor
-                    print("wh: \(width) \(height)")
-                    
-                    (contentView as! MetalView).create(coords: [CGPoint(x: width, y: height),
-                                                                  CGPoint(x: 0, y: height),
-                                                                  CGPoint(x: 0, y: 0),
-                                                                  CGPoint(x: width, y: height),
-                                                                  CGPoint(x: 0, y: 0),
-                                                                  CGPoint(x: width, y: 0)])
-                    (contentView as! MetalView).replace(with: .image(pixelBuffer))
-                    
-                }
-                window.orderFrontRegardless()
-            }
-        }) { windowController in
-            if let window = windowController.window {
-                if let contentView = window.contentView!.subviews.first, let pixelBuffer = gifWindow.getNextImage() {
-                    let width = window.frame.size.width * NSScreen.main!.backingScaleFactor
-                    let height = window.frame.size.height * NSScreen.main!.backingScaleFactor
-                    print("wh: \(width) \(height)")
-                    (contentView as! MetalView).replace(with: .image(pixelBuffer))
-                }
-            }
-        }
-        GIFController.shared.gifWindows += [gifWindow]
-    }
-}

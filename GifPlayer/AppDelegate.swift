@@ -16,6 +16,17 @@ let folderPath  = NSHomeDirectory() + "/Documents"
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     var gifPaths:[String] = []
+    
+    lazy var feedbackWindowController:NSWindowController = {
+        let windowController = NSStoryboard(name: "Main", bundle: nil)
+            .instantiateController(withIdentifier: "FeedbackWindowController") as! NSWindowController
+        if let window = windowController.window,
+            let contentView = window.contentView as? WKWebView,
+            let url = Bundle.main.url(forResource: "index", withExtension: "html") {
+            contentView.loadFileURL(url, allowingReadAccessTo: url)
+        }
+        return windowController
+    }()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let fm   = FileManager.default
@@ -29,7 +40,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.servicesProvider = self
 
     }
-
+    
+    @IBAction func submitFeedback(_ sender: Any) {
+        if let window = self.feedbackWindowController.window {
+            window.orderFrontRegardless()
+        }
+    }
+    
+    @IBAction func quit(_ sender: Any) {
+        NSApplication.shared.terminate(nil)
+    }
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         for gifPath in self.gifPaths {
             try? FileManager.default.removeItem(atPath: gifPath)
@@ -46,18 +67,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func application(_ application: NSApplication, open urls: [URL]) {
         guard application.isActive else { return }
-        GIFController.shared.openFiles(urls: urls)
+//        GIFWindowController.shared.openFiles(urls: urls)
     }
     
     func application(_ application: NSApplication, openFile filename: String) -> Bool {
         guard application.isActive else { return false }
-        GIFController.shared.openFile(file: filename)
+//        GIFWindowController.shared.openFile(file: filename)
         return true
     }
-    
-    func applicationDockMenu(_ sender: NSApplication) -> NSMenu? {
-        return GIFController.shared.dockMenu
-    }
- 
-
 }

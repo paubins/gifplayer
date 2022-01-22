@@ -132,8 +132,8 @@ withTimestampInMilliseconds:(int64_t)timestamp {
       reinterpret_cast<const VideoBuffer *>(videoBuffer);
   VideoFrame frame(video_buffer, timestamp);
     _completion(frame.buffer->buffer);
-//  _videoFrames.push(frame);
-//  NSLog(@"pushed buffer.");
+  _videoFrames.push(frame);
+  NSLog(@"pushed buffer.");
   [_lock unlock];
 }
 

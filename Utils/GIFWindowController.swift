@@ -10,6 +10,9 @@ import Foundation
 import CoreImage
 import AppKit
 import VideoToolbox
+import Accelerate
+
+let MAX_FRAMES = 800
 
 enum GIFAction {
     case rewind
@@ -378,8 +381,8 @@ class GIFWindow : NSWindow {
         guard let gifData = try? Data(contentsOf: url),
               let source =  CGImageSourceCreateWithData(gifData as CFData, nil) else { return (nil, .zero) }
         var images = [CGImage]()
-        let imageCount = CGImageSourceGetCount(source)
-        self.maxFrameCount = imageCount
+        let imageCount = min(CGImageSourceGetCount(source), MAX_FRAMES)
+        self.maxFrameCount = min(imageCount, MAX_FRAMES)
         
         let propertiesOptions = [kCGImageSourceShouldCache: false] as CFDictionary
         guard let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, propertiesOptions) as? [CFString: Any] else {
@@ -402,39 +405,50 @@ class GIFWindow : NSWindow {
     
     func saveGIF(savingBeganHandler: @escaping (()->()), savingEndedHandler:@escaping (()->()) ) {
         savingBeganHandler()
-        self.getSize { size in
-            DispatchQueue(label: "gifSave").async { [self] in
-                guard let animationImages = animationImages else {
+        self.getSize { [self] size in
+            if self.isWebM {
+                guard let animationBuffers = animationBuffers else {
                     return
                 }
                 
-                let destinationURL = NSURL(fileURLWithPath: "\(folderPath)/image3.gif")
-                let destinationGIF = CGImageDestinationCreateWithURL(destinationURL, kUTTypeGIF, animationImages.count, nil)!
-                
-                // The final size of your GIF. This is an optional parameter
-                var rect = NSMakeRect(0, 0, size.width, size.height)
-                
-                // This dictionary controls the delay between frames
-                // If you don't specify this, CGImage will apply a default delay
-                let properties = [
-                    (kCGImagePropertyGIFDictionary as String): [(kCGImagePropertyGIFDelayTime as String): 1.0/16.0]
-                ]
-                
-                for img in animationImages {
-                    // Convert an NSImage to CGImage, fitting within the specified rect
-                    // You can replace `&rect` with nil
-                    let newImage = NSImage(cgImage: img, size: rect.size)
-                    let cgImage = newImage.resizedCopy(w: rect.width, h: rect.height).cgImage(forProposedRect: &rect, context: nil, hints: nil)!
-                    
-                    // Add the frame to the GIF image
-                    // You can replace `properties` with nil
-                    CGImageDestinationAddImage(destinationGIF, cgImage, properties as CFDictionary)
+                DispatchQueue(label: "save-webm").async {
+                    NSImage.animatedGif(from: animationBuffers, size: size)
+                    savingEndedHandler()
                 }
-                
-                // Write the GIF file to disk
-                CGImageDestinationFinalize(destinationGIF)
-                print(destinationURL)
-                savingEndedHandler()
+            } else {
+                DispatchQueue(label: "gifSave").async { [self] in
+                    guard let animationImages = animationImages else {
+                        return
+                    }
+                    
+                    let destinationURL = NSURL(fileURLWithPath: "\(folderPath)/image3.gif")
+                    let destinationGIF = CGImageDestinationCreateWithURL(destinationURL, kUTTypeGIF, animationImages.count, nil)!
+                    
+                    // The final size of your GIF. This is an optional parameter
+                    var rect = NSMakeRect(0, 0, size.width, size.height)
+                    
+                    // This dictionary controls the delay between frames
+                    // If you don't specify this, CGImage will apply a default delay
+                    let properties = [
+                        (kCGImagePropertyGIFDictionary as String): [(kCGImagePropertyGIFDelayTime as String): 1.0/16.0]
+                    ]
+                    
+                    for img in animationImages {
+                        // Convert an NSImage to CGImage, fitting within the specified rect
+                        // You can replace `&rect` with nil
+                        let newImage = NSImage(cgImage: img, size: rect.size)
+                        let cgImage = newImage.resizedCopy(w: rect.width, h: rect.height).cgImage(forProposedRect: &rect, context: nil, hints: nil)!
+                        
+                        // Add the frame to the GIF image
+                        // You can replace `properties` with nil
+                        CGImageDestinationAddImage(destinationGIF, cgImage, properties as CFDictionary)
+                    }
+                    
+                    // Write the GIF file to disk
+                    CGImageDestinationFinalize(destinationGIF)
+                    print(destinationURL)
+                    savingEndedHandler()
+                }
             }
         }
     }
@@ -443,19 +457,15 @@ class GIFWindow : NSWindow {
         var images:[CVPixelBuffer] = []
         let viewController = GlkVideoViewController()
         viewController.fileToPlay = resourceName.absoluteURL.path
+        GIFManager.shared.showLoader(message: "Loading WebM...")
         viewController.loadFile { pixelBuffer in
             if pixelBuffer != nil {
                 print(pixelBuffer!)
                 images.append(pixelBuffer!)
             }
-            
-//            if let buffer = pixelBuffer {
-//                print("hey")
-
-//            }
         }
         viewController.playFile()
-
+        GIFManager.shared.hideLoader()
         return (images, .zero)
     }
     
@@ -659,4 +669,47 @@ class CustomWindowController : NSWindowController {
 
 func *(size: NSSize, scale: CGFloat) -> NSSize {
     return NSMakeSize(size.width * scale, size.height * scale)
+}
+
+extension NSImage {
+    static func animatedGif(from images: [CVPixelBuffer], size: NSSize) {
+        let fileProperties: CFDictionary = [
+            kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFLoopCount as String: 0],
+            kCGImagePropertyGIFHasGlobalColorMap as String: true,
+            kCGImagePropertyColorModel as String: kCGImagePropertyColorModelRGB as String
+        ]  as CFDictionary
+            
+        let frameProperties: CFDictionary = [kCGImagePropertyGIFDictionary as String: [(kCGImagePropertyGIFDelayTime as String): 1.0]] as CFDictionary
+        
+        let documentsDirectoryURL: URL? = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let fileURL: URL? = documentsDirectoryURL?.appendingPathComponent("animated.gif")
+        
+        if let url = fileURL as CFURL? {
+            if let destination = CGImageDestinationCreateWithURL(url, kUTTypeGIF, images.count, nil) {
+                CGImageDestinationSetProperties(destination, fileProperties)
+                for image in images {
+                    var _vtpt_ref:VTPixelTransferSession?
+                    let result = VTPixelTransferSessionCreate(allocator: kCFAllocatorDefault, pixelTransferSessionOut: &_vtpt_ref)
+                    var converted_frame:CVPixelBuffer?
+                    CVPixelBufferCreate(kCFAllocatorDefault,
+                                        Int(size.width), Int(size.height),
+                                        kCVPixelFormatType_32BGRA,
+                                        nil,
+                                        &converted_frame)
+                    
+                    if let _vtpt_ref = _vtpt_ref, let converted_frame = converted_frame {
+                        VTPixelTransferSessionTransferImage(_vtpt_ref, from: image, to: converted_frame)
+                        var cgImage:CGImage?
+                        VTCreateCGImageFromCVPixelBuffer(converted_frame, options: nil, imageOut: &cgImage)
+                        CGImageDestinationAddImage(destination, cgImage as! CGImage, frameProperties)
+                    }
+                    
+                }
+                if !CGImageDestinationFinalize(destination) {
+                    print("Failed to finalize the image destination")
+                }
+                print("Url = \(fileURL)")
+            }
+        }
+    }
 }

@@ -31,7 +31,7 @@
 
 namespace VpxExample {
 
-const int kNumVideoBuffers = 8;
+const int kNumVideoBuffers = 800;
 const int64_t kNanosecondsPerSecond = 1000000000;
 const int64_t kMillisecondsPerSecond = 1000;
 

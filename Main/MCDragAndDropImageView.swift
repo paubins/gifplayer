@@ -39,7 +39,7 @@ extension MCDragAndDropImageView: NSDraggingSource {
 
 	override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
 
-		if (NSImage.canInit(with: sender.draggingPasteboard)) {
+        if (true) { // NSImage.canInit(with: sender.draggingPasteboard)) {
 			let sourceDragMask = sender.draggingSourceOperationMask
 			let pboard = sender.draggingPasteboard
 
@@ -58,11 +58,11 @@ extension MCDragAndDropImageView: NSDraggingSource {
 	}
 
 	override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
-		return NSImage.canInit(with: sender.draggingPasteboard)
+		return true //NSImage.canInit(with: sender.draggingPasteboard)
 	}
 
 	override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-		if (NSImage.canInit(with: sender.draggingPasteboard)) {
+        if (true) { //NSImage.canInit(with: sender.draggingPasteboard)) {
             delegate?.dragAndDropImageViewDidDrop(pasteboard: sender.draggingPasteboard)
 		}
 

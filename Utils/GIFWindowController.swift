@@ -9,6 +9,7 @@
 import Foundation
 import CoreImage
 import AppKit
+import VideoToolbox
 
 enum GIFAction {
     case rewind
@@ -67,7 +68,11 @@ class ViewController : NSViewController {
 class GIF {
     var name:String?
     var animationImages:[CGImage]?
+    var pixelBuffers:[CVPixelBuffer]?
     var size:NSSize = .zero
+    var isWebm:Bool {
+        URL(string: self.name!)!.pathExtension == "webm"
+    }
 }
 
 class GIFManager {
@@ -79,7 +84,6 @@ class GIFManager {
             .instantiateController(withIdentifier: "LoadingWindow") as! NSWindowController
         return windowController
     }()
-    
     
     func getIndex(for gif: String) -> Int {
         let indexes = gifs.enumerated().filter({ $0.element.name == gif }).map({ $0.offset })
@@ -118,30 +122,53 @@ class GIFManager {
             guard let window = windowController.window as? GIFWindow else {
                 return
             }
-            
-            if let contentView = window.contentView!.subviews.first, let pixelBuffer = window.getNextImage() {
-                let width = window.frame.size.width * NSScreen.main!.backingScaleFactor
-                let height = window.frame.size.height * NSScreen.main!.backingScaleFactor
+            if window.isWebM {
+                if let contentView = window.contentView!.subviews.first, let pixelBuffer = window.getNextPixelBuffer() {
+                    let width = window.frame.size.width * NSScreen.main!.backingScaleFactor
+                    let height = window.frame.size.height * NSScreen.main!.backingScaleFactor
 
-                (contentView as! MetalView).create(coords: [CGPoint(x: width, y: height),
-                                                              CGPoint(x: 0, y: height),
-                                                              CGPoint(x: 0, y: 0),
-                                                              CGPoint(x: width, y: height),
-                                                              CGPoint(x: 0, y: 0),
-                                                              CGPoint(x: width, y: 0)])
-                (contentView as! MetalView).replace(with: .image(pixelBuffer))
-                
+                    (contentView as! MetalView).create(coords: [CGPoint(x: width, y: height),
+                                                                  CGPoint(x: 0, y: height),
+                                                                  CGPoint(x: 0, y: 0),
+                                                                  CGPoint(x: width, y: height),
+                                                                  CGPoint(x: 0, y: 0),
+                                                                  CGPoint(x: width, y: 0)])
+                    (contentView as! MetalView).replace(with: .yuvBuffer(pixelBuffer, false))
+                }
+            } else {
+                if let contentView = window.contentView!.subviews.first, let pixelBuffer = window.getNextImage() {
+                    let width = window.frame.size.width * NSScreen.main!.backingScaleFactor
+                    let height = window.frame.size.height * NSScreen.main!.backingScaleFactor
+
+                    (contentView as! MetalView).create(coords: [CGPoint(x: width, y: height),
+                                                                  CGPoint(x: 0, y: height),
+                                                                  CGPoint(x: 0, y: 0),
+                                                                  CGPoint(x: width, y: height),
+                                                                  CGPoint(x: 0, y: 0),
+                                                                  CGPoint(x: width, y: 0)])
+                    (contentView as! MetalView).replace(with: .image(pixelBuffer))
+                    
+                }
             }
+            
             window.orderFrontRegardless()
             GIFManager.shared.hideLoader()
         } timerCallback: {
             guard let window = windowController.window as? GIFWindow,
                   let contentView = window.contentView,
-                  let metalView = contentView.subviews.first as? MetalView,
-                  let pixelBuffer = window.getNextImage() else {
+                  let metalView = contentView.subviews.first as? MetalView else {
                       return
                   }
-            metalView.replace(with: .image(pixelBuffer))
+            
+            if window.isWebM {
+                let pixelBuffer = window.getNextPixelBuffer()
+                metalView.replace(with: .yuvBuffer(pixelBuffer, false))
+            } else {
+                if let pixelBuffer = window.getNextImage() {
+                    metalView.replace(with: .image(pixelBuffer))
+                }
+                
+            }
         }
     }
     
@@ -176,6 +203,13 @@ class GIFWindow : NSWindow {
         return nil
     }
     
+    private var animationBuffers:[CVPixelBuffer]? {
+        if let animationImages = GIFManager.shared.gifs[self.gifIndex].pixelBuffers {
+            return animationImages
+        }
+        return nil
+    }
+    
     private var imageSize:NSSize {
         return GIFManager.shared.gifs[self.gifIndex].size
     }
@@ -187,6 +221,10 @@ class GIFWindow : NSWindow {
     
     private var timerCallback:(()->())?
     
+    var isWebM:Bool {
+        GIFManager.shared.gifs[self.gifIndex].isWebm
+    }
+    
     func getSize(completion: @escaping ((NSSize) -> ())) {
         DispatchQueue.main.async { [self] in
             completion(frame.size)
@@ -195,6 +233,19 @@ class GIFWindow : NSWindow {
     
     func getNextImage() -> CGImage? {
         if let animationImages = animationImages {
+            let image = animationImages[self.currFrameCount]
+            if animationImages.count == self.currFrameCount+1 {
+                self.currFrameCount = 0
+            } else {
+                self.currFrameCount += 1
+            }
+            return image
+        }
+        return nil
+    }
+    
+    func getNextPixelBuffer() -> CVPixelBuffer? {
+        if let animationImages = animationBuffers {
             let image = animationImages[self.currFrameCount]
             if animationImages.count == self.currFrameCount+1 {
                 self.currFrameCount = 0
@@ -269,9 +320,19 @@ class GIFWindow : NSWindow {
         let gifIndex = GIFManager.shared.getIndex(for: gifFileName.absoluteString)
         if gifIndex < 0 {
             let newGIF = GIF()
-            let sizeAndImages =  self.fromGif(resourceName: gifFileName)
-            newGIF.animationImages = sizeAndImages.0
-            newGIF.size = sizeAndImages.1
+            switch gifFileName.pathExtension {
+            case "gif":
+                let sizeAndImages =  self.fromGif(resourceName: gifFileName)
+                newGIF.animationImages = sizeAndImages.0
+                newGIF.size = sizeAndImages.1
+            case "webm":
+                let sizeAndImages =  self.fromWebm(resourceName: gifFileName)
+                newGIF.pixelBuffers = sizeAndImages.0
+                newGIF.size = sizeAndImages.1
+                break
+            default:
+                print("unknown")
+            }
             newGIF.name = gifFileName.absoluteString
             windowSize = newGIF.size
             // store the images
@@ -378,6 +439,26 @@ class GIFWindow : NSWindow {
         }
     }
     
+    func fromWebm(resourceName: URL) -> ([CVPixelBuffer]?, NSSize){
+        var images:[CVPixelBuffer] = []
+        let viewController = GlkVideoViewController()
+        viewController.fileToPlay = resourceName.absoluteURL.path
+        viewController.loadFile { pixelBuffer in
+            if pixelBuffer != nil {
+                print(pixelBuffer!)
+                images.append(pixelBuffer!)
+            }
+            
+//            if let buffer = pixelBuffer {
+//                print("hey")
+
+//            }
+        }
+        viewController.playFile()
+
+        return (images, .zero)
+    }
+    
     func moveWindow(widthOffset:CGFloat = 1.0, widthOffsetExact:CGFloat = 0.0,
                     heightOffsetExact:CGFloat = 0.0, xOffset: CGFloat = 0.0, yOffset:CGFloat = 0.0) {
         if let windowController = windowController, let window = windowController.window {
@@ -481,7 +562,7 @@ class GIFWindow : NSWindow {
 
 class GIFWindowController : NSWindowController {
 
-    let pasteboardWatcher:PasteboardWatcher = PasteboardWatcher(fileKinds: ["gif", "mp4"])
+    let pasteboardWatcher:PasteboardWatcher = PasteboardWatcher(fileKinds: ["gif", "mp4", "webm"])
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -498,8 +579,11 @@ class GIFWindowController : NSWindowController {
 extension GIFWindowController : MCDragAndDropImageViewDelegate {
     func dragAndDropImageViewDidDrop(pasteboard:NSPasteboard) {
         let url:URL = NSURL(from: pasteboard)! as URL
-        if url.pathExtension == "mp4" {
+        if url.pathExtension == "mp4" ||  url.pathExtension == "mov"{
             GIFManager.shared.convertToGIF(url: url)
+        } else if url.pathExtension == "webm" {
+            print("about to load webm")
+            GIFManager.shared.powerLoadGIF(url: url)
         } else {
             GIFManager.shared.powerLoadGIF(url: url)
         }

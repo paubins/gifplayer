@@ -13,6 +13,19 @@ using namespace metal;
 // Include header shared between this Metal shader code and C code executing Metal API commands
 #include "../AAPLShaderTypes.h"
 
+// Texture index values shared between shader and C code to ensure Metal shader texture indices
+//   match indices of Metal API texture set calls
+typedef enum TextureIndices {
+    kTextureIndexColor    = 0,
+    kTextureIndexY        = 1,
+    kTextureIndexCbCr     = 2
+} TextureIndices;
+
+typedef struct {
+    float4 position [[position]];
+    float2 textureCoordinate;
+} ImageColorInOut;
+
 
 struct RasterizerData
 {
@@ -77,6 +90,26 @@ vertexShader(uint vertexID [[ vertex_id ]],
     return out;
 }
 
+float4 yuva2rgba(half4 yuva)
+{
+
+    float4 rgba = float4(0.0);
+
+    rgba.r = yuva.x * 1.0 + yuva.y * 0.0 + yuva.z * 1.4;
+    rgba.g = yuva.x * 1.0 + yuva.y * -0.343 + yuva.z * -0.711;
+    rgba.b = yuva.x * 1.0 + yuva.y * 1.765 + yuva.z * 0.0;
+    rgba.a = yuva.a;
+
+    return rgba;
+}
+
+constant const float4x4 ycbcrToRGBTransform = float4x4(
+    float4(+1.0000f, +1.0000f, +1.0000f, +0.0000f),
+    float4(+0.0000f, -0.3441f, +1.7720f, +0.0000f),
+    float4(+1.4020f, -0.7141f, +0.0000f, +0.0000f),
+    float4(-0.7010f, +0.5291f, -0.8860f, +1.0000f)
+);
+
 // Fragment function
 fragment float4
 samplingShader(RasterizerData in [[stage_in]],
@@ -87,8 +120,30 @@ samplingShader(RasterizerData in [[stage_in]],
 
     // Sample the texture to obtain a color
     const half4 colorSample = colorTexture.sample(textureSampler, in.textureCoordinate);
-
+    
     // return the color of the texture
     return float4(colorSample);
 }
 
+fragment float4 capturedImageFragmentShader(RasterizerData in [[stage_in]],
+                                            texture2d<float, access::sample> capturedImageTextureY [[ texture(kTextureIndexY) ]],
+                                            texture2d<float, access::sample> capturedImageTextureCbCr [[ texture(kTextureIndexCbCr) ]]) {
+    
+    constexpr sampler colorSampler(mip_filter::linear,
+                                   mag_filter::linear,
+                                   min_filter::linear);
+    
+    const float4x4 ycbcrToRGBTransform = float4x4(
+        float4(+1.0000f, +1.0000f, +1.0000f, +0.0000f),
+        float4(+0.0000f, -0.3441f, +1.7720f, +0.0000f),
+        float4(+1.4020f, -0.7141f, +0.0000f, +0.0000f),
+        float4(-0.7010f, +0.5291f, -0.8860f, +1.0000f)
+    );
+    
+    // Sample Y and CbCr textures to get the YCbCr color at the given texture coordinate.
+    float4 ycbcr = float4(capturedImageTextureY.sample(colorSampler, in.textureCoordinate).r,
+                          capturedImageTextureCbCr.sample(colorSampler, in.textureCoordinate).rg, 1.0);
+    
+    // Return the converted RGB color.
+    return ycbcrToRGBTransform * ycbcr;
+}

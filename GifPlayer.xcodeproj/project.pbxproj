@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -36,6 +36,22 @@
 		C1585D5E2792436500758157 /* passthrough.metal in Sources */ = {isa = PBXBuildFile; fileRef = C1585D4E2792436500758157 /* passthrough.metal */; };
 		C1585D5F2792436500758157 /* AAPLShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C1585D4F2792436500758157 /* AAPLShaders.metal */; };
 		C1633C4B274820F400CAE99C /* NSGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = C1633C49274820F400CAE99C /* NSGIF.m */; };
+		C17DE264279B8FB7001FA81A /* GlkVideoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C17DE244279B8FB6001FA81A /* GlkVideoViewController.mm */; };
+		C17DE265279B8FB7001FA81A /* mkvwriter.cc in Sources */ = {isa = PBXBuildFile; fileRef = C17DE24B279B8FB6001FA81A /* mkvwriter.cc */; };
+		C17DE266279B8FB7001FA81A /* mkvmuxerutil.cc in Sources */ = {isa = PBXBuildFile; fileRef = C17DE24C279B8FB6001FA81A /* mkvmuxerutil.cc */; };
+		C17DE267279B8FB7001FA81A /* mkvmuxer.cc in Sources */ = {isa = PBXBuildFile; fileRef = C17DE24D279B8FB6001FA81A /* mkvmuxer.cc */; };
+		C17DE268279B8FB7001FA81A /* video_buffer_pool.mm in Sources */ = {isa = PBXBuildFile; fileRef = C17DE24F279B8FB6001FA81A /* video_buffer_pool.mm */; };
+		C17DE269279B8FB7001FA81A /* mkvreader.cc in Sources */ = {isa = PBXBuildFile; fileRef = C17DE254279B8FB6001FA81A /* mkvreader.cc */; };
+		C17DE26A279B8FB7001FA81A /* mkvparser.cc in Sources */ = {isa = PBXBuildFile; fileRef = C17DE255279B8FB6001FA81A /* mkvparser.cc */; };
+		C17DE26B279B8FB7001FA81A /* ivf_frame_parser.mm in Sources */ = {isa = PBXBuildFile; fileRef = C17DE258279B8FB6001FA81A /* ivf_frame_parser.mm */; };
+		C17DE26C279B8FB7001FA81A /* vpx_player.mm in Sources */ = {isa = PBXBuildFile; fileRef = C17DE259279B8FB6001FA81A /* vpx_player.mm */; };
+		C17DE26D279B8FB7001FA81A /* hdr_util.cc in Sources */ = {isa = PBXBuildFile; fileRef = C17DE25B279B8FB6001FA81A /* hdr_util.cc */; };
+		C17DE26E279B8FB7001FA81A /* file_util.cc in Sources */ = {isa = PBXBuildFile; fileRef = C17DE25F279B8FB6001FA81A /* file_util.cc */; };
+		C17DE26F279B8FB7001FA81A /* webm_frame_parser.mm in Sources */ = {isa = PBXBuildFile; fileRef = C17DE261279B8FB6001FA81A /* webm_frame_parser.mm */; };
+		C17DE270279B8FB7001FA81A /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C17DE262279B8FB7001FA81A /* VPX.framework */; };
+		C17DE274279B9128001FA81A /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C17DE273279B9128001FA81A /* CoreVideo.framework */; platformFilter = maccatalyst; };
+		C17DE277279B912E001FA81A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C17DE275279B912E001FA81A /* Foundation.framework */; platformFilter = maccatalyst; };
+		C17DE278279B912E001FA81A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C17DE276279B912E001FA81A /* CoreFoundation.framework */; platformFilter = maccatalyst; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -121,6 +137,38 @@
 		C1585D60279243CF00758157 /* AAPLShaderTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLShaderTypes.h; sourceTree = "<group>"; };
 		C1633C49274820F400CAE99C /* NSGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSGIF.m; sourceTree = "<group>"; };
 		C1633C4A274820F400CAE99C /* NSGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSGIF.h; sourceTree = "<group>"; };
+		C17DE244279B8FB6001FA81A /* GlkVideoViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GlkVideoViewController.mm; sourceTree = "<group>"; };
+		C17DE245279B8FB6001FA81A /* webm_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webm_frame_parser.h; sourceTree = "<group>"; };
+		C17DE247279B8FB6001FA81A /* mkvmuxertypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mkvmuxertypes.h; sourceTree = "<group>"; };
+		C17DE248279B8FB6001FA81A /* mkvmuxerutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mkvmuxerutil.h; sourceTree = "<group>"; };
+		C17DE249279B8FB6001FA81A /* mkvwriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mkvwriter.h; sourceTree = "<group>"; };
+		C17DE24A279B8FB6001FA81A /* mkvmuxer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mkvmuxer.h; sourceTree = "<group>"; };
+		C17DE24B279B8FB6001FA81A /* mkvwriter.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mkvwriter.cc; sourceTree = "<group>"; };
+		C17DE24C279B8FB6001FA81A /* mkvmuxerutil.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mkvmuxerutil.cc; sourceTree = "<group>"; };
+		C17DE24D279B8FB6001FA81A /* mkvmuxer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mkvmuxer.cc; sourceTree = "<group>"; };
+		C17DE24E279B8FB6001FA81A /* ivf_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ivf_frame_parser.h; sourceTree = "<group>"; };
+		C17DE24F279B8FB6001FA81A /* video_buffer_pool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = video_buffer_pool.mm; sourceTree = "<group>"; };
+		C17DE250279B8FB6001FA81A /* GlkVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlkVideoViewController.h; sourceTree = "<group>"; };
+		C17DE251279B8FB6001FA81A /* vpx_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vpx_frame_parser.h; sourceTree = "<group>"; };
+		C17DE252279B8FB6001FA81A /* video_buffer_pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = video_buffer_pool.h; sourceTree = "<group>"; };
+		C17DE254279B8FB6001FA81A /* mkvreader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mkvreader.cc; sourceTree = "<group>"; };
+		C17DE255279B8FB6001FA81A /* mkvparser.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mkvparser.cc; sourceTree = "<group>"; };
+		C17DE256279B8FB6001FA81A /* mkvreader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mkvreader.h; sourceTree = "<group>"; };
+		C17DE257279B8FB6001FA81A /* mkvparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mkvparser.h; sourceTree = "<group>"; };
+		C17DE258279B8FB6001FA81A /* ivf_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ivf_frame_parser.mm; sourceTree = "<group>"; };
+		C17DE259279B8FB6001FA81A /* vpx_player.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = vpx_player.mm; sourceTree = "<group>"; };
+		C17DE25B279B8FB6001FA81A /* hdr_util.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hdr_util.cc; sourceTree = "<group>"; };
+		C17DE25C279B8FB6001FA81A /* hdr_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hdr_util.h; sourceTree = "<group>"; };
+		C17DE25D279B8FB6001FA81A /* file_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_util.h; sourceTree = "<group>"; };
+		C17DE25E279B8FB6001FA81A /* webmids.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webmids.h; sourceTree = "<group>"; };
+		C17DE25F279B8FB6001FA81A /* file_util.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_util.cc; sourceTree = "<group>"; };
+		C17DE260279B8FB6001FA81A /* vpx_player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vpx_player.h; sourceTree = "<group>"; };
+		C17DE261279B8FB6001FA81A /* webm_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = webm_frame_parser.mm; sourceTree = "<group>"; };
+		C17DE262279B8FB7001FA81A /* VPX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VPX.framework; sourceTree = "<group>"; };
+		C17DE263279B8FB7001FA81A /* vpx_example_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vpx_example_common.h; sourceTree = "<group>"; };
+		C17DE273279B9128001FA81A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		C17DE275279B912E001FA81A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C17DE276279B912E001FA81A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		C18AD539226AD2B7007123BB /* DotGIF.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DotGIF.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +177,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C17DE278279B912E001FA81A /* CoreFoundation.framework in Frameworks */,
+				C17DE270279B8FB7001FA81A /* VPX.framework in Frameworks */,
+				C17DE277279B912E001FA81A /* Foundation.framework in Frameworks */,
+				C17DE274279B9128001FA81A /* CoreVideo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +239,8 @@
 		5FA74AD01EED0C8C007642C8 = {
 			isa = PBXGroup;
 			children = (
+				C17DE272279B9003001FA81A /* Frameworks */,
+				C17DE271279B8FBD001FA81A /* WebMParser */,
 				C10467BE2784C58100404F49 /* Video to Gif Converter */,
 				5F5071121EF4829200A1AFFB /* Views */,
 				5FA253C91EEE20F200410048 /* Windows */,
@@ -256,6 +310,76 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C17DE246279B8FB6001FA81A /* mkvmuxer */ = {
+			isa = PBXGroup;
+			children = (
+				C17DE247279B8FB6001FA81A /* mkvmuxertypes.h */,
+				C17DE248279B8FB6001FA81A /* mkvmuxerutil.h */,
+				C17DE249279B8FB6001FA81A /* mkvwriter.h */,
+				C17DE24A279B8FB6001FA81A /* mkvmuxer.h */,
+				C17DE24B279B8FB6001FA81A /* mkvwriter.cc */,
+				C17DE24C279B8FB6001FA81A /* mkvmuxerutil.cc */,
+				C17DE24D279B8FB6001FA81A /* mkvmuxer.cc */,
+			);
+			path = mkvmuxer;
+			sourceTree = "<group>";
+		};
+		C17DE253279B8FB6001FA81A /* mkvparser */ = {
+			isa = PBXGroup;
+			children = (
+				C17DE254279B8FB6001FA81A /* mkvreader.cc */,
+				C17DE255279B8FB6001FA81A /* mkvparser.cc */,
+				C17DE256279B8FB6001FA81A /* mkvreader.h */,
+				C17DE257279B8FB6001FA81A /* mkvparser.h */,
+			);
+			path = mkvparser;
+			sourceTree = "<group>";
+		};
+		C17DE25A279B8FB6001FA81A /* common */ = {
+			isa = PBXGroup;
+			children = (
+				C17DE25B279B8FB6001FA81A /* hdr_util.cc */,
+				C17DE25C279B8FB6001FA81A /* hdr_util.h */,
+				C17DE25D279B8FB6001FA81A /* file_util.h */,
+				C17DE25E279B8FB6001FA81A /* webmids.h */,
+				C17DE25F279B8FB6001FA81A /* file_util.cc */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		C17DE271279B8FBD001FA81A /* WebMParser */ = {
+			isa = PBXGroup;
+			children = (
+				C17DE25A279B8FB6001FA81A /* common */,
+				C17DE250279B8FB6001FA81A /* GlkVideoViewController.h */,
+				C17DE244279B8FB6001FA81A /* GlkVideoViewController.mm */,
+				C17DE24E279B8FB6001FA81A /* ivf_frame_parser.h */,
+				C17DE258279B8FB6001FA81A /* ivf_frame_parser.mm */,
+				C17DE246279B8FB6001FA81A /* mkvmuxer */,
+				C17DE253279B8FB6001FA81A /* mkvparser */,
+				C17DE252279B8FB6001FA81A /* video_buffer_pool.h */,
+				C17DE24F279B8FB6001FA81A /* video_buffer_pool.mm */,
+				C17DE263279B8FB7001FA81A /* vpx_example_common.h */,
+				C17DE251279B8FB6001FA81A /* vpx_frame_parser.h */,
+				C17DE260279B8FB6001FA81A /* vpx_player.h */,
+				C17DE259279B8FB6001FA81A /* vpx_player.mm */,
+				C17DE245279B8FB6001FA81A /* webm_frame_parser.h */,
+				C17DE261279B8FB6001FA81A /* webm_frame_parser.mm */,
+			);
+			path = WebMParser;
+			sourceTree = "<group>";
+		};
+		C17DE272279B9003001FA81A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C17DE276279B912E001FA81A /* CoreFoundation.framework */,
+				C17DE275279B912E001FA81A /* Foundation.framework */,
+				C17DE273279B9128001FA81A /* CoreVideo.framework */,
+				C17DE262279B8FB7001FA81A /* VPX.framework */,
+			);
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,20 +504,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C17DE26F279B8FB7001FA81A /* webm_frame_parser.mm in Sources */,
 				C1585D5F2792436500758157 /* AAPLShaders.metal in Sources */,
+				C17DE26A279B8FB7001FA81A /* mkvparser.cc in Sources */,
 				C1585D522792436500758157 /* autostereogramKernel.metal in Sources */,
 				C1585D5D2792436500758157 /* passthroughKernel.metal in Sources */,
 				C1585D5E2792436500758157 /* passthrough.metal in Sources */,
 				C1585D512792436500758157 /* exposureKernel.metal in Sources */,
+				C17DE264279B8FB7001FA81A /* GlkVideoViewController.mm in Sources */,
+				C17DE267279B8FB7001FA81A /* mkvmuxer.cc in Sources */,
+				C17DE266279B8FB7001FA81A /* mkvmuxerutil.cc in Sources */,
 				5F0D637E1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift in Sources */,
 				C1585D552792436500758157 /* inversionKernel.metal in Sources */,
 				5FA74ADD1EED0C8D007642C8 /* AppDelegate.swift in Sources */,
+				C17DE26B279B8FB7001FA81A /* ivf_frame_parser.mm in Sources */,
 				C1585D582792436500758157 /* pixellateKernel.metal in Sources */,
 				C1585D5C2792436500758157 /* basic_shaders.metal in Sources */,
 				5FA253C81EEE20EE00410048 /* FOTWindow.m in Sources */,
 				C1585D3E2792032A00758157 /* GIFWindowController.swift in Sources */,
 				C1585D5A2792436500758157 /* contrastKernel.metal in Sources */,
 				C1585D572792436500758157 /* brightnessKernel.metal in Sources */,
+				C17DE268279B8FB7001FA81A /* video_buffer_pool.mm in Sources */,
+				C17DE265279B8FB7001FA81A /* mkvwriter.cc in Sources */,
+				C17DE269279B8FB7001FA81A /* mkvreader.cc in Sources */,
 				C1585D502792436500758157 /* MetalView.swift in Sources */,
 				5F9619381EF87410008A3195 /* ImageSourceHelpers.swift in Sources */,
 				C1585D532792436500758157 /* grayscaleKernel.metal in Sources */,
@@ -403,6 +536,9 @@
 				C1585D562792436500758157 /* shaders.metal in Sources */,
 				C1585D592792436500758157 /* gammaKernel.metal in Sources */,
 				5F783FC21EFA22DF0048A45E /* PasteboardWatcher.swift in Sources */,
+				C17DE26E279B8FB7001FA81A /* file_util.cc in Sources */,
+				C17DE26C279B8FB7001FA81A /* vpx_player.mm in Sources */,
+				C17DE26D279B8FB7001FA81A /* hdr_util.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,7 +698,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
@@ -577,6 +714,11 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 3XSPEUHQ6Y;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -585,7 +727,10 @@
 					/Users/patrickaubin/projects/gifsicle,
 				);
 				INFOPLIST_FILE = GifPlayer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paubins.DotGif;
 				PRODUCT_NAME = DotGIF;
@@ -606,6 +751,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 3XSPEUHQ6Y;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -614,7 +764,10 @@
 					/Users/patrickaubin/projects/gifsicle,
 				);
 				INFOPLIST_FILE = GifPlayer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paubins.DotGif;
 				PRODUCT_NAME = DotGIF;

@@ -16,6 +16,7 @@ var FIRST_FRAME = 0
 enum DataType {
     case file(URL)
     case buffer(CVPixelBuffer?, Bool)
+    case yuvBuffer(CVPixelBuffer?, Bool)
     case image(CGImage)
     case imageWithAlpha(NSImage)
     case imageFile(URL)
@@ -37,7 +38,8 @@ struct MetalObject {
     var pixelBuffer:CVPixelBuffer? = nil
     var imageTexture:MTLTexture? = nil
     var alphaTexture:MTLTexture? = nil
-    
+    var capturedImageTextureY: CVMetalTexture?
+    var capturedImageTextureCbCr: CVMetalTexture?
     var shouldRotate:Bool = false
 }
 
@@ -45,6 +47,7 @@ final class MetalView: MTKView {
     
     var standardPipeline: MTLRenderPipelineState!
     var alphaPipeline: MTLRenderPipelineState!
+    var yuvPipeline: MTLRenderPipelineState!
     
     lazy var scaleFilter:MPSImageLanczosScale = {
         #if os(macOS)
@@ -242,6 +245,34 @@ final class MetalView: MTKView {
 
         return try metalDevice.makeRenderPipelineState(descriptor: pipelineDescriptor)
     }
+    
+    
+    fileprivate func createPipelineForYUV(_ metalDevice: MTLDevice, alpha: Bool = false) throws
+        -> MTLRenderPipelineState
+    {
+        // step 4-5: create a vertex shader & fragment shader
+        // A vertex shader is simply a tiny program that runs on the GPU, written in a C++-like language called the Metal Shading Language.
+
+        let library = metalDevice.makeDefaultLibrary()
+        let pipelineDescriptor = MTLRenderPipelineDescriptor()
+        pipelineDescriptor.vertexFunction = library!.makeFunction(name: "vertexShader")
+        pipelineDescriptor.fragmentFunction = library!.makeFunction(name: "capturedImageFragmentShader")
+        pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
+        pipelineDescriptor.colorAttachments[0].pixelFormat = self.colorPixelFormat
+
+        if alpha {
+            pipelineDescriptor.colorAttachments[0].isBlendingEnabled = true
+            pipelineDescriptor.colorAttachments[0].rgbBlendOperation = .add
+            pipelineDescriptor.colorAttachments[0].alphaBlendOperation = .add
+            pipelineDescriptor.colorAttachments[0].sourceRGBBlendFactor = .destinationAlpha
+            pipelineDescriptor.colorAttachments[0].sourceAlphaBlendFactor = .destinationAlpha
+            pipelineDescriptor.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
+            pipelineDescriptor.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusBlendAlpha
+        }
+
+        return try metalDevice.makeRenderPipelineState(descriptor: pipelineDescriptor)
+    }
+
 
     fileprivate func createPipelineWithAlpha(_ metalDevice: MTLDevice) throws
         -> MTLRenderPipelineState
@@ -254,6 +285,7 @@ final class MetalView: MTKView {
         do {
             standardPipeline = try createPipeline(metalDevice)
             alphaPipeline = try createPipelineWithAlpha(metalDevice)
+            yuvPipeline = try createPipelineForYUV(metalDevice)
 
             viewportSize = vector_uint2(x: UInt32(self.bounds.size.width), y: UInt32(self.bounds.size.height))
         } catch {
@@ -330,22 +362,15 @@ final class MetalView: MTKView {
                     texture: alphaTexture,
                     pipeline: self.alphaPipeline,
                     commandBuffer: commandBuffer, useLoad: true)
+            } else if let capturedY = buffer.capturedImageTextureY, let capturedYU = buffer.capturedImageTextureCbCr, let buffer = buffer.buffer {
+                self.encodeTexture(
+                    buffer: buffer,
+                    texture: CVMetalTextureGetTexture(capturedY)!,
+                    texture2: CVMetalTextureGetTexture(capturedYU)!,
+                    pipeline: self.yuvPipeline,
+                    commandBuffer: commandBuffer, useLoad: true)
             }
         }
-        
-//        #if targetEnvironment(simulator)
-//        #else
-//        if let recordingTexture = self.recordingTexture {
-//            let texture = drawable.texture
-//            scaleFilter.encode(commandBuffer: commandBuffer, sourceTexture: texture, destinationTexture: recordingTexture)
-//
-//            commandBuffer.addCompletedHandler { commandBuffer in
-//                if let callback = self.recordingCallback, let texture = self.recordingTexture {
-//                    callback(texture)
-//                }
-//            }
-//        }
-//        #endif
 
         commandBuffer.present(drawable)
         commandBuffer.commit()
@@ -378,7 +403,7 @@ final class MetalView: MTKView {
     }
 
     private func encodeTexture(
-        buffer: MTLBuffer, texture:MTLTexture, pipeline: MTLRenderPipelineState,
+        buffer: MTLBuffer, texture:MTLTexture, texture2:MTLTexture? = nil, pipeline: MTLRenderPipelineState,
         commandBuffer: MTLCommandBuffer, useLoad:Bool = true
     ) {
         
@@ -416,6 +441,9 @@ final class MetalView: MTKView {
         encoder.setRenderPipelineState(pipeline)
         encoder.setVertexBuffer(buffer, offset: 0, index: 0)
         encoder.setFragmentTexture(texture, index: 0)
+        if let texture2 = texture2 {
+            encoder.setFragmentTexture(texture, index: 1)
+        }
         encoder.setVertexBytes(&viewportSize, length: MemoryLayout<vector_uint2>.size, index: 1)
         encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: numVertices)
         encoder.endEncoding()
@@ -431,6 +459,20 @@ final class MetalView: MTKView {
                 metalObject.imageTexture = nil
                 metalObject.pixelBuffer = buffer
                 metalObject.shouldRotate = rotate
+                return metalObject
+            })
+            setNeedsDisplay(self.frame)
+        case .yuvBuffer(let buffer, let rotate):
+            self.bufferCoords = self.bufferCoords.map({ metalObject in
+                var metalObject = metalObject
+                metalObject.imageTexture = nil
+                metalObject.pixelBuffer = nil
+                metalObject.shouldRotate = rotate
+                if let buffer = buffer {
+                    let textures = updateCapturedImageTextures(pixelBuffer: buffer)
+                    metalObject.capturedImageTextureY = textures.0
+                    metalObject.capturedImageTextureCbCr = textures.1
+                }
                 return metalObject
             })
             setNeedsDisplay(self.frame)
@@ -496,155 +538,30 @@ final class MetalView: MTKView {
             self.bufferCoords += [bufferCoord]
         }
     }
-//
-//    func replace(obj at:CallLocation, with coords:[CGPoint]) {
-//        self.bufferCoords = self.bufferCoords.map { bufferCoord in
-//            guard bufferCoord.location == at else { return bufferCoord }
-//            var bufferCoord = bufferCoord
-//            guard let metalDevice = self.device else { fatalError("Expected a Metal device.") }
-//            do {
-//                var dataSize = 0
-//                let buffer = coords
-//                let vertexData:[AAPLVertex] = createQuad(br: buffer[0],
-//                                                         bl: buffer[1],
-//                                                         tl: buffer[2],
-//                                                         br2: buffer[3],
-//                                                         tl2: buffer[4],
-//                                                         tr: buffer[5],
-//                                                         viewportSize:  UIScreen.main.nativeBounds.size)
-//                if dataSize == 0 {
-//                    dataSize = vertexData.count * MemoryLayout.size(ofValue: vertexData[0])
-//                }
-//
-//                // fixed error here with nil not being an acceptable parameter for 'options'
-//                // http://stackoverflow.com/questions/29584463/ios-8-3-metal-found-nil-while-unwrapping-an-optional-value
-//                if let buffer = metalDevice.makeBuffer(
-//                    bytes: vertexData,
-//                    length: dataSize,
-//                    options: .storageModeShared) {
-//                    bufferCoord.buffer = buffer
-//                }
-//
-//                bufferCoord.coords = coords
-//
-//                numVertices = dataSize / MemoryLayout<AAPLVertex>.size
-//
-//                self.bufferCoords += [bufferCoord]
-//            }
-//            return bufferCoord
-//        }
-//    }
-//
-//
-//    func replace(at:CallLocation) {
-//        self.bufferCoords = self.bufferCoords.map { bufferCoord in
-//            guard bufferCoord.location == at else { return bufferCoord }
-//            var bufferCoord = bufferCoord
-//            guard let metalDevice = self.device else { fatalError("Expected a Metal device.") }
-//            do {
-//                var dataSize = 0
-//                let buffer = bufferCoord.coords
-//                let vertexData:[AAPLVertex] = createQuad(br: buffer[0],
-//                                                         bl: buffer[1],
-//                                                         tl: buffer[2],
-//                                                         br2: buffer[3],
-//                                                         tl2: buffer[4],
-//                                                         tr: buffer[5],
-//                                                         viewportSize:  UIScreen.main.nativeBounds.size)
-//                if dataSize == 0 {
-//                    dataSize = vertexData.count * MemoryLayout.size(ofValue: vertexData[0])
-//                }
-//
-//                // fixed error here with nil not being an acceptable parameter for 'options'
-//                // http://stackoverflow.com/questions/29584463/ios-8-3-metal-found-nil-while-unwrapping-an-optional-value
-//                if let buffer = metalDevice.makeBuffer(
-//                    bytes: vertexData,
-//                    length: dataSize,
-//                    options: .storageModeShared) {
-//                    bufferCoord.buffer = buffer
-//                }
-//
-//                numVertices = dataSize / MemoryLayout<AAPLVertex>.size
-//
-//                self.bufferCoords += [bufferCoord]
-//            }
-//            return bufferCoord
-//        }
-//    }
-//
-//
-//
-//    func apply(transform: CGAffineTransform, to:CallLocation) {
-//        self.bufferCoords = self.bufferCoords.map { bufferCoord in
-//            guard bufferCoord.location == to else { return bufferCoord }
-//            var bufferCoord = bufferCoord
-//            guard let metalDevice = self.device else { fatalError("Expected a Metal device.") }
-//            do {
-//                var dataSize = 0
-//                let buffer = bufferCoord.coords
-//                var coordsTransformed:[CGPoint] = [buffer[0].applying(transform),
-//                                                   buffer[1].applying(transform),
-//                                                   buffer[2].applying(transform),
-//                                                   buffer[3].applying(transform),
-//                                                   buffer[4].applying(transform),
-//                                                   buffer[5].applying(transform)]
-//
-//
-//                // now lets pin the cgpoints to the four corners
-//                let bufferMinX = buffer.min { $0.x < $1.x }!.x
-//                let bufferMinY = buffer.min { $0.y < $1.y }!.y
-//
-//                let bufferMaxX = buffer.max { $0.x < $1.x }!.x
-//                let bufferMaxY = buffer.max { $0.y < $1.y }!.y
-//
-//                let minX = coordsTransformed.min { $0.x < $1.x }!.x
-//                let minY = coordsTransformed.min { $0.y < $1.y }!.y
-//
-//                let maxX = coordsTransformed.max { $0.x < $1.x }!.x
-//                let maxY = coordsTransformed.max { $0.y < $1.y }!.y
-//                for (i, coord) in coordsTransformed.enumerated() {
-//                    if coord.x == minX {
-//                        coordsTransformed[i].x = bufferMinX
-//                    } else if coord.x == maxX {
-//                        coordsTransformed[i].x = bufferMaxX
-//                    }
-//
-//                    if coord.y == minY {
-//                        coordsTransformed[i].y = bufferMinY
-//                    } else if coord.y == maxY {
-//                        coordsTransformed[i].y = bufferMaxY
-//                    }
-//                }
-//
-//                bufferCoord.coordsTransformed = coordsTransformed
-//                let vertexData:[AAPLVertex] = createQuad(br: coordsTransformed[0],
-//                                                         bl: coordsTransformed[1],
-//                                                         tl: coordsTransformed[2],
-//                                                         br2: coordsTransformed[3],
-//                                                         tl2: coordsTransformed[4],
-//                                                         tr: coordsTransformed[5],
-//                                                         viewportSize:  UIScreen.main.nativeBounds.size)
-//                if dataSize == 0 {
-//                    dataSize = vertexData.count * MemoryLayout.size(ofValue: vertexData[0])
-//                }
-//
-//                // fixed error here with nil not being an acceptable parameter for 'options'
-//                // http://stackoverflow.com/questions/29584463/ios-8-3-metal-found-nil-while-unwrapping-an-optional-value
-//                if let buffer = metalDevice.makeBuffer(
-//                    bytes: vertexData,
-//                    length: dataSize,
-//                    options: .storageModeShared) {
-//                    bufferCoord.buffer = buffer
-//                }
-//
-//                numVertices = dataSize / MemoryLayout<AAPLVertex>.size
-//
-//                self.bufferCoords += [bufferCoord]
-//            }
-//            return bufferCoord
-//        }
-//    }
     
+    func updateCapturedImageTextures(pixelBuffer: CVPixelBuffer) -> (CVMetalTexture?, CVMetalTexture?) {
+        // Create two textures (Y and CbCr) from the provided frame's captured image.
+        if (CVPixelBufferGetPlaneCount(pixelBuffer) < 2) {
+            return (nil, nil)
+        }
+        
+        return (createYUVTexture(fromPixelBuffer: pixelBuffer, pixelFormat:.r8Unorm, planeIndex:0)!,
+            createYUVTexture(fromPixelBuffer: pixelBuffer, pixelFormat:.rg8Unorm, planeIndex:1)!)
+    }
+
+    func createYUVTexture(fromPixelBuffer pixelBuffer: CVPixelBuffer, pixelFormat: MTLPixelFormat, planeIndex: Int) -> CVMetalTexture? {
+        let width = CVPixelBufferGetWidthOfPlane(pixelBuffer, planeIndex)
+        let height = CVPixelBufferGetHeightOfPlane(pixelBuffer, planeIndex)
+        
+        var texture: CVMetalTexture? = nil
+        let status = CVMetalTextureCacheCreateTextureFromImage(nil, textureCache!, pixelBuffer, nil, pixelFormat, width, height, planeIndex, &texture)
+        
+        if status != kCVReturnSuccess {
+            texture = nil
+        }
+        
+        return texture
+    }
    
     override var mouseDownCanMoveWindow:Bool {
         return true

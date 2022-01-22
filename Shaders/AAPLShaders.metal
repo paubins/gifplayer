@@ -90,26 +90,6 @@ vertexShader(uint vertexID [[ vertex_id ]],
     return out;
 }
 
-float4 yuva2rgba(half4 yuva)
-{
-
-    float4 rgba = float4(0.0);
-
-    rgba.r = yuva.x * 1.0 + yuva.y * 0.0 + yuva.z * 1.4;
-    rgba.g = yuva.x * 1.0 + yuva.y * -0.343 + yuva.z * -0.711;
-    rgba.b = yuva.x * 1.0 + yuva.y * 1.765 + yuva.z * 0.0;
-    rgba.a = yuva.a;
-
-    return rgba;
-}
-
-constant const float4x4 ycbcrToRGBTransform = float4x4(
-    float4(+1.0000f, +1.0000f, +1.0000f, +0.0000f),
-    float4(+0.0000f, -0.3441f, +1.7720f, +0.0000f),
-    float4(+1.4020f, -0.7141f, +0.0000f, +0.0000f),
-    float4(-0.7010f, +0.5291f, -0.8860f, +1.0000f)
-);
-
 // Fragment function
 fragment float4
 samplingShader(RasterizerData in [[stage_in]],

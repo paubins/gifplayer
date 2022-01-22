@@ -255,6 +255,7 @@ final class MetalView: MTKView {
 
         let library = metalDevice.makeDefaultLibrary()
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
+        pipelineDescriptor.sampleCount = 1
         pipelineDescriptor.vertexFunction = library!.makeFunction(name: "vertexShader")
         pipelineDescriptor.fragmentFunction = library!.makeFunction(name: "capturedImageFragmentShader")
         pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
@@ -440,9 +441,13 @@ final class MetalView: MTKView {
 
         encoder.setRenderPipelineState(pipeline)
         encoder.setVertexBuffer(buffer, offset: 0, index: 0)
-        encoder.setFragmentTexture(texture, index: 0)
+        
+        // hacky and needs to be reorganized
         if let texture2 = texture2 {
             encoder.setFragmentTexture(texture, index: 1)
+            encoder.setFragmentTexture(texture2, index: 2)
+        } else {
+            encoder.setFragmentTexture(texture, index: 0)
         }
         encoder.setVertexBytes(&viewportSize, length: MemoryLayout<vector_uint2>.size, index: 1)
         encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: numVertices)

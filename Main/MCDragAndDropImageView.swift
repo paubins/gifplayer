@@ -19,7 +19,7 @@ class MCDragAndDropImageView: NSView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        registerForDraggedTypes([.fileURL])
+        registerForDraggedTypes([.fileURL, .URL])
         wantsLayer = true
 //        self.delegate = self
     }
@@ -44,10 +44,8 @@ extension MCDragAndDropImageView: NSDraggingSource {
 			let pboard = sender.draggingPasteboard
 
             if #available(OSX 10.13, *) {
-                if pboard.availableType(from: [NSPasteboard.PasteboardType.fileURL]) == NSPasteboard.PasteboardType.fileURL {
-                    if sourceDragMask.rawValue & NSDragOperation.copy.rawValue != 0 {
-                        return NSDragOperation.copy
-                    }
+                if sourceDragMask.rawValue & NSDragOperation.copy.rawValue != 0 {
+                    return NSDragOperation.copy
                 }
             } else {
                 // Fallback on earlier versions

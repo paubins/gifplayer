@@ -194,6 +194,34 @@ class GIFManager {
             }
         }
     }
+    
+    func downloadFile(url: URL, completion: @escaping ((URL?)->()) ) {
+        GIFManager.shared.showLoader(message: "Downloading file...")
+        let downloadTask = URLSession.shared.downloadTask(with: url) {
+            urlOrNil, responseOrNil, errorOrNil in
+            // check for and handle errors:
+            // * errorOrNil should be nil
+            // * responseOrNil should be an HTTPURLResponse with statusCode in 200..<299
+            
+            guard let fileURL = urlOrNil else { return }
+            do {
+                let documentsURL = try
+                    FileManager.default.url(for: .documentDirectory,
+                                            in: .userDomainMask,
+                                            appropriateFor: nil,
+                                            create: false)
+                let savedURL = documentsURL.appendingPathComponent(url.lastPathComponent)
+                try FileManager.default.moveItem(at: fileURL, to: savedURL)
+                completion(savedURL)
+            } catch {
+                print ("file error: \(error)")
+            }
+            DispatchQueue.main.async {
+                GIFManager.shared.hideLoader()
+            }
+        }
+        downloadTask.resume()
+    }
 }
 
 class GIFWindow : NSWindow {
@@ -572,11 +600,8 @@ class GIFWindow : NSWindow {
 
 class GIFWindowController : NSWindowController {
 
-    let pasteboardWatcher:PasteboardWatcher = PasteboardWatcher(fileKinds: ["gif", "mp4", "webm"])
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.pasteboardWatcher.delegate = self
         UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions" : true])
         if let window = self.window {
             let contentView:MCDragAndDropImageView = window.contentView as! MCDragAndDropImageView
@@ -587,8 +612,7 @@ class GIFWindowController : NSWindowController {
 
 
 extension GIFWindowController : MCDragAndDropImageViewDelegate {
-    func dragAndDropImageViewDidDrop(pasteboard:NSPasteboard) {
-        let url:URL = NSURL(from: pasteboard)! as URL
+    func parse(url: URL) {
         if url.pathExtension == "mp4" ||  url.pathExtension == "mov"{
             GIFManager.shared.convertToGIF(url: url)
         } else if url.pathExtension == "webm" {
@@ -598,11 +622,22 @@ extension GIFWindowController : MCDragAndDropImageViewDelegate {
             GIFManager.shared.powerLoadGIF(url: url)
         }
     }
-}
-
-extension GIFWindowController : PasteboardWatcherDelegate {
-    func newlyCopiedUrlObtained(copiedUrl: NSURL) {
-//        _ = self.displayWindow(filename: copiedUrl.absoluteString!)
+    
+    func dragAndDropImageViewDidDrop(pasteboard:NSPasteboard) {
+        let url:URL = NSURL(from: pasteboard)! as URL
+        if url.absoluteString.hasPrefix("http") && ["mp4", "mov", "webm", "gif"].contains(obj: url.pathExtension){
+            GIFManager.shared.downloadFile(url: url) { url in
+                if let url = url {
+                    DispatchQueue.main.async {
+                        self.parse(url: url)
+                    }
+                } else {
+                    print("unable to download")
+                }
+            }
+        } else {
+            self.parse(url: url)
+        }
     }
 }
 
@@ -685,11 +720,11 @@ extension NSImage {
         let fileURL: URL? = documentsDirectoryURL?.appendingPathComponent("animated.gif")
         
         if let url = fileURL as CFURL? {
-            if let destination = CGImageDestinationCreateWithURL(url, kUTTypeGIF, images.count, nil) {
+            if let destination = CGImageDestinationCreateWithURL(url, UTType.gif as! CFString, images.count, nil) {
                 CGImageDestinationSetProperties(destination, fileProperties)
                 for image in images {
                     var _vtpt_ref:VTPixelTransferSession?
-                    let result = VTPixelTransferSessionCreate(allocator: kCFAllocatorDefault, pixelTransferSessionOut: &_vtpt_ref)
+                    let _ = VTPixelTransferSessionCreate(allocator: kCFAllocatorDefault, pixelTransferSessionOut: &_vtpt_ref)
                     var converted_frame:CVPixelBuffer?
                     CVPixelBufferCreate(kCFAllocatorDefault,
                                         Int(size.width), Int(size.height),
@@ -701,7 +736,7 @@ extension NSImage {
                         VTPixelTransferSessionTransferImage(_vtpt_ref, from: image, to: converted_frame)
                         var cgImage:CGImage?
                         VTCreateCGImageFromCVPixelBuffer(converted_frame, options: nil, imageOut: &cgImage)
-                        CGImageDestinationAddImage(destination, cgImage as! CGImage, frameProperties)
+                        CGImageDestinationAddImage(destination, cgImage!, frameProperties)
                     }
                     
                 }
@@ -713,3 +748,9 @@ extension NSImage {
         }
     }
 }
+
+extension Array {
+     func contains<T>(obj: T) -> Bool where T: Equatable {
+         return !self.filter({$0 as? T == obj}).isEmpty
+     }
+ }

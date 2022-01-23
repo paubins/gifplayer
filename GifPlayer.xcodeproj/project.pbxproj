@@ -10,7 +10,6 @@
 		5F0D637A1F12E72900DF4FB1 /* errorstop.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0D63791F12E72900DF4FB1 /* errorstop.png */; };
 		5F0D637E1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D637D1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift */; };
 		5F519AF81F15DA5E00C11215 /* VarelaRound-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F519AF71F15DA2900C11215 /* VarelaRound-Regular.ttf */; };
-		5F783FC21EFA22DF0048A45E /* PasteboardWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F783FC11EFA22DF0048A45E /* PasteboardWatcher.swift */; };
 		5F9619381EF87410008A3195 /* ImageSourceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9619371EF87410008A3195 /* ImageSourceHelpers.swift */; };
 		5FA20F531F06CC12006E9076 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 5FA20F521F06CC12006E9076 /* index.html */; };
 		5FA253BC1EEDF57A00410048 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FA253BB1EEDF57A00410048 /* Assets.xcassets */; };
@@ -105,7 +104,6 @@
 		5F26C3D71F0F4BCB000840BB /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Main.strings; sourceTree = "<group>"; };
 		5F26C3D81F0F4BCE000840BB /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Main.strings; sourceTree = "<group>"; };
 		5F519AF71F15DA2900C11215 /* VarelaRound-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VarelaRound-Regular.ttf"; sourceTree = "<group>"; };
-		5F783FC11EFA22DF0048A45E /* PasteboardWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardWatcher.swift; sourceTree = "<group>"; };
 		5F9619371EF87410008A3195 /* ImageSourceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSourceHelpers.swift; sourceTree = "<group>"; };
 		5FA20F521F06CC12006E9076 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		5FA253BB1EEDF57A00410048 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				C1585D3D2792032A00758157 /* GIFWindowController.swift */,
-				5F783FC11EFA22DF0048A45E /* PasteboardWatcher.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -535,7 +532,6 @@
 				C1585D542792436500758157 /* rgba2bgraKernel.metal in Sources */,
 				C1585D562792436500758157 /* shaders.metal in Sources */,
 				C1585D592792436500758157 /* gammaKernel.metal in Sources */,
-				5F783FC21EFA22DF0048A45E /* PasteboardWatcher.swift in Sources */,
 				C17DE26E279B8FB7001FA81A /* file_util.cc in Sources */,
 				C17DE26C279B8FB7001FA81A /* vpx_player.mm in Sources */,
 				C17DE26D279B8FB7001FA81A /* hdr_util.cc in Sources */,

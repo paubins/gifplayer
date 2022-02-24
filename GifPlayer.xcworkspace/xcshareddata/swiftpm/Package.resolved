@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "KeyboardShortcuts",
+        "repositoryURL": "https://github.com/sindresorhus/KeyboardShortcuts",
+        "state": {
+          "branch": "main",
+          "revision": "3017db0d96ccc7f5306037826d6eaaa4e3683cf3",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

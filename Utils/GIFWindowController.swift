@@ -533,10 +533,10 @@ class GIFWindow : NSWindow {
         print(action)
         switch action {
         case .rewind:
-//            self.rewind()
+            self.rewind()
             break
         case .fastForward:
-//            self.forward()
+            self.forward()
             break
         case .slowDown:
             self.slowDown()
@@ -596,6 +596,13 @@ class GIFWindow : NSWindow {
             break
         }
     }
+    
+    func clone() {
+        if let urlString = GIFManager.shared.gifs[self.gifIndex].name,
+           let url = URL(string: urlString) {
+            GIFManager.shared.powerLoadGIF(url: url)
+        }
+    }
 }
 
 class GIFWindowController : NSWindowController {
@@ -645,16 +652,6 @@ class CustomWindowController : NSWindowController {
     
     var keyPressCallback:((GIFAction)->())?
     
-    override func keyDown(with event: NSEvent) {
-        print(event)
-        switch event.keyCode {
-        case 123:
-            break
-        default:
-            break
-        }
-    }
-    
     override func keyUp(with event: NSEvent) {
         guard let keyPressCallback = keyPressCallback else {
             return
@@ -668,32 +665,6 @@ class CustomWindowController : NSWindowController {
             }, {
                 GIFManager.shared.hideLoader()
             }))
-        case 2:
-            keyPressCallback(.slowDown)
-        case 3:
-            keyPressCallback(.speedUp)
-        case 8:
-            keyPressCallback(.clone)
-        case 24:
-            keyPressCallback(.larger)
-        case 27:
-            keyPressCallback(.smaller)
-        case 43:
-            keyPressCallback(.decreaseAlpha)
-        case 47:
-            keyPressCallback(.increaseAlpha)
-        case 49:
-            keyPressCallback(.play)
-        case 53:
-            keyPressCallback(.actualSize)
-        case 123:
-            keyPressCallback(.moveLeft)
-        case 124:
-            keyPressCallback(.moveRight)
-        case 125:
-            keyPressCallback(.moveDown)
-        case 126:
-            keyPressCallback(.moveUp)
         default:
             print("idk")
         }

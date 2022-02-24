@@ -13,9 +13,12 @@
 #ifndef VPX_FRAMEWORK_HEADERS_VPX_VPX_CONFIG_H_
 #define VPX_FRAMEWORK_HEADERS_VPX_VPX_CONFIG_H_
 
-#if defined __x86_64__
-#define VPX_FRAMEWORK_TARGET "x86_64-darwin16-gcc"
-#include "VPX/vpx/x86_64-darwin16-gcc/vpx_config.h"
+#if defined __aarch64__
+#define VPX_FRAMEWORK_TARGET "arm64-darwin21-gcc"
+#include "VPX/vpx/arm64-darwin21-gcc/vpx_config.h"
+#elif defined __x86_64__
+#define VPX_FRAMEWORK_TARGET "x86_64-darwin21-gcc"
+#include "VPX/vpx/x86_64-darwin21-gcc/vpx_config.h"
 #endif
 
 #endif  // VPX_FRAMEWORK_HEADERS_VPX_VPX_CONFIG_H_

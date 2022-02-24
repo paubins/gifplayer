@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5F0D637A1F12E72900DF4FB1 /* errorstop.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0D63791F12E72900DF4FB1 /* errorstop.png */; };
 		5F0D637E1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D637D1F130B7D00DF4FB1 /* MCDragAndDropImageView.swift */; };
+		5F2B624E27C7E92B00941F0A /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 5F2B624D27C7E92B00941F0A /* KeyboardShortcuts */; };
 		5F519AF81F15DA5E00C11215 /* VarelaRound-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F519AF71F15DA2900C11215 /* VarelaRound-Regular.ttf */; };
 		5F9619381EF87410008A3195 /* ImageSourceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9619371EF87410008A3195 /* ImageSourceHelpers.swift */; };
 		5FA20F531F06CC12006E9076 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 5FA20F521F06CC12006E9076 /* index.html */; };
@@ -177,6 +178,7 @@
 			files = (
 				C17DE278279B912E001FA81A /* CoreFoundation.framework in Frameworks */,
 				C17DE270279B8FB7001FA81A /* VPX.framework in Frameworks */,
+				5F2B624E27C7E92B00941F0A /* KeyboardShortcuts in Frameworks */,
 				C17DE277279B912E001FA81A /* Foundation.framework in Frameworks */,
 				C17DE274279B9128001FA81A /* CoreVideo.framework in Frameworks */,
 			);
@@ -397,6 +399,7 @@
 			);
 			name = GifPlayer;
 			packageProductDependencies = (
+				5F2B624D27C7E92B00941F0A /* KeyboardShortcuts */,
 			);
 			productName = GifPlayer;
 			productReference = 5FA74AD91EED0C8D007642C8 /* DotGIF.app */;
@@ -414,7 +417,6 @@
 				TargetAttributes = {
 					5FA74AD81EED0C8C007642C8 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 3XSPEUHQ6Y;
 						LastSwiftMigration = 1320;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -470,6 +472,7 @@
 			);
 			mainGroup = 5FA74AD01EED0C8C007642C8;
 			packageReferences = (
+				5F2B624C27C7E92B00941F0A /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
 			);
 			productRefGroup = 5FA74ADA1EED0C8D007642C8 /* Products */;
 			projectDirPath = "";
@@ -707,8 +710,9 @@
 				CODE_SIGN_ENTITLEMENTS = GifPlayer/DotGIF.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 38;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 3XSPEUHQ6Y;
+				DEVELOPMENT_TEAM = 42N9D6EK46;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -728,6 +732,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paubins.DotGif;
 				PRODUCT_NAME = DotGIF;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -745,7 +750,8 @@
 				CODE_SIGN_ENTITLEMENTS = GifPlayer/DotGIF.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 3XSPEUHQ6Y;
+				CURRENT_PROJECT_VERSION = 38;
+				DEVELOPMENT_TEAM = 42N9D6EK46;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -765,6 +771,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paubins.DotGif;
 				PRODUCT_NAME = DotGIF;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -795,6 +802,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5F2B624C27C7E92B00941F0A /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5F2B624D27C7E92B00941F0A /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5F2B624C27C7E92B00941F0A /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5FA74AD11EED0C8C007642C8 /* Project object */;
 }

@@ -39,6 +39,12 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="DotGIF" systemMenu="apple" autoenablesItems="NO" id="uQy-DD-JDr">
                                     <items>
+                                        <menuItem title="Settings" id="vUj-iJ-77j">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openSettings:" target="Voe-Tx-rLC" id="KHi-d0-5wV"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="About DotGIF" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -413,6 +419,58 @@
                 <customObject id="j3O-KZ-mDw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-60" y="-492"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="0tR-EP-TAK">
+            <objects>
+                <windowController storyboardIdentifier="KeyboardShortcutWindowController" id="3A9-qL-xsJ" sceneMemberID="viewController">
+                    <window key="window" title="Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="yE3-dJ-UVf">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="294" y="313" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
+                        <view key="contentView" id="nsE-H7-EHc">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="3A9-qL-xsJ" id="CsA-bT-zah"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="K0f-lc-X1v" kind="relationship" relationship="window.shadowedContentViewController" id="7eW-ZI-G5i"/>
+                    </connections>
+                </windowController>
+                <customObject id="fd1-1L-qPt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="25" y="-1851"/>
+        </scene>
+        <!--Preferences View Controller-->
+        <scene sceneID="mRb-iz-Akn">
+            <objects>
+                <viewController id="K0f-lc-X1v" customClass="PreferencesViewController" customModule="DotGIF" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="92T-Ro-JIN">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="deb-Be-czq">
+                                <rect key="frame" x="40" y="35" width="400" height="200"/>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="deb-Be-czq" secondAttribute="trailing" constant="40" id="Km6-XX-cL8"/>
+                            <constraint firstItem="deb-Be-czq" firstAttribute="leading" secondItem="92T-Ro-JIN" secondAttribute="leading" constant="40" id="PNK-bX-fS8"/>
+                            <constraint firstItem="deb-Be-czq" firstAttribute="top" secondItem="92T-Ro-JIN" secondAttribute="top" constant="35" id="Qms-uT-wau"/>
+                            <constraint firstAttribute="bottom" secondItem="deb-Be-czq" secondAttribute="bottom" constant="35" id="xPq-qs-xWM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mainStackView" destination="deb-Be-czq" id="j6E-NT-dLV"/>
+                    </connections>
+                </viewController>
+                <customObject id="InB-Qd-MdX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-31" y="-1379"/>
         </scene>
     </scenes>
 </document>

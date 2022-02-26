@@ -133,16 +133,17 @@
 			<string>DotGif</string>
 			<key>UTTypeIconFile</key>
 			<string>gif (2)-128</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>gif (2)-128</string>
+				<key>UTTypeIconBadgeName</key>
+				<string>gif (2)-128</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.compuserve.gif</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
-				<key>com.apple.nspboard-type</key>
-				<array>
-					<string>com.compuserve.gif</string>
-					<string>public.gif</string>
-					<string>public.image</string>
-				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>gif</string>

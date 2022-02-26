@@ -60,119 +60,6 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Control" hidden="YES" id="yKo-SV-iBN">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Control" autoenablesItems="NO" id="J7P-yV-Odr">
-                                    <items>
-                                        <menuItem title="Play/Pause" keyEquivalent=" " id="U8d-jE-tgS">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="M8j-gn-m9n"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Clone" keyEquivalent="D" id="wnz-fP-8Le">
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="EI0-GO-bQ9"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Save" tag="16" keyEquivalent="s" id="maX-wv-io5">
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="Ycz-PT-WO3"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" hidden="YES" id="Bcd-57-fKZ"/>
-                                        <menuItem title="Speed Up" keyEquivalent="]" id="IVa-CV-uE0">
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="KRt-r3-5pS"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Slow Down" keyEquivalent="[" id="r9b-V9-GPB">
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="KJX-GP-7bV"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="eMt-wK-itZ"/>
-                                        <menuItem title="Actual Size" keyEquivalent="0" id="wEs-6f-Buf">
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="dtr-W4-aDB"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Scale Up" keyEquivalent="=" id="Oz0-hx-Iwj">
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="02v-3I-h1l"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Scale Down" keyEquivalent="-" id="XUT-aW-B9x">
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="bBd-ED-wa1"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Scale Up 1px" keyEquivalent="=" id="WXc-4D-1jy">
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="rR6-Gp-NGY"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Scale Down 1px" keyEquivalent="-" id="Ubb-eK-qEx">
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="aXw-Ic-xmx"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="oEV-iV-Dq9"/>
-                                        <menuItem title="Move up 1px" tag="20" keyEquivalent="" id="WNn-Az-NDo">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="78z-6k-WKL"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Move down 1px" tag="23" keyEquivalent="" id="957-Pu-RVN">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="pXX-i1-EPx"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Move right 1px" tag="22" keyEquivalent="" id="Gkj-o5-C7j">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="mFz-yW-K7V"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Move down 1px" tag="23" keyEquivalent="" id="NJr-3n-CSq">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="pBg-NQ-xLR"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="umy-N9-5Yt"/>
-                                        <menuItem title="Back a Frame" tag="23" keyEquivalent="" id="2FR-Nn-c2g">
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="CEh-hL-QWR"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Forward a Frame" tag="23" keyEquivalent="" id="xrm-7M-V2V">
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="RC2-89-80v"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="A9W-6g-jQJ"/>
-                                        <menuItem title="Increase transparency" keyEquivalent="j" id="tqD-3S-S3z">
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="hZ6-n0-LO0"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Decrease transparency" keyEquivalent="k" id="Wdf-QX-wwc">
-                                            <connections>
-                                                <action selector="moveAround:" target="Voe-Tx-rLC" id="q5v-Qy-QW0"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="FRx-pP-PhG"/>
-                                        <menuItem title="Close" keyEquivalent="w" id="umD-3z-a3b"/>
-                                    </items>
-                                </menu>
-                            </menuItem>
                             <menuItem title="Feedback" id="Pxa-ao-5Ga">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Feedback" id="XiK-Sk-z4g">
@@ -192,12 +79,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="DotGIF" customModuleProvider="target">
-                    <connections>
-                        <outlet property="saveButton" destination="maX-wv-io5" id="EBM-ZV-uAa"/>
-                        <outlet property="windowMenu" destination="yKo-SV-iBN" id="HQJ-vt-odI"/>
-                    </connections>
-                </customObject>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="DotGIF" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>

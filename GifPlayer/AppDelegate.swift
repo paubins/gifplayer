@@ -14,6 +14,8 @@ let thumbPath  = NSHomeDirectory() + "/Documents/thumb"
 let folderPath  = NSHomeDirectory() + "/Documents"
 
 extension KeyboardShortcuts.Name {
+    static let save = Self("save", default: .init(.s, modifiers: [.command]))
+    static let pause = Self("pause", default: .init(.space, modifiers: [.command, .option]))
     static let rewind = Self("rewind", default: .init(.r, modifiers: [.command, .option]))
     static let fastForward = Self("fastForward", default: .init(.f, modifiers: [.command, .option]))
     static let slowDown = Self("slowDown", default: .init(.p, modifiers: [.command, .option]))
@@ -34,6 +36,8 @@ extension KeyboardShortcuts.Name {
 
 extension KeyboardShortcuts.Name: CaseIterable {
     public static let allCases: [Self] = [
+        .save,
+        .pause,
         .rewind,
         .fastForward,
         .slowDown,
@@ -85,6 +89,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         NSApp.servicesProvider = self
+        
+        KeyboardShortcuts.onKeyDown(for: .save) {
+            if let window = NSApplication.shared.keyWindow as? GIFWindow {
+                window.save()
+            }
+        }
 
         KeyboardShortcuts.onKeyDown(for: .larger) {
             if let window = NSApplication.shared.keyWindow as? GIFWindow {
@@ -181,6 +191,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 window.forward()
             }
         }
+        
+        KeyboardShortcuts.onKeyDown(for: .pause) {
+            if let window = NSApplication.shared.keyWindow as? GIFWindow {
+                window.pause()
+            }
+        }
     }
     
     @IBAction func openSettings(_ sender: Any) {
@@ -241,12 +257,14 @@ final class PreferencesViewController: NSViewController {
             let label = NSTextField(string: "Keyboard shortcut")
             
             switch element {
+            case .pause:
+                label.stringValue = "Pause"
             case .slowDown:
                 label.stringValue = "Slow Down"
             case .speedUp:
                 label.stringValue = "Speed Up"
             case .rewind:
-                label.stringValue = "Rewind"
+                label.stringValue = "Back 1 frame"
             case .larger:
                 label.stringValue = "Make Window Larger"
             case .larger1px:
@@ -272,7 +290,7 @@ final class PreferencesViewController: NSViewController {
             case .clone:
                 label.stringValue = "Clone Window"
             case .fastForward:
-                label.stringValue = "Fast Forward"
+                label.stringValue = "Forward 1 frame"
             default:
                 break
             }
